@@ -26,8 +26,11 @@ jobs:
           node-version: 24
           cache: npm
 
+      # npm ci rejects this lockfile: Tailwind's wasm fallback (@tailwindcss/oxide-wasm32-wasi)
+      # installs on no platform we use, so npm never records its @emnapi deps completely.
+      # npm install resolves the same versions without the strict lockfile equality check.
       # Git hooks are a local-development tool; installing them in CI only adds a failure mode.
-      - run: npm ci
+      - run: npm install --no-audit --no-fund
         env:
           HUSKY: 0
 
