@@ -20,9 +20,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Must match the local Node major: a lockfile written by npm 11 is rejected by npm 10.
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       # Git hooks are a local-development tool; installing them in CI only adds a failure mode.
