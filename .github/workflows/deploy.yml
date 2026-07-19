@@ -25,7 +25,10 @@ jobs:
           node-version: 20
           cache: npm
 
+      # Git hooks are a local-development tool; installing them in CI only adds a failure mode.
       - run: npm ci
+        env:
+          HUSKY: 0
 
       - run: npm run lint
       - run: npm run type-check
