@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <defs>
+    <linearGradient id="win" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.6" stop-color="#e9eff8"/>
+      <stop offset="1" stop-color="#c3d2e6"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7fb4f7"/>
+      <stop offset="0.5" stop-color="#3c78dd"/>
+      <stop offset="1" stop-color="#1c4fb4"/>
+    </linearGradient>
+    <linearGradient id="arrow" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#c8f2a2"/>
+      <stop offset="0.5" stop-color="#5cb032"/>
+      <stop offset="1" stop-color="#2c701a"/>
+    </linearGradient>
+    <filter id="ds" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="1" dy="2" stdDeviation="1.3" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <g filter="url(#ds)">
+    <rect x="4" y="8" width="34" height="26" rx="3" fill="url(#win)" stroke="#7d95b5"/>
+    <path d="M4 11.5A3.5 3.5 0 0 1 7.5 8h27A3.5 3.5 0 0 1 38 11.5V15H4Z" fill="url(#bar)" stroke="#1c4fb4"/>
+    <path d="M5.5 9.5c4-.8 10-1 15-.6l-.8 3c-5-.4-10.5-.2-13.7.6Z" fill="#ffffff" opacity="0.45"/>
+    <rect x="8" y="20" width="20" height="5.5" rx="1" fill="#ffffff" stroke="#8fa9c9"/>
+    <path d="M27 26 44 33l-7.5 2.5L34 43Z" fill="url(#arrow)" stroke="#20520f"/>
+    <path d="M29 27.8l9.5 3.9-4 1.3Z" fill="#ffffff" opacity="0.4"/>
+  </g>
+</svg>

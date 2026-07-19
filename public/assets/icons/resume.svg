@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <defs>
+    <linearGradient id="page" x1="0" y1="0" x2="0.25" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.65" stop-color="#eef2f8"/>
+      <stop offset="1" stop-color="#cdd9e8"/>
+    </linearGradient>
+    <linearGradient id="photo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7fb4f7"/>
+      <stop offset="1" stop-color="#1c4fb4"/>
+    </linearGradient>
+    <filter id="ds" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="1" dy="2" stdDeviation="1.3" flood-opacity="0.38"/>
+    </filter>
+  </defs>
+  <g filter="url(#ds)" transform="rotate(-2 24 24)">
+    <path d="M9 7a3 3 0 0 1 3-3h18l9 9v28a3 3 0 0 1-3 3H12a3 3 0 0 1-3-3Z" fill="url(#page)" stroke="#7d95b5"/>
+    <path d="M30 4l9 9h-7a2 2 0 0 1-2-2Z" fill="#c3d2e6" stroke="#7d95b5"/>
+    <path d="M10.5 5.5c4-.8 10-1 15-.6l-.8 3.2c-5-.4-10.5-.2-13.7.6Z" fill="#ffffff" opacity="0.6"/>
+    <rect x="13" y="11" width="9.5" height="10.5" rx="1.5" fill="url(#photo)" stroke="#1c4fb4"/>
+    <circle cx="17.7" cy="14.6" r="2.3" fill="#f2c9a0"/>
+    <path d="M14 21.2c.7-2 2-3 3.7-3s3 1 3.7 3Z" fill="#f2c9a0"/>
+    <path d="M26 13h9M26 17h9" stroke="#5b7ba3" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M13 27h22M13 32h22M13 37h15" stroke="#8fa9c9" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+</svg>

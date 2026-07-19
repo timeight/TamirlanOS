@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: Tahoma, Verdana, "Segoe UI", sans-serif;
+
+  --color-xp-blue: #0055e5;
+  --color-xp-blue-inactive: #7a96df;
+  --color-xp-selection: #316ac5;
+
+  --animate-fade-in: fade-in 200ms ease-out both;
+  --animate-blink: blink 1s step-end infinite;
+  --animate-xp-progress: xp-progress 2s linear infinite;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes xp-progress {
+    from {
+      transform: translateX(-34px);
+    }
+    to {
+      transform: translateX(158px);
+    }
+  }
+}
+
+html,
+body {
+  height: 100%;
+  /* The desktop owns the whole viewport: no page scroll, no rubber-band gap behind it. */
+  overflow: hidden;
+  overscroll-behavior: none;
+  background-color: #000;
+}
+
+/* Mobile browser chrome shrinks the visual viewport; dvh tracks it, % does not. */
+@supports (height: 100dvh) {
+  body {
+    height: 100dvh;
+  }
+}

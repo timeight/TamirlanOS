@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <defs>
+    <linearGradient id="cert" x1="0" y1="0" x2="0.25" y2="1">
+      <stop offset="0" stop-color="#fffef5"/>
+      <stop offset="0.6" stop-color="#f6efd6"/>
+      <stop offset="1" stop-color="#dccfa4"/>
+    </linearGradient>
+    <radialGradient id="seal" cx="0.32" cy="0.28" r="1">
+      <stop offset="0" stop-color="#ffedb0"/>
+      <stop offset="0.5" stop-color="#e8b23a"/>
+      <stop offset="1" stop-color="#9c6a10"/>
+    </radialGradient>
+    <filter id="ds" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="1" dy="2" stdDeviation="1.3" flood-opacity="0.38"/>
+    </filter>
+  </defs>
+  <g filter="url(#ds)" transform="rotate(-2 24 24)">
+    <rect x="4" y="8" width="40" height="28" rx="3" fill="url(#cert)" stroke="#a8935c"/>
+    <rect x="7" y="11" width="34" height="22" rx="1.5" fill="none" stroke="#cdbc84"/>
+    <path d="M6 9.5c5-1 13-1.2 19-.8l-.8 3.4c-6-.4-13.5-.1-17 .9Z" fill="#ffffff" opacity="0.55"/>
+    <path d="M12 17h24M12 22h24M12 27h14" stroke="#8f8050" stroke-width="2" stroke-linecap="round"/>
+    <path d="M31.5 33l3.5 9.5 3-4.2 5.2 1.6-4.2-10Z" fill="#c23b2e" stroke="#8f2318"/>
+    <circle cx="35" cy="31" r="6.8" fill="url(#seal)" stroke="#7c5410"/>
+    <ellipse cx="32.6" cy="28.6" rx="2.4" ry="1.7" fill="#ffffff" opacity="0.55"/>
+    <circle cx="35" cy="31" r="3.4" fill="none" stroke="#7c5410" opacity="0.6"/>
+  </g>
+</svg>
