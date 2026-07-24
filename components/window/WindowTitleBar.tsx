@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { AssetImage as Image } from "@/components/ui/AssetImage";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import { WindowControls } from "@/components/window/WindowControls";
 import { getApplication } from "@/core/process/app-registry";

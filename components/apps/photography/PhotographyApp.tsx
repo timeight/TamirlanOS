@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { AssetImage as Image } from "@/components/ui/AssetImage";
 import { useState } from "react";
 import { siteConfig } from "@/core/config/site";
 import { cn } from "@/core/utils/cn";

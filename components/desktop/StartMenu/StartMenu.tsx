@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { AssetImage as Image } from "@/components/ui/AssetImage";
 import { useEffect, useRef } from "react";
 import { StartMenuItem } from "@/components/desktop/StartMenu/StartMenuItem";
 import { AppKey } from "@/core/apps/app-catalog";

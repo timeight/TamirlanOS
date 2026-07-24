@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { AssetImage as Image } from "@/components/ui/AssetImage";
 
 import { SKILLS, SOCIAL_LINKS, SOFTWARE } from "./about-content";
 

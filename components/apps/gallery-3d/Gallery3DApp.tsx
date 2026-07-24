@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { AssetImage as Image } from "@/components/ui/AssetImage";
 import { useEffect, useRef } from "react";
 
 const FACES: readonly { icon: string; transform: string }[] = [

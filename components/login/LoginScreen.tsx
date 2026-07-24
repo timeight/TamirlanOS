@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { AssetImage as Image } from "@/components/ui/AssetImage";
 import { BrandMark } from "@/components/ui/BrandMark";
 import { siteConfig } from "@/core/config/site";
 import { useAudioStore } from "@/stores/audio-store";

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { AssetImage as Image } from "@/components/ui/AssetImage";
 import { getApplication } from "@/core/process/app-registry";
 import { cn } from "@/core/utils/cn";
 import { useWindowStore } from "@/stores/window-store";

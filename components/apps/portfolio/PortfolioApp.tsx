@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { AssetImage as Image } from "@/components/ui/AssetImage";
 import { AppKey } from "@/core/apps/app-catalog";
 import { listApplications } from "@/core/process/app-registry";
 import { useOpenApp } from "@/hooks/use-open-app";

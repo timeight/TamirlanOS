@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { AssetImage as Image } from "@/components/ui/AssetImage";
 import { ICON_GRID, slotToPosition } from "@/core/desktop/icon-grid";
 import { cn } from "@/core/utils/cn";
 import { useIsCompact } from "@/hooks/use-compact";
