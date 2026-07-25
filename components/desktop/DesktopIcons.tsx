@@ -36,8 +36,12 @@ export function DesktopIcons({ onIconOpen }: DesktopIconsProps) {
             onClick={(event) => {
               event.stopPropagation();
               selectIcon(icon.id);
+              // Touch has no reliable double-tap, so a single tap opens on phones.
+              if (compact) onIconOpen(icon);
             }}
-            onDoubleClick={() => onIconOpen(icon)}
+            onDoubleClick={() => {
+              if (!compact) onIconOpen(icon);
+            }}
             onKeyDown={(event) => {
               if (event.key === "Enter") onIconOpen(icon);
             }}

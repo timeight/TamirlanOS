@@ -3,10 +3,12 @@
 import { AssetImage as Image } from "@/components/ui/AssetImage";
 import { AppKey } from "@/core/apps/app-catalog";
 import { listApplications } from "@/core/process/app-registry";
+import { useIsCompact } from "@/hooks/use-compact";
 import { useOpenApp } from "@/hooks/use-open-app";
 
 export function PortfolioApp() {
   const openApp = useOpenApp();
+  const compact = useIsCompact();
   const apps = listApplications().filter((app) => app.id !== AppKey.Portfolio);
 
   return (
@@ -16,7 +18,10 @@ export function PortfolioApp() {
           Установленные приложения
         </p>
         <p className="text-[#4a5a70]">
-          Всё, что входит в TamirlanOS. Дважды кликните, чтобы открыть.
+          Всё, что входит в TamirlanOS.{" "}
+          {compact
+            ? "Коснитесь, чтобы открыть."
+            : "Дважды кликните, чтобы открыть."}
         </p>
       </div>
       <ul className="grid flex-1 auto-rows-min grid-cols-2 gap-1 overflow-auto p-2 @sm:grid-cols-3 @lg:grid-cols-4">
@@ -24,7 +29,12 @@ export function PortfolioApp() {
           <li key={app.id}>
             <button
               type="button"
-              onDoubleClick={() => openApp(app.id)}
+              onClick={() => {
+                if (compact) openApp(app.id);
+              }}
+              onDoubleClick={() => {
+                if (!compact) openApp(app.id);
+              }}
               onKeyDown={(event) => {
                 if (event.key === "Enter") openApp(app.id);
               }}
