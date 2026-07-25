@@ -1,12 +1,18 @@
 "use client";
 
 import { asset } from "@/core/config/base-path";
-import { FALLBACK_WALLPAPER_SRC } from "@/core/wallpaper/wallpapers";
+import {
+  FALLBACK_WALLPAPER_SRC,
+  MOBILE_WALLPAPER,
+} from "@/core/wallpaper/wallpapers";
 import { wallpaperStyle } from "@/core/wallpaper/wallpaper-style";
+import { useIsCompact } from "@/hooks/use-compact";
 import { useDesktopStore } from "@/stores/desktop-store";
 
 export function Wallpaper() {
-  const wallpaper = useDesktopStore((state) => state.wallpaper);
+  const compact = useIsCompact();
+  const stored = useDesktopStore((state) => state.wallpaper);
+  const wallpaper = compact ? MOBILE_WALLPAPER : stored;
   const style = wallpaperStyle(wallpaper);
 
   return (
