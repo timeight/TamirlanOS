@@ -2,10 +2,10 @@ import type { GridSlot } from "@/types/desktop-icon";
 import type { Position } from "@/types/geometry";
 
 export const ICON_GRID = {
-  cellWidth: 76,
-  cellHeight: 90,
-  paddingX: 8,
-  paddingY: 8,
+  cellWidth: 88,
+  cellHeight: 104,
+  paddingX: 10,
+  paddingY: 10,
 } as const;
 
 export function slotToPosition(slot: GridSlot): Position {

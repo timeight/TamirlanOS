@@ -57,15 +57,15 @@ export function DesktopIcons({ onIconOpen }: DesktopIconsProps) {
             <Image
               src={icon.iconSrc}
               alt=""
-              width={44}
-              height={44}
+              width={56}
+              height={56}
               unoptimized
               draggable={false}
               className={cn(selected && "brightness-75 saturate-150")}
             />
             <span
               className={cn(
-                "max-w-full px-1 text-center text-[11px] leading-tight text-white",
+                "max-w-full px-1 text-center text-[12px] leading-tight text-white",
                 selected
                   ? "bg-xp-selection"
                   : "[text-shadow:1px_1px_2px_rgb(0_0_0/0.9)]",
