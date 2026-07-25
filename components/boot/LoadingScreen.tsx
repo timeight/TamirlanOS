@@ -16,26 +16,26 @@ export function LoadingScreen() {
 
   return (
     <div
-      className="animate-fade-in relative flex h-full flex-col items-center justify-center gap-14 bg-black text-white motion-reduce:animate-none"
+      className="animate-fade-in relative flex h-full flex-col items-center justify-center gap-8 bg-black text-white motion-reduce:animate-none sm:gap-14"
       style={{ fontFamily: '"Trebuchet MS", Tahoma, sans-serif' }}
     >
       <div className="flex flex-col items-center">
-        <BrandMark className="h-24 w-24" />
+        <BrandMark className="h-16 w-16 sm:h-24 sm:w-24" />
         <div className="mt-3">
-          <p className="text-[52px] leading-none font-bold">
+          <p className="text-4xl leading-none font-bold sm:text-[52px]">
             Tamirlan
-            <span className="ml-1 align-super text-[26px] font-bold text-[#f8682c] italic">
+            <span className="ml-1 align-super text-lg font-bold text-[#f8682c] italic sm:text-[26px]">
               OS
             </span>
           </p>
-          <p className="mt-1 ml-1 text-xl italic">
-            Software Developer · AI Engineer
+          <p className="mt-1 ml-1 text-base italic sm:text-xl">
+            Разработчик · AI-инженер
           </p>
         </div>
       </div>
       <div
         role="status"
-        aria-label="Loading TamirlanOS"
+        aria-label="Загрузка TamirlanOS"
         className="mt-4 h-[15px] w-[176px] overflow-hidden rounded-[8px] border-2 border-[#b8b8b8]/80 p-px"
       >
         <div className="animate-xp-progress flex h-full w-[34px] gap-[2px] motion-reduce:animate-none">
@@ -53,13 +53,13 @@ export function LoadingScreen() {
           />
         </div>
       </div>
-      <div className="absolute inset-x-0 bottom-0 flex items-end justify-between px-10 pb-8">
-        <p className="text-lg leading-6">
-          For the best experience
+      <div className="absolute inset-x-0 bottom-0 flex items-end justify-between px-5 pb-5 sm:px-10 sm:pb-8">
+        <p className="text-sm leading-5 sm:text-lg sm:leading-6">
+          Для лучшего впечатления
           <br />
-          Enter Full Screen (F11)
+          включите полный экран (F11)
         </p>
-        <p className="text-2xl font-bold italic">Portfolio</p>
+        <p className="hidden text-2xl font-bold italic sm:block">Портфолио</p>
       </div>
     </div>
   );

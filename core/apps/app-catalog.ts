@@ -22,7 +22,7 @@ export enum AppKey {
 export const APP_CATALOG: readonly ApplicationManifest[] = [
   {
     id: AppKey.Welcome,
-    title: "Welcome to TamirlanOS",
+    title: "Добро пожаловать в TamirlanOS",
     iconSrc: "/assets/icons/welcome.svg",
     defaultSize: { width: 430, height: 400 },
     minSize: { width: 360, height: 320 },
@@ -31,7 +31,7 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
   },
   {
     id: AppKey.Portfolio,
-    title: "Portfolio Explorer",
+    title: "Проводник портфолио",
     iconSrc: "/assets/icons/portfolio.svg",
     defaultSize: { width: 480, height: 380 },
     minSize: { width: 360, height: 280 },
@@ -40,7 +40,7 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
   },
   {
     id: AppKey.AboutMe,
-    title: "About Me",
+    title: "Обо мне",
     iconSrc: "/assets/icons/about-me.svg",
     defaultSize: { width: 780, height: 560 },
     minSize: { width: 520, height: 400 },
@@ -49,7 +49,7 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
   },
   {
     id: AppKey.Projects,
-    title: "Projects",
+    title: "Проекты",
     iconSrc: "/assets/icons/projects.svg",
     defaultSize: { width: 580, height: 420 },
     minSize: { width: 440, height: 320 },
@@ -58,7 +58,7 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
   },
   {
     id: AppKey.Skills,
-    title: "Skills",
+    title: "Навыки",
     iconSrc: "/assets/icons/skills.svg",
     defaultSize: { width: 460, height: 420 },
     minSize: { width: 360, height: 300 },
@@ -67,7 +67,7 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
   },
   {
     id: AppKey.Contact,
-    title: "Contact",
+    title: "Контакты",
     iconSrc: "/assets/icons/contact.svg",
     defaultSize: { width: 430, height: 330 },
     minSize: { width: 360, height: 280 },
@@ -76,7 +76,7 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
   },
   {
     id: AppKey.Resume,
-    title: "Resume",
+    title: "Резюме",
     iconSrc: "/assets/icons/resume.svg",
     defaultSize: { width: 530, height: 470 },
     minSize: { width: 420, height: 340 },
@@ -85,7 +85,7 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
   },
   {
     id: AppKey.Photography,
-    title: "Photography",
+    title: "Фотография",
     iconSrc: "/assets/icons/photography.svg",
     defaultSize: { width: 620, height: 460 },
     minSize: { width: 460, height: 340 },
@@ -94,7 +94,7 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
   },
   {
     id: AppKey.Gallery3D,
-    title: "3D Gallery",
+    title: "3D-галерея",
     iconSrc: "/assets/icons/gallery-3d.svg",
     defaultSize: { width: 480, height: 430 },
     minSize: { width: 380, height: 340 },
@@ -103,7 +103,7 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
   },
   {
     id: AppKey.Timeline,
-    title: "Timeline",
+    title: "Хронология",
     iconSrc: "/assets/icons/timeline.svg",
     defaultSize: { width: 470, height: 450 },
     minSize: { width: 380, height: 320 },
@@ -112,7 +112,7 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
   },
   {
     id: AppKey.Certificates,
-    title: "Certificates",
+    title: "Сертификаты",
     iconSrc: "/assets/icons/certificates.svg",
     defaultSize: { width: 540, height: 450 },
     minSize: { width: 420, height: 340 },
@@ -121,7 +121,7 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
   },
   {
     id: AppKey.Ideas,
-    title: "Ideas",
+    title: "Идеи",
     iconSrc: "/assets/icons/ideas.svg",
     defaultSize: { width: 470, height: 400 },
     minSize: { width: 360, height: 300 },

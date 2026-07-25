@@ -4,9 +4,9 @@ import { useTimeout } from "@/hooks/use-timeout";
 import { useSystemStore } from "@/stores/system-store";
 
 const MESSAGES = [
-  "Welcome to TamirlanOS",
-  "System ready",
-  "Preparing desktop...",
+  "Добро пожаловать в TamirlanOS",
+  "Система готова",
+  "Подготовка рабочего стола...",
 ] as const;
 
 const MESSAGE_STAGGER_MS = 450;
@@ -19,7 +19,7 @@ export function WelcomeScreen() {
 
   return (
     <div
-      className="flex h-full flex-col items-center justify-center gap-4 text-white"
+      className="flex h-full flex-col items-center justify-center gap-4 px-4 text-center text-white"
       style={{
         background:
           "linear-gradient(180deg, #7a99e1 0%, #5f7fd0 50%, #4a69be 100%)",
@@ -37,7 +37,7 @@ export function WelcomeScreen() {
           }}
           className={
             index === 0
-              ? "animate-fade-in text-5xl font-bold italic motion-reduce:animate-none"
+              ? "animate-fade-in text-3xl font-bold italic motion-reduce:animate-none sm:text-5xl"
               : "animate-fade-in text-sm text-white/85 motion-reduce:animate-none"
           }
         >

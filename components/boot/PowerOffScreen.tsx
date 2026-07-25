@@ -17,7 +17,7 @@ export function PowerOffScreen() {
       <button
         type="button"
         onClick={handlePowerOn}
-        aria-label="Power on TamirlanOS"
+        aria-label="Включить TamirlanOS"
         className="flex h-14 w-14 items-center justify-center rounded-full border border-white/30 text-white/50 transition-colors duration-150 hover:border-white/70 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/70 motion-reduce:transition-none"
       >
         <svg

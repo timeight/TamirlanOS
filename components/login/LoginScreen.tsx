@@ -7,8 +7,8 @@ import { useAudioStore } from "@/stores/audio-store";
 import { useSystemStore } from "@/stores/system-store";
 import { SoundEvent } from "@/types/sound";
 
-const USERNAME = "Tamirlan";
-const ROLE = "Software Developer · AI Engineer";
+const USERNAME = "Тамирлан";
+const ROLE = "Разработчик · AI-инженер";
 
 const FIELD_BACKGROUND =
   "repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.035) 0px, rgba(255, 255, 255, 0.035) 1px, transparent 1px, transparent 3px), linear-gradient(180deg, #7a99e1 0%, #5f7fd0 50%, #4a69be 100%)";
@@ -32,36 +32,36 @@ export function LoginScreen() {
     <div className="animate-fade-in flex h-full flex-col motion-reduce:animate-none">
       <div className="h-[13%] min-h-14 bg-[#00309c]" />
       <div
-        className="flex flex-1 items-center"
+        className="flex flex-1 flex-col items-center justify-center gap-6 px-4 sm:flex-row sm:justify-normal sm:gap-0 sm:px-0"
         style={{ background: FIELD_BACKGROUND }}
       >
-        <div className="flex flex-1 justify-end pr-14">
+        <div className="flex w-full justify-center sm:flex-1 sm:justify-end sm:pr-14">
           <div
-            className="flex flex-col items-start text-white"
+            className="flex flex-col items-center text-center text-white sm:items-start sm:text-left"
             style={{ fontFamily: '"Trebuchet MS", Tahoma, sans-serif' }}
           >
-            <BrandMark className="ml-8 h-24 w-24" />
-            <p className="mt-2 text-4xl font-bold">
+            <BrandMark className="h-20 w-20 sm:ml-8 sm:h-24 sm:w-24" />
+            <p className="mt-2 text-3xl font-bold sm:text-4xl">
               Tamirlan
-              <span className="ml-1 align-super text-xl font-bold text-[#f8682c] italic">
+              <span className="ml-1 align-super text-lg font-bold text-[#f8682c] italic sm:text-xl">
                 OS
               </span>
             </p>
             <p className="mt-0.5 text-base italic">{ROLE}</p>
             <p
-              className="mt-12 text-lg"
+              className="mt-4 text-base sm:mt-12 sm:text-lg"
               style={{ fontFamily: "Tahoma, sans-serif" }}
             >
-              To begin, click on {USERNAME} to log in
+              Чтобы начать, нажмите на «{USERNAME}»
             </p>
           </div>
         </div>
-        <div className="mx-10 h-3/5 w-px self-center bg-gradient-to-b from-transparent via-white/60 to-transparent" />
-        <div className="flex flex-1 items-center">
+        <div className="mx-10 hidden h-3/5 w-px self-center bg-gradient-to-b from-transparent via-white/60 to-transparent sm:block" />
+        <div className="flex w-full justify-center sm:flex-1 sm:items-center sm:justify-normal">
           <button
             type="button"
             onClick={handleSignIn}
-            aria-label={`Sign in as ${USERNAME}`}
+            aria-label={`Войти как ${USERNAME}`}
             className="group flex items-center gap-4 rounded-md p-3 text-left transition-colors duration-150 hover:bg-white/10 focus-visible:bg-white/10 focus-visible:outline-2 focus-visible:outline-white motion-reduce:transition-none"
           >
             <Image
@@ -111,7 +111,7 @@ export function LoginScreen() {
               <path d="M16.5 2.5v4h-4" />
             </svg>
           </span>
-          Restart TamirlanOS
+          Перезагрузить TamirlanOS
         </button>
       </div>
     </div>

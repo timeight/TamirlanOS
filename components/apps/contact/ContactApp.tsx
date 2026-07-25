@@ -28,11 +28,11 @@ export function ContactApp() {
   return (
     <div className="flex h-full flex-col gap-3 bg-[#ece9d8] p-3 text-[11px] text-black">
       <div className="rounded-sm border border-[#aca899] bg-white p-3">
-        <p className="text-[14px] font-bold text-[#003399]">Get in touch</p>
+        <p className="text-[14px] font-bold text-[#003399]">Связаться</p>
         <p className="mt-1 leading-4 text-[#4a5a70]">
-          The fastest way to reach me is email — I read everything that lands in
-          this inbox. Based in Kazakhstan; happy to talk in Kazakh, Russian or
-          English.
+          Быстрее всего связаться со мной по email — я читаю всё, что приходит.
+          Нахожусь в Казахстане; с удовольствием пообщаюсь на казахском, русском
+          или английском.
         </p>
       </div>
       <div className="flex flex-wrap items-center gap-2 rounded-sm border border-[#aca899] bg-white p-3">
@@ -41,18 +41,18 @@ export function ContactApp() {
           href={`mailto:${EMAIL}`}
           className="rounded-[3px] border border-[#003c74] bg-gradient-to-b from-white to-[#ecebe5] px-3 py-1 text-black hover:from-[#fff7e0] hover:to-[#f5e4b8] focus-visible:outline-2 focus-visible:outline-[#f0a63c] active:from-[#e0ded5] active:to-[#efeee9]"
         >
-          Write an email
+          Написать письмо
         </a>
         <button
           type="button"
           onClick={copyEmail}
           className="rounded-[3px] border border-[#003c74] bg-gradient-to-b from-white to-[#ecebe5] px-3 py-1 hover:from-[#fff7e0] hover:to-[#f5e4b8] focus-visible:outline-2 focus-visible:outline-[#f0a63c] active:from-[#e0ded5] active:to-[#efeee9]"
         >
-          {copied ? "Copied" : "Copy address"}
+          {copied ? "Скопировано" : "Копировать адрес"}
         </button>
       </div>
       <p role="status" className="sr-only">
-        {copied ? "Email address copied to clipboard" : ""}
+        {copied ? "Адрес email скопирован в буфер обмена" : ""}
       </p>
     </div>
   );

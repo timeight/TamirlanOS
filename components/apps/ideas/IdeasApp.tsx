@@ -32,21 +32,21 @@ export function IdeasApp() {
   return (
     <div className="flex h-full flex-col bg-white text-[11px] text-black">
       <div className="border-b border-[#aca899] bg-[#ebf3fb] px-3 py-2">
-        <p className="text-[13px] font-bold text-[#003399]">Ideas</p>
+        <p className="text-[13px] font-bold text-[#003399]">Идеи</p>
         <p className="text-[#4a5a70]">
-          A personal notebook. Notes save automatically and stay on this
-          computer.
+          Личный блокнот. Заметки сохраняются автоматически и остаются на этом
+          компьютере.
         </p>
       </div>
       <label htmlFor="ideas-notebook" className="sr-only">
-        Notebook
+        Блокнот
       </label>
       <textarea
         id="ideas-notebook"
         value={text}
         onChange={(event) => setText(event.target.value)}
         spellCheck={false}
-        placeholder="Write something worth building..."
+        placeholder="Напишите что-то, что стоит создать..."
         className="flex-1 resize-none p-3 font-mono text-[12px] leading-5 outline-none placeholder:text-[#9aa7b8]"
       />
     </div>

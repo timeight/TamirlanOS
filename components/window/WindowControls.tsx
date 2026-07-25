@@ -40,7 +40,7 @@ export function WindowControls({
     >
       <button
         type="button"
-        aria-label="Minimize"
+        aria-label="Свернуть"
         onClick={() => minimizeWindow(id)}
         className={buttonClass}
         style={{ background: BLUE_GRADIENT }}
@@ -52,7 +52,7 @@ export function WindowControls({
       {showMaximize && (
         <button
           type="button"
-          aria-label={maximized ? "Restore" : "Maximize"}
+          aria-label={maximized ? "Восстановить" : "Развернуть"}
           disabled={!resizable}
           onClick={onToggleMaximize}
           className={buttonClass}
@@ -80,7 +80,7 @@ export function WindowControls({
       )}
       <button
         type="button"
-        aria-label="Close"
+        aria-label="Закрыть"
         onClick={() => closeWindow(id)}
         className={cn(buttonClass, "ml-0.5")}
         style={{ background: RED_GRADIENT }}

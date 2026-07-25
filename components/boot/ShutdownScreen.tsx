@@ -13,20 +13,20 @@ export function ShutdownScreen() {
 
   return (
     <div
-      className="flex h-full items-center justify-center text-white"
+      className="flex h-full items-center justify-center px-4 text-center text-white"
       style={{
         background:
           "linear-gradient(180deg, #7a99e1 0%, #5f7fd0 50%, #4a69be 100%)",
       }}
     >
       <p
-        className="animate-fade-in text-4xl font-bold italic motion-reduce:animate-none"
+        className="animate-fade-in text-2xl font-bold italic motion-reduce:animate-none sm:text-4xl"
         style={{
           fontFamily: '"Trebuchet MS", Tahoma, sans-serif',
           textShadow: "2px 2px 4px rgba(0, 20, 90, 0.6)",
         }}
       >
-        TamirlanOS is shutting down...
+        TamirlanOS завершает работу...
       </p>
     </div>
   );

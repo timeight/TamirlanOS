@@ -6,27 +6,27 @@ const CERTIFICATES: readonly { subject: string; citation: string }[] = [
   {
     subject: "WorldSkills Kazakhstan",
     citation:
-      "For participating in organizing and judging national professional skills competitions.",
+      "За участие в организации и судействе национальных чемпионатов профессионального мастерства.",
   },
   {
-    subject: "Teacher of Professional Disciplines",
+    subject: "Преподаватель профессиональных дисциплин",
     citation:
-      "For teaching software development, programming, databases, mobile development and design — and mentoring students through their first real projects.",
+      "За преподавание разработки ПО, программирования, баз данных, мобильной разработки и дизайна — и наставничество студентов в их первых реальных проектах.",
   },
   {
-    subject: "3D Artist",
+    subject: "3D-художник",
     citation:
-      "Since 2020: Blender, Maya, ZBrush and Substance Painter — from hard-surface modeling to final lighting and render.",
+      "С 2020 года: Blender, Maya, ZBrush и Substance Painter — от hard-surface моделирования до финального света и рендера.",
   },
   {
-    subject: "Multidisciplinary Craft",
+    subject: "Мультидисциплинарное мастерство",
     citation:
-      "For combining engineering, AI, design, motion and photography into products with their own personality.",
+      "За объединение инженерии, ИИ, дизайна, моушна и фотографии в продукты с собственным характером.",
   },
   {
     subject: "TamirlanOS",
     citation:
-      "For shipping an operating system as a portfolio — boot screen, window manager and all, one pixel at a time.",
+      "За выпуск операционной системы в виде портфолио — с экраном загрузки, оконным менеджером и всем прочим, пиксель за пикселем.",
   },
 ];
 
@@ -41,7 +41,7 @@ export function CertificatesApp() {
           <div className="mb-1 flex items-center justify-center gap-2">
             <BrandMark className="h-5 w-5" />
             <p className="text-[10px] tracking-[0.2em] text-[#8f7a3a] uppercase">
-              Tamirlan Studio certifies
+              Tamirlan Studio удостоверяет
             </p>
           </div>
           <p
@@ -54,7 +54,7 @@ export function CertificatesApp() {
             {certificate.citation}
           </p>
           <p className="mt-2 border-t border-[#d5c48a] pt-1.5 text-[10px] text-[#8f7a3a]">
-            Awarded to Tamirlan Zhamalov · Kazakhstan
+            Выдано: Тамирлан Жамалов · Казахстан
           </p>
         </div>
       ))}

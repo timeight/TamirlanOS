@@ -8,10 +8,10 @@ import { useSystemStore } from "@/stores/system-store";
 const LINES = [
   "TamirlanOS BIOS v1.0",
   "Build 0.1.0 / 2026",
-  "Memory test ........ OK",
-  "Audio device ....... OK",
-  "Display adapter .... OK",
-  "Booting TamirlanOS...",
+  "Проверка памяти ..... OK",
+  "Аудиоустройство ..... OK",
+  "Видеоадаптер ........ OK",
+  "Загрузка TamirlanOS...",
 ] as const;
 
 const LINE_INTERVAL_MS = 320;

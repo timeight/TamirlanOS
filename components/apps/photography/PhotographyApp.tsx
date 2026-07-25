@@ -14,43 +14,43 @@ interface ArtPiece {
 const GALLERY: readonly ArtPiece[] = [
   {
     src: "/assets/wallpapers/meadow.svg",
-    title: "Meadow",
-    note: "The default wallpaper — green hills, warm sun, hand-drawn as SVG.",
+    title: "Луг",
+    note: "Обои по умолчанию — зелёные холмы, тёплое солнце, нарисованы вручную в SVG.",
   },
   {
     src: siteConfig.avatarSrc,
-    title: "Portrait",
-    note: "The login avatar, illustrated in the system's warm palette.",
+    title: "Портрет",
+    note: "Аватар входа в тёплой палитре системы.",
   },
   {
     src: "/assets/icons/portfolio.svg",
-    title: "Briefcase",
-    note: "Portfolio Explorer icon in the early-2000s style.",
+    title: "Портфель",
+    note: "Иконка проводника портфолио в стиле начала 2000-х.",
   },
   {
     src: "/assets/icons/photography.svg",
-    title: "Camera",
-    note: "This application's own icon — glossy lens and all.",
+    title: "Камера",
+    note: "Иконка этого приложения — глянцевый объектив и всё такое.",
   },
   {
     src: "/assets/icons/gallery-3d.svg",
-    title: "Isometric cube",
-    note: "The 3D Gallery mark, three faces of violet.",
+    title: "Изометрический куб",
+    note: "Знак 3D-галереи, три фиолетовые грани.",
   },
   {
     src: "/assets/icons/ideas.svg",
-    title: "Lightbulb",
-    note: "The Ideas notebook icon, mid-glow.",
+    title: "Лампочка",
+    note: "Иконка блокнота идей в момент свечения.",
   },
   {
     src: "/assets/icons/certificates.svg",
-    title: "Seal and ribbon",
-    note: "The Certificates icon with its gold seal.",
+    title: "Печать и лента",
+    note: "Иконка сертификатов с золотой печатью.",
   },
   {
     src: "/assets/icons/shutdown.svg",
-    title: "Power",
-    note: "The most respected button in any operating system.",
+    title: "Питание",
+    note: "Самая уважаемая кнопка в любой операционной системе.",
   },
 ];
 
@@ -65,9 +65,9 @@ export function PhotographyApp() {
           Fujifilm X-T2 · XF 35mm F2
         </p>
         <p className="text-[#4a5a70]">
-          Street, portrait and cinematic photography — film simulations and
-          color grading. Real shots coming soon; meanwhile, the system&apos;s
-          own artwork.
+          Стрит, портрет и кинематографичная съёмка — плёночные симуляции и
+          цветокоррекция. Реальные снимки скоро; пока — собственная графика
+          системы.
         </p>
       </div>
       <div className="flex min-h-0 flex-1 flex-col @sm:flex-row">

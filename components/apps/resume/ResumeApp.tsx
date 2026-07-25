@@ -7,56 +7,56 @@ const RESUME_PDF = asset("/assets/resume/Tamirlan_Zhamalov_CV.pdf");
 
 const SECTIONS: readonly { title: string; lines: readonly string[] }[] = [
   {
-    title: "Profile",
+    title: "Профиль",
     lines: [
-      "Multidisciplinary creator from Kazakhstan, 25: software developer, AI engineer, 3D artist, motion designer and teacher.",
-      "I build products that feel handcrafted — experiences people remember, not ordinary applications.",
+      "Мультидисциплинарный создатель из Казахстана, 25 лет: разработчик, AI-инженер, 3D-художник, моушн-дизайнер и преподаватель.",
+      "Создаю продукты, которые ощущаются сделанными вручную — впечатления, которые запоминают, а не обычные приложения.",
     ],
   },
   {
-    title: "Experience — College Teacher",
+    title: "Опыт — преподаватель колледжа",
     lines: [
-      "Teacher of Professional Disciplines: software development, programming, databases, mobile development and design.",
-      "Mentoring students, helping them prepare projects, organizing competitions.",
-      "WorldSkills Kazakhstan — participated in organizing and judging competitions.",
+      "Преподаватель профессиональных дисциплин: разработка ПО, программирование, базы данных, мобильная разработка и дизайн.",
+      "Наставничество студентов, помощь в подготовке проектов, организация чемпионатов.",
+      "WorldSkills Kazakhstan — участие в организации и судействе чемпионатов.",
     ],
   },
   {
-    title: "Experience — Freelance Creative",
+    title: "Опыт — фриланс / креатив",
     lines: [
-      "Podcasts, video production and commercial video.",
-      "Motion graphics, graphic design, branding and marketing content.",
-      "Social media content and photography.",
+      "Подкасты, видеопродакшн и коммерческое видео.",
+      "Моушн-графика, графический дизайн, брендинг и маркетинговый контент.",
+      "Контент для соцсетей и фотография.",
     ],
   },
   {
-    title: "Current projects",
+    title: "Текущие проекты",
     lines: [
-      "TamirlanOS — this interactive operating-system portfolio (Next.js, React, TypeScript, Tailwind, zustand).",
-      "CutAI — AI-powered application for automation, content creation and AI workflows.",
-      "IRON FORM — AI personal trainer using camera pose estimation; future iOS application.",
+      "TamirlanOS — это интерактивное портфолио-ОС (Next.js, React, TypeScript, Tailwind, zustand).",
+      "CutAI — приложение с ИИ для автоматизации, создания контента и AI-процессов.",
+      "IRON FORM — AI-тренер на основе оценки позы по камере; будущее iOS-приложение.",
     ],
   },
   {
-    title: "Education",
+    title: "Образование",
     lines: [
-      "Internet of Things, Big Data, programming, databases, computer networks, software development.",
+      "Интернет вещей, Big Data, программирование, базы данных, компьютерные сети, разработка ПО.",
     ],
   },
   {
-    title: "Tools",
+    title: "Инструменты",
     lines: [
       "Visual Studio · VS Code · Cursor · Claude Code · Git · GitHub · Docker",
       "Figma · Photoshop · Illustrator · Blender · Maya · Substance Painter · Unity · DaVinci Resolve",
     ],
   },
   {
-    title: "Languages",
-    lines: ["Kazakh · Russian · English (improving) · Arabic (learning)"],
+    title: "Языки",
+    lines: ["Казахский · русский · английский (улучшаю) · арабский (изучаю)"],
   },
   {
-    title: "Contact",
-    lines: [`Email: ${EMAIL}`, "Location: Kazakhstan"],
+    title: "Контакты",
+    lines: [`Email: ${EMAIL}`, "Локация: Казахстан"],
   },
 ];
 
@@ -66,10 +66,10 @@ export function ResumeApp() {
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#aca899] bg-[#ebf3fb] px-3 py-2.5">
         <div>
           <p className="text-[15px] font-bold text-[#003399]">
-            Tamirlan Zhamalov
+            Тамирлан Жамалов
           </p>
           <p className="text-[#4a5a70]">
-            Software Developer · AI Engineer · Teacher
+            Разработчик · AI-инженер · преподаватель
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
@@ -79,20 +79,20 @@ export function ResumeApp() {
             rel="noreferrer"
             className="rounded-[3px] border border-[#003c74] bg-gradient-to-b from-white to-[#ecebe5] px-3 py-1 text-black hover:from-[#fff7e0] hover:to-[#f5e4b8] focus-visible:outline-2 focus-visible:outline-[#f0a63c] active:from-[#e0ded5] active:to-[#efeee9]"
           >
-            View CV (PDF)
+            Открыть CV (PDF)
           </a>
           <a
             href={RESUME_PDF}
             download
             className="rounded-[3px] border border-[#003c74] bg-gradient-to-b from-white to-[#ecebe5] px-3 py-1 text-black hover:from-[#fff7e0] hover:to-[#f5e4b8] focus-visible:outline-2 focus-visible:outline-[#f0a63c] active:from-[#e0ded5] active:to-[#efeee9]"
           >
-            Download
+            Скачать
           </a>
           <a
             href={`mailto:${EMAIL}`}
             className="rounded-[3px] border border-[#003c74] bg-gradient-to-b from-white to-[#ecebe5] px-3 py-1 text-black hover:from-[#fff7e0] hover:to-[#f5e4b8] focus-visible:outline-2 focus-visible:outline-[#f0a63c] active:from-[#e0ded5] active:to-[#efeee9]"
           >
-            Hire me
+            Нанять меня
           </a>
         </div>
       </div>

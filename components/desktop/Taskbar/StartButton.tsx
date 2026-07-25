@@ -28,7 +28,7 @@ export function StartButton({ open, onToggle }: StartButtonProps) {
       }}
     >
       <BrandMark className="h-[17px] w-[17px]" />
-      start
+      пуск
     </button>
   );
 }

@@ -7,19 +7,19 @@ import { siteConfig } from "@/core/config/site";
 const STEPS = [
   {
     icon: "/assets/icons/portfolio.svg",
-    text: "Double-click a desktop icon to open an application. Everything on this desktop is real and explorable.",
+    text: "Дважды кликните по иконке на рабочем столе, чтобы открыть приложение. Всё здесь настоящее и доступно для изучения.",
   },
   {
     icon: "/assets/icons/projects.svg",
-    text: "Drag windows by their title bar, resize them from any edge, and use the taskbar to switch between them.",
+    text: "Перетаскивайте окна за заголовок, меняйте размер за любой край и переключайтесь между ними через панель задач.",
   },
   {
     icon: "/assets/icons/about-me.svg",
-    text: "The green start button holds every application, plus Turn Off Computer when you are done.",
+    text: "В зелёной кнопке «Пуск» — все приложения, а также «Выключить компьютер», когда закончите.",
   },
   {
     icon: "/assets/icons/settings.svg",
-    text: "In the tray next to the clock: reopen this tour, toggle the CRT monitor effect, or go fullscreen (F11 works too).",
+    text: "В трее у часов: заново открыть этот тур, включить эффект ЭЛТ-монитора или перейти в полный экран (работает и F11).",
   },
 ] as const;
 
@@ -37,10 +37,10 @@ export function WelcomeApp() {
         />
         <div>
           <p className="text-[14px] font-bold text-[#003399]">
-            Welcome to TamirlanOS
+            Добро пожаловать в TamirlanOS
           </p>
           <p className="text-[#4a5a70]">
-            The system is yours to explore — here is how it works.
+            Система в вашем распоряжении — вот как она работает.
           </p>
         </div>
       </div>
@@ -60,7 +60,7 @@ export function WelcomeApp() {
         ))}
       </ul>
       <p className="border-t border-[#d8d5c4] bg-[#ece9d8] px-3 py-2 text-[#4a5a70]">
-        Built by Tamirlan Zhamalov · Tamirlan Studio
+        Сделано Тамирланом Жамаловым · Tamirlan Studio
       </p>
     </div>
   );

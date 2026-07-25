@@ -13,10 +13,10 @@ export function PortfolioApp() {
     <div className="flex h-full flex-col bg-white text-[11px] text-black">
       <div className="border-b border-[#aca899] bg-[#ebf3fb] px-3 py-2">
         <p className="text-[13px] font-bold text-[#003399]">
-          Installed applications
+          Установленные приложения
         </p>
         <p className="text-[#4a5a70]">
-          Everything that ships with TamirlanOS. Double-click to open.
+          Всё, что входит в TamirlanOS. Дважды кликните, чтобы открыть.
         </p>
       </div>
       <ul className="grid flex-1 auto-rows-min grid-cols-2 gap-1 overflow-auto p-2 @sm:grid-cols-3 @lg:grid-cols-4">

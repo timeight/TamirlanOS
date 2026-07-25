@@ -42,8 +42,8 @@ export function ShutdownDialog({ onClose }: ShutdownDialogProps) {
       <div
         role="dialog"
         aria-modal="true"
-        aria-label="Turn off computer"
-        className="animate-fade-in w-[330px] overflow-hidden rounded-[6px] border border-[#0831d9] shadow-[3px_3px_12px_rgba(0,0,0,0.55)] motion-reduce:animate-none"
+        aria-label="Выключение компьютера"
+        className="animate-fade-in w-[min(330px,92vw)] overflow-hidden rounded-[6px] border border-[#0831d9] shadow-[3px_3px_12px_rgba(0,0,0,0.55)] motion-reduce:animate-none"
       >
         <div
           className="flex h-9 items-center px-3 text-[13px] font-bold text-white"
@@ -54,7 +54,7 @@ export function ShutdownDialog({ onClose }: ShutdownDialogProps) {
             textShadow: "1px 1px 1px rgba(10, 24, 131, 0.7)",
           }}
         >
-          Turn off computer
+          Выключение компьютера
         </div>
         <div
           className="flex items-start justify-center gap-4 px-4 pt-5 pb-3"
@@ -89,7 +89,7 @@ export function ShutdownDialog({ onClose }: ShutdownDialogProps) {
                 <path d="M7.5 7.5a7 7 0 1 0 9 0" />
               </svg>
             </span>
-            <span className="text-[11px]">Turn Off</span>
+            <span className="text-[11px]">Выключить</span>
           </button>
           <button type="button" onClick={restartSystem} className={optionClass}>
             <span
@@ -112,7 +112,7 @@ export function ShutdownDialog({ onClose }: ShutdownDialogProps) {
                 <path d="M16.5 2.5v4h-4" />
               </svg>
             </span>
-            <span className="text-[11px]">Restart</span>
+            <span className="text-[11px]">Перезагрузка</span>
           </button>
           <button type="button" onClick={logOff} className={optionClass}>
             <span
@@ -135,7 +135,7 @@ export function ShutdownDialog({ onClose }: ShutdownDialogProps) {
                 <path d="M5.5 20c.8-4 3.5-6 6.5-6s5.7 2 6.5 6" />
               </svg>
             </span>
-            <span className="text-[11px]">Log Off</span>
+            <span className="text-[11px]">Выход</span>
           </button>
         </div>
         <div
@@ -149,7 +149,7 @@ export function ShutdownDialog({ onClose }: ShutdownDialogProps) {
             onClick={onClose}
             className="rounded-[3px] border border-[#003c74] bg-gradient-to-b from-white to-[#ecebe5] px-4 py-0.5 text-[11px] text-black hover:from-[#fff7e0] hover:to-[#f5e4b8] focus-visible:outline-2 focus-visible:outline-[#f0a63c] active:from-[#e0ded5] active:to-[#efeee9]"
           >
-            Cancel
+            Отмена
           </button>
         </div>
       </div>

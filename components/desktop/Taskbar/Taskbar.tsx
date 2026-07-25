@@ -23,7 +23,7 @@ export function Taskbar() {
   return (
     <div
       role="toolbar"
-      aria-label="Taskbar"
+      aria-label="Панель задач"
       className="absolute inset-x-0 bottom-0 z-[60] flex h-[30px] items-stretch"
       style={{
         background:

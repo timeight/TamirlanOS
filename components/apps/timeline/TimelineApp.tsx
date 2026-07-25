@@ -2,48 +2,48 @@
 
 const ENTRIES: readonly { phase: string; detail: string }[] = [
   {
-    phase: "2020 — First render",
+    phase: "2020 — Первый рендер",
     detail:
-      "Started 3D: Blender, then Maya, ZBrush and Substance Painter. Hard surface, product visualization, sculpting, lighting and animation.",
+      "Начал с 3D: Blender, затем Maya, ZBrush и Substance Painter. Hard surface, продуктовая визуализация, скульптинг, свет и анимация.",
   },
   {
-    phase: "Freelance creative",
+    phase: "Фриланс / креатив",
     detail:
-      "Podcasts, commercial video, motion graphics, branding, social media content and photography — DaVinci Resolve became a second home.",
+      "Подкасты, коммерческое видео, моушн-графика, брендинг, контент для соцсетей и фотография — DaVinci Resolve стал вторым домом.",
   },
   {
-    phase: "College teacher",
+    phase: "Преподаватель колледжа",
     detail:
-      "Teacher of Professional Disciplines: software development, programming, databases, mobile development and design. Mentoring students and their projects.",
+      "Преподаватель профессиональных дисциплин: разработка ПО, программирование, базы данных, мобильная разработка и дизайн. Наставничество студентов и их проектов.",
   },
   {
     phase: "WorldSkills Kazakhstan",
     detail:
-      "Participated in organizing and judging national skills competitions.",
+      "Участвовал в организации и судействе национальных чемпионатов по профессиональному мастерству.",
   },
   {
-    phase: "The AI turn",
+    phase: "Поворот к ИИ",
     detail:
-      "Building AI-powered applications with Gemini, Claude and OpenAI: automation, computer vision, generative AI, prompt engineering.",
+      "Создание приложений с ИИ на Gemini, Claude и OpenAI: автоматизация, компьютерное зрение, генеративный ИИ, промпт-инжиниринг.",
   },
   {
-    phase: "CutAI & IRON FORM",
+    phase: "CutAI и IRON FORM",
     detail:
-      "CutAI — AI workflows for content creation. IRON FORM — an AI personal trainer built on camera pose estimation, heading to iOS.",
+      "CutAI — AI-процессы для создания контента. IRON FORM — AI-тренер на основе оценки позы по камере, движется к iOS.",
   },
   {
     phase: "2026 — TamirlanOS",
     detail:
-      "This operating system: a portfolio you boot into, hand-built pixel by pixel. The goal — software people remember.",
+      "Эта операционная система: портфолио, в которое загружаешься, собранное вручную пиксель за пикселем. Цель — софт, который запоминают.",
   },
 ];
 
 export function TimelineApp() {
   return (
     <div className="h-full overflow-auto bg-white p-3 text-[11px] text-black">
-      <p className="text-[14px] font-bold text-[#003399]">Timeline</p>
+      <p className="text-[14px] font-bold text-[#003399]">Хронология</p>
       <p className="mt-0.5 mb-3 text-[#4a5a70]">
-        From the first Blender render to an operating system of my own.
+        От первого рендера в Blender до собственной операционной системы.
       </p>
       <ol className="relative ml-2 border-l-2 border-[#7da2ce] pl-4">
         {ENTRIES.map((entry) => (

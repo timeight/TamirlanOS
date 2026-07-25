@@ -101,8 +101,9 @@ export function Gallery3DApp() {
         </div>
       </div>
       <p className="border-t border-[#aca899] bg-[#ebf3fb] px-3 py-2 text-[#4a5a70]">
-        Model: <span className="font-bold text-black">TamirlanOS Core</span> —
-        drag to rotate. Rendered with CSS 3D transforms, no libraries.
+        Модель: <span className="font-bold text-black">TamirlanOS Core</span> —
+        тяните, чтобы вращать. Отрисовано на CSS 3D-трансформациях, без
+        библиотек.
       </p>
     </div>
   );

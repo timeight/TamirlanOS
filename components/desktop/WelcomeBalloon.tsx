@@ -14,7 +14,7 @@ export function WelcomeBalloon({ onClose, onOpenApp }: WelcomeBalloonProps) {
   return (
     <div
       role="status"
-      className="animate-fade-in absolute right-3 bottom-[40px] z-[55] w-[310px] rounded-md border border-[#767676] bg-[#ffffe1] p-3 text-[11px] text-black shadow-[2px_2px_8px_rgba(0,0,0,0.45)] motion-reduce:animate-none"
+      className="animate-fade-in absolute right-3 bottom-[40px] z-[55] w-[min(310px,calc(100vw-24px))] rounded-md border border-[#767676] bg-[#ffffe1] p-3 text-[11px] text-black shadow-[2px_2px_8px_rgba(0,0,0,0.45)] motion-reduce:animate-none"
     >
       <span
         aria-hidden="true"
@@ -31,10 +31,12 @@ export function WelcomeBalloon({ onClose, onOpenApp }: WelcomeBalloonProps) {
         >
           i
         </span>
-        <p className="flex-1 text-[12px] font-bold">Welcome to TamirlanOS</p>
+        <p className="flex-1 text-[12px] font-bold">
+          Добро пожаловать в TamirlanOS
+        </p>
         <button
           type="button"
-          aria-label="Close welcome tip"
+          aria-label="Закрыть подсказку"
           onClick={onClose}
           className="flex h-4 w-4 items-center justify-center rounded-sm text-[#555] hover:bg-black/10 focus-visible:outline-1 focus-visible:outline-black"
         >
@@ -48,17 +50,17 @@ export function WelcomeBalloon({ onClose, onOpenApp }: WelcomeBalloonProps) {
         </button>
       </div>
       <p className="leading-4">
-        A faithful XP-style interface, hand-built to showcase my work and
-        attention to detail.
+        Точная копия интерфейса в стиле XP, собранная вручную, чтобы показать
+        мои работы и внимание к деталям.
       </p>
       <p className="mt-1.5">
-        Get Started:{" "}
+        Начать:{" "}
         <button
           type="button"
           className={linkClass}
           onClick={() => onOpenApp(AppKey.AboutMe)}
         >
-          About Me
+          Обо мне
         </button>{" "}
         |{" "}
         <button
@@ -66,7 +68,7 @@ export function WelcomeBalloon({ onClose, onOpenApp }: WelcomeBalloonProps) {
           className={linkClass}
           onClick={() => onOpenApp(AppKey.Projects)}
         >
-          My Projects
+          Мои проекты
         </button>
       </p>
     </div>

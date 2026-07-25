@@ -7,57 +7,53 @@ interface SkillBranch {
 
 const TREE: readonly SkillBranch[] = [
   {
-    name: "Languages",
-    skills: [
-      "Python · C# · SQL",
-      "JavaScript · TypeScript",
-      "Swift (learning)",
-    ],
+    name: "Языки",
+    skills: ["Python · C# · SQL", "JavaScript · TypeScript", "Swift (изучаю)"],
   },
   {
-    name: "Frameworks & platforms",
+    name: "Фреймворки и платформы",
     skills: [
       "React · Next.js",
-      "Unity (game development) · Windows Forms (desktop)",
+      "Unity (разработка игр) · Windows Forms (десктоп)",
       "SQLite · SQL Server",
     ],
   },
   {
-    name: "AI",
+    name: "ИИ",
     skills: [
       "Gemini · Claude · OpenAI",
       "Cursor · Claude Code · MCP",
-      "AI automation · prompt engineering",
-      "Computer vision · generative AI · image and video generation",
+      "AI-автоматизация · промпт-инжиниринг",
+      "Компьютерное зрение · генеративный ИИ · генерация изображений и видео",
     ],
   },
   {
-    name: "3D — since 2020",
+    name: "3D — с 2020",
     skills: [
       "Blender · Maya · ZBrush · Substance Painter",
-      "Hard surface · product visualization · sculpting",
-      "Animation · lighting · rendering",
+      "Hard surface · продуктовая визуализация · скульптинг",
+      "Анимация · свет · рендеринг",
     ],
   },
   {
-    name: "Design",
+    name: "Дизайн",
     skills: [
-      "UI design · UX · web design",
-      "Graphic design · brand identity · presentation design",
-      "Motion design · color theory",
+      "UI-дизайн · UX · веб-дизайн",
+      "Графический дизайн · фирменный стиль · дизайн презентаций",
+      "Моушн-дизайн · теория цвета",
     ],
   },
   {
-    name: "Photo & video",
+    name: "Фото и видео",
     skills: [
-      "Fujifilm X-T2 with XF 35mm F2",
-      "Street · portrait · cinematic photography",
-      "Film simulations · color grading",
-      "DaVinci Resolve · commercial video · podcast production",
+      "Fujifilm X-T2 с XF 35mm F2",
+      "Стрит · портрет · кинематографичная съёмка",
+      "Плёночные симуляции · цветокоррекция",
+      "DaVinci Resolve · коммерческое видео · продакшн подкастов",
     ],
   },
   {
-    name: "Tools",
+    name: "Инструменты",
     skills: [
       "Visual Studio · VS Code · Cursor · Claude Code",
       "Git · GitHub · Docker",
@@ -65,11 +61,11 @@ const TREE: readonly SkillBranch[] = [
     ],
   },
   {
-    name: "Soft skills",
+    name: "Гибкие навыки",
     skills: [
-      "Teaching · mentoring · leadership · communication",
-      "Problem solving · research · self-learning",
-      "Attention to detail · product thinking",
+      "Преподавание · менторство · лидерство · коммуникация",
+      "Решение задач · исследование · самообучение",
+      "Внимание к деталям · продуктовое мышление",
     ],
   },
 ];
@@ -78,10 +74,11 @@ export function SkillsApp() {
   return (
     <div className="h-full overflow-auto bg-white p-3 text-[11px] text-black">
       <p className="mb-2 text-[14px] font-bold text-[#003399]">
-        Technology tree
+        Дерево технологий
       </p>
       <p className="mb-3 text-[#4a5a70]">
-        Software engineering, AI, 3D, design, photo and video — one toolbox.
+        Программирование, ИИ, 3D, дизайн, фото и видео — один набор
+        инструментов.
       </p>
       {TREE.map((branch) => (
         <details
