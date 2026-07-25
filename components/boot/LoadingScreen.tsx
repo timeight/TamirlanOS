@@ -1,11 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { BrandMark } from "@/components/ui/BrandMark";
 import { useTimeout } from "@/hooks/use-timeout";
-import { useAudioStore } from "@/stores/audio-store";
 import { useSystemStore } from "@/stores/system-store";
-import { SoundEvent } from "@/types/sound";
 
 const LOADING_DURATION_MS = 3000;
 
@@ -14,15 +11,6 @@ const SEGMENT_GRADIENT =
 
 export function LoadingScreen() {
   const advanceBoot = useSystemStore((state) => state.advanceBoot);
-  const play = useAudioStore((state) => state.play);
-
-  // Guard against React strict-mode effect re-runs: boot plays once per session.
-  const played = useRef(false);
-  useEffect(() => {
-    if (played.current) return;
-    played.current = true;
-    play(SoundEvent.Boot);
-  }, [play]);
 
   useTimeout(advanceBoot, LOADING_DURATION_MS);
 
