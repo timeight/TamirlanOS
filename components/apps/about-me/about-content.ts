@@ -34,14 +34,14 @@ export const SOCIAL_LINKS: readonly SocialLink[] = [
 ];
 
 export const SKILLS: readonly string[] = [
-  "Software Engineering",
-  "Artificial Intelligence",
-  "3D Art & Rendering",
-  "UI / UX Design",
-  "Motion Design",
-  "Photography",
-  "Teaching & Mentoring",
-  "Product Thinking",
+  "Программирование",
+  "Искусственный интеллект",
+  "3D-графика и рендеринг",
+  "UI / UX дизайн",
+  "Моушн-дизайн",
+  "Фотография",
+  "Преподавание и менторство",
+  "Продуктовое мышление",
 ];
 
 export const SOFTWARE: readonly string[] = [
@@ -60,19 +60,19 @@ export interface BioSection {
 
 export const BIO_SECTIONS: readonly BioSection[] = [
   {
-    heading: "Who I am",
-    body: "I'm a multidisciplinary creator combining software engineering, artificial intelligence, design, education and digital art. For me programming is not just writing code — every project should feel like a product with its own personality. I enjoy building experiences rather than ordinary applications, learning difficult subjects and turning them into beautiful products.",
+    heading: "Кто я",
+    body: "Я мультидисциплинарный создатель — совмещаю программирование, искусственный интеллект, дизайн, преподавание и цифровое искусство. Для меня код — это не просто набор строк: каждый проект должен ощущаться как продукт со своим характером. Мне интереснее создавать впечатления, чем обычные приложения — разбираться в сложных темах и превращать их в красивые продукты.",
   },
   {
-    heading: "My mission",
-    body: "Create software that people remember. Not another CRUD application, not another dashboard — products that surprise users and create emotion.",
+    heading: "Моя миссия",
+    body: "Создавать софт, который запоминают. Не очередное CRUD-приложение и не очередной дашборд, а продукты, которые удивляют пользователя и вызывают эмоции.",
   },
   {
-    heading: "Philosophy",
-    body: "Technology should not only solve problems — it should create emotions. Software should feel handcrafted. Every pixel matters, every animation matters, every interaction tells a story.",
+    heading: "Философия",
+    body: "Технологии должны не только решать задачи — они должны создавать эмоции. Софт должен ощущаться сделанным вручную. Важен каждый пиксель, каждая анимация, каждое взаимодействие рассказывает историю.",
   },
   {
-    heading: "Dream",
-    body: "Build world-class software products and memorable experiences. Combine AI, design and engineering into one ecosystem, launch products used by millions, and build a company known for craftsmanship instead of quantity. Never stop learning.",
+    heading: "Мечта",
+    body: "Создавать продукты мирового уровня и запоминающиеся впечатления. Объединить ИИ, дизайн и инженерию в одну экосистему, запускать продукты, которыми пользуются миллионы, и построить компанию, известную мастерством, а не количеством. Никогда не переставать учиться.",
   },
 ];

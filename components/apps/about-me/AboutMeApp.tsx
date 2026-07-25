@@ -17,7 +17,7 @@ export function AboutMeApp() {
         <div className="mb-4 flex items-center gap-3 border-b border-[#c9d3e0] pb-3">
           <Image
             src={siteConfig.avatarSrc}
-            alt="Portrait of Tamirlan"
+            alt="Портрет Тамирлана"
             width={56}
             height={56}
             unoptimized
@@ -25,13 +25,13 @@ export function AboutMeApp() {
           />
           <div>
             <p className="text-[20px] font-bold text-[#0b3d91]">
-              Tamirlan Zhamalov
+              Тамирлан Жамалов
             </p>
             <p className="text-[#4a5a70]">
-              Software Developer · AI Engineer · 3D Artist · Motion Designer ·
-              Teacher
+              Разработчик · AI-инженер · 3D-художник · моушн-дизайнер ·
+              преподаватель
             </p>
-            <p className="text-[#4a5a70]">Kazakhstan · 25</p>
+            <p className="text-[#4a5a70]">Казахстан · 25 лет</p>
             <a href={`mailto:${EMAIL}`} className="text-[#0046d5] underline">
               {EMAIL}
             </a>

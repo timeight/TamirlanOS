@@ -26,7 +26,7 @@ function SidebarPanel({ title, children }: SidebarPanelProps) {
 export function AboutSidebar() {
   return (
     <nav className="flex w-full shrink-0 flex-col gap-2 overflow-auto bg-gradient-to-b from-[#7aa4e8] to-[#5484d6] p-2 @sm:w-[176px]">
-      <SidebarPanel title="Social Links">
+      <SidebarPanel title="Соцсети">
         <ul className="space-y-1.5">
           {SOCIAL_LINKS.map((link) => (
             <li key={link.name}>
@@ -50,7 +50,7 @@ export function AboutSidebar() {
         </ul>
       </SidebarPanel>
 
-      <SidebarPanel title="Skills">
+      <SidebarPanel title="Навыки">
         <ul className="space-y-1">
           {SKILLS.map((skill) => (
             <li
@@ -64,7 +64,7 @@ export function AboutSidebar() {
         </ul>
       </SidebarPanel>
 
-      <SidebarPanel title="Software">
+      <SidebarPanel title="Программы">
         <ul className="space-y-1">
           {SOFTWARE.map((item) => (
             <li
