@@ -1,19 +1,16 @@
 "use client";
 
 import { useTimeout } from "@/hooks/use-timeout";
+import { useT } from "@/hooks/use-translations";
 import { useSystemStore } from "@/stores/system-store";
-
-const MESSAGES = [
-  "Добро пожаловать в TamirlanOS",
-  "Система готова",
-  "Подготовка рабочего стола...",
-] as const;
 
 const MESSAGE_STAGGER_MS = 450;
 const WELCOME_DURATION_MS = 2400;
 
 export function WelcomeScreen() {
   const advanceBoot = useSystemStore((state) => state.advanceBoot);
+  const t = useT();
+  const MESSAGES = [t("boot.welcome"), t("boot.ready"), t("boot.preparing")];
 
   useTimeout(advanceBoot, WELCOME_DURATION_MS);
 

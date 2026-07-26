@@ -1,6 +1,7 @@
 "use client";
 
 import { AppKey } from "@/core/apps/app-catalog";
+import { useT } from "@/hooks/use-translations";
 
 interface WelcomeBalloonProps {
   onClose: () => void;
@@ -11,6 +12,7 @@ const linkClass =
   "text-[#0046d5] underline hover:text-[#2a68e8] focus-visible:outline-1 focus-visible:outline-[#0046d5]";
 
 export function WelcomeBalloon({ onClose, onOpenApp }: WelcomeBalloonProps) {
+  const t = useT();
   return (
     <div
       role="status"
@@ -31,12 +33,10 @@ export function WelcomeBalloon({ onClose, onOpenApp }: WelcomeBalloonProps) {
         >
           i
         </span>
-        <p className="flex-1 text-[12px] font-bold">
-          Добро пожаловать в TamirlanOS
-        </p>
+        <p className="flex-1 text-[12px] font-bold">{t("boot.welcome")}</p>
         <button
           type="button"
-          aria-label="Закрыть подсказку"
+          aria-label={t("balloon.close")}
           onClick={onClose}
           className="flex h-4 w-4 items-center justify-center rounded-sm text-[#555] hover:bg-black/10 focus-visible:outline-1 focus-visible:outline-black"
         >
@@ -49,18 +49,15 @@ export function WelcomeBalloon({ onClose, onOpenApp }: WelcomeBalloonProps) {
           </svg>
         </button>
       </div>
-      <p className="leading-4">
-        Точная копия интерфейса в стиле XP, собранная вручную, чтобы показать
-        мои работы и внимание к деталям.
-      </p>
+      <p className="leading-4">{t("balloon.body")}</p>
       <p className="mt-1.5">
-        Начать:{" "}
+        {t("balloon.start")}:{" "}
         <button
           type="button"
           className={linkClass}
           onClick={() => onOpenApp(AppKey.AboutMe)}
         >
-          Обо мне
+          {t("app.about-me")}
         </button>{" "}
         |{" "}
         <button
@@ -68,7 +65,7 @@ export function WelcomeBalloon({ onClose, onOpenApp }: WelcomeBalloonProps) {
           className={linkClass}
           onClick={() => onOpenApp(AppKey.Projects)}
         >
-          Мои проекты
+          {t("start.myProjects")}
         </button>
       </p>
     </div>

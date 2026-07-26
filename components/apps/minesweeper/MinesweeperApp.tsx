@@ -9,6 +9,7 @@ import {
   type Board,
 } from "@/core/games/minesweeper";
 import { cn } from "@/core/utils/cn";
+import { useT } from "@/hooks/use-translations";
 
 const ROWS = 9;
 const COLS = 9;
@@ -31,6 +32,7 @@ export function MinesweeperApp() {
     createBoard(ROWS, COLS, MINES),
   );
   const [flagMode, setFlagMode] = useState(false);
+  const t = useT();
 
   const face =
     board.state === "won" ? "😎" : board.state === "lost" ? "😵" : "🙂";
@@ -49,7 +51,7 @@ export function MinesweeperApp() {
         </span>
         <button
           type="button"
-          aria-label="Новая игра"
+          aria-label={t("mine.new")}
           onClick={() => setBoard(createBoard(ROWS, COLS, MINES))}
           className="flex h-7 w-7 items-center justify-center rounded-sm border-2 border-[#7d7a6c] bg-[#e6e3d4] text-[15px]"
         >
@@ -63,7 +65,7 @@ export function MinesweeperApp() {
             flagMode ? "bg-[#f7d94e]" : "bg-[#e6e3d4]",
           )}
         >
-          🚩 {flagMode ? "вкл" : "выкл"}
+          🚩 {flagMode ? t("common.on") : t("common.off")}
         </button>
       </div>
       <div
@@ -109,10 +111,10 @@ export function MinesweeperApp() {
       </div>
       <p className="text-[11px] text-[#3a382f]">
         {board.state === "won"
-          ? "Победа! Все мины найдены."
+          ? t("mine.won")
           : board.state === "lost"
-            ? "Взрыв! Нажмите на смайлик для новой игры."
-            : "ЛКМ — открыть, ПКМ (или режим 🚩) — флажок."}
+            ? t("mine.lost")
+            : t("mine.hint")}
       </p>
     </div>
   );

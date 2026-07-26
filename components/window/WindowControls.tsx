@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/core/utils/cn";
+import { useT } from "@/hooks/use-translations";
 import { useWindowStore } from "@/stores/window-store";
 import { WindowState, type WindowId } from "@/types/window";
 
@@ -31,6 +32,7 @@ export function WindowControls({
   const minimizeWindow = useWindowStore((store) => store.minimizeWindow);
   const closeWindow = useWindowStore((store) => store.closeWindow);
   const maximized = state === WindowState.Maximized;
+  const t = useT();
 
   return (
     <div
@@ -40,7 +42,7 @@ export function WindowControls({
     >
       <button
         type="button"
-        aria-label="Свернуть"
+        aria-label={t("win.minimize")}
         onClick={() => minimizeWindow(id)}
         className={buttonClass}
         style={{ background: BLUE_GRADIENT }}
@@ -52,7 +54,7 @@ export function WindowControls({
       {showMaximize && (
         <button
           type="button"
-          aria-label={maximized ? "Восстановить" : "Развернуть"}
+          aria-label={maximized ? t("win.restore") : t("win.maximize")}
           disabled={!resizable}
           onClick={onToggleMaximize}
           className={buttonClass}
@@ -80,7 +82,7 @@ export function WindowControls({
       )}
       <button
         type="button"
-        aria-label="Закрыть"
+        aria-label={t("win.close")}
         onClick={() => closeWindow(id)}
         className={cn(buttonClass, "ml-0.5")}
         style={{ background: RED_GRADIENT }}

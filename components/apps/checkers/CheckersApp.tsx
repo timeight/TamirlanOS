@@ -12,6 +12,7 @@ import {
   type Player,
 } from "@/core/games/checkers";
 import { cn } from "@/core/utils/cn";
+import { useT } from "@/hooks/use-translations";
 
 export function CheckersApp() {
   const [board, setBoard] = useState<Board>(initialBoard);
@@ -20,6 +21,7 @@ export function CheckersApp() {
     null,
   );
   const [chaining, setChaining] = useState(false);
+  const t = useT();
 
   const win = winner(board, turn);
 
@@ -68,22 +70,24 @@ export function CheckersApp() {
     if (board[r]?.[c]?.color === turn) setSelected({ r, c });
   };
 
-  const label = turn === "r" ? "красных" : "чёрных";
-
   return (
     <div className="flex h-full flex-col items-center gap-3 overflow-auto bg-[#ece9d8] p-3 text-black select-none">
       <div className="flex items-center gap-3 text-[12px]">
         <span className="font-bold">
           {win
-            ? `Победа ${win === "r" ? "красных" : "чёрных"}!`
-            : `Ход ${label}`}
+            ? win === "r"
+              ? t("chk.winRed")
+              : t("chk.winBlack")
+            : turn === "r"
+              ? t("chk.turnRed")
+              : t("chk.turnBlack")}
         </span>
         <button
           type="button"
           onClick={reset}
           className="rounded-[3px] border border-[#003c74] bg-gradient-to-b from-white to-[#ecebe5] px-2 py-1 text-[11px]"
         >
-          Новая партия
+          {t("chk.new")}
         </button>
       </div>
       <div className="grid grid-cols-8 border-2 border-[#5a3d24]">
@@ -123,9 +127,7 @@ export function CheckersApp() {
           }),
         )}
       </div>
-      <p className="text-[11px] text-[#4a4a3a]">
-        Два игрока по очереди. Взятие обязательно, бьёшь дальше — ходишь снова.
-      </p>
+      <p className="text-[11px] text-[#4a4a3a]">{t("chk.hint")}</p>
     </div>
   );
 }

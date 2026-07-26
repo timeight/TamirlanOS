@@ -9,6 +9,7 @@ import { AppKey } from "@/core/apps/app-catalog";
 import { siteConfig } from "@/core/config/site";
 import { SOCIAL_LINKS } from "@/core/config/social";
 import { useOpenApp } from "@/hooks/use-open-app";
+import { useT } from "@/hooks/use-translations";
 import { useSystemStore } from "@/stores/system-store";
 import type { AppId } from "@/types/application";
 
@@ -19,26 +20,26 @@ interface StartMenuProps {
 
 const PRIMARY_ITEMS = [
   {
-    label: "Обо мне",
-    subtitle: "Профессиональный профиль",
+    label: "app.about-me",
+    subtitle: "start.aboutSub",
     iconSrc: "/assets/icons/about-me.svg",
     appId: AppKey.AboutMe,
   },
   {
-    label: "Мои проекты",
-    subtitle: "Смотреть работы",
+    label: "start.myProjects",
+    subtitle: "start.myProjects.sub",
     iconSrc: "/assets/icons/projects.svg",
     appId: AppKey.Projects,
   },
   {
-    label: "Моё резюме",
-    subtitle: "Интерактивное CV",
+    label: "start.myResume",
+    subtitle: "start.myResume.sub",
     iconSrc: "/assets/icons/resume.svg",
     appId: AppKey.Resume,
   },
   {
-    label: "Контакты",
-    subtitle: "Написать мне",
+    label: "app.contact",
+    subtitle: "start.contactSub",
     iconSrc: "/assets/icons/contact.svg",
     appId: AppKey.Contact,
   },
@@ -46,49 +47,57 @@ const PRIMARY_ITEMS = [
 
 const SECONDARY_ITEMS = [
   {
-    label: "Фотография",
+    label: "app.photography",
     iconSrc: "/assets/icons/photography.svg",
     appId: AppKey.Photography,
   },
   {
-    label: "3D-галерея",
+    label: "app.gallery-3d",
     iconSrc: "/assets/icons/gallery-3d.svg",
     appId: AppKey.Gallery3D,
   },
   {
-    label: "Навыки",
+    label: "app.skills",
     iconSrc: "/assets/icons/skills.svg",
     appId: AppKey.Skills,
   },
   {
-    label: "Хронология",
+    label: "app.timeline",
     iconSrc: "/assets/icons/timeline.svg",
     appId: AppKey.Timeline,
   },
   {
-    label: "Сертификаты",
+    label: "app.certificates",
     iconSrc: "/assets/icons/certificates.svg",
     appId: AppKey.Certificates,
   },
-  { label: "Идеи", iconSrc: "/assets/icons/ideas.svg", appId: AppKey.Ideas },
-  { label: "Paint", iconSrc: "/assets/icons/paint.svg", appId: AppKey.Paint },
   {
-    label: "Сапёр",
+    label: "app.ideas",
+    iconSrc: "/assets/icons/ideas.svg",
+    appId: AppKey.Ideas,
+  },
+  {
+    label: "app.paint",
+    iconSrc: "/assets/icons/paint.svg",
+    appId: AppKey.Paint,
+  },
+  {
+    label: "app.minesweeper",
     iconSrc: "/assets/icons/minesweeper.svg",
     appId: AppKey.Minesweeper,
   },
   {
-    label: "Шашки",
+    label: "app.checkers",
     iconSrc: "/assets/icons/checkers.svg",
     appId: AppKey.Checkers,
   },
 ] as const;
 
 const RIGHT_ITEMS = [
-  { label: "Параметры", iconSrc: "/assets/icons/settings.svg" },
-  { label: "Поиск", iconSrc: "/assets/icons/search.svg" },
-  { label: "Терминал", iconSrc: "/assets/icons/terminal.svg" },
-  { label: "Выполнить...", iconSrc: "/assets/icons/run.svg" },
+  { label: "start.settings", iconSrc: "/assets/icons/settings.svg" },
+  { label: "start.search", iconSrc: "/assets/icons/search.svg" },
+  { label: "start.terminal", iconSrc: "/assets/icons/terminal.svg" },
+  { label: "start.run", iconSrc: "/assets/icons/run.svg" },
 ] as const;
 
 export function StartMenu({ onClose, onShutdownRequest }: StartMenuProps) {
@@ -96,6 +105,7 @@ export function StartMenu({ onClose, onShutdownRequest }: StartMenuProps) {
   const logOff = useSystemStore((state) => state.logOff);
   const menuRef = useRef<HTMLDivElement>(null);
   const [flyout, setFlyout] = useState<"programs" | "software" | null>(null);
+  const t = useT();
 
   useEffect(() => {
     menuRef.current
@@ -122,7 +132,7 @@ export function StartMenu({ onClose, onShutdownRequest }: StartMenuProps) {
         <div
           ref={menuRef}
           role="menu"
-          aria-label="Меню Пуск"
+          aria-label={t("startmenu.aria")}
           className="w-[min(380px,100vw)] overflow-hidden rounded-t-[8px] shadow-[3px_-2px_10px_rgba(0,0,0,0.45)]"
           style={{ border: "1px solid #0831d9", borderBottom: "none" }}
         >
@@ -145,7 +155,7 @@ export function StartMenu({ onClose, onShutdownRequest }: StartMenuProps) {
               className="text-[15px] font-bold text-white"
               style={{ textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)" }}
             >
-              Тамирлан
+              {t("user.name")}
             </span>
           </div>
           <div className="flex">
@@ -153,8 +163,8 @@ export function StartMenu({ onClose, onShutdownRequest }: StartMenuProps) {
               {PRIMARY_ITEMS.map((item) => (
                 <StartMenuItem
                   key={item.label}
-                  label={item.label}
-                  subtitle={item.subtitle}
+                  label={t(item.label)}
+                  subtitle={t(item.subtitle)}
                   iconSrc={item.iconSrc}
                   bold
                   onSelect={() => launch(item.appId)}
@@ -164,7 +174,7 @@ export function StartMenu({ onClose, onShutdownRequest }: StartMenuProps) {
               {SECONDARY_ITEMS.map((item) => (
                 <StartMenuItem
                   key={item.label}
-                  label={item.label}
+                  label={t(item.label)}
                   iconSrc={item.iconSrc}
                   onSelect={() => launch(item.appId)}
                 />
@@ -183,7 +193,7 @@ export function StartMenu({ onClose, onShutdownRequest }: StartMenuProps) {
                 onPointerEnter={() => setFlyout("programs")}
                 className="hover:bg-xp-selection focus-visible:bg-xp-selection flex w-full items-center justify-center gap-2 px-2 py-1.5 text-[11px] font-bold hover:text-white focus-visible:text-white focus-visible:outline-none"
               >
-                Все программы
+                {t("start.allPrograms")}
                 <span
                   aria-hidden="true"
                   className="flex h-4 w-4 items-center justify-center rounded-full text-[9px] text-white"
@@ -216,7 +226,7 @@ export function StartMenu({ onClose, onShutdownRequest }: StartMenuProps) {
                 >
                   ★
                 </span>
-                <span className="flex-1">Недавние программы</span>
+                <span className="flex-1">{t("start.recent")}</span>
                 <span aria-hidden="true">▶</span>
               </button>
               <div className="mx-2 my-1 border-t border-[#96b8e0]" />
@@ -245,7 +255,7 @@ export function StartMenu({ onClose, onShutdownRequest }: StartMenuProps) {
               {RIGHT_ITEMS.map((item) => (
                 <StartMenuItem
                   key={item.label}
-                  label={item.label}
+                  label={t(item.label)}
                   iconSrc={item.iconSrc}
                   disabled
                 />
@@ -288,7 +298,7 @@ export function StartMenu({ onClose, onShutdownRequest }: StartMenuProps) {
                   <path d="M5.5 20c.8-4 3.5-6 6.5-6s5.7 2 6.5 6" />
                 </svg>
               </span>
-              Выход
+              {t("start.logoff")}
             </button>
             <button
               type="button"
@@ -319,7 +329,7 @@ export function StartMenu({ onClose, onShutdownRequest }: StartMenuProps) {
                   <path d="M7.5 7.5a7 7 0 1 0 9 0" />
                 </svg>
               </span>
-              Выключить
+              {t("start.shutdown")}
             </button>
           </div>
         </div>

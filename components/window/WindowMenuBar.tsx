@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/core/utils/cn";
+import { useT } from "@/hooks/use-translations";
 
 interface MenuItem {
   label: string;
@@ -21,16 +22,26 @@ interface WindowMenuBarProps {
 export function WindowMenuBar({ onClose, onAbout }: WindowMenuBarProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const barRef = useRef<HTMLDivElement>(null);
+  const t = useT();
 
   const menus: readonly Menu[] = [
-    { label: "Файл", items: [{ label: "Закрыть", onSelect: onClose }] },
-    { label: "Правка", items: [{ label: "Отменить" }, { label: "Повторить" }] },
     {
-      label: "Вид",
-      items: [{ label: "Панель инструментов" }, { label: "Строка состояния" }],
+      label: t("win.file"),
+      items: [{ label: t("win.close"), onSelect: onClose }],
     },
-    { label: "Избранное", items: [{ label: "Добавить в избранное" }] },
-    { label: "Справка", items: [{ label: "О TamirlanOS", onSelect: onAbout }] },
+    {
+      label: t("win.edit"),
+      items: [{ label: t("win.undo") }, { label: t("win.redo") }],
+    },
+    {
+      label: t("win.view"),
+      items: [{ label: t("win.toolbar") }, { label: t("win.statusbar") }],
+    },
+    { label: t("win.favorites"), items: [{ label: t("win.addFavorite") }] },
+    {
+      label: t("win.help"),
+      items: [{ label: t("win.about"), onSelect: onAbout }],
+    },
   ];
 
   useEffect(() => {

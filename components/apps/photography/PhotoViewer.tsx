@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { useT } from "@/hooks/use-translations";
 import type { StoredPhoto } from "@/types/photo";
 
 interface PhotoViewerProps {
@@ -10,6 +11,7 @@ interface PhotoViewerProps {
 }
 
 export function PhotoViewer({ photo, onClose, onDelete }: PhotoViewerProps) {
+  const t = useT();
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
@@ -34,14 +36,14 @@ export function PhotoViewer({ photo, onClose, onDelete }: PhotoViewerProps) {
           onClick={onDelete}
           className="rounded-[3px] border border-[#7a2a1d] bg-gradient-to-b from-[#e07a5f] to-[#bb3b1d] px-3 py-1 text-[11px] text-white hover:brightness-110 focus-visible:outline-2 focus-visible:outline-white"
         >
-          Удалить
+          {t("photo.delete")}
         </button>
         <button
           type="button"
           onClick={onClose}
           className="rounded-[3px] border border-white/40 bg-white/10 px-3 py-1 text-[11px] text-white hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-white"
         >
-          Закрыть
+          {t("photo.close")}
         </button>
       </div>
       <div className="flex min-h-0 flex-1 items-center justify-center p-3">

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { PHOTO_CATEGORIES } from "@/core/photos/categories";
 import { cn } from "@/core/utils/cn";
 import { usePhotos } from "@/hooks/use-photos";
+import { useT } from "@/hooks/use-translations";
 import type { PhotoCategory, StoredPhoto } from "@/types/photo";
 import { PhotoGrid } from "./PhotoGrid";
 import { PhotoViewer } from "./PhotoViewer";
@@ -12,9 +13,11 @@ export function PhotographyApp() {
   const { photos, loading, addPhotos, removePhoto } = usePhotos();
   const [category, setCategory] = useState<PhotoCategory>("city");
   const [viewer, setViewer] = useState<StoredPhoto | null>(null);
+  const t = useT();
 
-  const label =
+  const labelKey =
     PHOTO_CATEGORIES.find((item) => item.id === category)?.label ?? "";
+  const label = t(labelKey);
   const current = photos.filter((photo) => photo.category === category);
 
   return (
@@ -23,10 +26,7 @@ export function PhotographyApp() {
         <p className="text-[13px] font-bold text-[#003399]">
           Fujifilm X-T2 · XF 35mm F2
         </p>
-        <p className="text-[#4a5a70]">
-          Мои снимки по категориям. Добавляйте свои фото — они сохраняются в
-          этом браузере.
-        </p>
+        <p className="text-[#4a5a70]">{t("photo.subtitle")}</p>
       </div>
       <div className="flex min-h-0 flex-1 flex-col @sm:flex-row">
         <ul className="flex w-full shrink-0 gap-1 overflow-auto border-b border-[#aca899] bg-[#ebf3fb] p-1.5 @sm:w-36 @sm:flex-col @sm:border-r @sm:border-b-0">
@@ -44,7 +44,7 @@ export function PhotographyApp() {
                       : "hover:bg-[#d6e6f8]",
                   )}
                 >
-                  <span className="flex-1">{item.label}</span>
+                  <span className="flex-1">{t(item.label)}</span>
                   <span
                     className={cn(
                       "text-[10px]",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { useT } from "@/hooks/use-translations";
 import type { PhotoCategory, StoredPhoto } from "@/types/photo";
 
 interface PhotoGridProps {
@@ -24,6 +25,7 @@ export function PhotoGrid({
   onOpen,
 }: PhotoGridProps) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const t = useT();
 
   const pick = () => inputRef.current?.click();
 
@@ -32,7 +34,7 @@ export function PhotoGrid({
       <div className="flex items-center gap-2 border-b border-[#aca899] bg-[#ebf3fb] px-3 py-1.5">
         <span className="flex-1 font-bold text-[#003399]">{categoryLabel}</span>
         <button type="button" onClick={pick} className={addButton}>
-          Добавить фото
+          {t("photo.add")}
         </button>
         <input
           ref={inputRef}
@@ -47,12 +49,12 @@ export function PhotoGrid({
         />
       </div>
       {loading ? (
-        <p className="p-4 text-[#4a5a70]">Загрузка…</p>
+        <p className="p-4 text-[#4a5a70]">{t("photo.loading")}</p>
       ) : photos.length === 0 ? (
         <div className="flex flex-1 flex-col items-center justify-center gap-3 p-6 text-center text-[#4a5a70]">
-          <p>В категории «{categoryLabel}» пока нет фото.</p>
+          <p>{t("photo.empty", { cat: categoryLabel })}</p>
           <button type="button" onClick={pick} className={addButton}>
-            Загрузить фото
+            {t("photo.upload")}
           </button>
         </div>
       ) : (

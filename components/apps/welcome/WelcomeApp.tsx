@@ -3,27 +3,17 @@
 import { AssetImage as Image } from "@/components/ui/AssetImage";
 
 import { siteConfig } from "@/core/config/site";
+import { useT } from "@/hooks/use-translations";
 
 const STEPS = [
-  {
-    icon: "/assets/icons/portfolio.svg",
-    text: "Дважды кликните по иконке на рабочем столе, чтобы открыть приложение. Всё здесь настоящее и доступно для изучения.",
-  },
-  {
-    icon: "/assets/icons/projects.svg",
-    text: "Перетаскивайте окна за заголовок, меняйте размер за любой край и переключайтесь между ними через панель задач.",
-  },
-  {
-    icon: "/assets/icons/about-me.svg",
-    text: "В зелёной кнопке «Пуск» — все приложения, а также «Выключить компьютер», когда закончите.",
-  },
-  {
-    icon: "/assets/icons/settings.svg",
-    text: "В трее у часов: заново открыть этот тур, включить эффект ЭЛТ-монитора или перейти в полный экран (работает и F11).",
-  },
+  { icon: "/assets/icons/portfolio.svg", text: "welcome.step1" },
+  { icon: "/assets/icons/projects.svg", text: "welcome.step2" },
+  { icon: "/assets/icons/about-me.svg", text: "welcome.step3" },
+  { icon: "/assets/icons/settings.svg", text: "welcome.step4" },
 ] as const;
 
 export function WelcomeApp() {
+  const t = useT();
   return (
     <div className="flex h-full flex-col bg-white text-[11px] text-black">
       <div className="flex items-center gap-3 border-b border-[#aca899] bg-[#ebf3fb] px-3 py-2.5">
@@ -37,11 +27,9 @@ export function WelcomeApp() {
         />
         <div>
           <p className="text-[14px] font-bold text-[#003399]">
-            Добро пожаловать в TamirlanOS
+            {t("boot.welcome")}
           </p>
-          <p className="text-[#4a5a70]">
-            Система в вашем распоряжении — вот как она работает.
-          </p>
+          <p className="text-[#4a5a70]">{t("welcome.subtitle")}</p>
         </div>
       </div>
       <ul className="flex-1 space-y-3 overflow-auto p-3">
@@ -55,12 +43,12 @@ export function WelcomeApp() {
               unoptimized
               draggable={false}
             />
-            <p className="leading-4">{step.text}</p>
+            <p className="leading-4">{t(step.text)}</p>
           </li>
         ))}
       </ul>
       <p className="border-t border-[#d8d5c4] bg-[#ece9d8] px-3 py-2 text-[#4a5a70]">
-        Сделано Тамирланом Жамаловым · Tamirlan Studio
+        {t("welcome.footer")}
       </p>
     </div>
   );

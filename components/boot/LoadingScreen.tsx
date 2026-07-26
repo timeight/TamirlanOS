@@ -2,6 +2,7 @@
 
 import { BrandMark } from "@/components/ui/BrandMark";
 import { useTimeout } from "@/hooks/use-timeout";
+import { useT } from "@/hooks/use-translations";
 import { useSystemStore } from "@/stores/system-store";
 
 const LOADING_DURATION_MS = 3000;
@@ -11,6 +12,7 @@ const SEGMENT_GRADIENT =
 
 export function LoadingScreen() {
   const advanceBoot = useSystemStore((state) => state.advanceBoot);
+  const t = useT();
 
   useTimeout(advanceBoot, LOADING_DURATION_MS);
 
@@ -29,13 +31,13 @@ export function LoadingScreen() {
             </span>
           </p>
           <p className="mt-1 ml-1 text-base italic sm:text-xl">
-            Разработчик · AI-инженер
+            {t("login.role")}
           </p>
         </div>
       </div>
       <div
         role="status"
-        aria-label="Загрузка TamirlanOS"
+        aria-label={t("boot.loading")}
         className="mt-4 h-[15px] w-[176px] overflow-hidden rounded-[8px] border-2 border-[#b8b8b8]/80 p-px"
       >
         <div className="animate-xp-progress flex h-full w-[34px] gap-[2px] motion-reduce:animate-none">
@@ -55,11 +57,11 @@ export function LoadingScreen() {
       </div>
       <div className="absolute inset-x-0 bottom-0 flex items-end justify-between px-5 pb-5 sm:px-10 sm:pb-8">
         <p className="text-sm leading-5 sm:text-lg sm:leading-6">
-          Для лучшего впечатления
-          <br />
-          включите полный экран (F11)
+          {t("loading.tip")}
         </p>
-        <p className="hidden text-2xl font-bold italic sm:block">Портфолио</p>
+        <p className="hidden text-2xl font-bold italic sm:block">
+          {t("loading.portfolio")}
+        </p>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@
 
 import { AssetImage as Image } from "@/components/ui/AssetImage";
 import { listApplications } from "@/core/process/app-registry";
+import { useT } from "@/hooks/use-translations";
 import type { AppId } from "@/types/application";
 
 interface ProgramsFlyoutProps {
@@ -9,9 +10,14 @@ interface ProgramsFlyoutProps {
 }
 
 export function ProgramsFlyout({ onLaunch }: ProgramsFlyoutProps) {
-  const apps = [...listApplications()].sort((a, b) =>
-    a.title.localeCompare(b.title, "ru"),
-  );
+  const t = useT();
+  const apps = [...listApplications()]
+    .map((app) => ({
+      id: app.id,
+      iconSrc: app.iconSrc,
+      title: t(`app.${app.id}`),
+    }))
+    .sort((a, b) => a.title.localeCompare(b.title));
 
   return (
     <div

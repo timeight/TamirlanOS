@@ -5,6 +5,7 @@ import type { PointerEvent as ReactPointerEvent } from "react";
 import { WindowControls } from "@/components/window/WindowControls";
 import { getApplication } from "@/core/process/app-registry";
 import { cn } from "@/core/utils/cn";
+import { useT } from "@/hooks/use-translations";
 import type { AppId } from "@/types/application";
 import type { WindowId, WindowState } from "@/types/window";
 
@@ -29,7 +30,6 @@ interface WindowTitleBarProps {
 export function WindowTitleBar({
   id,
   appId,
-  title,
   state,
   focused,
   resizable,
@@ -37,6 +37,7 @@ export function WindowTitleBar({
   onDragPointerDown,
   onToggleMaximize,
 }: WindowTitleBarProps) {
+  const t = useT();
   const iconSrc = getApplication(appId)?.iconSrc;
 
   return (
@@ -68,7 +69,7 @@ export function WindowTitleBar({
           textShadow: "1px 1px 1px rgba(10, 24, 131, 0.7)",
         }}
       >
-        {title}
+        {t(`app.${appId}`)}
       </span>
       <WindowControls
         id={id}

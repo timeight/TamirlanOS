@@ -3,6 +3,7 @@
 import { AssetImage as Image } from "@/components/ui/AssetImage";
 import { getApplication } from "@/core/process/app-registry";
 import { cn } from "@/core/utils/cn";
+import { useT } from "@/hooks/use-translations";
 import { useWindowStore } from "@/stores/window-store";
 import { WindowState, type WindowId } from "@/types/window";
 
@@ -12,6 +13,7 @@ export function TaskbarWindowButtons() {
   const focusWindow = useWindowStore((state) => state.focusWindow);
   const minimizeWindow = useWindowStore((state) => state.minimizeWindow);
   const restoreWindow = useWindowStore((state) => state.restoreWindow);
+  const t = useT();
 
   // XP behavior: unfocused raises, focused minimizes, minimized restores.
   const handleClick = (id: WindowId) => {
@@ -59,7 +61,7 @@ export function TaskbarWindowButtons() {
                 draggable={false}
               />
             )}
-            <span className="truncate">{window.title}</span>
+            <span className="truncate">{t(`app.${window.appId}`)}</span>
           </button>
         );
       })}

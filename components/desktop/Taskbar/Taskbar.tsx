@@ -4,13 +4,16 @@ import { useState } from "react";
 import { ShutdownDialog } from "@/components/desktop/ShutdownDialog";
 import { StartMenu } from "@/components/desktop/StartMenu/StartMenu";
 import { Clock } from "@/components/desktop/Taskbar/Clock";
+import { LanguageSwitcher } from "@/components/desktop/Taskbar/LanguageSwitcher";
 import { StartButton } from "@/components/desktop/Taskbar/StartButton";
 import { SystemTray } from "@/components/desktop/Taskbar/SystemTray";
 import { TaskbarWindowButtons } from "@/components/desktop/Taskbar/TaskbarWindowButtons";
+import { useT } from "@/hooks/use-translations";
 
 export function Taskbar() {
   const [startOpen, setStartOpen] = useState(false);
   const [shutdownOpen, setShutdownOpen] = useState(false);
+  const t = useT();
 
   const toggleStart = () => {
     setStartOpen((open) => !open);
@@ -19,7 +22,7 @@ export function Taskbar() {
   return (
     <div
       role="toolbar"
-      aria-label="Панель задач"
+      aria-label={t("taskbar.aria")}
       className="absolute inset-x-0 bottom-0 z-[60] flex h-[30px] items-stretch"
       style={{
         background:
@@ -38,6 +41,7 @@ export function Taskbar() {
           boxShadow: "inset 1px 0 1px rgba(255, 255, 255, 0.35)",
         }}
       >
+        <LanguageSwitcher />
         <SystemTray />
         <Clock />
       </div>

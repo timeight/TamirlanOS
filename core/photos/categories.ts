@@ -6,8 +6,8 @@ export interface CategoryInfo {
 }
 
 export const PHOTO_CATEGORIES: readonly CategoryInfo[] = [
-  { id: "city", label: "Город" },
-  { id: "people", label: "Люди" },
-  { id: "street", label: "Стрит" },
-  { id: "nature", label: "Природа" },
+  { id: "city", label: "cat.city" },
+  { id: "people", label: "cat.people" },
+  { id: "street", label: "cat.street" },
+  { id: "nature", label: "cat.nature" },
 ];

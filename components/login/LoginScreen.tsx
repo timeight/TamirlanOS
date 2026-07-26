@@ -3,12 +3,10 @@
 import { AssetImage as Image } from "@/components/ui/AssetImage";
 import { BrandMark } from "@/components/ui/BrandMark";
 import { siteConfig } from "@/core/config/site";
+import { useT } from "@/hooks/use-translations";
 import { useAudioStore } from "@/stores/audio-store";
 import { useSystemStore } from "@/stores/system-store";
 import { SoundEvent } from "@/types/sound";
-
-const USERNAME = "Тамирлан";
-const ROLE = "Разработчик · AI-инженер";
 
 const FIELD_BACKGROUND =
   "repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.035) 0px, rgba(255, 255, 255, 0.035) 1px, transparent 1px, transparent 3px), linear-gradient(180deg, #7a99e1 0%, #5f7fd0 50%, #4a69be 100%)";
@@ -17,6 +15,8 @@ export function LoginScreen() {
   const logIn = useSystemStore((state) => state.logIn);
   const restart = useSystemStore((state) => state.restart);
   const play = useAudioStore((state) => state.play);
+  const t = useT();
+  const username = t("user.name");
 
   const handleSignIn = () => {
     play(SoundEvent.Login);
@@ -47,12 +47,12 @@ export function LoginScreen() {
                 OS
               </span>
             </p>
-            <p className="mt-0.5 text-base italic">{ROLE}</p>
+            <p className="mt-0.5 text-base italic">{t("login.role")}</p>
             <p
               className="mt-4 text-base sm:mt-12 sm:text-lg"
               style={{ fontFamily: "Tahoma, sans-serif" }}
             >
-              Чтобы начать, нажмите на «{USERNAME}»
+              {t("login.begin", { name: username })}
             </p>
           </div>
         </div>
@@ -61,7 +61,7 @@ export function LoginScreen() {
           <button
             type="button"
             onClick={handleSignIn}
-            aria-label={`Войти как ${USERNAME}`}
+            aria-label={t("login.signin", { name: username })}
             className="group flex items-center gap-4 rounded-md p-3 text-left transition-colors duration-150 hover:bg-white/10 focus-visible:bg-white/10 focus-visible:outline-2 focus-visible:outline-white motion-reduce:transition-none"
           >
             <Image
@@ -74,9 +74,9 @@ export function LoginScreen() {
               className="rounded-lg border-2 border-white/90 shadow-md"
             />
             <span>
-              <span className="block text-3xl text-white">{USERNAME}</span>
+              <span className="block text-3xl text-white">{username}</span>
               <span className="mt-0.5 block text-[13px] font-bold text-[#16307e]">
-                {ROLE}
+                {t("login.role")}
               </span>
             </span>
           </button>
@@ -111,7 +111,7 @@ export function LoginScreen() {
               <path d="M16.5 2.5v4h-4" />
             </svg>
           </span>
-          Перезагрузить TamirlanOS
+          {t("login.restart")}
         </button>
       </div>
     </div>

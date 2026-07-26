@@ -2,6 +2,7 @@
 
 import { BrandMark } from "@/components/ui/BrandMark";
 import { cn } from "@/core/utils/cn";
+import { useT } from "@/hooks/use-translations";
 
 interface StartButtonProps {
   open: boolean;
@@ -9,6 +10,7 @@ interface StartButtonProps {
 }
 
 export function StartButton({ open, onToggle }: StartButtonProps) {
+  const t = useT();
   return (
     <button
       type="button"
@@ -28,7 +30,7 @@ export function StartButton({ open, onToggle }: StartButtonProps) {
       }}
     >
       <BrandMark className="h-[17px] w-[17px]" />
-      Пуск
+      {t("start.button")}
     </button>
   );
 }

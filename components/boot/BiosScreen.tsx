@@ -3,28 +3,30 @@
 import { useEffect, useState } from "react";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useTimeout } from "@/hooks/use-timeout";
+import { useT } from "@/hooks/use-translations";
 import { useSystemStore } from "@/stores/system-store";
-
-const LINES = [
-  "TamirlanOS BIOS v1.0",
-  "Build 0.1.0 / 2026",
-  "Проверка памяти ..... OK",
-  "Аудиоустройство ..... OK",
-  "Видеоадаптер ........ OK",
-  "Загрузка TamirlanOS...",
-] as const;
 
 const LINE_INTERVAL_MS = 320;
 const HOLD_AFTER_LAST_MS = 700;
+const LINE_COUNT = 6;
 
 export function BiosScreen() {
   const advanceBoot = useSystemStore((state) => state.advanceBoot);
   const reducedMotion = useReducedMotion();
+  const t = useT();
+  const lines = [
+    "TamirlanOS BIOS v1.0",
+    "Build 0.1.0 / 2026",
+    t("boot.memtest"),
+    t("boot.audio"),
+    t("boot.display"),
+    t("boot.booting"),
+  ];
   const [revealed, setRevealed] = useState(1);
-  const visible = reducedMotion ? LINES.length : revealed;
+  const visible = reducedMotion ? LINE_COUNT : revealed;
 
   useEffect(() => {
-    if (visible >= LINES.length) return;
+    if (visible >= LINE_COUNT) return;
     const id = window.setTimeout(
       () => setRevealed((count) => count + 1),
       LINE_INTERVAL_MS,
@@ -36,12 +38,12 @@ export function BiosScreen() {
     advanceBoot,
     reducedMotion
       ? HOLD_AFTER_LAST_MS
-      : LINES.length * LINE_INTERVAL_MS + HOLD_AFTER_LAST_MS,
+      : LINE_COUNT * LINE_INTERVAL_MS + HOLD_AFTER_LAST_MS,
   );
 
   return (
     <div className="h-full bg-black p-6 font-mono text-sm leading-6 text-white">
-      {LINES.slice(0, visible).map((line) => (
+      {lines.slice(0, visible).map((line) => (
         <p key={line}>{line}</p>
       ))}
       <p

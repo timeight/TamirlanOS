@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/core/utils/cn";
+import { useT } from "@/hooks/use-translations";
 
 const COLORS = [
   "#000000",
@@ -25,6 +26,7 @@ export function PaintApp() {
   const [color, setColor] = useState("#000000");
   const [size, setSize] = useState(5);
   const [eraser, setEraser] = useState(false);
+  const t = useT();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -80,7 +82,7 @@ export function PaintApp() {
             <button
               key={value}
               type="button"
-              aria-label={`Цвет ${value}`}
+              aria-label={`${t("paint.color")} ${value}`}
               onClick={() => {
                 setColor(value);
                 setEraser(false);
@@ -119,14 +121,14 @@ export function PaintApp() {
             eraser && "ring-2 ring-[#316ac5]",
           )}
         >
-          Ластик
+          {t("paint.eraser")}
         </button>
         <button
           type="button"
           onClick={clear}
           className="rounded-[3px] border border-[#003c74] bg-gradient-to-b from-white to-[#ecebe5] px-2 py-1"
         >
-          Очистить
+          {t("paint.clear")}
         </button>
       </div>
       <div className="min-h-0 flex-1 p-2">

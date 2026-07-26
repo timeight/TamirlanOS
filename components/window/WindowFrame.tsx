@@ -96,11 +96,7 @@ export const WindowFrame = memo(function WindowFrame({
         onToggleMaximize={compact ? noop : toggleMaximize}
       />
       <div className="mx-[3px] mb-[3px] flex min-h-0 flex-1 flex-col">
-        <WindowContent
-          windowId={id}
-          appId={window_.appId}
-          title={window_.title}
-        >
+        <WindowContent windowId={id} appId={window_.appId}>
           <AppRenderer appId={window_.appId} />
         </WindowContent>
       </div>

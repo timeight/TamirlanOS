@@ -5,23 +5,22 @@ import { AppKey } from "@/core/apps/app-catalog";
 import { listApplications } from "@/core/process/app-registry";
 import { useIsCompact } from "@/hooks/use-compact";
 import { useOpenApp } from "@/hooks/use-open-app";
+import { useT } from "@/hooks/use-translations";
 
 export function PortfolioApp() {
   const openApp = useOpenApp();
   const compact = useIsCompact();
+  const t = useT();
   const apps = listApplications().filter((app) => app.id !== AppKey.Portfolio);
 
   return (
     <div className="flex h-full flex-col bg-white text-[11px] text-black">
       <div className="border-b border-[#aca899] bg-[#ebf3fb] px-3 py-2">
         <p className="text-[13px] font-bold text-[#003399]">
-          Установленные приложения
+          {t("portfolio.installed")}
         </p>
         <p className="text-[#4a5a70]">
-          Всё, что входит в TamirlanOS.{" "}
-          {compact
-            ? "Коснитесь, чтобы открыть."
-            : "Дважды кликните, чтобы открыть."}
+          {compact ? t("portfolio.hintTap") : t("portfolio.hintClick")}
         </p>
       </div>
       <ul className="grid flex-1 auto-rows-min grid-cols-2 gap-1 overflow-auto p-2 @sm:grid-cols-3 @lg:grid-cols-4">
@@ -48,7 +47,9 @@ export function PortfolioApp() {
                 unoptimized
                 draggable={false}
               />
-              <span className="text-center leading-tight">{app.title}</span>
+              <span className="text-center leading-tight">
+                {t(`app.${app.id}`)}
+              </span>
             </button>
           </li>
         ))}

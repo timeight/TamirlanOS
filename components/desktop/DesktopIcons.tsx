@@ -4,6 +4,7 @@ import { AssetImage as Image } from "@/components/ui/AssetImage";
 import { ICON_GRID, slotToPosition } from "@/core/desktop/icon-grid";
 import { cn } from "@/core/utils/cn";
 import { useIsCompact } from "@/hooks/use-compact";
+import { useT } from "@/hooks/use-translations";
 import { useDesktopStore } from "@/stores/desktop-store";
 import type { DesktopIcon } from "@/types/desktop-icon";
 
@@ -16,6 +17,7 @@ export function DesktopIcons({ onIconOpen }: DesktopIconsProps) {
   const selectedIconId = useDesktopStore((state) => state.selectedIconId);
   const selectIcon = useDesktopStore((state) => state.selectIcon);
   const compact = useIsCompact();
+  const t = useT();
 
   return (
     <div
@@ -75,7 +77,7 @@ export function DesktopIcons({ onIconOpen }: DesktopIconsProps) {
                   : "[text-shadow:1px_1px_2px_rgb(0_0_0/0.9)]",
               )}
             >
-              {icon.label}
+              {t(icon.label)}
             </span>
           </button>
         );

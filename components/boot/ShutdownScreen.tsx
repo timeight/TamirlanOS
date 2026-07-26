@@ -1,6 +1,7 @@
 "use client";
 
 import { useTimeout } from "@/hooks/use-timeout";
+import { useT } from "@/hooks/use-translations";
 import { useSystemStore } from "@/stores/system-store";
 
 // Matches the audio guideline: shutdown fade never waits longer than two seconds.
@@ -8,6 +9,7 @@ const SHUTDOWN_DURATION_MS = 2000;
 
 export function ShutdownScreen() {
   const powerOff = useSystemStore((state) => state.powerOff);
+  const t = useT();
 
   useTimeout(powerOff, SHUTDOWN_DURATION_MS);
 
@@ -26,7 +28,7 @@ export function ShutdownScreen() {
           textShadow: "2px 2px 4px rgba(0, 20, 90, 0.6)",
         }}
       >
-        TamirlanOS завершает работу...
+        {t("boot.shuttingdown")}
       </p>
     </div>
   );
