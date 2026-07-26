@@ -8,6 +8,7 @@ import { ShutdownScreen } from "@/components/boot/ShutdownScreen";
 import { WelcomeScreen } from "@/components/boot/WelcomeScreen";
 import { LoginScreen } from "@/components/login/LoginScreen";
 import { useAudioUnlock } from "@/hooks/use-audio-unlock";
+import { useClickSound } from "@/hooks/use-click-sound";
 import { useSystemStore } from "@/stores/system-store";
 import { BootStage } from "@/types/boot";
 import { SystemPhase } from "@/types/system";
@@ -17,6 +18,7 @@ export function BootFlow() {
   const bootStage = useSystemStore((state) => state.bootStage);
 
   useAudioUnlock();
+  useClickSound();
 
   if (phase === SystemPhase.Off) return <PowerOffScreen />;
   if (phase === SystemPhase.Booting) {

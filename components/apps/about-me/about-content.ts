@@ -1,38 +1,3 @@
-// Handles below are placeholders — swap in the real profile URLs.
-export interface SocialLink {
-  name: string;
-  href: string;
-  icon: string;
-}
-
-export const SOCIAL_LINKS: readonly SocialLink[] = [
-  {
-    name: "Instagram",
-    href: "https://instagram.com/tamirlanzhamalov",
-    icon: "/assets/icons/social-instagram.svg",
-  },
-  {
-    name: "Threads",
-    href: "https://threads.net/@tamirlanzhamalov",
-    icon: "/assets/icons/social-threads.svg",
-  },
-  {
-    name: "Telegram",
-    href: "https://t.me/tamirlanzhamalov",
-    icon: "/assets/icons/social-telegram.svg",
-  },
-  {
-    name: "GitHub",
-    href: "https://github.com/tamirlanzhamalov",
-    icon: "/assets/icons/social-github.svg",
-  },
-  {
-    name: "LinkedIn",
-    href: "https://linkedin.com/in/tamirlanzhamalov",
-    icon: "/assets/icons/social-linkedin.svg",
-  },
-];
-
 export const SKILLS: readonly string[] = [
   "Программирование",
   "Искусственный интеллект",

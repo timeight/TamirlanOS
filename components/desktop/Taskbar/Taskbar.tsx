@@ -7,16 +7,12 @@ import { Clock } from "@/components/desktop/Taskbar/Clock";
 import { StartButton } from "@/components/desktop/Taskbar/StartButton";
 import { SystemTray } from "@/components/desktop/Taskbar/SystemTray";
 import { TaskbarWindowButtons } from "@/components/desktop/Taskbar/TaskbarWindowButtons";
-import { useAudioStore } from "@/stores/audio-store";
-import { SoundEvent } from "@/types/sound";
 
 export function Taskbar() {
   const [startOpen, setStartOpen] = useState(false);
   const [shutdownOpen, setShutdownOpen] = useState(false);
-  const play = useAudioStore((state) => state.play);
 
   const toggleStart = () => {
-    play(SoundEvent.Click);
     setStartOpen((open) => !open);
   };
 

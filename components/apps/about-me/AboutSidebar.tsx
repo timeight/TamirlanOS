@@ -1,8 +1,9 @@
 "use client";
 
 import { AssetImage as Image } from "@/components/ui/AssetImage";
+import { SOCIAL_LINKS } from "@/core/config/social";
 
-import { SKILLS, SOCIAL_LINKS, SOFTWARE } from "./about-content";
+import { SKILLS, SOFTWARE } from "./about-content";
 
 interface SidebarPanelProps {
   title: string;

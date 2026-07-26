@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { StartMenuItem } from "@/components/desktop/StartMenu/StartMenuItem";
 import { AppKey } from "@/core/apps/app-catalog";
 import { siteConfig } from "@/core/config/site";
+import { SOCIAL_LINKS } from "@/core/config/social";
 import { useOpenApp } from "@/hooks/use-open-app";
 import { useSystemStore } from "@/stores/system-store";
 
@@ -171,6 +172,28 @@ export function StartMenu({ onClose, onShutdownRequest }: StartMenuProps) {
             </button>
           </div>
           <div className="w-[142px] border-l border-[#96b8e0] bg-[#d3e5fa] py-1">
+            {SOCIAL_LINKS.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                role="menuitem"
+                onClick={onClose}
+                className="hover:bg-xp-selection focus-visible:bg-xp-selection flex w-full items-center gap-2 px-2 py-1 text-[11px] hover:text-white focus-visible:text-white focus-visible:outline-none"
+              >
+                <Image
+                  src={link.icon}
+                  alt=""
+                  width={22}
+                  height={22}
+                  unoptimized
+                  draggable={false}
+                />
+                <span className="truncate">{link.name}</span>
+              </a>
+            ))}
+            <div className="mx-2 my-1 border-t border-[#96b8e0]" />
             {RIGHT_ITEMS.map((item) => (
               <StartMenuItem
                 key={item.label}
