@@ -9,6 +9,7 @@ import { WelcomeScreen } from "@/components/boot/WelcomeScreen";
 import { LoginScreen } from "@/components/login/LoginScreen";
 import { useAudioUnlock } from "@/hooks/use-audio-unlock";
 import { useClickSound } from "@/hooks/use-click-sound";
+import { useDocumentTitle } from "@/hooks/use-document-title";
 import { useSystemStore } from "@/stores/system-store";
 import { BootStage } from "@/types/boot";
 import { SystemPhase } from "@/types/system";
@@ -19,6 +20,7 @@ export function BootFlow() {
 
   useAudioUnlock();
   useClickSound();
+  useDocumentTitle();
 
   if (phase === SystemPhase.Off) return <PowerOffScreen />;
   if (phase === SystemPhase.Booting) {

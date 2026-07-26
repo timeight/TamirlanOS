@@ -1,5 +1,6 @@
 "use client";
 
+import { AssetImage as Image } from "@/components/ui/AssetImage";
 import { SOFTWARE_PROGRAMS } from "@/core/config/software";
 
 export function SoftwareFlyout() {
@@ -14,12 +15,26 @@ export function SoftwareFlyout() {
           key={item.name}
           className="flex items-center gap-2 px-2 py-1 text-[11px] text-black"
         >
-          <span
-            className="flex h-5 w-5 shrink-0 items-center justify-center rounded-[3px] text-[9px] font-bold"
-            style={{ background: item.bg, color: item.fg }}
-          >
-            {item.short}
-          </span>
+          {item.icon ? (
+            <span className="flex h-5 w-5 shrink-0 items-center justify-center">
+              <Image
+                src={item.icon}
+                alt=""
+                width={20}
+                height={20}
+                unoptimized
+                draggable={false}
+                className="max-h-5 max-w-5 object-contain"
+              />
+            </span>
+          ) : (
+            <span
+              className="flex h-5 w-5 shrink-0 items-center justify-center rounded-[3px] text-[9px] font-bold"
+              style={{ background: item.bg, color: item.fg }}
+            >
+              {item.short}
+            </span>
+          )}
           <span className="truncate">{item.name}</span>
         </div>
       ))}

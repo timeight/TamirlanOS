@@ -1,18 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
   <defs>
-    <radialGradient id="msn" cx="0.34" cy="0.28" r="0.95">
-      <stop offset="0" stop-color="#d6f5ae"/>
-      <stop offset="0.45" stop-color="#6cbb32"/>
-      <stop offset="1" stop-color="#2c7015"/>
+    <linearGradient id="accCard" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#cfe0f5"/>
+    </linearGradient>
+    <radialGradient id="accPerson" cx="0.35" cy="0.3" r="0.95">
+      <stop offset="0" stop-color="#8fc4ff"/>
+      <stop offset="0.5" stop-color="#3d7fdd"/>
+      <stop offset="1" stop-color="#164a9c"/>
     </radialGradient>
-    <filter id="dsA" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="dsAcc" x="-20%" y="-20%" width="140%" height="140%">
       <feDropShadow dx="0.8" dy="1.6" stdDeviation="1.2" flood-opacity="0.4"/>
     </filter>
   </defs>
-  <g filter="url(#dsA)">
-    <circle cx="24" cy="15" r="8" fill="url(#msn)" stroke="#22550f"/>
-    <path d="M9 42c0-8.6 6.7-15 15-15s15 6.4 15 15a1 1 0 0 1-1 1H10a1 1 0 0 1-1-1Z" fill="url(#msn)" stroke="#22550f"/>
-    <ellipse cx="20.5" cy="11.5" rx="3.4" ry="2.3" fill="#ffffff" opacity="0.6"/>
-    <path d="M13 33.5c2.4-3 6.4-4.8 11-4.8s8.6 1.8 11 4.8" fill="none" stroke="#ffffff" stroke-width="1.6" opacity="0.4"/>
+  <g filter="url(#dsAcc)">
+    <rect x="5" y="5" width="38" height="38" rx="8" fill="url(#accCard)" stroke="#8ea3bf"/>
+    <path d="M6 8a3 3 0 0 1 3-3h30a3 3 0 0 1 3 3v3H6Z" fill="#ffffff" opacity="0.5"/>
+    <circle cx="24" cy="20" r="7.5" fill="url(#accPerson)" stroke="#123f7e"/>
+    <path d="M11.5 41c0-7.3 5.6-11.5 12.5-11.5S36.5 33.7 36.5 41Z" fill="url(#accPerson)" stroke="#123f7e"/>
+    <ellipse cx="21" cy="17" rx="3" ry="2" fill="#ffffff" opacity="0.55"/>
   </g>
 </svg>

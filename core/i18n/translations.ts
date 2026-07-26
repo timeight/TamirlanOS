@@ -10,6 +10,11 @@ export const translations: Record<string, Record<Locale, string>> = {
   },
   "startmenu.aria": { kk: "Бастау мәзірі", ru: "Меню Пуск", en: "Start menu" },
   "user.name": { kk: "Тамирлан", ru: "Тамирлан", en: "Tamirlan" },
+  "os.tagline": {
+    kk: "Тамирланның портфолиосы",
+    ru: "Портфолио Тамирлана",
+    en: "Tamirlan's Portfolio",
+  },
 
   // Start menu buttons
   "start.allPrograms": {
