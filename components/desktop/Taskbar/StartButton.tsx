@@ -26,7 +26,7 @@ export function StartButton({ open, onToggle }: StartButtonProps) {
         boxShadow:
           "inset 1px 1px 1px rgba(255, 255, 255, 0.5), 2px 0 6px rgba(0, 0, 0, 0.35)",
         textShadow: "1px 1px 2px rgba(0, 0, 0, 0.6)",
-        fontFamily: '"Trebuchet MS", Tahoma, sans-serif',
+        fontFamily: '"Trebuchet MS", Arial, sans-serif',
       }}
     >
       <BrandMark className="h-[17px] w-[17px]" />

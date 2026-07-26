@@ -65,7 +65,7 @@ export function WindowTitleBar({
           focused ? "text-white" : "text-white/85",
         )}
         style={{
-          fontFamily: '"Trebuchet MS", Tahoma, sans-serif',
+          fontFamily: '"Trebuchet MS", Arial, sans-serif',
           textShadow: "1px 1px 1px rgba(10, 24, 131, 0.7)",
         }}
       >

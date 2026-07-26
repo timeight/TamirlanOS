@@ -38,7 +38,7 @@ export function LoginScreen() {
         <div className="flex w-full justify-center sm:flex-1 sm:justify-end sm:pr-14">
           <div
             className="flex flex-col items-center text-center text-white sm:items-start sm:text-left"
-            style={{ fontFamily: '"Trebuchet MS", Tahoma, sans-serif' }}
+            style={{ fontFamily: '"Trebuchet MS", Arial, sans-serif' }}
           >
             <BrandMark className="h-20 w-20 sm:ml-8 sm:h-24 sm:w-24" />
             <p className="mt-2 text-3xl font-bold sm:text-4xl">
@@ -50,7 +50,7 @@ export function LoginScreen() {
             <p className="mt-0.5 text-base italic">{t("login.role")}</p>
             <p
               className="mt-4 text-base sm:mt-12 sm:text-lg"
-              style={{ fontFamily: "Tahoma, sans-serif" }}
+              style={{ fontFamily: "Arial, sans-serif" }}
             >
               {t("login.begin", { name: username })}
             </p>

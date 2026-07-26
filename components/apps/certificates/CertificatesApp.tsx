@@ -46,7 +46,7 @@ export function CertificatesApp() {
           </div>
           <p
             className="text-[16px] font-bold text-[#5a4a1a] italic"
-            style={{ fontFamily: '"Trebuchet MS", Tahoma, sans-serif' }}
+            style={{ fontFamily: '"Trebuchet MS", Arial, sans-serif' }}
           >
             {certificate.subject}
           </p>

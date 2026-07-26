@@ -1,14 +1,23 @@
 "use client";
 
-import { AssetImage as Image } from "@/components/ui/AssetImage";
+import { asset } from "@/core/config/base-path";
 import { SOFTWARE_PROGRAMS } from "@/core/config/software";
+import { cn } from "@/core/utils/cn";
+import { useIsCompact } from "@/hooks/use-compact";
 
 export function SoftwareFlyout() {
+  const compact = useIsCompact();
+
   return (
     <div
       role="menu"
       aria-label="Мои программы"
-      className="absolute top-0 left-full z-20 ml-0.5 max-h-[70vh] w-[210px] overflow-auto rounded-sm border border-[#8a8676] bg-white py-1 shadow-[3px_3px_10px_rgba(0,0,0,0.4)]"
+      className={cn(
+        "z-30 overflow-auto rounded-sm border border-[#8a8676] bg-white py-1 shadow-[3px_3px_10px_rgba(0,0,0,0.4)]",
+        compact
+          ? "absolute inset-0 w-full"
+          : "absolute top-0 left-full ml-0.5 max-h-[70vh] w-[210px]",
+      )}
     >
       {SOFTWARE_PROGRAMS.map((item) => (
         <div
@@ -17,12 +26,10 @@ export function SoftwareFlyout() {
         >
           {item.icon ? (
             <span className="flex h-5 w-5 shrink-0 items-center justify-center">
-              <Image
-                src={item.icon}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={asset(item.icon)}
                 alt=""
-                width={20}
-                height={20}
-                unoptimized
                 draggable={false}
                 className="max-h-5 max-w-5 object-contain"
               />

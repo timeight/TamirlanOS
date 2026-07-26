@@ -19,7 +19,7 @@ export function LoadingScreen() {
   return (
     <div
       className="animate-fade-in relative flex h-full flex-col items-center justify-center gap-8 bg-black text-white motion-reduce:animate-none sm:gap-14"
-      style={{ fontFamily: '"Trebuchet MS", Tahoma, sans-serif' }}
+      style={{ fontFamily: '"Trebuchet MS", Arial, sans-serif' }}
     >
       <div className="flex flex-col items-center">
         <BrandMark className="h-16 w-16 sm:h-24 sm:w-24" />

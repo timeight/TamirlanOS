@@ -28,7 +28,7 @@ export function WelcomeScreen() {
           style={{
             animationDelay: `${index * MESSAGE_STAGGER_MS}ms`,
             ...(index === 0 && {
-              fontFamily: '"Trebuchet MS", Tahoma, sans-serif',
+              fontFamily: '"Trebuchet MS", Arial, sans-serif',
               textShadow: "2px 2px 4px rgba(0, 20, 90, 0.6)",
             }),
           }}

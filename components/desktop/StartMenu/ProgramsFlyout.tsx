@@ -1,7 +1,9 @@
 "use client";
 
 import { AssetImage as Image } from "@/components/ui/AssetImage";
+import { cn } from "@/core/utils/cn";
 import { listApplications } from "@/core/process/app-registry";
+import { useIsCompact } from "@/hooks/use-compact";
 import { useT } from "@/hooks/use-translations";
 import type { AppId } from "@/types/application";
 
@@ -11,6 +13,7 @@ interface ProgramsFlyoutProps {
 
 export function ProgramsFlyout({ onLaunch }: ProgramsFlyoutProps) {
   const t = useT();
+  const compact = useIsCompact();
   const apps = [...listApplications()]
     .map((app) => ({
       id: app.id,
@@ -22,7 +25,12 @@ export function ProgramsFlyout({ onLaunch }: ProgramsFlyoutProps) {
   return (
     <div
       role="menu"
-      className="absolute bottom-0 left-full z-20 ml-0.5 max-h-[70vh] w-[220px] overflow-auto rounded-sm border border-[#8a8676] bg-white py-1 shadow-[3px_3px_10px_rgba(0,0,0,0.4)]"
+      className={cn(
+        "z-30 overflow-auto rounded-sm border border-[#8a8676] bg-white py-1 shadow-[3px_3px_10px_rgba(0,0,0,0.4)]",
+        compact
+          ? "absolute inset-0 w-full"
+          : "absolute bottom-0 left-full ml-0.5 max-h-[70vh] w-[220px]",
+      )}
     >
       {apps.map((app) => (
         <button

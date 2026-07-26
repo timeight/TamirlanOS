@@ -24,7 +24,7 @@ export function ShutdownScreen() {
       <p
         className="animate-fade-in text-2xl font-bold italic motion-reduce:animate-none sm:text-4xl"
         style={{
-          fontFamily: '"Trebuchet MS", Tahoma, sans-serif',
+          fontFamily: '"Trebuchet MS", Arial, sans-serif',
           textShadow: "2px 2px 4px rgba(0, 20, 90, 0.6)",
         }}
       >

@@ -52,7 +52,7 @@ export function ShutdownDialog({ onClose }: ShutdownDialogProps) {
           style={{
             background:
               "linear-gradient(180deg, #0058ee 0%, #3593ff 6%, #0054e3 30%, #0055eb 70%, #003092 100%)",
-            fontFamily: '"Trebuchet MS", Tahoma, sans-serif',
+            fontFamily: '"Trebuchet MS", Arial, sans-serif',
             textShadow: "1px 1px 1px rgba(10, 24, 131, 0.7)",
           }}
         >
