@@ -9,6 +9,7 @@ interface Project {
   summary: string;
   details: readonly string[];
   stack: string;
+  grad: [string, string];
 }
 
 const PROJECTS: readonly Project[] = [
@@ -19,10 +20,11 @@ const PROJECTS: readonly Project[] = [
       "Интерактивное портфолио в виде операционной системы в стиле Windows XP.",
     details: [
       "Цель: чтобы посетитель ощущал, будто загрузился в настоящую ОС, а не открыл сайт.",
-      "Настоящий оконный менеджер (перетаскивание, ресайз, фокус, z-порядок), загрузка и вход, меню «Пуск», двенадцать приложений.",
-      "Все иконки, обои и аватар — нарисованы вручную в SVG; вид Luna воссоздан на чистом CSS.",
+      "Настоящий оконный менеджер (перетаскивание, ресайз, фокус, z-порядок), загрузка и вход, меню «Пуск», приложения и игры.",
+      "Все иконки, обои и аватар — нарисованы вручную; вид Luna воссоздан на чистом CSS.",
     ],
-    stack: "Next.js · React · TypeScript · Tailwind CSS · zustand",
+    stack: "Next.js · React · TypeScript · Tailwind · zustand",
+    grad: ["#6d28d9", "#4338ca"],
   },
   {
     id: "cutai",
@@ -34,6 +36,7 @@ const PROJECTS: readonly Project[] = [
       "В активной разработке.",
     ],
     stack: "AI-процессы · LLM API · автоматизация",
+    grad: ["#0ea5e9", "#2563eb"],
   },
   {
     id: "iron-form",
@@ -44,7 +47,8 @@ const PROJECTS: readonly Project[] = [
       "Планируется как будущее iOS-приложение.",
       "Объединяет компьютерное зрение с логикой тренера.",
     ],
-    stack: "Компьютерное зрение · оценка позы · iOS (Swift, изучаю)",
+    stack: "Computer Vision · оценка позы · iOS · Swift",
+    grad: ["#e11d48", "#f97316"],
   },
   {
     id: "creative",
@@ -55,53 +59,82 @@ const PROJECTS: readonly Project[] = [
       "Моушн-графика, графический дизайн, брендинг и маркетинговый контент.",
       "Контент для соцсетей и фотография.",
     ],
-    stack: "DaVinci Resolve · моушн-дизайн · брендинг · фотография",
+    stack: "DaVinci Resolve · моушн · брендинг · фото",
+    grad: ["#059669", "#0d9488"],
   },
 ];
 
 export function ProjectsApp() {
-  const [selectedId, setSelectedId] = useState<string>(() => {
-    const first = PROJECTS[0];
-    return first ? first.id : "";
-  });
-  const selected = PROJECTS.find((project) => project.id === selectedId);
+  const [openId, setOpenId] = useState<string | null>(null);
 
   return (
-    <div className="flex h-full flex-col bg-white text-[11px] text-black @sm:flex-row">
-      <ul className="max-h-32 w-full shrink-0 overflow-auto border-b border-[#aca899] bg-[#ebf3fb] py-1 @sm:max-h-none @sm:w-44 @sm:border-r @sm:border-b-0">
-        {PROJECTS.map((project) => (
-          <li key={project.id}>
-            <button
-              type="button"
-              onClick={() => setSelectedId(project.id)}
-              className={cn(
-                "w-full px-2 py-1 text-left",
-                project.id === selectedId
-                  ? "bg-xp-selection text-white"
-                  : "hover:bg-[#d6e6f8]",
-              )}
+    <div className="h-full overflow-auto bg-gradient-to-b from-[#f7f8fc] to-[#eceef6] p-4 text-slate-800">
+      <h1 className="text-lg font-bold">Проекты</h1>
+      <p className="mb-4 text-[12px] text-slate-500">
+        Что я строю и чем горжусь.
+      </p>
+      <div className="grid gap-3 @sm:grid-cols-2">
+        {PROJECTS.map((project) => {
+          const tags = project.stack.split("·").map((tag) => tag.trim());
+          const expanded = openId === project.id;
+          return (
+            <div
+              key={project.id}
+              className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-transform hover:-translate-y-0.5"
             >
-              {project.name}
-            </button>
-          </li>
-        ))}
-      </ul>
-      {selected && (
-        <div className="flex-1 overflow-auto p-3">
-          <p className="text-[14px] font-bold text-[#003399]">
-            {selected.name}
-          </p>
-          <p className="mt-1 text-[#4a5a70]">{selected.summary}</p>
-          <ul className="mt-3 list-disc space-y-1 pl-4 leading-4">
-            {selected.details.map((line) => (
-              <li key={line}>{line}</li>
-            ))}
-          </ul>
-          <p className="mt-3 border-t border-[#d8d5c4] pt-2 text-[#4a5a70]">
-            {selected.stack}
-          </p>
-        </div>
-      )}
+              <button
+                type="button"
+                onClick={() => setOpenId(expanded ? null : project.id)}
+                className="block w-full text-left focus-visible:outline-2 focus-visible:outline-[#6d28d9]"
+              >
+                <div
+                  className="flex h-16 items-end p-3 text-white"
+                  style={{
+                    backgroundImage: `linear-gradient(135deg, ${project.grad[0]}, ${project.grad[1]})`,
+                  }}
+                >
+                  <span className="text-base font-bold drop-shadow">
+                    {project.name}
+                  </span>
+                </div>
+                <div className="p-3">
+                  <p className="text-[12px] leading-4 text-slate-600">
+                    {project.summary}
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-medium text-slate-600"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="mt-2 inline-block text-[11px] font-semibold text-[#6d28d9]">
+                    {expanded ? "Свернуть ▲" : "Подробнее ▼"}
+                  </span>
+                </div>
+              </button>
+              {expanded && (
+                <ul className="space-y-1.5 border-t border-slate-100 px-4 py-3 text-[12px] text-slate-600">
+                  {project.details.map((line) => (
+                    <li key={line} className="flex gap-2">
+                      <span
+                        className={cn("mt-0.5 font-bold")}
+                        style={{ color: project.grad[0] }}
+                      >
+                        •
+                      </span>
+                      {line}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
