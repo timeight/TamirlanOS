@@ -9,17 +9,17 @@ export interface SocialLink {
 export const SOCIAL_LINKS: readonly SocialLink[] = [
   {
     name: "Instagram",
-    href: "https://instagram.com/tamirlanzhamalov",
+    href: "https://www.instagram.com/zhamallov/",
     icon: "/assets/icons/social-instagram.svg",
   },
   {
     name: "Threads",
-    href: "https://threads.net/@tamirlanzhamalov",
+    href: "https://threads.net/@zhamallov",
     icon: "/assets/icons/social-threads.svg",
   },
   {
     name: "Telegram",
-    href: "https://t.me/tamirlanzhamalov",
+    href: "https://t.me/zhamallov",
     icon: "/assets/icons/social-telegram.svg",
   },
   {
@@ -29,7 +29,7 @@ export const SOCIAL_LINKS: readonly SocialLink[] = [
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/in/tamirlanzhamalov",
+    href: "https://www.linkedin.com/in/tamirlan-zhamalov-83aa8821a/",
     icon: "/assets/icons/social-linkedin.svg",
   },
 ];
