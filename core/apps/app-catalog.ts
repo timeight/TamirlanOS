@@ -17,6 +17,9 @@ export enum AppKey {
   Timeline = "timeline",
   Certificates = "certificates",
   Ideas = "ideas",
+  Paint = "paint",
+  Minesweeper = "minesweeper",
+  Checkers = "checkers",
 }
 
 export const APP_CATALOG: readonly ApplicationManifest[] = [
@@ -125,6 +128,33 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
     iconSrc: "/assets/icons/ideas.svg",
     defaultSize: { width: 470, height: 400 },
     minSize: { width: 360, height: 300 },
+    resizable: true,
+    singleton: true,
+  },
+  {
+    id: AppKey.Paint,
+    title: "Paint",
+    iconSrc: "/assets/icons/paint.svg",
+    defaultSize: { width: 640, height: 500 },
+    minSize: { width: 420, height: 340 },
+    resizable: true,
+    singleton: true,
+  },
+  {
+    id: AppKey.Minesweeper,
+    title: "Сапёр",
+    iconSrc: "/assets/icons/minesweeper.svg",
+    defaultSize: { width: 340, height: 430 },
+    minSize: { width: 300, height: 380 },
+    resizable: true,
+    singleton: true,
+  },
+  {
+    id: AppKey.Checkers,
+    title: "Шашки",
+    iconSrc: "/assets/icons/checkers.svg",
+    defaultSize: { width: 430, height: 500 },
+    minSize: { width: 340, height: 420 },
     resizable: true,
     singleton: true,
   },

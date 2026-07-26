@@ -2,9 +2,12 @@
 
 import { AboutMeApp } from "@/components/apps/about-me/AboutMeApp";
 import { CertificatesApp } from "@/components/apps/certificates/CertificatesApp";
+import { CheckersApp } from "@/components/apps/checkers/CheckersApp";
 import { ContactApp } from "@/components/apps/contact/ContactApp";
 import { Gallery3DApp } from "@/components/apps/gallery-3d/Gallery3DApp";
 import { IdeasApp } from "@/components/apps/ideas/IdeasApp";
+import { MinesweeperApp } from "@/components/apps/minesweeper/MinesweeperApp";
+import { PaintApp } from "@/components/apps/paint/PaintApp";
 import { PhotographyApp } from "@/components/apps/photography/PhotographyApp";
 import { PortfolioApp } from "@/components/apps/portfolio/PortfolioApp";
 import { ProjectsApp } from "@/components/apps/projects/ProjectsApp";
@@ -45,6 +48,12 @@ export function AppRenderer({ appId }: AppRendererProps) {
       return <CertificatesApp />;
     case AppKey.Ideas:
       return <IdeasApp />;
+    case AppKey.Paint:
+      return <PaintApp />;
+    case AppKey.Minesweeper:
+      return <MinesweeperApp />;
+    case AppKey.Checkers:
+      return <CheckersApp />;
     default:
       return null;
   }

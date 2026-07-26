@@ -23,6 +23,11 @@ export const SOCIAL_LINKS: readonly SocialLink[] = [
     icon: "/assets/icons/social-telegram.svg",
   },
   {
+    name: "WhatsApp",
+    href: "https://wa.me/77767585599",
+    icon: "/assets/icons/social-whatsapp.svg",
+  },
+  {
     name: "GitHub",
     href: "https://github.com/timeight",
     icon: "/assets/icons/social-github.svg",

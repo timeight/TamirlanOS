@@ -68,6 +68,17 @@ const SECONDARY_ITEMS = [
     appId: AppKey.Certificates,
   },
   { label: "Идеи", iconSrc: "/assets/icons/ideas.svg", appId: AppKey.Ideas },
+  { label: "Paint", iconSrc: "/assets/icons/paint.svg", appId: AppKey.Paint },
+  {
+    label: "Сапёр",
+    iconSrc: "/assets/icons/minesweeper.svg",
+    appId: AppKey.Minesweeper,
+  },
+  {
+    label: "Шашки",
+    iconSrc: "/assets/icons/checkers.svg",
+    appId: AppKey.Checkers,
+  },
 ] as const;
 
 const RIGHT_ITEMS = [
