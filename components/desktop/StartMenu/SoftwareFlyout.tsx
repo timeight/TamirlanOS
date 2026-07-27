@@ -1,24 +1,16 @@
 "use client";
 
+import { FlyoutShell } from "@/components/desktop/StartMenu/FlyoutShell";
 import { asset } from "@/core/config/base-path";
 import { SOFTWARE_PROGRAMS } from "@/core/config/software";
-import { cn } from "@/core/utils/cn";
-import { useIsCompact } from "@/hooks/use-compact";
 
-export function SoftwareFlyout() {
-  const compact = useIsCompact();
+interface SoftwareFlyoutProps {
+  onClose: () => void;
+}
 
+export function SoftwareFlyout({ onClose }: SoftwareFlyoutProps) {
   return (
-    <div
-      role="menu"
-      aria-label="Мои программы"
-      className={cn(
-        "z-30 overflow-auto rounded-sm border border-[#8a8676] bg-white py-1 shadow-[3px_3px_10px_rgba(0,0,0,0.4)]",
-        compact
-          ? "absolute inset-0 w-full"
-          : "absolute top-0 left-full ml-0.5 max-h-[70vh] w-[210px]",
-      )}
-    >
+    <FlyoutShell title="Мои программы" side="top" onClose={onClose}>
       {SOFTWARE_PROGRAMS.map((item) => (
         <div
           key={item.name}
@@ -45,6 +37,6 @@ export function SoftwareFlyout() {
           <span className="truncate">{item.name}</span>
         </div>
       ))}
-    </div>
+    </FlyoutShell>
   );
 }

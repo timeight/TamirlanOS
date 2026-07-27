@@ -142,8 +142,12 @@ export function StartMenu({ onClose, onShutdownRequest }: StartMenuProps) {
     <>
       <div className="fixed inset-0 z-[65]" onClick={onClose} />
       <div className="animate-fade-in absolute bottom-[30px] left-0 z-[70] motion-reduce:animate-none">
-        {flyout === "programs" && <ProgramsFlyout onLaunch={launch} />}
-        {flyout === "software" && <SoftwareFlyout />}
+        {flyout === "programs" && (
+          <ProgramsFlyout onLaunch={launch} onClose={() => setFlyout(null)} />
+        )}
+        {flyout === "software" && (
+          <SoftwareFlyout onClose={() => setFlyout(null)} />
+        )}
         <div
           ref={menuRef}
           role="menu"

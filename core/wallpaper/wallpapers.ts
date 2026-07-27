@@ -11,7 +11,7 @@ export const DEFAULT_WALLPAPER: Wallpaper = {
 export const MOBILE_WALLPAPER: Wallpaper = {
   id: "tamirlan-hill-mobile",
   name: "Tamirlan Hill (mobile)",
-  src: "/assets/wallpapers/tamirlan-hill-mobile.jpg",
+  src: "/assets/wallpapers/tamirlan-hill-mobile.png",
   fit: WallpaperFit.Cover,
 };
 

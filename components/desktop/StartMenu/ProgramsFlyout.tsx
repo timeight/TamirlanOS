@@ -1,19 +1,18 @@
 "use client";
 
 import { AssetImage as Image } from "@/components/ui/AssetImage";
-import { cn } from "@/core/utils/cn";
+import { FlyoutShell } from "@/components/desktop/StartMenu/FlyoutShell";
 import { listApplications } from "@/core/process/app-registry";
-import { useIsCompact } from "@/hooks/use-compact";
 import { useT } from "@/hooks/use-translations";
 import type { AppId } from "@/types/application";
 
 interface ProgramsFlyoutProps {
   onLaunch: (id: AppId) => void;
+  onClose: () => void;
 }
 
-export function ProgramsFlyout({ onLaunch }: ProgramsFlyoutProps) {
+export function ProgramsFlyout({ onLaunch, onClose }: ProgramsFlyoutProps) {
   const t = useT();
-  const compact = useIsCompact();
   const apps = [...listApplications()]
     .map((app) => ({
       id: app.id,
@@ -23,15 +22,7 @@ export function ProgramsFlyout({ onLaunch }: ProgramsFlyoutProps) {
     .sort((a, b) => a.title.localeCompare(b.title));
 
   return (
-    <div
-      role="menu"
-      className={cn(
-        "z-30 overflow-auto rounded-sm border border-[#8a8676] bg-white py-1 shadow-[3px_3px_10px_rgba(0,0,0,0.4)]",
-        compact
-          ? "absolute inset-0 w-full"
-          : "absolute bottom-0 left-full ml-0.5 max-h-[70vh] w-[220px]",
-      )}
-    >
+    <FlyoutShell title={t("start.allPrograms")} side="bottom" onClose={onClose}>
       {apps.map((app) => (
         <button
           key={app.id}
@@ -51,6 +42,6 @@ export function ProgramsFlyout({ onLaunch }: ProgramsFlyoutProps) {
           <span className="truncate">{app.title}</span>
         </button>
       ))}
-    </div>
+    </FlyoutShell>
   );
 }
