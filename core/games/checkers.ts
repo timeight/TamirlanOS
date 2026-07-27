@@ -61,7 +61,7 @@ export function capturesForPiece(board: Board, r: number, c: number): Move[] {
   const piece = board[r]?.[c];
   if (!piece) return [];
   const moves: Move[] = [];
-  for (const dr of directions(piece)) {
+  for (const dr of [-1, 1]) {
     for (const dc of [-1, 1]) {
       const mr = r + dr;
       const mc = c + dc;
