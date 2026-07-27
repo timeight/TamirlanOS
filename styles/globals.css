@@ -2,14 +2,35 @@
 
 @theme {
   --font-sans: Tahoma, Verdana, "Segoe UI", sans-serif;
+  --font-mono: "Courier New", ui-monospace, Menlo, Consolas, monospace;
 
   --color-xp-blue: #0055e5;
   --color-xp-blue-inactive: #7a96df;
   --color-xp-selection: #316ac5;
 
+  --color-cyber-bg: #0a0e18;
+  --color-cyber-cyan: #5fd4ff;
+  --color-cyber-lime: #c6f24e;
+
   --animate-fade-in: fade-in 200ms ease-out both;
   --animate-blink: blink 1s step-end infinite;
   --animate-xp-progress: xp-progress 2s linear infinite;
+  --animate-glitch: glitch 180ms steps(2, end) 2;
+
+  @keyframes glitch {
+    0% {
+      transform: translate(0, 0);
+    }
+    33% {
+      transform: translate(-2px, 1px);
+    }
+    66% {
+      transform: translate(2px, -1px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
 
   @keyframes fade-in {
     from {
