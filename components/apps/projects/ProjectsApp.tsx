@@ -68,9 +68,9 @@ export function ProjectsApp() {
   const [openId, setOpenId] = useState<string | null>(null);
 
   return (
-    <div className="h-full overflow-auto bg-gradient-to-b from-[#f7f8fc] to-[#eceef6] p-4 text-slate-800">
-      <h1 className="text-lg font-bold">Проекты</h1>
-      <p className="mb-4 text-[12px] text-slate-500">
+    <div className="h-full overflow-auto bg-[#0e0e13] p-4 text-slate-200">
+      <h1 className="text-lg font-bold text-slate-100">Проекты</h1>
+      <p className="mb-4 text-[12px] text-slate-400">
         Что я строю и чем горжусь.
       </p>
       <div className="grid gap-3 @sm:grid-cols-2">
@@ -80,12 +80,12 @@ export function ProjectsApp() {
           return (
             <div
               key={project.id}
-              className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-transform hover:-translate-y-0.5"
+              className="overflow-hidden rounded-2xl border border-[#26262f] bg-[#16161d] transition-transform hover:-translate-y-0.5"
             >
               <button
                 type="button"
                 onClick={() => setOpenId(expanded ? null : project.id)}
-                className="block w-full text-left focus-visible:outline-2 focus-visible:outline-[#6d28d9]"
+                className="block w-full text-left focus-visible:outline-2 focus-visible:outline-[#a78bfa]"
               >
                 <div
                   className="flex h-16 items-end p-3 text-white"
@@ -98,26 +98,26 @@ export function ProjectsApp() {
                   </span>
                 </div>
                 <div className="p-3">
-                  <p className="text-[12px] leading-4 text-slate-600">
+                  <p className="text-[12px] leading-4 text-slate-400">
                     {project.summary}
                   </p>
                   <div className="mt-2 flex flex-wrap gap-1.5">
                     {tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-medium text-slate-600"
+                        className="rounded-md bg-[#23232e] px-2 py-0.5 text-[10px] font-medium text-slate-300"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <span className="mt-2 inline-block text-[11px] font-semibold text-[#6d28d9]">
+                  <span className="mt-2 inline-block text-[11px] font-semibold text-[#a78bfa]">
                     {expanded ? "Свернуть ▲" : "Подробнее ▼"}
                   </span>
                 </div>
               </button>
               {expanded && (
-                <ul className="space-y-1.5 border-t border-slate-100 px-4 py-3 text-[12px] text-slate-600">
+                <ul className="space-y-1.5 border-t border-[#26262f] px-4 py-3 text-[12px] text-slate-400">
                   {project.details.map((line) => (
                     <li key={line} className="flex gap-2">
                       <span
