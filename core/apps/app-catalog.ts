@@ -193,10 +193,11 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
     id: AppKey.Agent,
     title: "Агент 5.6",
     iconSrc: "/assets/icons/agent.svg",
-    defaultSize: { width: 440, height: 560 },
-    minSize: { width: 320, height: 420 },
+    defaultSize: { width: 600, height: 520 },
+    minSize: { width: 340, height: 400 },
     resizable: true,
     singleton: true,
+    chrome: false,
   },
 ];
 

@@ -420,8 +420,15 @@ export const translations: Record<string, Record<Locale, string>> = {
   },
   "agent.block": { kk: "Бұғаттау", ru: "Заблокировать", en: "Block" },
   "agent.text": { kk: "Мәтін", ru: "Текст", en: "Text" },
-  "agent.help": { kk: "Командалар", ru: "Команды", en: "Commands" },
-  "agent.restart": { kk: "Жаңа", ru: "Заново", en: "Restart" },
+  "agent.help": { kk: "Мәзір", ru: "Меню", en: "Menu" },
+  "agent.restart": { kk: "Мұрағат", ru: "Архив", en: "Archive" },
+  "agent.profile": { kk: "Анкета", ru: "Анкета", en: "Profile" },
+  "agent.enlarge": { kk: "Үлкейту", ru: "Увеличить", en: "Enlarge" },
+  "agent.changePhoto": {
+    kk: "Фотоны ауыстыру",
+    ru: "Сменить фото",
+    en: "Change photo",
+  },
   "agent.sms": { kk: "SMS", ru: "SMS", en: "SMS" },
   "agent.placeholder": {
     kk: "Хабарламаңызды жазыңыз…",

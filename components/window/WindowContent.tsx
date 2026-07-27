@@ -25,7 +25,16 @@ export function WindowContent({
   const closeWindow = useWindowStore((store) => store.closeWindow);
   const openApp = useOpenApp();
   const t = useT();
-  const iconSrc = getApplication(appId)?.iconSrc;
+  const manifest = getApplication(appId);
+  const iconSrc = manifest?.iconSrc;
+
+  if (manifest?.chrome === false) {
+    return (
+      <div className="@container min-h-0 flex-1 overflow-hidden bg-white text-slate-900">
+        {children}
+      </div>
+    );
+  }
 
   return (
     <div className="flex min-h-0 flex-1 flex-col bg-[#ece9d8]">

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { DesktopIcons } from "@/components/desktop/DesktopIcons";
 import { DesktopSurface } from "@/components/desktop/DesktopSurface";
+import { NotificationToast } from "@/components/desktop/NotificationToast";
 import { Taskbar } from "@/components/desktop/Taskbar/Taskbar";
 import { Wallpaper } from "@/components/desktop/Wallpaper";
 import { WelcomeBalloon } from "@/components/desktop/WelcomeBalloon";
@@ -47,6 +48,7 @@ export function DesktopShell() {
           onOpenApp={openFromBalloon}
         />
       )}
+      <NotificationToast />
       <Taskbar />
     </div>
   );

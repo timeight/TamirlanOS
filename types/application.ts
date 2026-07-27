@@ -10,4 +10,6 @@ export interface ApplicationManifest {
   minSize: Size;
   resizable: boolean;
   singleton: boolean;
+  /** Standalone apps draw their own UI instead of the Explorer menu/toolbar/status chrome. */
+  chrome?: boolean;
 }
