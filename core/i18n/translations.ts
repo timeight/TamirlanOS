@@ -121,6 +121,15 @@ export const translations: Record<string, Record<Locale, string>> = {
   "ttt.winX": { kk: "X жеңді!", ru: "Победа X", en: "X wins!" },
   "ttt.winO": { kk: "O жеңді!", ru: "Победа O", en: "O wins!" },
   "ttt.draw": { kk: "Тең", ru: "Ничья", en: "Draw" },
+  "app.shooter": { kk: "Арена-шутер", ru: "Арена-шутер", en: "Arena Shooter" },
+  "shooter.score": { kk: "Ұпай", ru: "Очки", en: "Score" },
+  "shooter.wave": { kk: "Толқын", ru: "Волна", en: "Wave" },
+  "shooter.over": { kk: "Ойын аяқталды", ru: "Игра окончена", en: "Game over" },
+  "shooter.hint": {
+    kk: "WASD — жүру, тінтуір — көздеу, басу — ату. Телефонда — саусақ.",
+    ru: "WASD — движение, мышь — прицел, ЛКМ — огонь. На телефоне — палец.",
+    en: "WASD to move, mouse to aim, click to shoot. Touch: drag to play.",
+  },
 
   // Desktop icon labels (short)
   "desktop.portfolio": { kk: "Портфолио", ru: "Портфолио", en: "Portfolio" },

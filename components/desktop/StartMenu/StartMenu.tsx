@@ -101,6 +101,11 @@ const SECONDARY_ITEMS = [
     iconSrc: "/assets/icons/tic-tac-toe.svg",
     appId: AppKey.TicTacToe,
   },
+  {
+    label: "app.shooter",
+    iconSrc: "/assets/icons/shooter.svg",
+    appId: AppKey.Shooter,
+  },
 ] as const;
 
 const RIGHT_ITEMS = [

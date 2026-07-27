@@ -13,6 +13,7 @@ import { PhotographyApp } from "@/components/apps/photography/PhotographyApp";
 import { PortfolioApp } from "@/components/apps/portfolio/PortfolioApp";
 import { ProjectsApp } from "@/components/apps/projects/ProjectsApp";
 import { ResumeApp } from "@/components/apps/resume/ResumeApp";
+import { ShooterApp } from "@/components/apps/shooter/ShooterApp";
 import { SkillsApp } from "@/components/apps/skills/SkillsApp";
 import { TicTacToeApp } from "@/components/apps/tic-tac-toe/TicTacToeApp";
 import { TimelineApp } from "@/components/apps/timeline/TimelineApp";
@@ -60,6 +61,8 @@ export function AppRenderer({ appId }: AppRendererProps) {
       return <Game2048App />;
     case AppKey.TicTacToe:
       return <TicTacToeApp />;
+    case AppKey.Shooter:
+      return <ShooterApp />;
     default:
       return null;
   }

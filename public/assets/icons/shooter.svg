@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <defs>
+    <filter id="dsShoot" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0.8" dy="1.6" stdDeviation="1.1" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <g filter="url(#dsShoot)">
+    <rect x="4" y="4" width="40" height="40" rx="8" fill="#1a1e27" stroke="#2a2f3a"/>
+    <circle cx="24" cy="24" r="13" fill="none" stroke="#e0574a" stroke-width="2.4"/>
+    <circle cx="24" cy="24" r="3" fill="#e0574a"/>
+    <g stroke="#f2c14e" stroke-width="2.4" stroke-linecap="round">
+      <path d="M24 6v7M24 35v7M6 24h7M35 24h7"/>
+    </g>
+  </g>
+</svg>
