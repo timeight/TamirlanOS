@@ -76,36 +76,6 @@ const SECONDARY_ITEMS = [
     iconSrc: "/assets/icons/ideas.svg",
     appId: AppKey.Ideas,
   },
-  {
-    label: "app.paint",
-    iconSrc: "/assets/icons/paint.svg",
-    appId: AppKey.Paint,
-  },
-  {
-    label: "app.minesweeper",
-    iconSrc: "/assets/icons/minesweeper.svg",
-    appId: AppKey.Minesweeper,
-  },
-  {
-    label: "app.checkers",
-    iconSrc: "/assets/icons/checkers.svg",
-    appId: AppKey.Checkers,
-  },
-  {
-    label: "app.game-2048",
-    iconSrc: "/assets/icons/game-2048.svg",
-    appId: AppKey.Game2048,
-  },
-  {
-    label: "app.tic-tac-toe",
-    iconSrc: "/assets/icons/tic-tac-toe.svg",
-    appId: AppKey.TicTacToe,
-  },
-  {
-    label: "app.shooter",
-    iconSrc: "/assets/icons/shooter.svg",
-    appId: AppKey.Shooter,
-  },
 ] as const;
 
 const RIGHT_ITEMS = [

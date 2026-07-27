@@ -423,6 +423,11 @@ export const translations: Record<string, Record<Locale, string>> = {
   "agent.help": { kk: "Мәзір", ru: "Меню", en: "Menu" },
   "agent.restart": { kk: "Мұрағат", ru: "Архив", en: "Archive" },
   "agent.profile": { kk: "Анкета", ru: "Анкета", en: "Profile" },
+  "agent.trayHint": {
+    kk: "Сәлем! Мен трейде тұрмын — сұрақ қою үшін басыңыз.",
+    ru: "Привет! Я живу в трее — нажми, чтобы написать мне.",
+    en: "Hi! I live in the tray — click to chat with me.",
+  },
   "agent.enlarge": { kk: "Үлкейту", ru: "Увеличить", en: "Enlarge" },
   "agent.changePhoto": {
     kk: "Фотоны ауыстыру",

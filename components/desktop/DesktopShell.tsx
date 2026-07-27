@@ -10,17 +10,35 @@ import { WelcomeBalloon } from "@/components/desktop/WelcomeBalloon";
 import { WindowHost } from "@/components/desktop/WindowHost";
 import { installApps, type AppKey } from "@/core/apps/app-catalog";
 import { useOpenApp } from "@/hooks/use-open-app";
+import { useT } from "@/hooks/use-translations";
 import { useAudioStore } from "@/stores/audio-store";
+import { useNotificationStore } from "@/stores/notification-store";
 import { SoundEvent } from "@/types/sound";
+
+const AGENT_GREETING_DELAY_MS = 2600;
 
 export function DesktopShell() {
   const openApp = useOpenApp();
   const play = useAudioStore((state) => state.play);
+  const notify = useNotificationStore((state) => state.notify);
+  const t = useT();
   const [balloonOpen, setBalloonOpen] = useState(true);
 
   useEffect(() => {
     installApps();
   }, []);
+
+  // The agent lives in the tray and says hello shortly after the desktop settles.
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      notify({
+        iconSrc: "/assets/icons/agent.svg",
+        title: t("agent.botName"),
+        body: t("agent.trayHint"),
+      });
+    }, AGENT_GREETING_DELAY_MS);
+    return () => window.clearTimeout(timer);
+  }, [notify, t]);
 
   // The startup chime belongs to the moment the desktop appears, as in real XP.
   const chimed = useRef(false);

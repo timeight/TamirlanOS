@@ -2,6 +2,8 @@
 
 import { AssetImage as Image } from "@/components/ui/AssetImage";
 import { useEffect } from "react";
+import { AppKey } from "@/core/apps/app-catalog";
+import { useOpenApp } from "@/hooks/use-open-app";
 import { useT } from "@/hooks/use-translations";
 import {
   useNotificationStore,
@@ -26,6 +28,7 @@ export function NotificationToast() {
 
 function ToastCard({ item }: { item: Notification }) {
   const dismiss = useNotificationStore((state) => state.dismiss);
+  const openApp = useOpenApp();
   const t = useT();
 
   useEffect(() => {
@@ -36,7 +39,11 @@ function ToastCard({ item }: { item: Notification }) {
   return (
     <div
       role="status"
-      className="animate-fade-in w-[min(280px,calc(100vw-24px))] rounded-md border border-[#2b6cb0] bg-gradient-to-b from-[#f2f9ff] to-[#d7eafb] p-2.5 shadow-[2px_2px_10px_rgba(0,0,0,0.45)] motion-reduce:animate-none"
+      onClick={() => {
+        dismiss(item.id);
+        openApp(AppKey.Agent);
+      }}
+      className="animate-fade-in w-[min(280px,calc(100vw-24px))] cursor-pointer rounded-md border border-[#2b6cb0] bg-gradient-to-b from-[#f2f9ff] to-[#d7eafb] p-2.5 shadow-[2px_2px_10px_rgba(0,0,0,0.45)] motion-reduce:animate-none"
     >
       <div className="mb-1 flex items-center gap-1.5">
         <Image src={item.iconSrc} alt="" width={18} height={18} unoptimized />
@@ -46,7 +53,10 @@ function ToastCard({ item }: { item: Notification }) {
         <button
           type="button"
           aria-label={t("balloon.close")}
-          onClick={() => dismiss(item.id)}
+          onClick={(event) => {
+            event.stopPropagation();
+            dismiss(item.id);
+          }}
           className="flex h-4 w-4 items-center justify-center rounded-sm text-[#2b6cb0] hover:bg-black/10 focus-visible:outline-1 focus-visible:outline-[#2b6cb0]"
         >
           <svg viewBox="0 0 10 10" aria-hidden="true" className="h-2 w-2">

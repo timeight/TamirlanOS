@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { AssetImage } from "@/components/ui/AssetImage";
 import { AppKey } from "@/core/apps/app-catalog";
 import { useOpenApp } from "@/hooks/use-open-app";
+import { useT } from "@/hooks/use-translations";
 import { useAudioStore } from "@/stores/audio-store";
 import { useDesktopStore } from "@/stores/desktop-store";
 
@@ -14,6 +16,7 @@ export function SystemTray() {
   const crtEnabled = useDesktopStore((state) => state.crtEnabled);
   const toggleCrt = useDesktopStore((state) => state.toggleCrt);
   const openApp = useOpenApp();
+  const t = useT();
   const [fullscreen, setFullscreen] = useState(false);
 
   useEffect(() => {
@@ -32,6 +35,23 @@ export function SystemTray() {
 
   return (
     <div className="flex items-stretch">
+      <button
+        type="button"
+        title={t("app.agent")}
+        aria-label={t("app.agent")}
+        onClick={() => openApp(AppKey.Agent)}
+        className={trayButtonClass}
+      >
+        <AssetImage
+          src="/assets/icons/agent.svg"
+          alt=""
+          width={16}
+          height={16}
+          unoptimized
+          draggable={false}
+          className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]"
+        />
+      </button>
       <button
         type="button"
         aria-label="Open the welcome tour"

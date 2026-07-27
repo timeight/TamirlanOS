@@ -92,14 +92,17 @@ export function AgentApp() {
 
   return (
     <div className="flex h-full flex-col bg-[#dcecfb] select-none">
-      <div className="flex items-center gap-1 px-1.5 pt-1">
-        <span className="flex items-center gap-1.5 rounded-t-[4px] border border-b-0 border-[#8fbde4] bg-white px-3 py-1 text-[12px] font-bold text-[#1c4e80]">
-          <Image src={AGENT_ICON} alt="" width={14} height={14} unoptimized />
-          {t("agent.botName")}
-          <span aria-hidden="true" className="text-[#8aa8c4]">
-            ✕
-          </span>
-        </span>
+      <div className="flex items-center gap-2 border-b border-[#8fbde4] bg-gradient-to-b from-[#f2f9ff] to-[#d7eafb] px-2.5 py-1.5">
+        <Image src={AGENT_ICON} alt="" width={20} height={20} unoptimized />
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-[13px] font-bold text-[#1c4e80]">
+            {t("agent.botName")}
+          </p>
+          <p className="truncate text-[10px] text-[#4a6b8a]">
+            {t("agent.status")}
+          </p>
+        </div>
+        <span className="h-2 w-2 rounded-full bg-[#3fa64a] shadow-[0_0_4px_#3fa64a]" />
       </div>
 
       <AgentToolbar
