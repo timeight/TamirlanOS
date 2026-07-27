@@ -47,6 +47,11 @@ const PRIMARY_ITEMS = [
 
 const SECONDARY_ITEMS = [
   {
+    label: "app.agent",
+    iconSrc: "/assets/icons/agent.svg",
+    appId: AppKey.Agent,
+  },
+  {
     label: "app.photography",
     iconSrc: "/assets/icons/photography.svg",
     appId: AppKey.Photography,

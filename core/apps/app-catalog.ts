@@ -23,6 +23,7 @@ export enum AppKey {
   Game2048 = "game-2048",
   TicTacToe = "tic-tac-toe",
   Shooter = "shooter",
+  Agent = "agent",
 }
 
 export const APP_CATALOG: readonly ApplicationManifest[] = [
@@ -185,6 +186,15 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
     iconSrc: "/assets/icons/shooter.svg",
     defaultSize: { width: 540, height: 480 },
     minSize: { width: 360, height: 380 },
+    resizable: true,
+    singleton: true,
+  },
+  {
+    id: AppKey.Agent,
+    title: "Агент 5.6",
+    iconSrc: "/assets/icons/agent.svg",
+    defaultSize: { width: 440, height: 560 },
+    minSize: { width: 320, height: 420 },
     resizable: true,
     singleton: true,
   },

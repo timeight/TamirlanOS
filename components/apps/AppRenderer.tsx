@@ -1,6 +1,7 @@
 "use client";
 
 import { AboutMeApp } from "@/components/apps/about-me/AboutMeApp";
+import { AgentApp } from "@/components/apps/agent/AgentApp";
 import { CertificatesApp } from "@/components/apps/certificates/CertificatesApp";
 import { CheckersApp } from "@/components/apps/checkers/CheckersApp";
 import { ContactApp } from "@/components/apps/contact/ContactApp";
@@ -63,6 +64,8 @@ export function AppRenderer({ appId }: AppRendererProps) {
       return <TicTacToeApp />;
     case AppKey.Shooter:
       return <ShooterApp />;
+    case AppKey.Agent:
+      return <AgentApp />;
     default:
       return null;
   }

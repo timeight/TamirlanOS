@@ -1,0 +1,13 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="agentBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bfe3ff" />
+      <stop offset="1" stop-color="#4a93d6" />
+    </linearGradient>
+  </defs>
+  <rect x="3" y="3" width="42" height="42" rx="9" fill="url(#agentBg)" stroke="#2b6cb0" stroke-width="1.5" />
+  <circle cx="24" cy="10" r="2.4" fill="#ffffff" />
+  <line x1="24" y1="12.4" x2="24" y2="17" stroke="#ffffff" stroke-width="1.6" />
+  <circle cx="24" cy="22" r="6.5" fill="#ffffff" />
+  <path d="M12 40c0-7 5.4-11 12-11s12 4 12 11z" fill="#ffffff" />
+</svg>

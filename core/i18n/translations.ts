@@ -409,4 +409,85 @@ export const translations: Record<string, Record<Locale, string>> = {
     ru: "Сделано Тамирланом Жамаловым · Tamirlan Studio",
     en: "Built by Tamirlan Zhamalov · Tamirlan Studio",
   },
+
+  // Agent 5.6 messenger
+  "app.agent": { kk: "Агент 5.6", ru: "Агент 5.6", en: "Agent 5.6" },
+  "agent.botName": { kk: "Агент 5.6", ru: "Агент 5.6", en: "Agent 5.6" },
+  "agent.status": {
+    kk: "Тамирлан жобаларға ашық",
+    ru: "Тамирлан открыт для проектов",
+    en: "Tamirlan is open for work",
+  },
+  "agent.block": { kk: "Бұғаттау", ru: "Заблокировать", en: "Block" },
+  "agent.text": { kk: "Мәтін", ru: "Текст", en: "Text" },
+  "agent.help": { kk: "Командалар", ru: "Команды", en: "Commands" },
+  "agent.restart": { kk: "Жаңа", ru: "Заново", en: "Restart" },
+  "agent.sms": { kk: "SMS", ru: "SMS", en: "SMS" },
+  "agent.placeholder": {
+    kk: "Хабарламаңызды жазыңыз…",
+    ru: "Введите сообщение…",
+    en: "Type your message…",
+  },
+  "agent.send": { kk: "Жіберу", ru: "Отправить", en: "Send" },
+  "agent.you": { kk: "Сіз", ru: "Вы", en: "You" },
+  "agent.typing": {
+    kk: "Агент теріп жатыр…",
+    ru: "Агент печатает…",
+    en: "Agent is typing…",
+  },
+  "agent.lastMsg": {
+    kk: "Соңғы хабарлама {time} алынды",
+    ru: "Последнее сообщение получено в {time}",
+    en: "Last message received at {time}",
+  },
+  "agent.msg.greeting": {
+    kk: "Сәлем! Мен — Агент 5.6, Тамирланның көмекшісі. Ол жобалар мен фрилансқа ашық.\n\nКоманданы жазып көр:\n• about — мен туралы\n• projects — жобалар\n• resume — түйіндеме\n• contact — байланыс\n\nНемесе жай ғана сұрақ қой :)",
+    ru: "Привет! Я — Агент 5.6, помощник Тамирлана. Он открыт для проектов и фриланса.\n\nПопробуй команду:\n• about — обо мне\n• projects — мои проекты\n• resume — резюме\n• contact — связаться\n\nИли просто спроси что-нибудь :)",
+    en: "Hi! I'm Agent 5.6, Tamirlan's assistant. He's open for projects and freelance.\n\nTry a command:\n• about — about him\n• projects — my projects\n• resume — resume\n• contact — get in touch\n\nOr just ask me something :)",
+  },
+  "agent.msg.about": {
+    kk: "Тамирлан — әзірлеуші, AI-инженер, 3D-суретші және оқытушы. «Мен туралы» терезесін ашып жатырмын 👇",
+    ru: "Тамирлан — разработчик, AI-инженер, 3D-художник и преподаватель. Открываю окно «Обо мне» 👇",
+    en: "Tamirlan is a developer, AI engineer, 3D artist and teacher. Opening the About Me window 👇",
+  },
+  "agent.msg.projects": {
+    kk: "TamirlanOS, CutAI, IRON FORM және басқалары. «Жобалар» терезесін ашып жатырмын 👇",
+    ru: "TamirlanOS, CutAI, IRON FORM и другое. Открываю окно «Проекты» 👇",
+    en: "TamirlanOS, CutAI, IRON FORM and more. Opening the Projects window 👇",
+  },
+  "agent.msg.resume": {
+    kk: "Толық түйіндемені ашып жатырмын — оны жүктеп алуға да болады 👇",
+    ru: "Открываю полное резюме — его можно и скачать 👇",
+    en: "Opening the full resume — you can download it too 👇",
+  },
+  "agent.msg.contact": {
+    kk: "Тамирланмен байланысу оңай. «Контактілер» терезесін ашып жатырмын 👇",
+    ru: "Связаться с Тамирланом легко. Открываю окно «Контакты» 👇",
+    en: "Reaching Tamirlan is easy. Opening the Contact window 👇",
+  },
+  "agent.msg.skills": {
+    kk: "Next.js, React, TypeScript, AI/LLM, Blender, Maya… «Дағдылар» терезесін ашып жатырмын 👇",
+    ru: "Next.js, React, TypeScript, AI/LLM, Blender, Maya… Открываю окно «Навыки» 👇",
+    en: "Next.js, React, TypeScript, AI/LLM, Blender, Maya… Opening the Skills window 👇",
+  },
+  "agent.msg.hello": {
+    kk: "Сәлем! 😊 «projects», «resume» немесе «contact» деп жазып көр.",
+    ru: "Привет! 😊 Напиши «projects», «resume» или «contact».",
+    en: "Hey there! 😊 Try typing “projects”, “resume” or “contact”.",
+  },
+  "agent.msg.thanks": {
+    kk: "Оқасы жоқ! Тағы бірдеңе керек пе? 🙂",
+    ru: "Пожалуйста! Нужно ещё что-нибудь? 🙂",
+    en: "You're welcome! Anything else? 🙂",
+  },
+  "agent.msg.help": {
+    kk: "Командалар: about, projects, resume, contact, skills. Жай ғана жазып жібер.",
+    ru: "Команды: about, projects, resume, contact, skills. Просто напиши любую.",
+    en: "Commands: about, projects, resume, contact, skills. Just type one.",
+  },
+  "agent.msg.fallback": {
+    kk: "Мұны әлі түсінбеймін 🙈 Мына команданы жаз: about, projects, resume, contact.",
+    ru: "Пока не понимаю это 🙈 Напиши команду: about, projects, resume, contact.",
+    en: "I don't get that yet 🙈 Try a command: about, projects, resume, contact.",
+  },
 };
