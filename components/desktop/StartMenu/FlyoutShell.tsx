@@ -26,7 +26,7 @@ export function FlyoutShell({
       className={cn(
         "z-30 overflow-auto border border-[#8a8676] bg-white shadow-[3px_3px_10px_rgba(0,0,0,0.4)]",
         compact
-          ? "fixed inset-x-0 top-0 bottom-[30px] w-full"
+          ? "fixed bottom-[34px] left-2 max-h-[70vh] w-[min(280px,86vw)] rounded-sm"
           : cn(
               "absolute left-full ml-0.5 max-h-[70vh] w-[220px] rounded-sm",
               side === "top" ? "top-0" : "bottom-0",
