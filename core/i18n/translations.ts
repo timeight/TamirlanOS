@@ -98,6 +98,29 @@ export const translations: Record<string, Record<Locale, string>> = {
   "app.paint": { kk: "Paint", ru: "Paint", en: "Paint" },
   "app.minesweeper": { kk: "Миналар", ru: "Сапёр", en: "Minesweeper" },
   "app.checkers": { kk: "Дойбы", ru: "Шашки", en: "Checkers" },
+  "app.game-2048": { kk: "2048", ru: "2048", en: "2048" },
+  "app.tic-tac-toe": {
+    kk: "Айқыш-ұйқыш",
+    ru: "Крестики-нолики",
+    en: "Tic-Tac-Toe",
+  },
+  "g2048.score": { kk: "Ұпай", ru: "Счёт", en: "Score" },
+  "g2048.hint": {
+    kk: "Көрсеткілер немесе свайп",
+    ru: "Стрелки или свайп",
+    en: "Arrows or swipe",
+  },
+  "g2048.win": {
+    kk: "2048! Жеңіс",
+    ru: "2048! Победа",
+    en: "You reached 2048!",
+  },
+  "g2048.over": { kk: "Жүріс жоқ", ru: "Ходов нет", en: "No moves left" },
+  "ttt.turnX": { kk: "X жүрісі", ru: "Ход X", en: "X's turn" },
+  "ttt.turnO": { kk: "O жүрісі", ru: "Ход O", en: "O's turn" },
+  "ttt.winX": { kk: "X жеңді!", ru: "Победа X", en: "X wins!" },
+  "ttt.winO": { kk: "O жеңді!", ru: "Победа O", en: "O wins!" },
+  "ttt.draw": { kk: "Тең", ru: "Ничья", en: "Draw" },
 
   // Desktop icon labels (short)
   "desktop.portfolio": { kk: "Портфолио", ru: "Портфолио", en: "Portfolio" },
@@ -291,6 +314,13 @@ export const translations: Record<string, Record<Locale, string>> = {
     en: "Black wins!",
   },
   "chk.new": { kk: "Жаңа партия", ru: "Новая партия", en: "New game" },
+  "chk.vsAI": { kk: "ЖИ-ге қарсы", ru: "Против ИИ", en: "vs Computer" },
+  "chk.twoPlayers": { kk: "Екі ойыншы", ru: "Два игрока", en: "Two players" },
+  "chk.thinking": {
+    kk: "ЖИ ойлануда…",
+    ru: "ИИ думает…",
+    en: "Computer is thinking…",
+  },
   "chk.hint": {
     kk: "Екі ойыншы кезекпен. Алу міндетті — әрі қарай алсаң, қайта жүресің.",
     ru: "Два игрока по очереди. Взятие обязательно, бьёшь дальше — ходишь снова.",

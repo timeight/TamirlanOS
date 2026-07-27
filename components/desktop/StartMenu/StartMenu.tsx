@@ -91,6 +91,16 @@ const SECONDARY_ITEMS = [
     iconSrc: "/assets/icons/checkers.svg",
     appId: AppKey.Checkers,
   },
+  {
+    label: "app.game-2048",
+    iconSrc: "/assets/icons/game-2048.svg",
+    appId: AppKey.Game2048,
+  },
+  {
+    label: "app.tic-tac-toe",
+    iconSrc: "/assets/icons/tic-tac-toe.svg",
+    appId: AppKey.TicTacToe,
+  },
 ] as const;
 
 const RIGHT_ITEMS = [

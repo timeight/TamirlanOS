@@ -135,3 +135,86 @@ export function winner(board: Board, turn: Player): Player | null {
   if (legalMoves(board, turn).length === 0) return opponent;
   return null;
 }
+
+function continueCaptures(board: Board, r: number, c: number): Board[] {
+  const caps = capturesForPiece(board, r, c);
+  if (!caps.length) return [board];
+  return caps.flatMap((move) => {
+    const next = applyMove(board, move);
+    return continueCaptures(next, move.toR, move.toC);
+  });
+}
+
+// Every board that can result from one full legal turn (multi-jumps expanded).
+function turnOutcomes(board: Board, player: Player): Board[] {
+  const captures = allCaptures(board, player);
+  if (captures.length) {
+    return captures.flatMap((move) => {
+      const next = applyMove(board, move);
+      return continueCaptures(next, move.toR, move.toC);
+    });
+  }
+  return legalMoves(board, player).map((move) => applyMove(board, move));
+}
+
+function evaluate(board: Board, ai: Player): number {
+  let score = 0;
+  for (let r = 0; r < SIZE; r++) {
+    for (let c = 0; c < SIZE; c++) {
+      const piece = board[r]?.[c];
+      if (!piece) continue;
+      const advance = piece.color === "r" ? SIZE - 1 - r : r;
+      const value = (piece.king ? 3.2 : 1) + advance * 0.05;
+      score += piece.color === ai ? value : -value;
+    }
+  }
+  return score;
+}
+
+function minimax(
+  board: Board,
+  player: Player,
+  depth: number,
+  alpha: number,
+  beta: number,
+  ai: Player,
+): number {
+  if (depth === 0) return evaluate(board, ai);
+  const outcomes = turnOutcomes(board, player);
+  if (!outcomes.length) return player === ai ? -1000 : 1000;
+  const next: Player = player === "r" ? "b" : "r";
+  if (player === ai) {
+    let best = -Infinity;
+    for (const outcome of outcomes) {
+      best = Math.max(best, minimax(outcome, next, depth - 1, alpha, beta, ai));
+      alpha = Math.max(alpha, best);
+      if (beta <= alpha) break;
+    }
+    return best;
+  }
+  let best = Infinity;
+  for (const outcome of outcomes) {
+    best = Math.min(best, minimax(outcome, next, depth - 1, alpha, beta, ai));
+    beta = Math.min(beta, best);
+    if (beta <= alpha) break;
+  }
+  return best;
+}
+
+export function aiTurn(board: Board, ai: Player, depth = 5): Board | null {
+  const outcomes = turnOutcomes(board, ai);
+  if (!outcomes.length) return null;
+  const opponent: Player = ai === "r" ? "b" : "r";
+  let bestBoard = outcomes[0]!;
+  let bestScore = -Infinity;
+  for (const outcome of outcomes) {
+    const jitter = Math.random() * 0.01;
+    const score =
+      minimax(outcome, opponent, depth - 1, -Infinity, Infinity, ai) + jitter;
+    if (score > bestScore) {
+      bestScore = score;
+      bestBoard = outcome;
+    }
+  }
+  return bestBoard;
+}

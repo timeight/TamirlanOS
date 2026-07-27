@@ -20,6 +20,8 @@ export enum AppKey {
   Paint = "paint",
   Minesweeper = "minesweeper",
   Checkers = "checkers",
+  Game2048 = "game-2048",
+  TicTacToe = "tic-tac-toe",
 }
 
 export const APP_CATALOG: readonly ApplicationManifest[] = [
@@ -155,6 +157,24 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
     iconSrc: "/assets/icons/checkers.svg",
     defaultSize: { width: 430, height: 500 },
     minSize: { width: 340, height: 420 },
+    resizable: true,
+    singleton: true,
+  },
+  {
+    id: AppKey.Game2048,
+    title: "2048",
+    iconSrc: "/assets/icons/game-2048.svg",
+    defaultSize: { width: 380, height: 470 },
+    minSize: { width: 320, height: 420 },
+    resizable: true,
+    singleton: true,
+  },
+  {
+    id: AppKey.TicTacToe,
+    title: "Крестики-нолики",
+    iconSrc: "/assets/icons/tic-tac-toe.svg",
+    defaultSize: { width: 360, height: 400 },
+    minSize: { width: 300, height: 360 },
     resizable: true,
     singleton: true,
   },

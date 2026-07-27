@@ -5,6 +5,7 @@ import { CertificatesApp } from "@/components/apps/certificates/CertificatesApp"
 import { CheckersApp } from "@/components/apps/checkers/CheckersApp";
 import { ContactApp } from "@/components/apps/contact/ContactApp";
 import { Gallery3DApp } from "@/components/apps/gallery-3d/Gallery3DApp";
+import { Game2048App } from "@/components/apps/game-2048/Game2048App";
 import { IdeasApp } from "@/components/apps/ideas/IdeasApp";
 import { MinesweeperApp } from "@/components/apps/minesweeper/MinesweeperApp";
 import { PaintApp } from "@/components/apps/paint/PaintApp";
@@ -13,6 +14,7 @@ import { PortfolioApp } from "@/components/apps/portfolio/PortfolioApp";
 import { ProjectsApp } from "@/components/apps/projects/ProjectsApp";
 import { ResumeApp } from "@/components/apps/resume/ResumeApp";
 import { SkillsApp } from "@/components/apps/skills/SkillsApp";
+import { TicTacToeApp } from "@/components/apps/tic-tac-toe/TicTacToeApp";
 import { TimelineApp } from "@/components/apps/timeline/TimelineApp";
 import { WelcomeApp } from "@/components/apps/welcome/WelcomeApp";
 import { AppKey } from "@/core/apps/app-catalog";
@@ -54,6 +56,10 @@ export function AppRenderer({ appId }: AppRendererProps) {
       return <MinesweeperApp />;
     case AppKey.Checkers:
       return <CheckersApp />;
+    case AppKey.Game2048:
+      return <Game2048App />;
+    case AppKey.TicTacToe:
+      return <TicTacToeApp />;
     default:
       return null;
   }

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <defs>
+    <filter id="ds2048" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0.8" dy="1.6" stdDeviation="1.1" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <g filter="url(#ds2048)">
+    <rect x="4" y="4" width="40" height="40" rx="5" fill="#bbada0"/>
+    <rect x="8" y="8" width="15" height="15" rx="2.5" fill="#eee4da"/>
+    <rect x="25" y="8" width="15" height="15" rx="2.5" fill="#ede0c8"/>
+    <rect x="8" y="25" width="15" height="15" rx="2.5" fill="#f2b179"/>
+    <rect x="25" y="25" width="15" height="15" rx="2.5" fill="#edc22e"/>
+    <g font-family="Arial, Helvetica, sans-serif" font-weight="bold" text-anchor="middle">
+      <text x="15.5" y="20.5" font-size="10" fill="#776e65">2</text>
+      <text x="32.5" y="20.5" font-size="10" fill="#776e65">4</text>
+      <text x="15.5" y="37.5" font-size="10" fill="#ffffff">8</text>
+      <text x="32.5" y="36.5" font-size="7.5" fill="#ffffff">16</text>
+    </g>
+  </g>
+</svg>
