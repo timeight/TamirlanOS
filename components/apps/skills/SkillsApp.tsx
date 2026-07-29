@@ -7,65 +7,83 @@ interface SkillBranch {
 
 const TREE: readonly SkillBranch[] = [
   {
-    name: "Языки",
-    skills: ["Python · C# · SQL", "JavaScript · TypeScript", "Swift (изучаю)"],
+    name: "Languages",
+    skills: ["TypeScript · JavaScript", "Python · C#", "SQL", "Swift — учу"],
   },
   {
-    name: "Фреймворки и платформы",
+    name: "Frontend",
     skills: [
       "React · Next.js",
-      "Unity (разработка игр) · Windows Forms (десктоп)",
+      "Tailwind CSS · CSS-анимации",
+      "Адаптивная вёрстка · доступность",
+    ],
+  },
+  {
+    name: "Backend",
+    skills: [
+      "Node.js · REST API",
       "SQLite · SQL Server",
-    ],
-  },
-  {
-    name: "ИИ",
-    skills: [
-      "Gemini · Claude · OpenAI",
-      "Cursor · Claude Code · MCP",
-      "AI-автоматизация · промпт-инжиниринг",
-      "Компьютерное зрение · генеративный ИИ · генерация изображений и видео",
-    ],
-  },
-  {
-    name: "3D — с 2020",
-    skills: [
-      "Blender · Maya · ZBrush · Substance Painter",
-      "Hard surface · продуктовая визуализация · скульптинг",
-      "Анимация · свет · рендеринг",
-    ],
-  },
-  {
-    name: "Дизайн",
-    skills: [
-      "UI-дизайн · UX · веб-дизайн",
-      "Графический дизайн · фирменный стиль · дизайн презентаций",
-      "Моушн-дизайн · теория цвета",
-    ],
-  },
-  {
-    name: "Фото и видео",
-    skills: [
-      "Fujifilm X-T2 с XF 35mm F2",
-      "Стрит · портрет · кинематографичная съёмка",
-      "Плёночные симуляции · цветокоррекция",
-      "DaVinci Resolve · коммерческое видео · продакшн подкастов",
-    ],
-  },
-  {
-    name: "Инструменты",
-    skills: [
-      "Visual Studio · VS Code · Cursor · Claude Code",
       "Git · GitHub · Docker",
+    ],
+  },
+  {
+    name: "AI",
+    skills: [
+      "Claude · GPT · Gemini",
+      "Промпт-инжиниринг · structured output",
+      "Компьютерное зрение · генеративный ИИ",
+      "MCP · агентные сценарии",
+    ],
+  },
+  {
+    name: "Automation",
+    skills: [
+      "AI-пайплайны для контента",
+      "Cursor · Claude Code",
+      "Скрипты и интеграции под задачу",
+    ],
+  },
+  {
+    name: "Design",
+    skills: [
+      "UI · UX · веб-дизайн",
+      "Фирменный стиль · презентации",
+      "Типографика · теория цвета",
       "Figma · Photoshop · Illustrator",
     ],
   },
   {
-    name: "Гибкие навыки",
+    name: "3D & Motion",
     skills: [
-      "Преподавание · менторство · лидерство · коммуникация",
-      "Решение задач · исследование · самообучение",
-      "Внимание к деталям · продуктовое мышление",
+      "Blender · Maya · ZBrush · Substance Painter",
+      "Hard surface · скульптинг · продуктовая визуализация",
+      "Свет · рендеринг · анимация",
+      "Моушн-графика",
+    ],
+  },
+  {
+    name: "Photography & Video",
+    skills: [
+      "Fujifilm X-T2 · XF 35mm F2",
+      "Стрит · портрет",
+      "Цветокоррекция · плёночные симуляции",
+      "DaVinci Resolve · подкасты · коммерческое видео",
+    ],
+  },
+  {
+    name: "Teaching",
+    skills: [
+      "Преподавание IT в колледже",
+      "Менторство студенческих проектов",
+      "WorldSkills Kazakhstan — организация и судейство",
+    ],
+  },
+  {
+    name: "Soft skills",
+    skills: [
+      "Самообучение · исследование",
+      "Продуктовое мышление · внимание к деталям",
+      "Коммуникация · работа в команде",
     ],
   },
 ];
@@ -73,13 +91,8 @@ const TREE: readonly SkillBranch[] = [
 export function SkillsApp() {
   return (
     <div className="h-full overflow-auto bg-white p-3 text-[11px] text-black">
-      <p className="mb-2 text-[14px] font-bold text-[#003399]">
-        Дерево технологий
-      </p>
-      <p className="mb-3 text-[#4a5a70]">
-        Программирование, ИИ, 3D, дизайн, фото и видео — один набор
-        инструментов.
-      </p>
+      <p className="mb-2 text-[14px] font-bold text-[#003399]">Навыки</p>
+      <p className="mb-3 text-[#4a5a70]">Только то, чем пользуюсь в работе.</p>
       {TREE.map((branch) => (
         <details
           key={branch.name}
