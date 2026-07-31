@@ -27,6 +27,7 @@ export enum AppKey {
   Achievements = "achievements",
   FileViewer = "file-viewer",
   RecycleBin = "recycle-bin",
+  InternetExplorer = "ie",
 }
 
 export const APP_CATALOG: readonly ApplicationManifest[] = [
@@ -210,6 +211,16 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
     minSize: { width: 320, height: 360 },
     resizable: true,
     singleton: true,
+  },
+  {
+    id: AppKey.InternetExplorer,
+    title: "Internet Explorer",
+    iconSrc: "/assets/icons/ie.svg",
+    defaultSize: { width: 700, height: 520 },
+    minSize: { width: 320, height: 360 },
+    resizable: true,
+    singleton: true,
+    chrome: false,
   },
   {
     id: AppKey.RecycleBin,

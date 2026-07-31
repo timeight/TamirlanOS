@@ -59,6 +59,13 @@ export const DEFAULT_ICONS: readonly DesktopIcon[] = [
     slot: { column: 1, row: 2 },
   },
   {
+    id: AppKey.InternetExplorer,
+    appId: AppKey.InternetExplorer,
+    label: "app.ie",
+    iconSrc: "/assets/icons/ie.svg",
+    slot: { column: 0, row: 5 },
+  },
+  {
     id: AppKey.RecycleBin,
     appId: AppKey.RecycleBin,
     label: "app.recycle-bin",

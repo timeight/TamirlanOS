@@ -10,6 +10,7 @@ import { FileViewerApp } from "@/components/apps/file-viewer/FileViewerApp";
 import { Gallery3DApp } from "@/components/apps/gallery-3d/Gallery3DApp";
 import { Game2048App } from "@/components/apps/game-2048/Game2048App";
 import { IdeasApp } from "@/components/apps/ideas/IdeasApp";
+import { IeApp } from "@/components/apps/ie/IeApp";
 import { MinesweeperApp } from "@/components/apps/minesweeper/MinesweeperApp";
 import { PaintApp } from "@/components/apps/paint/PaintApp";
 import { PhotographyApp } from "@/components/apps/photography/PhotographyApp";
@@ -75,6 +76,8 @@ export function AppRenderer({ appId }: AppRendererProps) {
       return <FileViewerApp />;
     case AppKey.RecycleBin:
       return <RecycleBinApp />;
+    case AppKey.InternetExplorer:
+      return <IeApp />;
     default:
       return null;
   }

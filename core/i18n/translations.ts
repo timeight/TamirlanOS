@@ -184,6 +184,370 @@ export const translations: Record<string, Record<Locale, string>> = {
     en: "No file selected",
   },
   "app.recycle-bin": { kk: "Себет", ru: "Корзина", en: "Recycle Bin" },
+
+  // Internet Explorer
+  "app.ie": {
+    kk: "Internet Explorer",
+    ru: "Internet Explorer",
+    en: "Internet Explorer",
+  },
+  "ie.menu.tools": { kk: "Құралдар", ru: "Сервис", en: "Tools" },
+  "ie.stop": { kk: "Тоқтату", ru: "Стоп", en: "Stop" },
+  "ie.refresh": { kk: "Жаңарту", ru: "Обновить", en: "Refresh" },
+  "ie.home": { kk: "Басты бет", ru: "Домой", en: "Home" },
+  "ie.zone": {
+    kk: "Интернет",
+    ru: "Интернет",
+    en: "Internet",
+  },
+  "ie.status.opening": {
+    kk: "Бет ашылуда...",
+    ru: "Открытие страницы...",
+    en: "Opening page...",
+  },
+  "ie.status.connecting": {
+    kk: "Қосылуда...",
+    ru: "Соединение...",
+    en: "Connecting...",
+  },
+  "ie.status.loading": {
+    kk: "Жүктелуде...",
+    ru: "Загрузка...",
+    en: "Loading...",
+  },
+  "ie.status.done": { kk: "Дайын", ru: "Готово", en: "Done" },
+  "ie.openReal": {
+    kk: "Нағыз сайтты ашу",
+    ru: "Открыть настоящий сайт",
+    en: "Open the real site",
+  },
+  "ie.openGallery": {
+    kk: "Галереяны ашу",
+    ru: "Открыть галерею",
+    en: "Open the gallery",
+  },
+  "ie.openResume": {
+    kk: "Түйіндемені ашу",
+    ru: "Открыть резюме",
+    en: "Open the resume",
+  },
+  "ie.openProjects": {
+    kk: "Жобаларды ашу",
+    ru: "Открыть проекты",
+    en: "Open projects",
+  },
+  "ie.openAbout": {
+    kk: "«Мен туралы» ашу",
+    ru: "Открыть «Обо мне»",
+    en: "Open About Me",
+  },
+  "ie.openContact": {
+    kk: "Контактілерді ашу",
+    ru: "Открыть контакты",
+    en: "Open contacts",
+  },
+  "ie.openIdeas": { kk: "Идеяларды ашу", ru: "Открыть идеи", en: "Open ideas" },
+  "ie.openExplorer": {
+    kk: "Шолғышты ашу",
+    ru: "Открыть проводник",
+    en: "Open the explorer",
+  },
+
+  "ie.page.home": {
+    kk: "Tamirlan Online",
+    ru: "Tamirlan Online",
+    en: "Tamirlan Online",
+  },
+  "ie.page.github": { kk: "GitHub", ru: "GitHub", en: "GitHub" },
+  "ie.page.linkedin": { kk: "LinkedIn", ru: "LinkedIn", en: "LinkedIn" },
+  "ie.page.instagram": { kk: "Instagram", ru: "Instagram", en: "Instagram" },
+  "ie.page.telegram": { kk: "Telegram", ru: "Telegram", en: "Telegram" },
+  "ie.page.photography": {
+    kk: "Фотография",
+    ru: "Фотография",
+    en: "Photography",
+  },
+  "ie.page.gallery": { kk: "3D-галерея", ru: "3D-галерея", en: "3D Gallery" },
+  "ie.page.resume": { kk: "Түйіндеме", ru: "Резюме", en: "Resume" },
+  "ie.page.projects": { kk: "Жобалар", ru: "Проекты", en: "Projects" },
+  "ie.page.about": { kk: "Мен туралы", ru: "Обо мне", en: "About" },
+  "ie.page.contact": { kk: "Байланыс", ru: "Контакты", en: "Contact" },
+  "ie.page.ai": { kk: "AI Lab", ru: "AI Lab", en: "AI Lab" },
+  "ie.page.blog": { kk: "Блог", ru: "Блог", en: "Blog" },
+  "ie.page.update": {
+    kk: "Windows Update",
+    ru: "Windows Update",
+    en: "Windows Update",
+  },
+  "ie.page.developer": {
+    kk: "Developer Mode",
+    ru: "Developer Mode",
+    en: "Developer Mode",
+  },
+  "ie.page.system32": { kk: "system32", ru: "system32", en: "system32" },
+  "ie.page.secret": { kk: "secret", ru: "secret", en: "secret" },
+  "ie.page.404": {
+    kk: "Бет табылмады",
+    ru: "Страница не найдена",
+    en: "Page not found",
+  },
+
+  "ie.home.sub": {
+    kk: "Тамирланның цифрлық әлемі",
+    ru: "Цифровой мир Тамирлана",
+    en: "Tamirlan's digital world",
+  },
+  "ie.home.welcome": {
+    kk: "Tamirlan Online-ға қош келдіңіз.",
+    ru: "Добро пожаловать в Tamirlan Online.",
+    en: "Welcome to Tamirlan Online.",
+  },
+  "ie.home.body": {
+    kk: "Бұл шолғыш TamirlanOS ішінен шықпай-ақ менің цифрлық әлемімді зерттеуге мүмкіндік береді.",
+    ru: "Этот браузер позволяет изучить мой цифровой мир, не покидая TamirlanOS.",
+    en: "This browser lets you explore my digital world without leaving TamirlanOS.",
+  },
+  "ie.home.quickLinks": {
+    kk: "Жылдам сілтемелер",
+    ru: "Быстрые ссылки",
+    en: "Quick links",
+  },
+  "ie.home.tip": {
+    kk: "Кеңес: мекенжай жолағына github, instagram немесе ai деп теріп көріңіз.",
+    ru: "Совет: попробуйте набрать в адресной строке github, instagram или ai.",
+    en: "Tip: try typing github, instagram or ai in the address bar.",
+  },
+
+  "ie.gh.bio": {
+    kk: "Әзірлеуші және AI-инженер. Есте қалатын интерфейстер жасаймын.",
+    ru: "Разработчик и AI-инженер. Делаю интерфейсы, которые запоминают.",
+    en: "Developer and AI engineer. I build interfaces people remember.",
+  },
+  "ie.gh.pinned": {
+    kk: "Бекітілген репозиторийлер",
+    ru: "Закреплённые репозитории",
+    en: "Pinned repositories",
+  },
+  "ie.gh.contrib": {
+    kk: "Соңғы жарты жылдағы белсенділік",
+    ru: "Активность за последние полгода",
+    en: "Contributions in the last six months",
+  },
+  "ie.ig.posts": { kk: "жазба", ru: "публикаций", en: "posts" },
+  "ie.ig.followers": { kk: "оқырман", ru: "подписчиков", en: "followers" },
+  "ie.ig.following": { kk: "жазылым", ru: "подписок", en: "following" },
+  "ie.ig.bio": {
+    kk: "Көше · портрет · 3D · подкаст",
+    ru: "Стрит · портрет · 3D · подкасты",
+    en: "Street · portrait · 3D · podcasts",
+  },
+  "ie.li.headline": {
+    kk: "Әзірлеуші · AI-инженер · Оқытушы",
+    ru: "Разработчик · AI-инженер · Преподаватель",
+    en: "Developer · AI Engineer · Teacher",
+  },
+  "ie.li.connections": { kk: "байланыс", ru: "контактов", en: "connections" },
+  "ie.li.experience": { kk: "Тәжірибе", ru: "Опыт", en: "Experience" },
+  "ie.li.education": { kk: "Білім", ru: "Образование", en: "Education" },
+  "ie.li.skills": { kk: "Дағдылар", ru: "Навыки", en: "Skills" },
+  "ie.li.job1": {
+    kk: "Фриланс: әзірлеу, дизайн, видео",
+    ru: "Фриланс: разработка, дизайн, видео",
+    en: "Freelance: development, design, video",
+  },
+  "ie.li.job2": {
+    kk: "IT оқытушысы",
+    ru: "Преподаватель IT",
+    en: "IT teacher",
+  },
+  "ie.li.job3": {
+    kk: "Сарапшы және ұйымдастырушы",
+    ru: "Эксперт и организатор",
+    en: "Expert and organiser",
+  },
+  "ie.li.college": { kk: "Колледж", ru: "Колледж", en: "College" },
+  "ie.li.edu1": {
+    kk: "Ақпараттық жүйелер",
+    ru: "Информационные системы",
+    en: "Information systems",
+  },
+
+  "ie.photo.sub": {
+    kk: "Fujifilm X-T2 · XF 35mm F2",
+    ru: "Fujifilm X-T2 · XF 35mm F2",
+    en: "Fujifilm X-T2 · XF 35mm F2",
+  },
+  "ie.photo.street": { kk: "Көше", ru: "Стрит", en: "Street" },
+  "ie.photo.portrait": { kk: "Портрет", ru: "Портрет", en: "Portrait" },
+  "ie.photo.night": { kk: "Түн", ru: "Ночь", en: "Night" },
+  "ie.photo.travel": { kk: "Саяхат", ru: "Путешествия", en: "Travel" },
+
+  "ie.ai.sub": {
+    kk: "Тәжірибелер мен жұмыстағы жобалар",
+    ru: "Эксперименты и проекты в работе",
+    en: "Experiments and work in progress",
+  },
+  "ie.ai.prompt": {
+    kk: "Промпт-инжиниринг",
+    ru: "Промпт-инжиниринг",
+    en: "Prompt engineering",
+  },
+  "ie.ai.automation": {
+    kk: "Автоматтандыру",
+    ru: "Автоматизация",
+    en: "Automation",
+  },
+  "ie.ai.llm": { kk: "LLM", ru: "LLM", en: "LLM" },
+  "ie.ai.vision": {
+    kk: "Компьютерлік көру",
+    ru: "Компьютерное зрение",
+    en: "Computer vision",
+  },
+
+  "ie.tg.body": {
+    kk: "Telegram — жазудың ең жылдам жолы. Контактілерде сілтеме бар.",
+    ru: "Telegram — самый быстрый способ написать. Ссылка есть в контактах.",
+    en: "Telegram is the fastest way to reach me. The link is in Contacts.",
+  },
+  "ie.resume.body": {
+    kk: "Толық түйіндеме жүйеде PDF түрінде ашылады және жүктеуге болады.",
+    ru: "Полное резюме открывается в системе как PDF, его можно скачать.",
+    en: "The full resume opens as a PDF inside the system and can be downloaded.",
+  },
+  "ie.projects.body": {
+    kk: "TamirlanOS, CutAI, IRON FORM және басқа жобалар.",
+    ru: "TamirlanOS, CutAI, IRON FORM и другие проекты.",
+    en: "TamirlanOS, CutAI, IRON FORM and other projects.",
+  },
+  "ie.gallery.body": {
+    kk: "Blender мен Maya-да жасалған 3D жұмыстар.",
+    ru: "3D-работы, сделанные в Blender и Maya.",
+    en: "3D work made in Blender and Maya.",
+  },
+  "ie.about.body": {
+    kk: "Кәсіби профиль, тәсіл және философия.",
+    ru: "Профессиональный профиль, подход и философия.",
+    en: "Professional profile, approach and philosophy.",
+  },
+  "ie.contact.body": {
+    kk: "Пошта, Telegram, WhatsApp және әлеуметтік желілер.",
+    ru: "Почта, Telegram, WhatsApp и социальные сети.",
+    en: "Email, Telegram, WhatsApp and social links.",
+  },
+  "ie.blog.body": {
+    kk: "Әзірге блог жоқ. Идеялар «Идеялар» терезесінде жинақталған.",
+    ru: "Блога пока нет. Идеи собраны в окне «Идеи».",
+    en: "No blog yet. Ideas live in the Ideas window.",
+  },
+  "ie.sys32.body": {
+    kk: "Жүйелік қалта. Шолғышта «Көрініс» мәзірінен жасырын файлдарды қосыңыз.",
+    ru: "Системная папка. Включите скрытые файлы в меню «Вид» проводника.",
+    en: "System folder. Enable hidden files from the explorer View menu.",
+  },
+
+  "ie.404.title": {
+    kk: "Бет көрсетілмейді",
+    ru: "Страница не может быть отображена",
+    en: "The page cannot be displayed",
+  },
+  "ie.404.body": {
+    kk: "Іздеген бетіңіз қазір қолжетімсіз немесе мүлдем болмаған.",
+    ru: "Страница, которую вы ищете, сейчас недоступна или её никогда не было.",
+    en: "The page you are looking for is unavailable, or never existed.",
+  },
+  "ie.404.hint1": {
+    kk: "Мекенжайдың дұрыстығын тексеріңіз",
+    ru: "Проверьте правильность адреса",
+    en: "Check that the address is correct",
+  },
+  "ie.404.hint2": {
+    kk: "Немесе басты бетке оралыңыз",
+    ru: "Или вернитесь на домашнюю страницу",
+    en: "Or return to the home page",
+  },
+  "ie.404.cannot": {
+    kk: "Табылмады:",
+    ru: "Не найдено:",
+    en: "Cannot find:",
+  },
+
+  "ie.upd.sub": {
+    kk: "Жүйені жаңарту қызметі",
+    ru: "Служба обновления системы",
+    en: "System update service",
+  },
+  "ie.upd.available": {
+    kk: "Қолжетімді жаңартулар",
+    ru: "Доступные обновления",
+    en: "Available updates",
+  },
+  "ie.upd.installed": { kk: "орнатылды", ru: "установлено", en: "installed" },
+  "ie.upd.pending": {
+    kk: "күтілуде",
+    ru: "ожидает установки",
+    en: "pending",
+  },
+  "ie.upd.failed": {
+    kk: "орнатылмады",
+    ru: "не установлено",
+    en: "failed to install",
+  },
+  "ie.upd.note": {
+    kk: "Кейбір жаңартулар қайта жүктеуді талап етеді. Ұйқы кестесі — жыл сайын.",
+    ru: "Некоторые обновления требуют перезагрузки. Режим сна — ежегодно.",
+    en: "Some updates require a restart. Sleep schedule: annually.",
+  },
+
+  "ie.secret.title": {
+    kk: "> қатынау расталды",
+    ru: "> доступ подтверждён",
+    en: "> access granted",
+  },
+  "ie.secret.body": {
+    kk: "Мұнда жасырын ештеңе жоқ. Тек мынау: егер сіз мекенжай жолағына «secret» деп тердіңіз, сіз дәл менің жұмысқа алғым келетін адамсыз — қызық және тексеретін.",
+    ru: "Здесь нет ничего засекреченного. Только это: если вы набрали «secret» в адресной строке, вы именно тот человек, с которым я хотел бы работать — любопытный и проверяющий.",
+    en: "Nothing classified here. Just this: if you typed “secret” into the address bar, you are exactly the kind of person I want to work with — curious, and willing to test.",
+  },
+  "ie.secret.thanks": {
+    kk: "Осында жеткеніңізге рахмет.",
+    ru: "Спасибо, что дошли сюда.",
+    en: "Thanks for coming this far.",
+  },
+
+  "ie.dev.on": {
+    kk: "Developer Mode: ҚОСУЛЫ",
+    ru: "Developer Mode: ВКЛЮЧЁН",
+    en: "Developer Mode: ENABLED",
+  },
+  "ie.dev.off": {
+    kk: "Developer Mode",
+    ru: "Developer Mode",
+    en: "Developer Mode",
+  },
+  "ie.dev.apps": { kk: "20+", ru: "20+", en: "20+" },
+  "ie.dev.note": {
+    kk: "Бұл жүйе қолмен жиналған. Кодты GitHub-та қарауға болады.",
+    ru: "Эта система собрана вручную. Код можно посмотреть на GitHub.",
+    en: "This system was built by hand. The code is on GitHub.",
+  },
+
+  "ie.sec.title": {
+    kk: "Қауіпсіздік туралы ескерту",
+    ru: "Предупреждение безопасности",
+    en: "Security Warning",
+  },
+  "ie.sec.body": {
+    kk: "Сіз TamirlanOS-тан шығып, сыртқы сайтқа өтесіз:",
+    ru: "Вы покидаете TamirlanOS и переходите на внешний сайт:",
+    en: "You are about to leave TamirlanOS and open an external site:",
+  },
+  "ie.sec.ask": {
+    kk: "Жалғастырасыз ба?",
+    ru: "Продолжить?",
+    en: "Do you want to continue?",
+  },
+  "ie.sec.yes": { kk: "Иә", ru: "Да", en: "Yes" },
+  "ie.sec.no": { kk: "Жоқ", ru: "Нет", en: "No" },
   "bin.heading": {
     kk: "Аяқталмаған идеялар",
     ru: "Незаконченные идеи",
