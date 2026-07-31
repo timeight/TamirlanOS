@@ -185,6 +185,92 @@ export const translations: Record<string, Record<Locale, string>> = {
   },
   "app.recycle-bin": { kk: "Себет", ru: "Корзина", en: "Recycle Bin" },
 
+  // PIX — desktop companion
+  "pix.toggle": {
+    kk: "PIX серігі",
+    ru: "Компаньон PIX",
+    en: "PIX companion",
+  },
+  "pix.aria": {
+    kk: "PIX — үстелдегі серік. Достық: {friendship} / 100",
+    ru: "PIX — компаньон рабочего стола. Дружба: {friendship} из 100",
+    en: "PIX, desktop companion. Friendship: {friendship} of 100",
+  },
+  "pix.skin.default": { kk: "Робот", ru: "Робот", en: "Robot" },
+  "pix.skin.prototype": { kk: "Прототип", ru: "Прототип", en: "Prototype" },
+  "pix.skin.retro": { kk: "Ретро", ru: "Ретро", en: "Retro" },
+  "pix.skin.pixel": { kk: "Пиксель", ru: "Пиксель", en: "Pixel" },
+  "pix.skin.ghost": { kk: "Елес", ru: "Призрак", en: "Ghost" },
+  "pix.skin.cyber": { kk: "Кибер", ru: "Кибер", en: "Cyber" },
+  "pix.skin.developer": {
+    kk: "Әзірлеуші",
+    ru: "Разработчик",
+    en: "Developer",
+  },
+  "pix.skin.golden": { kk: "Алтын", ru: "Золотой", en: "Golden" },
+
+  "pix.say.coffee": {
+    kk: "Кофе керек ☕",
+    ru: "Нужен кофе ☕",
+    en: "Need coffee ☕",
+  },
+  "pix.say.stillCoding": {
+    kk: "Әлі де кодтап отырсың ба?",
+    ru: "Всё ещё кодишь?",
+    en: "Still coding?",
+  },
+  "pix.say.building": {
+    kk: "Болашақ құрылып жатыр...",
+    ru: "Строим будущее...",
+    en: "Building future...",
+  },
+  "pix.say.wallpaper": {
+    kk: "Тұсқағаз әдемі екен.",
+    ru: "Красивые обои.",
+    en: "Nice wallpaper.",
+  },
+  "pix.say.listening": {
+    kk: "Тыңдап тұрмын...",
+    ru: "Слушаю...",
+    en: "Listening...",
+  },
+  "pix.say.interesting": {
+    kk: "Қызық екен...",
+    ru: "Интересно...",
+    en: "Interesting...",
+  },
+  "pix.say.helloAgain": {
+    kk: "Тағы кездестік.",
+    ru: "Снова здравствуй.",
+    en: "Hello again.",
+  },
+  "pix.say.save": {
+    kk: "Сақтауды ұмытпа.",
+    ru: "Не забудь сохранить.",
+    en: "Don't forget to save.",
+  },
+  "pix.say.fixing": {
+    kk: "Бірдеңе жөндеп жатырмын.",
+    ru: "Чиню кое-что.",
+    en: "Fixing something.",
+  },
+  "pix.say.hmm": { kk: "Хмм...", ru: "Хмм...", en: "Hmm..." },
+  "pix.say.friend1": {
+    kk: "Сен маған ұнайсың.",
+    ru: "Ты мне нравишься.",
+    en: "I like you.",
+  },
+  "pix.say.friend2": {
+    kk: "Осында жақсы.",
+    ru: "Здесь хорошо.",
+    en: "It's nice here.",
+  },
+  "pix.say.friend3": {
+    kk: "Кетпе әлі.",
+    ru: "Не уходи пока.",
+    en: "Don't go yet.",
+  },
+
   // Internet Explorer
   "app.ie": {
     kk: "Internet Explorer",

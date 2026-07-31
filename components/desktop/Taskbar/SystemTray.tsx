@@ -8,6 +8,7 @@ import { AchievementId } from "@/core/achievements/catalog";
 import { useT } from "@/hooks/use-translations";
 import { useAchievementStore } from "@/stores/achievement-store";
 import { useAudioStore } from "@/stores/audio-store";
+import { usePetStore } from "@/stores/pet-store";
 import { useDesktopStore } from "@/stores/desktop-store";
 
 const trayButtonClass =
@@ -18,6 +19,8 @@ export function SystemTray() {
   const crtEnabled = useDesktopStore((state) => state.crtEnabled);
   const toggleCrt = useDesktopStore((state) => state.toggleCrt);
   const openApp = useOpenApp();
+  const petEnabled = usePetStore((state) => state.enabled);
+  const togglePet = usePetStore((state) => state.toggleEnabled);
   const t = useT();
   const [fullscreen, setFullscreen] = useState(false);
 
@@ -71,6 +74,27 @@ export function SystemTray() {
         >
           <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H11l-4 4v-4H6.5A2.5 2.5 0 0 1 4 13.5Z" />
           <path d="M9 9.5c1.8 2 4.2 2 6 0" />
+        </svg>
+      </button>
+      <button
+        type="button"
+        title={t("pix.toggle")}
+        aria-label={t("pix.toggle")}
+        aria-pressed={petEnabled}
+        onClick={togglePet}
+        className={trayButtonClass}
+      >
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          className="h-[15px] w-[15px]"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        >
+          <rect x="5" y="8" width="14" height="10" rx="4" />
+          <path d="M12 8V4.5M9.5 13h.01M14.5 13h.01" />
         </svg>
       </button>
       <button

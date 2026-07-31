@@ -7,6 +7,7 @@ import { AchievementTracker } from "@/components/desktop/AchievementTracker";
 import { AgentNudge } from "@/components/desktop/AgentNudge";
 import { DesktopSurface } from "@/components/desktop/DesktopSurface";
 import { NotificationToast } from "@/components/desktop/NotificationToast";
+import { PixPet } from "@/components/desktop/pet/PixPet";
 import { Taskbar } from "@/components/desktop/Taskbar/Taskbar";
 import { Wallpaper } from "@/components/desktop/Wallpaper";
 import { WelcomeBalloon } from "@/components/desktop/WelcomeBalloon";
@@ -69,6 +70,7 @@ export function DesktopShell() {
           onOpenApp={openFromBalloon}
         />
       )}
+      <PixPet />
       <AchievementTracker />
       <AchievementBalloon />
       <AgentNudge />
