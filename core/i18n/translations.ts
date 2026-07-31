@@ -255,6 +255,47 @@ export const translations: Record<string, Record<Locale, string>> = {
     en: "Fixing something.",
   },
   "pix.say.hmm": { kk: "Хмм...", ru: "Хмм...", en: "Hmm..." },
+  "pix.rare.coin": {
+    kk: "Монета таптым!",
+    ru: "Нашёл монетку!",
+    en: "Found a coin!",
+  },
+  "pix.rare.sneeze": { kk: "Апчхи!", ru: "Апчхи!", en: "Achoo!" },
+  "pix.rare.trip": {
+    kk: "Мен жақсымын...",
+    ru: "Я в порядке...",
+    en: "I'm fine...",
+  },
+  "pix.rare.screwdriver": {
+    kk: "Бұрағышым қайда?",
+    ru: "Где моя отвёртка?",
+    en: "Where's my screwdriver?",
+  },
+  "pix.rare.clock": {
+    kk: "Уақыт жылдам өтеді.",
+    ru: "Время идёт быстро.",
+    en: "Time moves fast.",
+  },
+  "pix.rare.wallpaper": {
+    kk: "Бұл төбе тыныштандырады.",
+    ru: "Этот холм успокаивает.",
+    en: "That hill is calming.",
+  },
+  "pix.rare.bin": {
+    kk: "Мұнда қызық нәрселер бар.",
+    ru: "Тут есть интересное.",
+    en: "There's good stuff in here.",
+  },
+  "pix.rare.fixing": {
+    kk: "Windows жөндеп жатырмын.",
+    ru: "Чиню Windows.",
+    en: "Fixing Windows.",
+  },
+  "pix.rare.secret": {
+    kk: "Сізге бір құпия айтайын ба?",
+    ru: "Рассказать секрет?",
+    en: "Want to hear a secret?",
+  },
   "pix.say.friend1": {
     kk: "Сен маған ұнайсың.",
     ru: "Ты мне нравишься.",

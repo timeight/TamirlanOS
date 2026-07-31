@@ -3,6 +3,7 @@ export enum PetState {
   Walk = "walk",
   Run = "run",
   LookAround = "look-around",
+  Observe = "observe",
   Wave = "wave",
   Think = "think",
   Jump = "jump",
@@ -21,7 +22,8 @@ export enum PetState {
   Dizzy = "dizzy",
 }
 
-export type PetMood = "happy" | "curious" | "sleepy" | "dizzy" | "focused";
+export type PetMood =
+  "happy" | "curious" | "sleepy" | "excited" | "scared" | "proud" | "idle";
 
 export interface PetVector {
   x: number;
@@ -50,6 +52,10 @@ export interface PetFrame {
   progress: number;
   /** Seconds since the state started. */
   elapsed: number;
+  /** Degrees of body tilt from steering; drives the walk lean. */
+  lean: number;
+  /** Current speed in px/s, used by the sprite to pace the gait. */
+  speed: number;
 }
 
 export const PET_SIZE = { width: 64, height: 80 } as const;

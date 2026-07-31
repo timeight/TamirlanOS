@@ -17,6 +17,32 @@
   --animate-xp-progress: xp-progress 2s linear infinite;
   --animate-glitch: glitch 180ms steps(2, end) 2;
 
+  @keyframes confetti-fall {
+    to {
+      transform: translateY(105vh) rotate(540deg);
+      opacity: 0.2;
+    }
+  }
+
+  @keyframes world-shake {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    25% {
+      transform: translate3d(-3px, 1px, 0);
+    }
+    75% {
+      transform: translate3d(3px, -1px, 0);
+    }
+  }
+
+  @keyframes world-flicker {
+    50% {
+      opacity: 0.15;
+    }
+  }
+
   @keyframes glitch {
     0% {
       transform: translate(0, 0);

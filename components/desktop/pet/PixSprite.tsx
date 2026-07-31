@@ -1,50 +1,16 @@
+import type { MouthShape, Pose } from "@/core/pet/animation/pose";
 import type { PetSkin } from "@/core/pet/pet-skins";
-import { PetState, type PetFrame } from "@/core/pet/pet-types";
 
 interface PixSpriteProps {
-  frame: PetFrame;
+  pose: Pose;
   skin: PetSkin;
-  reducedMotion: boolean;
+  /** Steering tilt from the movement controller, added to the clip rotation. */
+  lean: number;
 }
 
-export function PixSprite({ frame, skin, reducedMotion }: PixSpriteProps) {
-  const t = reducedMotion ? 0 : frame.elapsed;
-  const { state } = frame;
-
-  const walking = state === PetState.Walk || state === PetState.FollowCursor;
-  const running = state === PetState.Run;
-  const bob = walking || running ? Math.sin(t * 9) * 2 : Math.sin(t * 2) * 0.8;
-  const legSwing = walking || running ? Math.sin(t * 9) * 8 : 0;
-  const armSwing =
-    state === PetState.Wave
-      ? Math.sin(t * 12) * 36 - 20
-      : state === PetState.Dance
-        ? Math.sin(t * 7) * 30
-        : walking
-          ? Math.sin(t * 9) * -10
-          : 0;
-  const tilt =
-    state === PetState.Dizzy
-      ? Math.sin(t * 11) * 14
-      : state === PetState.Dance
-        ? Math.sin(t * 6) * 8
-        : state === PetState.Confused
-          ? 7
-          : 0;
-  const hop =
-    state === PetState.Jump
-      ? -Math.abs(Math.sin(t * 6)) * 16
-      : state === PetState.Dance
-        ? -Math.abs(Math.sin(t * 7)) * 5
-        : 0;
-  const sitting = state === PetState.Sit || state === PetState.Sleep;
-  const sleeping = state === PetState.Sleep;
-  const blink = !sleeping && Math.sin(t * 1.7) > 0.97;
-
-  const eyeShift =
-    state === PetState.LookAround
-      ? Math.sin(t * 2.2) * 2.4
-      : frame.facing * 0.6;
+export function PixSprite({ pose, skin, lean }: PixSpriteProps) {
+  const sitOffset = pose.sit * 7;
+  const standing = pose.sit < 0.5;
 
   return (
     <svg
@@ -52,34 +18,45 @@ export function PixSprite({ frame, skin, reducedMotion }: PixSpriteProps) {
       aria-hidden="true"
       className="h-full w-full overflow-visible"
       style={{
-        transform: `translate3d(0, ${bob + hop}px, 0) rotate(${tilt}deg)`,
+        transform: `translate3d(0, ${pose.bodyY}px, 0) rotate(${pose.bodyRot + lean}deg)`,
       }}
     >
-      <ellipse cx="32" cy="76" rx="17" ry="3.4" fill="rgba(0,0,0,0.22)" />
+      <ellipse
+        cx="32"
+        cy="76"
+        rx={17 - pose.bodyY * 0.12}
+        ry="3.4"
+        fill="rgba(0,0,0,0.22)"
+      />
 
-      <g transform={`translate(0 ${sitting ? 7 : 0})`}>
-        <line
-          x1="32"
-          y1="18"
-          x2="32"
-          y2="9"
-          stroke={skin.outline}
-          strokeWidth="2.2"
-          strokeLinecap="round"
-        />
-        <circle
-          cx="32"
-          cy={7 + (reducedMotion ? 0 : Math.sin(t * 3) * 1.2)}
-          r="4"
-          fill={skin.antenna}
-          stroke={skin.outline}
-          strokeWidth="1.4"
-        />
+      <g
+        transform={`translate(0 ${sitOffset}) scale(1 ${pose.bodySquash})`}
+        style={{ transformOrigin: "32px 72px" }}
+      >
+        <g transform={`rotate(${pose.antennaRot} 32 18)`}>
+          <line
+            x1="32"
+            y1="18"
+            x2="32"
+            y2="9"
+            stroke={skin.outline}
+            strokeWidth="2.2"
+            strokeLinecap="round"
+          />
+          <circle
+            cx="32"
+            cy={7 + pose.antennaY}
+            r="4"
+            fill={skin.antenna}
+            stroke={skin.outline}
+            strokeWidth="1.4"
+          />
+        </g>
 
-        {!sitting && (
+        {standing && (
           <>
             <rect
-              x={22 + legSwing * 0.1}
+              x="22"
               y="60"
               width="8"
               height="12"
@@ -87,7 +64,7 @@ export function PixSprite({ frame, skin, reducedMotion }: PixSpriteProps) {
               fill={skin.bodyDark}
               stroke={skin.outline}
               strokeWidth="1.6"
-              transform={`rotate(${legSwing} 26 60)`}
+              transform={`rotate(${pose.legSwing} 26 60)`}
             />
             <rect
               x="34"
@@ -98,7 +75,7 @@ export function PixSprite({ frame, skin, reducedMotion }: PixSpriteProps) {
               fill={skin.bodyDark}
               stroke={skin.outline}
               strokeWidth="1.6"
-              transform={`rotate(${-legSwing} 38 60)`}
+              transform={`rotate(${-pose.legSwing} 38 60)`}
             />
           </>
         )}
@@ -107,7 +84,7 @@ export function PixSprite({ frame, skin, reducedMotion }: PixSpriteProps) {
           x="15"
           y="38"
           width="34"
-          height={sitting ? 22 : 26}
+          height={26 - pose.sit * 4}
           rx="11"
           fill={skin.body}
           stroke={skin.outline}
@@ -135,7 +112,7 @@ export function PixSprite({ frame, skin, reducedMotion }: PixSpriteProps) {
           fill={skin.bodyDark}
           stroke={skin.outline}
           strokeWidth="1.5"
-          transform={`rotate(${armSwing} 12 42)`}
+          transform={`rotate(${pose.armL} 12 42)`}
         />
         <rect
           x="49"
@@ -146,63 +123,40 @@ export function PixSprite({ frame, skin, reducedMotion }: PixSpriteProps) {
           fill={skin.bodyDark}
           stroke={skin.outline}
           strokeWidth="1.5"
-          transform={`rotate(${-armSwing} 52 42)`}
+          transform={`rotate(${-pose.armR} 52 42)`}
         />
 
-        <rect
-          x="12"
-          y="16"
-          width="40"
-          height="26"
-          rx="12"
-          fill={skin.body}
-          stroke={skin.outline}
-          strokeWidth="2"
-        />
-        <rect
-          x="16"
-          y="21"
-          width="32"
-          height="16"
-          rx="8"
-          fill={skin.panel}
-          stroke={skin.outline}
-          strokeWidth="1.4"
-        />
+        <g
+          transform={`translate(0 ${pose.headY}) rotate(${pose.headRot} 32 34)`}
+        >
+          <rect
+            x="12"
+            y="16"
+            width="40"
+            height="26"
+            rx="12"
+            fill={skin.body}
+            stroke={skin.outline}
+            strokeWidth="2"
+          />
+          <rect
+            x="16"
+            y="21"
+            width="32"
+            height="16"
+            rx="8"
+            fill={skin.panel}
+            stroke={skin.outline}
+            strokeWidth="1.4"
+          />
 
-        {sleeping || blink ? (
-          <>
-            <path
-              d="M21 29q3.5 3 7 0"
-              fill="none"
-              stroke={skin.eye}
-              strokeWidth="2.2"
-              strokeLinecap="round"
-            />
-            <path
-              d="M36 29q3.5 3 7 0"
-              fill="none"
-              stroke={skin.eye}
-              strokeWidth="2.2"
-              strokeLinecap="round"
-            />
-          </>
-        ) : (
-          <>
-            <circle cx={24.5 + eyeShift} cy="29" r="4.6" fill="#ffffff" />
-            <circle cx={39.5 + eyeShift} cy="29" r="4.6" fill="#ffffff" />
-            <circle cx={25.4 + eyeShift} cy="29.6" r="2.6" fill={skin.eye} />
-            <circle cx={40.4 + eyeShift} cy="29.6" r="2.6" fill={skin.eye} />
-            <circle cx={24 + eyeShift} cy="27.8" r="0.9" fill="#ffffff" />
-            <circle cx={39 + eyeShift} cy="27.8" r="0.9" fill="#ffffff" />
-          </>
-        )}
-
-        <Mouth mood={frame.mood} state={state} color={skin.eye} />
+          <Eyes pose={pose} color={skin.eye} />
+          <Mouth shape={pose.mouth} color={skin.eye} />
+        </g>
       </g>
 
-      {sleeping && !reducedMotion && (
-        <g fill={skin.outline} opacity="0.8">
+      {pose.zzz > 0.05 && (
+        <g fill={skin.outline} opacity={pose.zzz * 0.85}>
           <text x="48" y="16" fontSize="9" fontFamily="Tahoma, sans-serif">
             z
           </text>
@@ -215,44 +169,96 @@ export function PixSprite({ frame, skin, reducedMotion }: PixSpriteProps) {
   );
 }
 
-function Mouth({
-  mood,
-  state,
-  color,
-}: {
-  mood: PetFrame["mood"];
-  state: PetState;
-  color: string;
-}) {
-  if (state === PetState.Confused || mood === "dizzy") {
+function Eyes({ pose, color }: { pose: Pose; color: string }) {
+  const open = Math.max(0, Math.min(1, pose.eyeOpen));
+  if (open < 0.12) {
     return (
-      <path
-        d="M27 37q5 -3 10 0"
-        fill="none"
-        stroke={color}
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
+      <>
+        <path
+          d={`M21 ${29 + pose.eyeY}q3.5 3 7 0`}
+          fill="none"
+          stroke={color}
+          strokeWidth="2.2"
+          strokeLinecap="round"
+        />
+        <path
+          d={`M36 ${29 + pose.eyeY}q3.5 3 7 0`}
+          fill="none"
+          stroke={color}
+          strokeWidth="2.2"
+          strokeLinecap="round"
+        />
+      </>
     );
   }
-  if (mood === "focused") {
-    return (
-      <path
-        d="M28 37h8"
-        fill="none"
-        stroke={color}
-        strokeWidth="1.8"
-        strokeLinecap="round"
+  const ry = 4.6 * open;
+  return (
+    <>
+      <ellipse
+        cx={24.5 + pose.eyeX}
+        cy={29 + pose.eyeY}
+        rx="4.6"
+        ry={ry}
+        fill="#ffffff"
       />
-    );
-  }
+      <ellipse
+        cx={39.5 + pose.eyeX}
+        cy={29 + pose.eyeY}
+        rx="4.6"
+        ry={ry}
+        fill="#ffffff"
+      />
+      <ellipse
+        cx={25.4 + pose.eyeX}
+        cy={29.6 + pose.eyeY}
+        rx="2.6"
+        ry={2.6 * open}
+        fill={color}
+      />
+      <ellipse
+        cx={40.4 + pose.eyeX}
+        cy={29.6 + pose.eyeY}
+        rx="2.6"
+        ry={2.6 * open}
+        fill={color}
+      />
+      {open > 0.6 && (
+        <>
+          <circle
+            cx={24 + pose.eyeX}
+            cy={27.8 + pose.eyeY}
+            r="0.9"
+            fill="#ffffff"
+          />
+          <circle
+            cx={39 + pose.eyeX}
+            cy={27.8 + pose.eyeY}
+            r="0.9"
+            fill="#ffffff"
+          />
+        </>
+      )}
+    </>
+  );
+}
+
+const MOUTH_PATHS: Record<MouthShape, string> = {
+  smile: "M27 36q5 4 10 0",
+  flat: "M28 37h8",
+  wavy: "M27 37q2.5 -3 5 0t5 0",
+  open: "M29 36q3 5 6 0z",
+  small: "M30 37h4",
+};
+
+function Mouth({ shape, color }: { shape: MouthShape; color: string }) {
   return (
     <path
-      d="M27 36q5 4 10 0"
-      fill="none"
+      d={MOUTH_PATHS[shape]}
+      fill={shape === "open" ? color : "none"}
       stroke={color}
       strokeWidth="1.8"
       strokeLinecap="round"
+      strokeLinejoin="round"
     />
   );
 }

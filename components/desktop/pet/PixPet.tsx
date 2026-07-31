@@ -5,6 +5,7 @@ import { PixSprite } from "@/components/desktop/pet/PixSprite";
 import { findSkin } from "@/core/pet/pet-skins";
 import { canSpeak, pickLine, SPEECH_VISIBLE_MS } from "@/core/pet/pet-speech";
 import { PET_SIZE, PetState } from "@/core/pet/pet-types";
+import { usePetAnimator } from "@/hooks/use-pet-animator";
 import { usePetEngine } from "@/hooks/use-pet-engine";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useT } from "@/hooks/use-translations";
@@ -22,13 +23,32 @@ export function PixPet() {
   const [line, setLine] = useState<string | null>(null);
   const lastClickAt = useRef(0);
   const dragging = useRef(false);
+  const cursor = useRef<{ x: number; y: number } | null>(null);
 
-  const speak = useCallback((state: PetState) => {
+  useEffect(() => {
+    const onMove = (event: PointerEvent) => {
+      cursor.current = { x: event.clientX, y: event.clientY };
+    };
+    window.addEventListener("pointermove", onMove);
+    return () => window.removeEventListener("pointermove", onMove);
+  }, []);
+
+  const speak = useCallback((state: PetState, forcedLine?: string | null) => {
     const store = usePetStore.getState();
-    if (!canSpeak(store.lastSpokeAt, Date.now())) return;
+    // Rare events are worth breaking the cooldown for; ambient chatter is not.
+    if (!forcedLine && !canSpeak(store.lastSpokeAt, Date.now())) return;
     store.markSpoke();
-    setLine(pickLine(state, store.friendship));
+    setLine(forcedLine ?? pickLine(state, store.friendship));
     window.setTimeout(() => setLine(null), SPEECH_VISIBLE_MS);
+  }, []);
+
+  useEffect(() => {
+    const store = usePetStore.getState();
+    store.beginVisit();
+    if (store.returning) {
+      store.addFriendship(3);
+      window.setTimeout(() => usePetStore.getState().clearReturning(), 8000);
+    }
   }, []);
 
   const { frame, trigger, makeDizzy, setPosition } = usePetEngine({
@@ -36,13 +56,12 @@ export function PixPet() {
     onSpeak: speak,
   });
 
+  const pose = usePetAnimator({ frame, reducedMotion, lookAt: cursor.current });
+
   useEffect(() => {
     if (!dragging.current) return;
     const onMove = (event: PointerEvent) => {
-      setPosition({
-        x: event.clientX - PET_SIZE.width / 2,
-        y: event.clientY - PET_SIZE.height / 2,
-      });
+      setPosition({ x: event.clientX, y: event.clientY });
     };
     const onUp = () => {
       dragging.current = false;
@@ -87,7 +106,7 @@ export function PixPet() {
       style={{
         width: PET_SIZE.width,
         height: PET_SIZE.height,
-        transform: `translate3d(${frame.position.x}px, ${frame.position.y}px, 0) scaleX(${frame.facing})`,
+        transform: `translate3d(${frame.position.x - PET_SIZE.width / 2}px, ${frame.position.y - PET_SIZE.height / 2}px, 0) scaleX(${frame.facing})`,
         willChange: "transform",
       }}
     >
@@ -103,7 +122,7 @@ export function PixPet() {
           />
         </div>
       )}
-      <PixSprite frame={frame} skin={skin} reducedMotion={reducedMotion} />
+      <PixSprite pose={pose} skin={skin} lean={frame.lean} />
     </div>
   );
 }

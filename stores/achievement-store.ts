@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { AchievementId } from "@/core/achievements/catalog";
+import { publish } from "@/core/events/event-bus";
+import { WorldEventType } from "@/core/events/world-events";
 
 interface AchievementStore {
   unlocked: string[];
@@ -26,6 +28,7 @@ export const useAchievementStore = create<AchievementStore>()(
           unlocked: [...state.unlocked, id],
           queue: [...state.queue, id],
         }));
+        publish({ type: WorldEventType.AchievementUnlocked, id });
       },
 
       markAppVisited: (appId) => {

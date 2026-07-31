@@ -8,6 +8,7 @@ import { AgentNudge } from "@/components/desktop/AgentNudge";
 import { DesktopSurface } from "@/components/desktop/DesktopSurface";
 import { NotificationToast } from "@/components/desktop/NotificationToast";
 import { PixPet } from "@/components/desktop/pet/PixPet";
+import { WorldEffects } from "@/components/desktop/WorldEffects";
 import { Taskbar } from "@/components/desktop/Taskbar/Taskbar";
 import { Wallpaper } from "@/components/desktop/Wallpaper";
 import { WelcomeBalloon } from "@/components/desktop/WelcomeBalloon";
@@ -15,6 +16,7 @@ import { WindowHost } from "@/components/desktop/WindowHost";
 import { installApps, type AppKey } from "@/core/apps/app-catalog";
 import { useOpenApp } from "@/hooks/use-open-app";
 import { useT } from "@/hooks/use-translations";
+import { useWorldPublishers } from "@/hooks/use-world-publishers";
 import { useAudioStore } from "@/stores/audio-store";
 import { useNotificationStore } from "@/stores/notification-store";
 import { SoundEvent } from "@/types/sound";
@@ -27,6 +29,8 @@ export function DesktopShell() {
   const notify = useNotificationStore((state) => state.notify);
   const t = useT();
   const [balloonOpen, setBalloonOpen] = useState(true);
+
+  useWorldPublishers();
 
   useEffect(() => {
     installApps();
@@ -71,6 +75,7 @@ export function DesktopShell() {
         />
       )}
       <PixPet />
+      <WorldEffects />
       <AchievementTracker />
       <AchievementBalloon />
       <AgentNudge />
