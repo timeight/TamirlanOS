@@ -22,6 +22,12 @@ interface ChatMessage {
 }
 
 const LOCALE_TAG = { kk: "kk-KZ", ru: "ru-RU", en: "en-US" } as const;
+const QUICK_REPLIES = [
+  "quick.projects",
+  "quick.resume",
+  "quick.skills",
+  "quick.contact",
+] as const;
 const AGENT_ICON = "/assets/icons/agent.svg";
 const EMAIL = "tamirlanzhamalov@gmail.com";
 
@@ -62,8 +68,8 @@ export function AgentApp() {
     notify({ iconSrc: AGENT_ICON, title: t("agent.botName"), body });
   };
 
-  const send = () => {
-    const text = input.trim();
+  const sendText = (raw: string) => {
+    const text = raw.trim();
     if (!text) return;
     useAchievementStore.getState().unlock(AchievementId.AiResearcher);
     setMessages((prev) => [
@@ -79,6 +85,8 @@ export function AgentApp() {
       if (reply.action) openApp(reply.action);
     }, 700);
   };
+
+  const send = () => sendText(input);
 
   const restart = () => {
     setMessages([
@@ -162,6 +170,19 @@ export function AgentApp() {
             <span>🎁</span>
           </div>
         </div>
+      </div>
+
+      <div className="flex shrink-0 flex-wrap gap-1.5 px-1.5 pb-1.5">
+        {QUICK_REPLIES.map((reply) => (
+          <button
+            key={reply}
+            type="button"
+            onClick={() => sendText(t(reply))}
+            className="rounded-full border border-[#8fbde4] bg-white px-2.5 py-1 text-[11px] text-[#1c4e80] hover:bg-[#eaf5ff] focus-visible:outline-1 focus-visible:outline-[#2b6cb0]"
+          >
+            {t(reply)}
+          </button>
+        ))}
       </div>
 
       <AgentComposer

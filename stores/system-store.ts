@@ -5,6 +5,9 @@ import { SystemPhase, type SystemState } from "@/types/system";
 
 interface SystemStore extends SystemState {
   restartPending: boolean;
+  crashed: boolean;
+  crash: () => void;
+  crashReboot: () => void;
   powerOn: () => void;
   advanceBoot: () => void;
   logIn: () => void;
@@ -25,6 +28,19 @@ export const useSystemStore = create<SystemStore>()((set, get) => {
     phase: SystemPhase.Off,
     bootStage: null,
     restartPending: false,
+    crashed: false,
+
+    crash: () => {
+      if (get().phase === SystemPhase.Desktop) set({ crashed: true });
+    },
+
+    // A crash reboots straight to POST, skipping the polite shutdown path.
+    crashReboot: () =>
+      set({
+        crashed: false,
+        phase: SystemPhase.Booting,
+        bootStage: FIRST_BOOT_STAGE,
+      }),
 
     powerOn: () => {
       if (canTransition(get().phase, SystemPhase.Booting)) {

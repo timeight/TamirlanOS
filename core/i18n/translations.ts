@@ -153,6 +153,21 @@ export const translations: Record<string, Record<Locale, string>> = {
     ru: "Показать скрытые файлы",
     en: "Show Hidden Files",
   },
+  "fs.emptyFolder": {
+    kk: "Бұл қалта бос",
+    ru: "Эта папка пуста",
+    en: "This folder is empty",
+  },
+  "fs.objects": {
+    kk: "Объектілер: {count}",
+    ru: "Объектов: {count}",
+    en: "{count} objects",
+  },
+  "fs.myComputer": {
+    kk: "Менің компьютерім",
+    ru: "Мой компьютер",
+    en: "My Computer",
+  },
   "files.hiddenGroup": {
     kk: "Жасырын файлдар",
     ru: "Скрытые файлы",
@@ -464,6 +479,32 @@ export const translations: Record<string, Record<Locale, string>> = {
     ru: "Включён эффект ЭЛТ",
     en: "Turned on the CRT effect",
   },
+  "ach.blue-screen": { kk: "Көк экран", ru: "Синий экран", en: "Blue Screen" },
+  "ach.blue-screen.d": {
+    kk: "Жүйені шыдамнан айырдыңыз",
+    ru: "Вы вывели систему из терпения",
+    en: "You pushed the system too far",
+  },
+  "bsod.line1": {
+    kk: "TamirlanOS қалыпты жұмысты жалғастыра алмайды.",
+    ru: "TamirlanOS не может продолжать нормальную работу.",
+    en: "TamirlanOS cannot continue running normally.",
+  },
+  "bsod.line2": {
+    kk: "Себебі: тым көп шыдамсыздық анықталды.",
+    ru: "Причина: обнаружено слишком много нетерпения.",
+    en: "The problem seems to be caused by excessive impatience.",
+  },
+  "bsod.line3": {
+    kk: "Ештеңе жоғалған жоқ. Бәрі орнында қалады.",
+    ru: "Ничего не потеряно. Всё останется на месте.",
+    en: "Nothing was lost. Everything stays where it was.",
+  },
+  "bsod.reboot": {
+    kk: "Қайта жүктелуде...",
+    ru: "Перезагрузка...",
+    en: "Rebooting...",
+  },
   "ach.digger": { kk: "Іздеуші", ru: "Копатель", en: "Digger" },
   "ach.digger.d": {
     kk: "Жасырын файл ашылды",
@@ -705,6 +746,66 @@ export const translations: Record<string, Record<Locale, string>> = {
   "agent.help": { kk: "Мәзір", ru: "Меню", en: "Menu" },
   "agent.restart": { kk: "Мұрағат", ru: "Архив", en: "Archive" },
   "agent.profile": { kk: "Анкета", ru: "Анкета", en: "Profile" },
+  // Proactive nudges
+  "nudge.show": { kk: "Көрсету", ru: "Показать", en: "Show me" },
+  "nudge.later": { kk: "Кейін", ru: "Не сейчас", en: "Not now" },
+  "nudge.mute": {
+    kk: "Кедергі жасамау",
+    ru: "Не мешать",
+    en: "Do not disturb",
+  },
+  "nudge.lost": {
+    kk: "Неден бастарыңызды білмесеңіз — «Мен туралы» жақсы бастама.",
+    ru: "Если не знаете, с чего начать — «Обо мне» хорошая точка входа.",
+    en: "Not sure where to start? About Me is a good entry point.",
+  },
+  "nudge.explainProjects": {
+    kk: "Бұл жобалар қалай пайда болғанын хронологиядан көруге болады.",
+    ru: "Как эти проекты появились — видно в хронологии. Показать?",
+    en: "Want to see how these projects came about? The timeline explains it.",
+  },
+  "nudge.resume": {
+    kk: "Толық түйіндемені де қарауға болады — жүктеп алуға да келеді.",
+    ru: "Есть ещё полное резюме — его можно и скачать.",
+    en: "There is a full resume too — you can download it.",
+  },
+  "nudge.shortcuts": {
+    kk: "Кеңес: F11 — толық экран. Терезелерді тапсырмалар тақтасынан ауыстырыңыз.",
+    ru: "Совет: F11 — полный экран, а окна переключаются через панель задач.",
+    en: "Tip: F11 goes fullscreen, and the taskbar switches between windows.",
+  },
+  "nudge.achievements": {
+    kk: "Сіз бірнеше жетістік аштыңыз. Тізімді көресіз бе?",
+    ru: "Вы уже открыли несколько достижений. Показать список?",
+    en: "You have unlocked a few achievements. Want to see the list?",
+  },
+  "nudge.hidden": {
+    kk: "Шолғышта «Көрініс» мәзірінде жасырын файлдар бар. Тексеріп көріңіз.",
+    ru: "В проводнике, в меню «Вид», прячутся скрытые файлы. Стоит заглянуть.",
+    en: "The explorer hides files under the View menu. Worth a look.",
+  },
+  "nudge.recycle": {
+    kk: "Себетте аяқталмаған идеялар жатыр — әрқайсысы бірдеңеге үйретті.",
+    ru: "В корзине лежат незаконченные идеи — каждая чему-то научила.",
+    en: "The recycle bin holds unfinished ideas — each one taught something.",
+  },
+  "nudge.games": {
+    kk: "Демалғыңыз келсе, мұнда бірнеше ойын бар.",
+    ru: "Если захочется передохнуть — здесь есть несколько игр.",
+    en: "If you fancy a break, there are a few games here.",
+  },
+  "nudge.contact": {
+    kk: "Көп нәрсені көрдіңіз. Сұрақ болса — байланысыңыз.",
+    ru: "Вы посмотрели немало. Если появился вопрос — можно написать.",
+    en: "You have seen a lot. If a question came up, feel free to reach out.",
+  },
+
+  // Quick replies in the messenger
+  "quick.projects": { kk: "Жобалар", ru: "Проекты", en: "Projects" },
+  "quick.resume": { kk: "Түйіндеме", ru: "Резюме", en: "Resume" },
+  "quick.skills": { kk: "Дағдылар", ru: "Навыки", en: "Skills" },
+  "quick.contact": { kk: "Байланыс", ru: "Контакты", en: "Contact" },
+
   "agent.trayHint": {
     kk: "Сәлем! Мен трейде тұрмын — сұрақ қою үшін басыңыз.",
     ru: "Привет! Я живу в трее — нажми, чтобы написать мне.",

@@ -19,6 +19,7 @@ export enum AchievementId {
   Polyglot = "polyglot",
   Retro = "retro",
   Digger = "digger",
+  BlueScreen = "blue-screen",
   SecretFinder = "secret-finder",
 }
 
@@ -151,6 +152,13 @@ export const ACHIEVEMENTS: readonly Achievement[] = [
     titleKey: "ach.digger",
     descKey: "ach.digger.d",
     icon: "doc",
+    secret: true,
+  },
+  {
+    id: AchievementId.BlueScreen,
+    titleKey: "ach.blue-screen",
+    descKey: "ach.blue-screen.d",
+    icon: "monitor",
     secret: true,
   },
   {

@@ -41,10 +41,10 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
   },
   {
     id: AppKey.Portfolio,
-    title: "Проводник портфолио",
+    title: "Мой компьютер",
     iconSrc: "/assets/icons/portfolio.svg",
-    defaultSize: { width: 480, height: 380 },
-    minSize: { width: 360, height: 280 },
+    defaultSize: { width: 560, height: 430 },
+    minSize: { width: 320, height: 300 },
     resizable: true,
     singleton: true,
   },
