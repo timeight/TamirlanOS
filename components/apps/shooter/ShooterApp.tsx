@@ -9,6 +9,8 @@ import {
   type Input,
   type World,
 } from "@/core/games/shooter";
+import { AchievementId } from "@/core/achievements/catalog";
+import { useAchievement } from "@/hooks/use-achievement";
 import { useT } from "@/hooks/use-translations";
 
 const WIDTH = 480;
@@ -32,6 +34,8 @@ export function ShooterApp() {
   const [over, setOver] = useState(false);
   const [hud, setHud] = useState({ score: 0, wave: 1 });
   const t = useT();
+
+  useAchievement(AchievementId.Sharpshooter, hud.wave >= 5);
 
   const restart = () => {
     worldRef.current = createWorld(WIDTH, HEIGHT);

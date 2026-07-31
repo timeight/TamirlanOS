@@ -1,11 +1,14 @@
 "use client";
 
 import { BrandMark } from "@/components/ui/BrandMark";
+import { LoadingMessages } from "@/components/boot/LoadingMessages";
+import { useSkipBoot } from "@/hooks/use-skip-boot";
 import { useTimeout } from "@/hooks/use-timeout";
 import { useT } from "@/hooks/use-translations";
 import { useSystemStore } from "@/stores/system-store";
 
-const LOADING_DURATION_MS = 3000;
+const LOADING_DURATION_MS = 2800;
+const MESSAGE_INTERVAL_MS = 700;
 
 const SEGMENT_GRADIENT =
   "linear-gradient(180deg, #8b9dff 0%, #3a4ee0 55%, #1b2ab0 100%)";
@@ -13,7 +16,14 @@ const SEGMENT_GRADIENT =
 export function LoadingScreen() {
   const advanceBoot = useSystemStore((state) => state.advanceBoot);
   const t = useT();
+  const messages = [
+    t("load.services"),
+    t("load.profile"),
+    t("load.desktop"),
+    t("load.apps"),
+  ];
 
+  useSkipBoot(advanceBoot);
   useTimeout(advanceBoot, LOADING_DURATION_MS);
 
   return (
@@ -55,6 +65,7 @@ export function LoadingScreen() {
           />
         </div>
       </div>
+      <LoadingMessages messages={messages} intervalMs={MESSAGE_INTERVAL_MS} />
       <div className="absolute inset-x-0 bottom-0 flex items-end justify-between px-5 pb-5 sm:px-10 sm:pb-8">
         <p className="text-sm leading-5 sm:text-lg sm:leading-6">
           {t("loading.tip")}

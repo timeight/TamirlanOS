@@ -1,6 +1,7 @@
 "use client";
 
 import { AboutMeApp } from "@/components/apps/about-me/AboutMeApp";
+import { AchievementsApp } from "@/components/apps/achievements/AchievementsApp";
 import { AgentApp } from "@/components/apps/agent/AgentApp";
 import { CertificatesApp } from "@/components/apps/certificates/CertificatesApp";
 import { CheckersApp } from "@/components/apps/checkers/CheckersApp";
@@ -66,6 +67,8 @@ export function AppRenderer({ appId }: AppRendererProps) {
       return <ShooterApp />;
     case AppKey.Agent:
       return <AgentApp />;
+    case AppKey.Achievements:
+      return <AchievementsApp />;
     default:
       return null;
   }

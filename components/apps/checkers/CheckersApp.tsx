@@ -12,7 +12,9 @@ import {
   type Move,
   type Player,
 } from "@/core/games/checkers";
+import { AchievementId } from "@/core/achievements/catalog";
 import { cn } from "@/core/utils/cn";
+import { useAchievement } from "@/hooks/use-achievement";
 import { useT } from "@/hooks/use-translations";
 
 export function CheckersApp() {
@@ -27,6 +29,8 @@ export function CheckersApp() {
 
   const win = winner(board, turn);
   const thinking = vsAI && turn === "b" && !win;
+
+  useAchievement(AchievementId.Grandmaster, vsAI && win === "r");
 
   useEffect(() => {
     if (!thinking) return;

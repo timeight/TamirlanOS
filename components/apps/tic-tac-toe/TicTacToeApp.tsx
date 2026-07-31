@@ -7,7 +7,9 @@ import {
   type Board,
   type Mark,
 } from "@/core/games/tictactoe";
+import { AchievementId } from "@/core/achievements/catalog";
 import { cn } from "@/core/utils/cn";
+import { useAchievement } from "@/hooks/use-achievement";
 import { useT } from "@/hooks/use-translations";
 
 const EMPTY: Board = Array.from({ length: 9 }, () => null);
@@ -20,6 +22,8 @@ export function TicTacToeApp() {
 
   const result = winnerTTT(board);
   const thinking = vsAI && turn === "O" && !result;
+
+  useAchievement(AchievementId.Stalemate, vsAI && result === "draw");
 
   useEffect(() => {
     if (!thinking) return;

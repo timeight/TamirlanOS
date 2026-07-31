@@ -5,10 +5,12 @@ import { useEffect, useRef, useState } from "react";
 import { AgentComposer } from "./AgentComposer";
 import { AgentMessage } from "./AgentMessage";
 import { AgentToolbar } from "./AgentToolbar";
+import { AchievementId } from "@/core/achievements/catalog";
 import { greetingReply, respond } from "@/core/agent/bot";
 import { siteConfig } from "@/core/config/site";
 import { useOpenApp } from "@/hooks/use-open-app";
 import { useT } from "@/hooks/use-translations";
+import { useAchievementStore } from "@/stores/achievement-store";
 import { useLocaleStore } from "@/stores/locale-store";
 import { useNotificationStore } from "@/stores/notification-store";
 
@@ -63,6 +65,7 @@ export function AgentApp() {
   const send = () => {
     const text = input.trim();
     if (!text) return;
+    useAchievementStore.getState().unlock(AchievementId.AiResearcher);
     setMessages((prev) => [
       ...prev,
       { id: idRef.current++, from: "me", body: text, time: now() },

@@ -1,17 +1,19 @@
 "use client";
 
+import { useSkipBoot } from "@/hooks/use-skip-boot";
 import { useTimeout } from "@/hooks/use-timeout";
 import { useT } from "@/hooks/use-translations";
 import { useSystemStore } from "@/stores/system-store";
 
 const MESSAGE_STAGGER_MS = 450;
-const WELCOME_DURATION_MS = 2400;
+const WELCOME_DURATION_MS = 1900;
 
 export function WelcomeScreen() {
   const advanceBoot = useSystemStore((state) => state.advanceBoot);
   const t = useT();
   const MESSAGES = [t("boot.welcome"), t("boot.ready"), t("boot.preparing")];
 
+  useSkipBoot(advanceBoot);
   useTimeout(advanceBoot, WELCOME_DURATION_MS);
 
   return (

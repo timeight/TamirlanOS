@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { AssetImage } from "@/components/ui/AssetImage";
 import { AppKey } from "@/core/apps/app-catalog";
 import { useOpenApp } from "@/hooks/use-open-app";
+import { AchievementId } from "@/core/achievements/catalog";
 import { useT } from "@/hooks/use-translations";
+import { useAchievementStore } from "@/stores/achievement-store";
 import { useAudioStore } from "@/stores/audio-store";
 import { useDesktopStore } from "@/stores/desktop-store";
 
@@ -75,7 +77,10 @@ export function SystemTray() {
         type="button"
         aria-label="Toggle CRT monitor effect"
         aria-pressed={crtEnabled}
-        onClick={toggleCrt}
+        onClick={() => {
+          useAchievementStore.getState().unlock(AchievementId.Retro);
+          toggleCrt();
+        }}
         className={trayButtonClass}
       >
         <svg

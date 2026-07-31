@@ -24,6 +24,7 @@ export enum AppKey {
   TicTacToe = "tic-tac-toe",
   Shooter = "shooter",
   Agent = "agent",
+  Achievements = "achievements",
 }
 
 export const APP_CATALOG: readonly ApplicationManifest[] = [
@@ -198,6 +199,15 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
     resizable: true,
     singleton: true,
     chrome: false,
+  },
+  {
+    id: AppKey.Achievements,
+    title: "Достижения",
+    iconSrc: "/assets/icons/achievements.svg",
+    defaultSize: { width: 440, height: 480 },
+    minSize: { width: 320, height: 360 },
+    resizable: true,
+    singleton: true,
   },
 ];
 

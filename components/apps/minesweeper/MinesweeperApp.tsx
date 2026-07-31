@@ -8,7 +8,9 @@ import {
   toggleFlag,
   type Board,
 } from "@/core/games/minesweeper";
+import { AchievementId } from "@/core/achievements/catalog";
 import { cn } from "@/core/utils/cn";
+import { useAchievement } from "@/hooks/use-achievement";
 import { useT } from "@/hooks/use-translations";
 
 const ROWS = 9;
@@ -36,6 +38,8 @@ export function MinesweeperApp() {
 
   const face =
     board.state === "won" ? "😎" : board.state === "lost" ? "😵" : "🙂";
+
+  useAchievement(AchievementId.Sapper, board.state === "won");
 
   const onCell = (r: number, c: number) => {
     setBoard((current) =>

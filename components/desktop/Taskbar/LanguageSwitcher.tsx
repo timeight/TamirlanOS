@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { AchievementId } from "@/core/achievements/catalog";
 import { LOCALES } from "@/core/i18n/locales";
 import { cn } from "@/core/utils/cn";
+import { useAchievementStore } from "@/stores/achievement-store";
 import { useLocaleStore } from "@/stores/locale-store";
 
 export function LanguageSwitcher() {
@@ -43,6 +45,9 @@ export function LanguageSwitcher() {
               type="button"
               role="menuitem"
               onClick={() => {
+                if (item.id !== locale) {
+                  useAchievementStore.getState().unlock(AchievementId.Polyglot);
+                }
                 setLocale(item.id);
                 setOpen(false);
               }}

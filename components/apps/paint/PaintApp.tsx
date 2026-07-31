@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { AchievementId } from "@/core/achievements/catalog";
 import { cn } from "@/core/utils/cn";
 import { useT } from "@/hooks/use-translations";
+import { useAchievementStore } from "@/stores/achievement-store";
 
 const COLORS = [
   "#000000",
@@ -142,6 +144,7 @@ export function PaintApp() {
             drawing.current = true;
             last.current = null;
             stroke(toCanvas(event));
+            useAchievementStore.getState().unlock(AchievementId.Artist);
           }}
           onPointerMove={(event) => {
             if (drawing.current) stroke(toCanvas(event));

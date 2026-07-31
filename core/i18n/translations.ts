@@ -237,6 +237,222 @@ export const translations: Record<string, Record<Locale, string>> = {
     en: "Welcome to TamirlanOS",
   },
   "boot.ready": { kk: "Жүйе дайын", ru: "Система готова", en: "System ready" },
+
+  // Achievements
+  "app.achievements": {
+    kk: "Жетістіктер",
+    ru: "Достижения",
+    en: "Achievements",
+  },
+  "ach.title": { kk: "Жетістіктер", ru: "Достижения", en: "Achievements" },
+  "ach.unlocked": {
+    kk: "Жетістік ашылды",
+    ru: "Достижение получено",
+    en: "Achievement unlocked",
+  },
+  "ach.progress": {
+    kk: "{percent}% аяқталды",
+    ru: "Выполнено на {percent}%",
+    en: "{percent}% complete",
+  },
+  "ach.hidden": { kk: "Құпия", ru: "Секрет", en: "Secret" },
+  "ach.hidden.d": {
+    kk: "Әлі ашылмаған",
+    ru: "Пока не раскрыто",
+    en: "Not discovered yet",
+  },
+
+  "ach.first-boot": {
+    kk: "Бірінші жүктеу",
+    ru: "Первая загрузка",
+    en: "First Boot",
+  },
+  "ach.first-boot.d": {
+    kk: "TamirlanOS іске қосылды",
+    ru: "Система запущена",
+    en: "You booted the system",
+  },
+  "ach.explorer": { kk: "Зерттеуші", ru: "Исследователь", en: "Explorer" },
+  "ach.explorer.d": {
+    kk: "5 қосымша ашылды",
+    ru: "Открыто 5 приложений",
+    en: "Opened 5 applications",
+  },
+  "ach.power-user": {
+    kk: "Тәжірибелі қолданушы",
+    ru: "Опытный пользователь",
+    en: "Power User",
+  },
+  "ach.power-user.d": {
+    kk: "12 қосымша ашылды",
+    ru: "Открыто 12 приложений",
+    en: "Opened 12 applications",
+  },
+  "ach.windows-veteran": {
+    kk: "Windows ардагері",
+    ru: "Ветеран Windows",
+    en: "Windows Veteran",
+  },
+  "ach.windows-veteran.d": {
+    kk: "Барлық қосымша ашылды",
+    ru: "Открыты все приложения",
+    en: "Opened every application",
+  },
+  "ach.reader": { kk: "Оқырман", ru: "Читатель", en: "Reader" },
+  "ach.reader.d": {
+    kk: "«Мен туралы» оқылды",
+    ru: "Прочитано «Обо мне»",
+    en: "Read the About page",
+  },
+  "ach.developer": { kk: "Әзірлеуші", ru: "Разработчик", en: "Developer" },
+  "ach.developer.d": {
+    kk: "Жобалар қаралды",
+    ru: "Просмотрены проекты",
+    en: "Browsed the projects",
+  },
+  "ach.recruiter": { kk: "Рекрутер", ru: "Рекрутёр", en: "Recruiter" },
+  "ach.recruiter.d": {
+    kk: "Түйіндеме ашылды",
+    ru: "Открыто резюме",
+    en: "Opened the resume",
+  },
+  "ach.photographer": { kk: "Фотограф", ru: "Фотограф", en: "Photographer" },
+  "ach.photographer.d": {
+    kk: "Галерея қаралды",
+    ru: "Просмотрена галерея",
+    en: "Viewed the gallery",
+  },
+  "ach.networker": { kk: "Байланысшы", ru: "Связной", en: "Networker" },
+  "ach.networker.d": {
+    kk: "Контактілер табылды",
+    ru: "Найдены контакты",
+    en: "Found the contacts",
+  },
+  "ach.ai-researcher": {
+    kk: "AI-зерттеуші",
+    ru: "ИИ-исследователь",
+    en: "AI Researcher",
+  },
+  "ach.ai-researcher.d": {
+    kk: "Агентке хабарлама жазылды",
+    ru: "Написано сообщение Агенту",
+    en: "Messaged the Agent",
+  },
+  "ach.gamer": { kk: "Ойыншы", ru: "Геймер", en: "Gamer" },
+  "ach.gamer.d": {
+    kk: "Кез келген ойын іске қосылды",
+    ru: "Запущена любая игра",
+    en: "Launched any game",
+  },
+  "ach.sapper": { kk: "Сапёр", ru: "Сапёр", en: "Sapper" },
+  "ach.sapper.d": {
+    kk: "Мина іздеу ұтылды",
+    ru: "Пройден Сапёр",
+    en: "Cleared Minesweeper",
+  },
+  "ach.grandmaster": {
+    kk: "Гроссмейстер",
+    ru: "Гроссмейстер",
+    en: "Grandmaster",
+  },
+  "ach.grandmaster.d": {
+    kk: "Дойбыда ЖИ жеңілді",
+    ru: "ИИ обыгран в шашки",
+    en: "Beat the checkers AI",
+  },
+  "ach.stalemate": { kk: "Тең ойын", ru: "Ничья", en: "Stalemate" },
+  "ach.stalemate.d": {
+    kk: "Крестики-ноликсте ЖИ-мен тең",
+    ru: "Ничья с ИИ в крестиках-ноликах",
+    en: "Drew against the tic-tac-toe AI",
+  },
+  "ach.tile-master": {
+    kk: "Плитка шебері",
+    ru: "Мастер плиток",
+    en: "Tile Master",
+  },
+  "ach.tile-master.d": {
+    kk: "2048-де 512 жиналды",
+    ru: "Собрана плитка 512 в 2048",
+    en: "Reached the 512 tile",
+  },
+  "ach.sharpshooter": {
+    kk: "Мерген",
+    ru: "Меткий стрелок",
+    en: "Sharpshooter",
+  },
+  "ach.sharpshooter.d": {
+    kk: "Шутерде 5-толқынға жетті",
+    ru: "Достигнута 5-я волна в шутере",
+    en: "Survived to wave 5",
+  },
+  "ach.artist": { kk: "Суретші", ru: "Художник", en: "Artist" },
+  "ach.artist.d": {
+    kk: "Paint-те сурет салынды",
+    ru: "Нарисовано в Paint",
+    en: "Drew something in Paint",
+  },
+  "ach.polyglot": { kk: "Полиглот", ru: "Полиглот", en: "Polyglot" },
+  "ach.polyglot.d": {
+    kk: "Жүйе тілі ауыстырылды",
+    ru: "Сменён язык системы",
+    en: "Switched the system language",
+  },
+  "ach.retro": { kk: "Ретро", ru: "Ретро", en: "Retro" },
+  "ach.retro.d": {
+    kk: "ЭЛТ эффектісі қосылды",
+    ru: "Включён эффект ЭЛТ",
+    en: "Turned on the CRT effect",
+  },
+  "ach.secret-finder": {
+    kk: "Құпия іздеуші",
+    ru: "Искатель секретов",
+    en: "Secret Finder",
+  },
+  "ach.secret-finder.d": {
+    kk: "Konami коды табылды",
+    ru: "Найден код Konami",
+    en: "Found the Konami code",
+  },
+
+  // BIOS / POST
+  "bios.memoryTest": {
+    kk: "Жады тексерілуде",
+    ru: "Проверка памяти",
+    en: "Memory Test",
+  },
+  "bios.startingOs": {
+    kk: "TamirlanOS іске қосылуда...",
+    ru: "Запуск TamirlanOS...",
+    en: "Starting TamirlanOS...",
+  },
+  "bios.setupHint": {
+    kk: "SETUP үшін DEL, жүктеу мәзірі үшін F12. Өткізу үшін кез келген пернені басыңыз.",
+    ru: "DEL — SETUP, F12 — меню загрузки. Нажмите любую клавишу, чтобы пропустить.",
+    en: "Press DEL to enter SETUP, F12 for Boot Menu. Press any key to skip.",
+  },
+
+  // Loading messages
+  "load.services": {
+    kk: "Қызметтер іске қосылуда...",
+    ru: "Запуск служб...",
+    en: "Starting services...",
+  },
+  "load.profile": {
+    kk: "Пайдаланушы параметрлері жүктелуде...",
+    ru: "Загрузка параметров пользователя...",
+    en: "Loading user settings...",
+  },
+  "load.desktop": {
+    kk: "Жұмыс үстелі дайындалуда...",
+    ru: "Подготовка рабочего стола...",
+    en: "Preparing your desktop...",
+  },
+  "load.apps": {
+    kk: "Қосымшалар тіркелуде...",
+    ru: "Регистрация приложений...",
+    en: "Registering applications...",
+  },
   "boot.preparing": {
     kk: "Жұмыс үстелі дайындалуда...",
     ru: "Подготовка рабочего стола...",

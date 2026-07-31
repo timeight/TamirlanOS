@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { DesktopIcons } from "@/components/desktop/DesktopIcons";
+import { AchievementBalloon } from "@/components/desktop/AchievementBalloon";
+import { AchievementTracker } from "@/components/desktop/AchievementTracker";
 import { DesktopSurface } from "@/components/desktop/DesktopSurface";
 import { NotificationToast } from "@/components/desktop/NotificationToast";
 import { Taskbar } from "@/components/desktop/Taskbar/Taskbar";
@@ -66,6 +68,8 @@ export function DesktopShell() {
           onOpenApp={openFromBalloon}
         />
       )}
+      <AchievementTracker />
+      <AchievementBalloon />
       <NotificationToast />
       <Taskbar />
     </div>

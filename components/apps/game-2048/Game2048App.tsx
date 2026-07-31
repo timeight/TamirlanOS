@@ -7,6 +7,8 @@ import {
   type Direction,
   type Game,
 } from "@/core/games/game2048";
+import { AchievementId } from "@/core/achievements/catalog";
+import { useAchievement } from "@/hooks/use-achievement";
 import { useT } from "@/hooks/use-translations";
 
 const TILE_STYLES: Record<number, { bg: string; fg: string }> = {
@@ -39,6 +41,11 @@ export function Game2048App() {
   const [game, setGame] = useState<Game>(createGame);
   const start = useRef<{ x: number; y: number } | null>(null);
   const t = useT();
+
+  useAchievement(
+    AchievementId.TileMaster,
+    Math.max(...game.grid.flat()) >= 512,
+  );
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
