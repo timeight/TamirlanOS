@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./tokens.css";
 
 @theme {
   --font-sans: Tahoma, Verdana, "Segoe UI", sans-serif;
@@ -16,6 +17,132 @@
   --animate-blink: blink 1s step-end infinite;
   --animate-xp-progress: xp-progress 2s linear infinite;
   --animate-glitch: glitch 180ms steps(2, end) 2;
+
+  --animate-window-open: window-open 140ms cubic-bezier(0.2, 0, 0, 1) both;
+  --animate-window-close: window-close 120ms cubic-bezier(0.4, 0, 1, 1) both;
+  --animate-window-minimize: window-minimize 160ms cubic-bezier(0.4, 0, 1, 1)
+    both;
+  --animate-window-restore: window-restore 170ms cubic-bezier(0.2, 0, 0, 1) both;
+  --animate-taskbar-flash: taskbar-flash 420ms ease-out;
+
+  @keyframes window-open {
+    from {
+      opacity: 0;
+      scale: 0.96;
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  @keyframes window-close {
+    to {
+      opacity: 0;
+      scale: 0.94;
+    }
+  }
+
+  /* Scale only: the window's position lives in `translate`, so animating
+     transform here would fight the drag handler. Origin does the travelling. */
+  @keyframes window-minimize {
+    to {
+      opacity: 0;
+      scale: 0.32;
+    }
+  }
+
+  @keyframes window-restore {
+    from {
+      opacity: 0;
+      scale: 0.32;
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  @keyframes taskbar-flash {
+    0%,
+    100% {
+      filter: brightness(1);
+    }
+    35% {
+      filter: brightness(1.6);
+    }
+  }
+
+  @keyframes desktop-breathe {
+    0%,
+    100% {
+      opacity: 0.55;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes cloud-drift {
+    from {
+      transform: translateX(0);
+      opacity: 0;
+    }
+    12%,
+    88% {
+      opacity: 1;
+    }
+    to {
+      transform: translateX(320%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes breeze-pass {
+    from {
+      transform: translateX(0);
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    to {
+      transform: translateX(500%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes sparkle {
+    0%,
+    100% {
+      opacity: 0;
+      scale: 0.4;
+    }
+    45% {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  @keyframes light-shift {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes icon-idle {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-0.7px);
+    }
+  }
 
   @keyframes confetti-fall {
     to {

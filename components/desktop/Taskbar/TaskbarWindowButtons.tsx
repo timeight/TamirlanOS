@@ -9,6 +9,7 @@ import { WindowState, type WindowId } from "@/types/window";
 
 export function TaskbarWindowButtons() {
   const windows = useWindowStore((state) => state.windows);
+  const closing = useWindowStore((state) => state.closing);
   const focusedId = useWindowStore((state) => state.focusedId);
   const focusWindow = useWindowStore((state) => state.focusWindow);
   const minimizeWindow = useWindowStore((state) => state.minimizeWindow);
@@ -31,7 +32,9 @@ export function TaskbarWindowButtons() {
   return (
     <div className="flex min-w-0 flex-1 items-center gap-1 overflow-hidden px-1.5">
       {Object.values(windows).map((window) => {
+        if (closing.includes(window.id)) return null;
         const pressed = window.id === focusedId;
+        const minimized = window.state === WindowState.Minimized;
         const iconSrc = getApplication(window.appId)?.iconSrc;
         return (
           <button
@@ -40,7 +43,8 @@ export function TaskbarWindowButtons() {
             aria-pressed={pressed}
             onClick={() => handleClick(window.id)}
             className={cn(
-              "flex h-[22px] w-40 min-w-0 shrink items-center gap-1.5 rounded-[3px] px-2 text-[11px] text-white transition-[filter] duration-100 hover:brightness-110 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white motion-reduce:transition-none",
+              "flex h-[22px] w-40 min-w-0 shrink items-center gap-1.5 rounded-[3px] px-2 text-[11px] text-white transition-[filter,translate] duration-100 hover:brightness-110 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white active:translate-y-px motion-reduce:animate-none motion-reduce:transition-none",
+              minimized && "animate-taskbar-flash",
             )}
             style={{
               background: pressed

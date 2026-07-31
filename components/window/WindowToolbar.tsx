@@ -10,13 +10,14 @@ interface WindowToolbarProps {
 
 // Navigation is a visual homage: windows have no history, so the buttons read as
 // authentically disabled rather than pretending to work.
-const navButton = "flex items-center gap-1 rounded-sm px-2 py-1 text-[#9aa0a6]";
+const navButton =
+  "flex items-center gap-1 rounded-sm px-2 py-1 text-[var(--os-text-disabled)]";
 
 export function WindowToolbar({ iconSrc, title }: WindowToolbarProps) {
   const t = useT();
   return (
     <>
-      <div className="flex shrink-0 items-center gap-0.5 border-b border-[#aca899] bg-gradient-to-b from-[#faf9f4] to-[#e7e4d3] px-1.5 py-1 text-[11px]">
+      <div className="flex shrink-0 items-center gap-0.5 border-b border-[var(--os-frame)] bg-gradient-to-b from-[#faf9f4] to-[#e7e4d3] px-1.5 py-1 text-[11px]">
         <span className={navButton} aria-disabled="true">
           <svg viewBox="0 0 16 16" aria-hidden="true" className="h-3.5 w-3.5">
             <path
@@ -46,7 +47,7 @@ export function WindowToolbar({ iconSrc, title }: WindowToolbarProps) {
             />
           </svg>
         </span>
-        <span className="mx-1 h-5 w-px bg-[#c3bfa8]" />
+        <span className="mx-1 h-5 w-px bg-[var(--os-inset-border)]" />
         <span
           className={navButton}
           aria-disabled="true"
@@ -64,9 +65,11 @@ export function WindowToolbar({ iconSrc, title }: WindowToolbarProps) {
           </svg>
         </span>
       </div>
-      <div className="flex shrink-0 items-center gap-1.5 border-b border-[#aca899] bg-[#ece9d8] px-2 py-1 text-[11px] text-black">
-        <span className="text-[#4a4a3a]">{t("win.address")}</span>
-        <div className="flex min-w-0 flex-1 items-center gap-1.5 border border-[#7f9db9] bg-white px-1.5 py-0.5">
+      <div className="flex shrink-0 items-center gap-1.5 border-b border-[var(--os-frame)] bg-[var(--os-face)] px-2 py-1 text-[11px] text-black">
+        <span className="text-[var(--os-text-secondary)]">
+          {t("win.address")}
+        </span>
+        <div className="flex min-w-0 flex-1 items-center gap-1.5 border border-[var(--os-field-border)] bg-white px-1.5 py-0.5">
           {iconSrc && (
             <Image
               src={iconSrc}
@@ -81,7 +84,7 @@ export function WindowToolbar({ iconSrc, title }: WindowToolbarProps) {
         </div>
         <span
           aria-disabled="true"
-          className="rounded-sm border border-[#aca899] bg-gradient-to-b from-white to-[#e7e4d3] px-2 py-0.5 text-[#9aa0a6]"
+          className="rounded-sm border border-[var(--os-frame)] bg-gradient-to-b from-white to-[#e7e4d3] px-2 py-0.5 text-[var(--os-text-disabled)]"
         >
           {t("win.go")}
         </span>

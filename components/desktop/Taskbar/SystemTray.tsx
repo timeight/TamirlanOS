@@ -10,6 +10,7 @@ import { useAchievementStore } from "@/stores/achievement-store";
 import { useAudioStore } from "@/stores/audio-store";
 import { usePetStore } from "@/stores/pet-store";
 import { useDesktopStore } from "@/stores/desktop-store";
+import { useIcqStore } from "@/stores/icq-store";
 
 const trayButtonClass =
   "flex items-center px-1 text-white transition-[filter] duration-100 hover:brightness-125 focus-visible:outline-1 focus-visible:outline-white aria-pressed:brightness-75 motion-reduce:transition-none";
@@ -22,6 +23,7 @@ export function SystemTray() {
   const petEnabled = usePetStore((state) => state.enabled);
   const togglePet = usePetStore((state) => state.toggleEnabled);
   const t = useT();
+  const unread = useIcqStore((state) => state.unread);
   const [fullscreen, setFullscreen] = useState(false);
 
   useEffect(() => {
@@ -40,6 +42,27 @@ export function SystemTray() {
 
   return (
     <div className="flex items-stretch">
+      <button
+        type="button"
+        title="ICQ"
+        aria-label={unread > 0 ? `ICQ, ${unread}` : "ICQ"}
+        onClick={() => openApp(AppKey.Icq)}
+        className={`${trayButtonClass} relative`}
+      >
+        <AssetImage
+          src="/assets/icons/icq.svg"
+          alt=""
+          width={16}
+          height={16}
+          unoptimized
+          draggable={false}
+          className={
+            unread > 0
+              ? "drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)] motion-safe:animate-[blink_1.1s_step-end_infinite]"
+              : "drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]"
+          }
+        />
+      </button>
       <button
         type="button"
         title={t("app.agent")}

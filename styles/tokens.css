@@ -1,0 +1,198 @@
+/**
+ * TamirlanOS design tokens.
+ *
+ * Colour tokens are written here as the Luna defaults and overwritten at
+ * runtime by ThemeManager. Everything else (metrics, typography, motion) is
+ * theme-independent and lives only here.
+ *
+ * Rule: components reference tokens, never literals.
+ */
+
+:root {
+  /* ---------------------------------------------------------- typography */
+  --os-font: "Trebuchet MS", Arial, sans-serif;
+  --os-font-ui: Tahoma, Verdana, "Segoe UI", sans-serif;
+  --os-font-mono: "Courier New", ui-monospace, Menlo, Consolas, monospace;
+
+  --os-text-title: 11px;
+  --os-text-menu: 11px;
+  --os-text-body: 12px;
+  --os-text-caption: 10px;
+  --os-text-tooltip: 11px;
+  --os-text-system: 13px;
+  --os-text-heading: 14px;
+
+  --os-weight-normal: 400;
+  --os-weight-bold: 700;
+  --os-leading-tight: 1.2;
+  --os-leading-body: 1.45;
+
+  /* ------------------------------------------------------------- spacing */
+  --os-space-0: 0px;
+  --os-space-1: 2px;
+  --os-space-2: 4px;
+  --os-space-3: 6px;
+  --os-space-4: 8px;
+  --os-space-5: 12px;
+  --os-space-6: 16px;
+  --os-space-7: 24px;
+
+  --os-pad-window: var(--os-space-2);
+  --os-pad-toolbar: var(--os-space-3);
+  --os-pad-menu-x: var(--os-space-4);
+  --os-pad-menu-y: var(--os-space-2);
+  --os-pad-dialog: var(--os-space-6);
+  --os-gap-icons: var(--os-space-2);
+
+  /* -------------------------------------------------------------- radius */
+  --os-radius-none: 0px;
+  --os-radius-xs: 2px;
+  --os-radius-sm: 3px;
+  --os-radius-md: 4px;
+  --os-radius-window: 8px 8px 0 0;
+  --os-radius-balloon: 6px;
+  --os-radius-pill: 999px;
+
+  /* ------------------------------------------------------------- borders */
+  --os-border-width: 1px;
+  --os-border-width-thick: 2px;
+  --os-border-inset: inset 1px 1px 1px rgb(0 0 0 / 0.05);
+
+  /* ------------------------------------------------------------- shadows */
+  --os-shadow-window: 3px 3px 12px rgb(0 0 0 / 0.45);
+  --os-shadow-menu: 2px 2px 6px rgb(0 0 0 / 0.3);
+  --os-shadow-balloon: 2px 2px 8px rgb(0 0 0 / 0.45);
+  --os-shadow-taskbar: 0 -1px 3px rgb(0 0 0 / 0.25);
+  --os-shadow-text: 1px 1px 2px rgb(0 0 0 / 0.9);
+
+  /* ------------------------------------------------------------- opacity */
+  --os-opacity-disabled: 0.45;
+  --os-opacity-hidden-file: 0.55;
+  --os-opacity-muted: 0.7;
+  --os-opacity-overlay: 0.25;
+
+  /* -------------------------------------------------------------- motion */
+  --os-duration-instant: 100ms;
+  --os-duration-hover: 120ms;
+  --os-duration-menu: 150ms;
+  --os-duration-window: 200ms;
+  --os-duration-notification: 250ms;
+  --os-duration-fade: 200ms;
+
+  --os-ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --os-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --os-ease-snap: cubic-bezier(0.3, 0, 0.1, 1);
+
+  --os-anim-window-open: var(--os-duration-window) var(--os-ease-out);
+  --os-anim-window-close: var(--os-duration-instant) var(--os-ease-in-out);
+  --os-anim-hover: var(--os-duration-hover) var(--os-ease-out);
+  --os-anim-selection: var(--os-duration-instant) var(--os-ease-out);
+  --os-anim-menu: var(--os-duration-menu) var(--os-ease-out);
+  --os-anim-context-menu: var(--os-duration-instant) var(--os-ease-snap);
+  --os-anim-notification: var(--os-duration-notification) var(--os-ease-out);
+
+  /* --------------------------------------------------------- icon sizing */
+  --os-icon-16: 16px;
+  --os-icon-24: 24px;
+  --os-icon-32: 32px;
+  --os-icon-48: 48px;
+  --os-icon-64: 64px;
+
+  /* ------------------------------------------------------ window metrics */
+  --os-window-titlebar-height: 28px;
+  --os-window-menubar-height: 22px;
+  --os-window-statusbar-height: 20px;
+  --os-window-border: 3px;
+  --os-window-resize-grip: 6px;
+  --os-window-min-width: 240px;
+
+  /* ----------------------------------------------------- taskbar metrics */
+  --os-taskbar-height: 30px;
+  --os-taskbar-button-width: 160px;
+  --os-taskbar-tray-gap: var(--os-space-2);
+
+  /* ----------------------------------------------------- desktop metrics */
+  --os-desktop-icon-cell-width: 76px;
+  --os-desktop-icon-cell-height: 88px;
+  --os-desktop-padding-x: 12px;
+  --os-desktop-padding-y: 12px;
+  --os-desktop-icon-size: var(--os-icon-48);
+
+  /* ---------------------------------------------------- wallpaper layers */
+  --os-wallpaper-overlay: rgb(0 0 0 / 0);
+  --os-wallpaper-vignette: rgb(0 0 0 / 0.12);
+
+  /* -------------------------------------------------------------- z-index */
+  --os-z-desktop: 0;
+  --os-z-windows: 10;
+  --os-z-pet: 40;
+  --os-z-start-menu: 70;
+  --os-z-balloon: 60;
+  --os-z-effects: 62;
+  --os-z-dialog: 80;
+
+  /* -------------------------------------------- colours (Luna defaults) */
+  --os-face: #ece9d8;
+  --os-face-light: #f7f5ec;
+  --os-face-dark: #d4d0c8;
+  --os-frame: #aca899;
+  --os-frame-light: #f6f4ec;
+  --os-inset-border: #c3bfa8;
+
+  --os-titlebar-active-from: #1c68d8;
+  --os-titlebar-active-mid: #3f8cf3;
+  --os-titlebar-active-to: #1044a5;
+  --os-titlebar-inactive-from: #7a96df;
+  --os-titlebar-inactive-to: #6a85c9;
+  --os-titlebar-text: #ffffff;
+  --os-titlebar-accent: #f0a63c;
+
+  --os-window-background: #ffffff;
+  --os-window-border: #0831d9;
+  --os-window-content-text: #000000;
+
+  --os-text-primary: #000000;
+  --os-text-secondary: #4a5a70;
+  --os-text-muted: #7a8390;
+  --os-text-heading: #003399;
+  --os-text-disabled: #9aa0a6;
+  --os-text-on-accent: #ffffff;
+
+  --os-selection: #316ac5;
+  --os-selection-text: #ffffff;
+  --os-hover: #d6e6f8;
+  --os-hover-soft: #ebf3fb;
+  --os-menu-border: #8a8676;
+  --os-field-border: #7f9db9;
+  --os-field-background: #ffffff;
+
+  --os-taskbar-from: #2b6cd8;
+  --os-taskbar-to: #1b4ba8;
+  --os-taskbar-text: #ffffff;
+  --os-start-from: #3faa3c;
+  --os-start-to: #217a1e;
+  --os-start-text: #ffffff;
+
+  --os-balloon-background: #ffffe1;
+  --os-balloon-border: #767676;
+  --os-balloon-text: #000000;
+
+  --os-accent: #0055e5;
+  --os-danger: #c0392b;
+  --os-success: #2f8a1c;
+  --os-warning: #f2c14e;
+  --os-link: #0000ee;
+  --os-link-hover: #cc0000;
+}
+
+/* Motion tokens collapse when the visitor asks for less movement. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --os-duration-instant: 1ms;
+    --os-duration-hover: 1ms;
+    --os-duration-menu: 1ms;
+    --os-duration-window: 1ms;
+    --os-duration-notification: 1ms;
+    --os-duration-fade: 1ms;
+  }
+}

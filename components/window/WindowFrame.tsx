@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useRef } from "react";
+import { memo, useCallback, useRef } from "react";
 import { AppRenderer } from "@/components/apps/AppRenderer";
 import { WindowContent } from "@/components/window/WindowContent";
 import { WindowResizeHandles } from "@/components/window/WindowResizeHandles";
@@ -9,8 +9,22 @@ import { cn } from "@/core/utils/cn";
 import { useIsCompact } from "@/hooks/use-compact";
 import { useWindowDrag } from "@/hooks/use-window-drag";
 import { useWindowResize } from "@/hooks/use-window-resize";
+import {
+  useWindowTransition,
+  type WindowPhase,
+} from "@/hooks/use-window-transition";
 import { useWindowStore } from "@/stores/window-store";
 import { WindowState, type WindowId } from "@/types/window";
+
+/** Minimize and restore pull toward the bottom-left, where the taskbar lives. */
+const PHASE_CLASS: Record<WindowPhase, string> = {
+  opening: "animate-window-open",
+  idle: "",
+  minimizing: "animate-window-minimize origin-bottom-left",
+  restoring: "animate-window-restore origin-bottom-left",
+  hidden: "hidden",
+  closing: "animate-window-close pointer-events-none",
+};
 
 interface WindowFrameProps {
   id: WindowId;
@@ -26,11 +40,19 @@ export const WindowFrame = memo(function WindowFrame({
   const focusWindow = useWindowStore((store) => store.focusWindow);
   const maximizeWindow = useWindowStore((store) => store.maximizeWindow);
   const restoreWindow = useWindowStore((store) => store.restoreWindow);
+  const destroyWindow = useWindowStore((store) => store.destroyWindow);
+  const closing = useWindowStore((store) => store.closing.includes(id));
 
   const compact = useIsCompact();
   const frameRef = useRef<HTMLElement>(null);
   const onDragPointerDown = useWindowDrag(id, frameRef);
   const onResizePointerDown = useWindowResize(id, frameRef);
+  const onClosed = useCallback(() => destroyWindow(id), [destroyWindow, id]);
+  const phase = useWindowTransition(
+    window_?.state ?? WindowState.Normal,
+    closing,
+    onClosed,
+  );
 
   if (!window_) return null;
 
@@ -62,26 +84,34 @@ export const WindowFrame = memo(function WindowFrame({
         compact
           ? {
               zIndex,
-              background: focused ? "#0055e5" : "#7a96df",
+              background: focused
+                ? "var(--os-accent)"
+                : "var(--os-titlebar-inactive-from)",
               boxShadow: "none",
             }
           : {
               zIndex,
               width: window_.bounds.width,
               height: window_.bounds.height,
-              transform: `translate(${window_.bounds.x}px, ${window_.bounds.y}px)`,
-              background: focused ? "#0055e5" : "#7a96df",
-              boxShadow: maximized ? "none" : "2px 2px 10px rgba(0, 0, 0, 0.5)",
+              translate: `${window_.bounds.x}px ${window_.bounds.y}px`,
+              background: focused
+                ? "var(--os-accent)"
+                : "var(--os-titlebar-inactive-from)",
+              boxShadow: maximized
+                ? "none"
+                : focused
+                  ? "3px 4px 14px rgba(0, 0, 0, 0.55)"
+                  : "2px 2px 7px rgba(0, 0, 0, 0.35)",
             }
       }
       className={cn(
-        "animate-fade-in absolute flex flex-col overflow-hidden motion-reduce:animate-none",
+        "absolute flex flex-col overflow-hidden motion-reduce:animate-none",
         compact
           ? "inset-0 rounded-none"
           : maximized
             ? "top-0 left-0 rounded-none"
             : "top-0 left-0 rounded-t-[8px]",
-        window_.state === WindowState.Minimized && "hidden",
+        PHASE_CLASS[phase],
       )}
     >
       <WindowTitleBar

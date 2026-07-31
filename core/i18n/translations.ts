@@ -1012,6 +1012,195 @@ export const translations: Record<string, Record<Locale, string>> = {
     ru: "Найден код Konami",
     en: "Found the Konami code",
   },
+  "ach.hidden-explorer": {
+    kk: "Жасырын зерттеуші",
+    ru: "Скрытый исследователь",
+    en: "Hidden Explorer",
+  },
+  "ach.hidden-explorer.d": {
+    kk: "Lost Files табылды",
+    ru: "Найдена папка Lost Files",
+    en: "Found the Lost Files folder",
+  },
+  "ach.curious-mind": {
+    kk: "Қызығушылық",
+    ru: "Любопытный ум",
+    en: "Curious Mind",
+  },
+  "ach.curious-mind.d": {
+    kk: "Мұрағаттан бес файл ашылды",
+    ru: "Открыто пять файлов из архива",
+    en: "Opened five files from the archive",
+  },
+  "ach.archivist": {
+    kk: "Мұрағатшы",
+    ru: "Архивариус",
+    en: "Archivist",
+  },
+  "ach.archivist.d": {
+    kk: "Барлық қалталар аралап шығылды",
+    ru: "Пройдены все папки архива",
+    en: "Visited every folder in the archive",
+  },
+  "ach.historian": {
+    kk: "Тарихшы",
+    ru: "Историк",
+    en: "Historian",
+  },
+  "ach.historian.d": {
+    kk: "Мұрағат толық оқылды",
+    ru: "Прочитан весь архив",
+    en: "Read the entire archive",
+  },
+
+  // Session resume
+  "session.title": {
+    kk: "Алдыңғы сеансты қалпына келтіру",
+    ru: "Восстановить предыдущий сеанс",
+    en: "Restore Previous Session",
+  },
+  "session.away.recent": {
+    kk: "Қайта оралғаныңыз жақсы.",
+    ru: "С возвращением.",
+    en: "Welcome back.",
+  },
+  "session.away.1": {
+    kk: "Қайта оралғаныңыз жақсы.",
+    ru: "С возвращением.",
+    en: "Welcome back.",
+  },
+  "session.away.7": {
+    kk: "Сізді қайта көргеніме қуаныштымын.",
+    ru: "Рад видеть вас снова.",
+    en: "It's good to see you again.",
+  },
+  "session.away.30": {
+    kk: "Сіз біраз болмадыңыз. PIX жалғастыра берді.",
+    ru: "Вас не было какое-то время. PIX продолжал исследовать.",
+    en: "You've been away for a while. PIX kept exploring.",
+  },
+  "session.away.90": {
+    kk: "Ораласыз деп сенбеп едім.",
+    ru: "Я не был уверен, что вы вернётесь.",
+    en: "I wasn't sure you'd return.",
+  },
+  "session.away.180": {
+    kk: "Сіз жоқта көп нәрсе болды.",
+    ru: "Пока вас не было, многое произошло.",
+    en: "A lot has happened while you were away.",
+  },
+  "session.away.365": {
+    kk: "Үйге қош келдіңіз.",
+    ru: "С возвращением домой.",
+    en: "Welcome home.",
+  },
+  "session.last": {
+    kk: "Соңғы кіру",
+    ru: "Последний визит",
+    en: "Last visit",
+  },
+  "session.days": {
+    kk: "күн бұрын",
+    ru: "дн. назад",
+    en: "days ago",
+  },
+  "session.windows": {
+    kk: "Ашық терезелер",
+    ru: "Открытые окна",
+    en: "Open windows",
+  },
+  "session.visits": {
+    kk: "Кірулер",
+    ru: "Всего визитов",
+    en: "Visits",
+  },
+  "session.remember": {
+    kk: "Таңдауымды есте сақтау",
+    ru: "Запомнить мой выбор",
+    en: "Remember my choice",
+  },
+  "session.restore": {
+    kk: "Қалпына келтіру",
+    ru: "Восстановить",
+    en: "Restore Session",
+  },
+  "session.fresh": {
+    kk: "Жаңадан бастау",
+    ru: "Начать заново",
+    en: "Start Fresh",
+  },
+
+  // Lost Files
+  "lost.title": {
+    kk: "Lost Files",
+    ru: "Lost Files",
+    en: "Lost Files",
+  },
+  "lost.detected": {
+    kk: "Жасырын файлдар табылды.",
+    ru: "Обнаружены скрытые файлы.",
+    en: "Hidden files detected.",
+  },
+  "lost.clue.pix": {
+    kk: "PIX бір нәрсеге қарап тұрды.",
+    ru: "PIX смотрел куда-то слишком долго.",
+    en: "PIX kept staring at something.",
+  },
+  "lost.clue.agent": {
+    kk: "Агент ескі хабарлама тапты.",
+    ru: "Агент нашёл старое сообщение.",
+    en: "The Agent found an old message.",
+  },
+  "lost.clue.hidden-file": {
+    kk: "Жасырын файлда сілтеме болды.",
+    ru: "В скрытом файле была ссылка на путь.",
+    en: "A hidden file pointed at a path.",
+  },
+  "lost.clue.system32": {
+    kk: "System32 ішінен шықты.",
+    ru: "Путь нашёлся внутри System32.",
+    en: "The path turned up inside System32.",
+  },
+  "lost.clue.achievement": {
+    kk: "Жетістік мұрағатты ашты.",
+    ru: "Достижение открыло доступ к архиву.",
+    en: "An achievement opened the archive.",
+  },
+  "lost.clue.command": {
+    kk: "Сіз дұрыс сөзді тердіңіз.",
+    ru: "Вы набрали нужное слово.",
+    en: "You typed the right word.",
+  },
+  "lost.clue.drift": {
+    kk: "Сіз тым мұқият қарадыңыз.",
+    ru: "Вы смотрели слишком внимательно.",
+    en: "You looked around too carefully.",
+  },
+  "lost.intro": {
+    kk: "Бұл қалта жойылмаған. Ол ұмытылған.",
+    ru: "Эта папка не была удалена. О ней просто забыли.",
+    en: "This folder was never deleted. It was forgotten.",
+  },
+  "lost.files": {
+    kk: "файл",
+    ru: "файлов",
+    en: "files",
+  },
+  "lost.back": {
+    kk: "Артқа",
+    ru: "Назад",
+    en: "Back",
+  },
+  "lost.recovered": {
+    kk: "Алдын ала қарау ішінара қалпына келтірілді",
+    ru: "Предпросмотр восстановлен частично",
+    en: "Preview partially recovered",
+  },
+  "lost.read": {
+    kk: "оқылды",
+    ru: "прочитано",
+    en: "read",
+  },
 
   // BIOS / POST
   "bios.memoryTest": {

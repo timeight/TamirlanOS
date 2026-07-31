@@ -67,7 +67,14 @@ export function DesktopIcons({ onIconOpen }: DesktopIconsProps) {
               height={56}
               unoptimized
               draggable={false}
-              className={cn(selected && "brightness-75 saturate-150")}
+              // Staggered so the row never breathes in unison, which would read as a glitch.
+              style={{
+                animationDelay: `${((icon.slot.column * 5 + icon.slot.row) % 7) * 1.3}s`,
+              }}
+              className={cn(
+                "motion-safe:animate-[icon-idle_7s_ease-in-out_infinite]",
+                selected && "brightness-75 saturate-150",
+              )}
             />
             <span
               className={cn(

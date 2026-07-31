@@ -45,7 +45,7 @@ export function ShutdownDialog({ onClose }: ShutdownDialogProps) {
         role="dialog"
         aria-modal="true"
         aria-label={t("shutdown.title")}
-        className="animate-fade-in w-[min(330px,92vw)] overflow-hidden rounded-[6px] border border-[#0831d9] shadow-[3px_3px_12px_rgba(0,0,0,0.55)] motion-reduce:animate-none"
+        className="animate-fade-in w-[min(330px,92vw)] overflow-hidden rounded-[6px] border border-[var(--os-window-border)] shadow-[3px_3px_12px_rgba(0,0,0,0.55)] motion-reduce:animate-none"
       >
         <div
           className="flex h-9 items-center px-3 text-[13px] font-bold text-white"

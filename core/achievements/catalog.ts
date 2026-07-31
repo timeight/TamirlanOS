@@ -21,6 +21,10 @@ export enum AchievementId {
   Digger = "digger",
   BlueScreen = "blue-screen",
   SecretFinder = "secret-finder",
+  HiddenExplorer = "hidden-explorer",
+  CuriousMind = "curious-mind",
+  Archivist = "archivist",
+  Historian = "historian",
 }
 
 export interface Achievement {
@@ -166,6 +170,34 @@ export const ACHIEVEMENTS: readonly Achievement[] = [
     titleKey: "ach.secret-finder",
     descKey: "ach.secret-finder.d",
     icon: "star",
+    secret: true,
+  },
+  {
+    id: AchievementId.HiddenExplorer,
+    titleKey: "ach.hidden-explorer",
+    descKey: "ach.hidden-explorer.d",
+    icon: "folder",
+    secret: true,
+  },
+  {
+    id: AchievementId.CuriousMind,
+    titleKey: "ach.curious-mind",
+    descKey: "ach.curious-mind.d",
+    icon: "doc",
+    secret: true,
+  },
+  {
+    id: AchievementId.Archivist,
+    titleKey: "ach.archivist",
+    descKey: "ach.archivist.d",
+    icon: "grid",
+    secret: true,
+  },
+  {
+    id: AchievementId.Historian,
+    titleKey: "ach.historian",
+    descKey: "ach.historian.d",
+    icon: "crown",
     secret: true,
   },
 ];

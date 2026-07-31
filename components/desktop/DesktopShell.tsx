@@ -3,6 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { DesktopIcons } from "@/components/desktop/DesktopIcons";
 import { AchievementBalloon } from "@/components/desktop/AchievementBalloon";
+import { AmbientLayer } from "@/components/desktop/AmbientLayer";
+import { LostFilesReveal } from "@/components/desktop/LostFilesReveal";
+import { RestoreSessionDialog } from "@/components/desktop/RestoreSessionDialog";
 import { AchievementTracker } from "@/components/desktop/AchievementTracker";
 import { AgentNudge } from "@/components/desktop/AgentNudge";
 import { DesktopSurface } from "@/components/desktop/DesktopSurface";
@@ -13,9 +16,13 @@ import { Taskbar } from "@/components/desktop/Taskbar/Taskbar";
 import { Wallpaper } from "@/components/desktop/Wallpaper";
 import { WelcomeBalloon } from "@/components/desktop/WelcomeBalloon";
 import { WindowHost } from "@/components/desktop/WindowHost";
-import { installApps, type AppKey } from "@/core/apps/app-catalog";
+import type { AppKey } from "@/core/apps/app-catalog";
+import { bootKernel } from "@/core/kernel/boot";
 import { useOpenApp } from "@/hooks/use-open-app";
 import { useT } from "@/hooks/use-translations";
+import { useIcqEngine } from "@/hooks/use-icq-engine";
+import { useSessionEngine } from "@/hooks/use-session-engine";
+import { useLostFilesDiscovery } from "@/hooks/use-lost-files-discovery";
 import { useWorldPublishers } from "@/hooks/use-world-publishers";
 import { useAudioStore } from "@/stores/audio-store";
 import { useNotificationStore } from "@/stores/notification-store";
@@ -31,9 +38,12 @@ export function DesktopShell() {
   const [balloonOpen, setBalloonOpen] = useState(true);
 
   useWorldPublishers();
+  useLostFilesDiscovery();
+  useIcqEngine();
+  const restoreSession = useSessionEngine();
 
   useEffect(() => {
-    installApps();
+    bootKernel();
   }, []);
 
   // The agent lives in the tray and says hello shortly after the desktop settles.
@@ -64,6 +74,7 @@ export function DesktopShell() {
   return (
     <div className="animate-fade-in relative h-full overflow-hidden motion-reduce:animate-none">
       <Wallpaper />
+      <AmbientLayer />
       <DesktopSurface>
         <DesktopIcons onIconOpen={(icon) => openApp(icon.appId)} />
       </DesktopSurface>
@@ -78,6 +89,8 @@ export function DesktopShell() {
       <WorldEffects />
       <AchievementTracker />
       <AchievementBalloon />
+      <LostFilesReveal />
+      <RestoreSessionDialog onRestore={restoreSession} />
       <AgentNudge />
       <NotificationToast />
       <Taskbar />

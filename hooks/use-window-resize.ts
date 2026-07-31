@@ -48,7 +48,7 @@ export function useWindowResize(
           workArea,
         );
         last = next;
-        frame.style.transform = `translate(${next.x}px, ${next.y}px)`;
+        frame.style.translate = `${next.x}px ${next.y}px`;
         frame.style.width = `${next.width}px`;
         frame.style.height = `${next.height}px`;
       };

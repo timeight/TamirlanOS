@@ -16,11 +16,11 @@ export function WelcomeBalloon({ onClose, onOpenApp }: WelcomeBalloonProps) {
   return (
     <div
       role="status"
-      className="animate-fade-in absolute right-3 bottom-[40px] z-[55] w-[min(310px,calc(100vw-24px))] rounded-md border border-[#767676] bg-[#ffffe1] p-3 text-[11px] text-black shadow-[2px_2px_8px_rgba(0,0,0,0.45)] motion-reduce:animate-none"
+      className="animate-fade-in absolute right-3 bottom-[40px] z-[55] w-[min(310px,calc(100vw-24px))] rounded-md border border-[var(--os-balloon-border)] bg-[var(--os-balloon-background)] p-3 text-[11px] text-black shadow-[2px_2px_8px_rgba(0,0,0,0.45)] motion-reduce:animate-none"
     >
       <span
         aria-hidden="true"
-        className="absolute right-9 -bottom-[7px] h-3.5 w-3.5 rotate-45 border-r border-b border-[#767676] bg-[#ffffe1]"
+        className="absolute right-9 -bottom-[7px] h-3.5 w-3.5 rotate-45 border-r border-b border-[var(--os-balloon-border)] bg-[var(--os-balloon-background)]"
       />
       <div className="mb-1 flex items-center gap-1.5">
         <span

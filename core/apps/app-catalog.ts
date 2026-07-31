@@ -28,6 +28,8 @@ export enum AppKey {
   FileViewer = "file-viewer",
   RecycleBin = "recycle-bin",
   InternetExplorer = "ie",
+  LostFiles = "lost-files",
+  Icq = "icq",
 }
 
 export const APP_CATALOG: readonly ApplicationManifest[] = [
@@ -243,8 +245,36 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
   },
 ];
 
+/**
+ * Kept out of APP_CATALOG on purpose: nothing may enumerate the archive, and
+ * the "visited every app" achievement must stay reachable without it.
+ */
+export const SECRET_APPS: readonly ApplicationManifest[] = [
+  {
+    id: AppKey.LostFiles,
+    title: "Lost Files",
+    iconSrc: "/assets/icons/lost-files.svg",
+    defaultSize: { width: 640, height: 500 },
+    minSize: { width: 320, height: 360 },
+    resizable: true,
+    singleton: true,
+    chrome: false,
+  },
+];
+
+export const ICQ_APP: ApplicationManifest = {
+  id: AppKey.Icq,
+  title: "ICQ",
+  iconSrc: "/assets/icons/icq.svg",
+  defaultSize: { width: 340, height: 460 },
+  minSize: { width: 280, height: 320 },
+  resizable: true,
+  singleton: true,
+  chrome: false,
+};
+
 export function installApps(): void {
-  for (const manifest of APP_CATALOG) {
+  for (const manifest of [...APP_CATALOG, ...SECRET_APPS, ICQ_APP]) {
     if (!getApplication(manifest.id)) registerApplication(manifest);
   }
 }

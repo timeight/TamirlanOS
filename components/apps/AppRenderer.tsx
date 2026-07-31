@@ -2,6 +2,8 @@
 
 import { AboutMeApp } from "@/components/apps/about-me/AboutMeApp";
 import { AchievementsApp } from "@/components/apps/achievements/AchievementsApp";
+import { IcqApp } from "@/components/apps/icq/IcqApp";
+import { LostFilesApp } from "@/components/apps/lost-files/LostFilesApp";
 import { AgentApp } from "@/components/apps/agent/AgentApp";
 import { CertificatesApp } from "@/components/apps/certificates/CertificatesApp";
 import { CheckersApp } from "@/components/apps/checkers/CheckersApp";
@@ -72,6 +74,10 @@ export function AppRenderer({ appId }: AppRendererProps) {
       return <AgentApp />;
     case AppKey.Achievements:
       return <AchievementsApp />;
+    case AppKey.LostFiles:
+      return <LostFilesApp />;
+    case AppKey.Icq:
+      return <IcqApp />;
     case AppKey.FileViewer:
       return <FileViewerApp />;
     case AppKey.RecycleBin:

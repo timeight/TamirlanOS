@@ -76,7 +76,7 @@ export function WindowMenuBar({ onClose, onAbout }: WindowMenuBarProps) {
     <div
       ref={barRef}
       role="menubar"
-      className="relative flex shrink-0 items-stretch border-b border-[#aca899] bg-[#f7f5ec] px-1 text-[11px] text-black select-none"
+      className="relative flex shrink-0 items-stretch border-b border-[var(--os-frame)] bg-[var(--os-face-light)] px-1 text-[11px] text-black select-none"
     >
       {menus.map((menu, index) => (
         <div key={menu.label} className="relative">
@@ -92,10 +92,10 @@ export function WindowMenuBar({ onClose, onAbout }: WindowMenuBarProps) {
               setOpenIndex((current) => (current === null ? current : index))
             }
             className={cn(
-              "px-2 py-1 focus-visible:outline-1 focus-visible:outline-[#316ac5]",
+              "px-2 py-1 focus-visible:outline-1 focus-visible:outline-[var(--os-selection)]",
               openIndex === index
                 ? "bg-xp-selection text-white"
-                : "hover:bg-[#d6e6f8]",
+                : "hover:bg-[var(--os-hover)]",
             )}
           >
             {menu.label}
@@ -103,7 +103,7 @@ export function WindowMenuBar({ onClose, onAbout }: WindowMenuBarProps) {
           {openIndex === index && (
             <div
               role="menu"
-              className="absolute top-full left-0 z-10 min-w-[170px] border border-[#8a8676] bg-white py-1 shadow-[2px_2px_6px_rgba(0,0,0,0.3)]"
+              className="absolute top-full left-0 z-10 min-w-[170px] border border-[var(--os-menu-border)] bg-white py-1 shadow-[2px_2px_6px_rgba(0,0,0,0.3)]"
             >
               {menu.items.map((item) => (
                 <button
@@ -115,7 +115,7 @@ export function WindowMenuBar({ onClose, onAbout }: WindowMenuBarProps) {
                     item.onSelect?.();
                     setOpenIndex(null);
                   }}
-                  className="hover:bg-xp-selection flex w-full items-center gap-1.5 py-1 pr-4 pl-2 text-left hover:text-white disabled:text-[#9aa0a6] disabled:hover:bg-transparent disabled:hover:text-[#9aa0a6]"
+                  className="hover:bg-xp-selection flex w-full items-center gap-1.5 py-1 pr-4 pl-2 text-left hover:text-white disabled:text-[var(--os-text-disabled)] disabled:hover:bg-transparent disabled:hover:text-[var(--os-text-disabled)]"
                 >
                   <span aria-hidden="true" className="w-3 shrink-0 text-center">
                     {item.checked ? "✓" : ""}

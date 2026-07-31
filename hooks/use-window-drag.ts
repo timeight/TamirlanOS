@@ -1,7 +1,10 @@
 "use client";
 
 import { useCallback, type PointerEvent as ReactPointerEvent } from "react";
-import { clampToWorkArea } from "@/core/window-manager/window-geometry";
+import {
+  clampToWorkArea,
+  snapToEdges,
+} from "@/core/window-manager/window-geometry";
 import { useWindowStore } from "@/stores/window-store";
 import { WindowState, type WindowId } from "@/types/window";
 
@@ -59,12 +62,15 @@ export function useWindowDrag(
           }
         }
 
-        const next = clampToWorkArea(
-          { ...base, x: base.x + dx, y: base.y + dy },
+        const next = snapToEdges(
+          clampToWorkArea(
+            { ...base, x: base.x + dx, y: base.y + dy },
+            workArea,
+          ),
           workArea,
         );
         last = next;
-        frame.style.transform = `translate(${next.x}px, ${next.y}px)`;
+        frame.style.translate = `${next.x}px ${next.y}px`;
       };
 
       const finish = (end: PointerEvent) => {

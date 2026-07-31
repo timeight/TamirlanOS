@@ -126,9 +126,10 @@ export function think(
           return decide(PetState.Confused, "event:glitch");
         }
         break;
+      // Not celebration: something was found that PIX was not guarding well.
       case WorldEventType.LostFiles:
-        if (event.active && allowed(context, PetState.Confused)) {
-          return decide(PetState.Confused, "event:lost-files");
+        if (event.active && allowed(context, PetState.Observe)) {
+          return decide(PetState.Observe, "event:lost-files");
         }
         break;
       default:

@@ -17,6 +17,7 @@ export const HIDDEN_FILES: readonly HiddenFile[] = [
     modified: "31.07.2026 03:14",
     body: [
       "; TamirlanOS system configuration",
+      "; archive.path=C:\\lost files   ; наберите lostfiles",
       "; Не редактируйте этот файл вручную.",
       "",
       "[core]",
