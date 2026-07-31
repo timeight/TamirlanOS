@@ -26,6 +26,7 @@ export enum AppKey {
   Agent = "agent",
   Achievements = "achievements",
   FileViewer = "file-viewer",
+  RecycleBin = "recycle-bin",
 }
 
 export const APP_CATALOG: readonly ApplicationManifest[] = [
@@ -206,6 +207,15 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
     title: "Достижения",
     iconSrc: "/assets/icons/achievements.svg",
     defaultSize: { width: 440, height: 480 },
+    minSize: { width: 320, height: 360 },
+    resizable: true,
+    singleton: true,
+  },
+  {
+    id: AppKey.RecycleBin,
+    title: "Корзина",
+    iconSrc: "/assets/icons/recycle-bin.svg",
+    defaultSize: { width: 620, height: 470 },
     minSize: { width: 320, height: 360 },
     resizable: true,
     singleton: true,

@@ -15,6 +15,7 @@ import { PaintApp } from "@/components/apps/paint/PaintApp";
 import { PhotographyApp } from "@/components/apps/photography/PhotographyApp";
 import { PortfolioApp } from "@/components/apps/portfolio/PortfolioApp";
 import { ProjectsApp } from "@/components/apps/projects/ProjectsApp";
+import { RecycleBinApp } from "@/components/apps/recycle-bin/RecycleBinApp";
 import { ResumeApp } from "@/components/apps/resume/ResumeApp";
 import { ShooterApp } from "@/components/apps/shooter/ShooterApp";
 import { SkillsApp } from "@/components/apps/skills/SkillsApp";
@@ -72,6 +73,8 @@ export function AppRenderer({ appId }: AppRendererProps) {
       return <AchievementsApp />;
     case AppKey.FileViewer:
       return <FileViewerApp />;
+    case AppKey.RecycleBin:
+      return <RecycleBinApp />;
     default:
       return null;
   }

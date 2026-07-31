@@ -168,6 +168,41 @@ export const translations: Record<string, Record<Locale, string>> = {
     ru: "Файл не выбран",
     en: "No file selected",
   },
+  "app.recycle-bin": { kk: "Себет", ru: "Корзина", en: "Recycle Bin" },
+  "bin.heading": {
+    kk: "Аяқталмаған идеялар",
+    ru: "Незаконченные идеи",
+    en: "Unfinished ideas",
+  },
+  "bin.intro": {
+    kk: "Мұнда шықпаған нәрселер жатыр. Әрқайсысы бірдеңеге үйретті — сондықтан жойылмаған.",
+    ru: "Здесь лежит то, что не вышло. Каждая вещь чему-то научила — поэтому она не удалена.",
+    en: "Things that did not ship. Each one taught something, so none of them are deleted.",
+  },
+  "bin.what": { kk: "Не болды", ru: "Что это было", en: "What it was" },
+  "bin.why": {
+    kk: "Неге тоқтады",
+    ru: "Почему остановилось",
+    en: "Why it stopped",
+  },
+  "bin.learned": {
+    kk: "Не үйретті",
+    ru: "Чему научило",
+    en: "What it taught",
+  },
+  "bin.objects": {
+    kk: "Объектілер: {count}",
+    ru: "Объектов: {count}",
+    en: "{count} objects",
+  },
+  "bin.kind.project": { kk: "Жоба", ru: "Проект", en: "Project" },
+  "bin.kind.logo": { kk: "Логотип", ru: "Логотип", en: "Logo" },
+  "bin.kind.prototype": { kk: "Прототип", ru: "Прототип", en: "Prototype" },
+  "bin.kind.experiment": {
+    kk: "Эксперимент",
+    ru: "Эксперимент",
+    en: "Experiment",
+  },
   "app.file-viewer": {
     kk: "Файлды қарау",
     ru: "Просмотр файла",

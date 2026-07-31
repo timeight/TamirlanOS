@@ -58,4 +58,11 @@ export const DEFAULT_ICONS: readonly DesktopIcon[] = [
     iconSrc: "/assets/icons/contact.svg",
     slot: { column: 1, row: 2 },
   },
+  {
+    id: AppKey.RecycleBin,
+    appId: AppKey.RecycleBin,
+    label: "app.recycle-bin",
+    iconSrc: "/assets/icons/recycle-bin.svg",
+    slot: { column: 1, row: 3 },
+  },
 ];
