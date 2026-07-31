@@ -148,6 +148,31 @@ export const translations: Record<string, Record<Locale, string>> = {
     ru: "Панель инструментов",
     en: "Toolbar",
   },
+  "win.showHidden": {
+    kk: "Жасырын файлдарды көрсету",
+    ru: "Показать скрытые файлы",
+    en: "Show Hidden Files",
+  },
+  "files.hiddenGroup": {
+    kk: "Жасырын файлдар",
+    ru: "Скрытые файлы",
+    en: "Hidden files",
+  },
+  "files.readonly": {
+    kk: "Тек оқу",
+    ru: "Только чтение",
+    en: "Read-only",
+  },
+  "files.empty": {
+    kk: "Файл таңдалмаған",
+    ru: "Файл не выбран",
+    en: "No file selected",
+  },
+  "app.file-viewer": {
+    kk: "Файлды қарау",
+    ru: "Просмотр файла",
+    en: "File Viewer",
+  },
   "win.statusbar": {
     kk: "Күй жолағы",
     ru: "Строка состояния",
@@ -403,6 +428,12 @@ export const translations: Record<string, Record<Locale, string>> = {
     kk: "ЭЛТ эффектісі қосылды",
     ru: "Включён эффект ЭЛТ",
     en: "Turned on the CRT effect",
+  },
+  "ach.digger": { kk: "Іздеуші", ru: "Копатель", en: "Digger" },
+  "ach.digger.d": {
+    kk: "Жасырын файл ашылды",
+    ru: "Открыт скрытый файл",
+    en: "Opened a hidden file",
   },
   "ach.secret-finder": {
     kk: "Құпия іздеуші",

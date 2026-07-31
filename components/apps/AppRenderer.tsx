@@ -6,6 +6,7 @@ import { AgentApp } from "@/components/apps/agent/AgentApp";
 import { CertificatesApp } from "@/components/apps/certificates/CertificatesApp";
 import { CheckersApp } from "@/components/apps/checkers/CheckersApp";
 import { ContactApp } from "@/components/apps/contact/ContactApp";
+import { FileViewerApp } from "@/components/apps/file-viewer/FileViewerApp";
 import { Gallery3DApp } from "@/components/apps/gallery-3d/Gallery3DApp";
 import { Game2048App } from "@/components/apps/game-2048/Game2048App";
 import { IdeasApp } from "@/components/apps/ideas/IdeasApp";
@@ -69,6 +70,8 @@ export function AppRenderer({ appId }: AppRendererProps) {
       return <AgentApp />;
     case AppKey.Achievements:
       return <AchievementsApp />;
+    case AppKey.FileViewer:
+      return <FileViewerApp />;
     default:
       return null;
   }

@@ -1,17 +1,22 @@
 "use client";
 
 import { AssetImage as Image } from "@/components/ui/AssetImage";
+import { HiddenFileList } from "@/components/apps/portfolio/HiddenFileList";
 import { AppKey } from "@/core/apps/app-catalog";
 import { listApplications } from "@/core/process/app-registry";
 import { useIsCompact } from "@/hooks/use-compact";
 import { useOpenApp } from "@/hooks/use-open-app";
 import { useT } from "@/hooks/use-translations";
+import { useExplorerStore } from "@/stores/explorer-store";
 
 export function PortfolioApp() {
   const openApp = useOpenApp();
   const compact = useIsCompact();
+  const showHidden = useExplorerStore((state) => state.showHidden);
   const t = useT();
-  const apps = listApplications().filter((app) => app.id !== AppKey.Portfolio);
+  const apps = listApplications().filter(
+    (app) => app.id !== AppKey.Portfolio && app.id !== AppKey.FileViewer,
+  );
 
   return (
     <div className="flex h-full flex-col bg-white text-[11px] text-black">
@@ -23,37 +28,40 @@ export function PortfolioApp() {
           {compact ? t("portfolio.hintTap") : t("portfolio.hintClick")}
         </p>
       </div>
-      <ul className="grid flex-1 auto-rows-min grid-cols-2 gap-1 overflow-auto p-2 @sm:grid-cols-3 @lg:grid-cols-4">
-        {apps.map((app) => (
-          <li key={app.id}>
-            <button
-              type="button"
-              onClick={() => {
-                if (compact) openApp(app.id);
-              }}
-              onDoubleClick={() => {
-                if (!compact) openApp(app.id);
-              }}
-              onKeyDown={(event) => {
-                if (event.key === "Enter") openApp(app.id);
-              }}
-              className="flex w-full flex-col items-center gap-1 rounded-sm p-2 hover:bg-[#ebf3fb] focus-visible:outline-1 focus-visible:outline-[#316ac5] focus-visible:outline-dotted"
-            >
-              <Image
-                src={app.iconSrc}
-                alt=""
-                width={32}
-                height={32}
-                unoptimized
-                draggable={false}
-              />
-              <span className="text-center leading-tight">
-                {t(`app.${app.id}`)}
-              </span>
-            </button>
-          </li>
-        ))}
-      </ul>
+      <div className="min-h-0 flex-1 overflow-auto">
+        <ul className="grid auto-rows-min grid-cols-2 gap-1 p-2 @sm:grid-cols-3 @lg:grid-cols-4">
+          {apps.map((app) => (
+            <li key={app.id}>
+              <button
+                type="button"
+                onClick={() => {
+                  if (compact) openApp(app.id);
+                }}
+                onDoubleClick={() => {
+                  if (!compact) openApp(app.id);
+                }}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") openApp(app.id);
+                }}
+                className="flex w-full flex-col items-center gap-1 rounded-sm p-2 hover:bg-[#ebf3fb] focus-visible:outline-1 focus-visible:outline-[#316ac5] focus-visible:outline-dotted"
+              >
+                <Image
+                  src={app.iconSrc}
+                  alt=""
+                  width={32}
+                  height={32}
+                  unoptimized
+                  draggable={false}
+                />
+                <span className="text-center leading-tight">
+                  {t(`app.${app.id}`)}
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+        {showHidden && <HiddenFileList />}
+      </div>
     </div>
   );
 }

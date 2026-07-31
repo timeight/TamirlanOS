@@ -25,6 +25,7 @@ export enum AppKey {
   Shooter = "shooter",
   Agent = "agent",
   Achievements = "achievements",
+  FileViewer = "file-viewer",
 }
 
 export const APP_CATALOG: readonly ApplicationManifest[] = [
@@ -208,6 +209,16 @@ export const APP_CATALOG: readonly ApplicationManifest[] = [
     minSize: { width: 320, height: 360 },
     resizable: true,
     singleton: true,
+  },
+  {
+    id: AppKey.FileViewer,
+    title: "Просмотр файла",
+    iconSrc: "/assets/icons/file-viewer.svg",
+    defaultSize: { width: 520, height: 430 },
+    minSize: { width: 320, height: 300 },
+    resizable: true,
+    singleton: true,
+    chrome: false,
   },
 ];
 

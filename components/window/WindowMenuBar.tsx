@@ -3,10 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/core/utils/cn";
 import { useT } from "@/hooks/use-translations";
+import { useExplorerStore } from "@/stores/explorer-store";
 
 interface MenuItem {
   label: string;
   onSelect?: () => void;
+  checked?: boolean;
 }
 
 interface Menu {
@@ -22,6 +24,8 @@ interface WindowMenuBarProps {
 export function WindowMenuBar({ onClose, onAbout }: WindowMenuBarProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const barRef = useRef<HTMLDivElement>(null);
+  const showHidden = useExplorerStore((state) => state.showHidden);
+  const toggleHidden = useExplorerStore((state) => state.toggleHidden);
   const t = useT();
 
   const menus: readonly Menu[] = [
@@ -35,7 +39,15 @@ export function WindowMenuBar({ onClose, onAbout }: WindowMenuBarProps) {
     },
     {
       label: t("win.view"),
-      items: [{ label: t("win.toolbar") }, { label: t("win.statusbar") }],
+      items: [
+        { label: t("win.toolbar") },
+        { label: t("win.statusbar") },
+        {
+          label: t("win.showHidden"),
+          onSelect: toggleHidden,
+          checked: showHidden,
+        },
+      ],
     },
     { label: t("win.favorites"), items: [{ label: t("win.addFavorite") }] },
     {
@@ -103,8 +115,11 @@ export function WindowMenuBar({ onClose, onAbout }: WindowMenuBarProps) {
                     item.onSelect?.();
                     setOpenIndex(null);
                   }}
-                  className="hover:bg-xp-selection flex w-full px-4 py-1 text-left hover:text-white disabled:text-[#9aa0a6] disabled:hover:bg-transparent disabled:hover:text-[#9aa0a6]"
+                  className="hover:bg-xp-selection flex w-full items-center gap-1.5 py-1 pr-4 pl-2 text-left hover:text-white disabled:text-[#9aa0a6] disabled:hover:bg-transparent disabled:hover:text-[#9aa0a6]"
                 >
+                  <span aria-hidden="true" className="w-3 shrink-0 text-center">
+                    {item.checked ? "✓" : ""}
+                  </span>
                   {item.label}
                 </button>
               ))}
