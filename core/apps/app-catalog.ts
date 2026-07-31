@@ -31,6 +31,7 @@ export enum AppKey {
   LostFiles = "lost-files",
   Icq = "icq",
   Winamp = "winamp",
+  ControlPanel = "control-panel",
 }
 
 export const APP_CATALOG: readonly ApplicationManifest[] = [
@@ -280,6 +281,17 @@ export const WINAMP_APP: ApplicationManifest = {
   iconSrc: "/assets/icons/winamp.svg",
   defaultSize: { width: 300, height: 420 },
   minSize: { width: 268, height: 240 },
+  resizable: true,
+  singleton: true,
+  chrome: false,
+};
+
+export const CONTROL_PANEL_APP: ApplicationManifest = {
+  id: AppKey.ControlPanel,
+  title: "Панель управления",
+  iconSrc: "/assets/icons/control-panel.svg",
+  defaultSize: { width: 620, height: 470 },
+  minSize: { width: 300, height: 320 },
   resizable: true,
   singleton: true,
   chrome: false,

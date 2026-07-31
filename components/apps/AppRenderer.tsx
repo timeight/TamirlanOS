@@ -2,6 +2,7 @@
 
 import { AboutMeApp } from "@/components/apps/about-me/AboutMeApp";
 import { AchievementsApp } from "@/components/apps/achievements/AchievementsApp";
+import { ControlPanelApp } from "@/components/apps/control-panel/ControlPanelApp";
 import { IcqApp } from "@/components/apps/icq/IcqApp";
 import { LostFilesApp } from "@/components/apps/lost-files/LostFilesApp";
 import { WinampApp } from "@/components/apps/winamp/WinampApp";
@@ -81,6 +82,8 @@ export function AppRenderer({ appId }: AppRendererProps) {
       return <IcqApp />;
     case AppKey.Winamp:
       return <WinampApp />;
+    case AppKey.ControlPanel:
+      return <ControlPanelApp />;
     case AppKey.FileViewer:
       return <FileViewerApp />;
     case AppKey.RecycleBin:
