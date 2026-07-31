@@ -30,6 +30,7 @@ export enum AppKey {
   InternetExplorer = "ie",
   LostFiles = "lost-files",
   Icq = "icq",
+  Winamp = "winamp",
 }
 
 export const APP_CATALOG: readonly ApplicationManifest[] = [
@@ -273,8 +274,24 @@ export const ICQ_APP: ApplicationManifest = {
   chrome: false,
 };
 
+export const WINAMP_APP: ApplicationManifest = {
+  id: AppKey.Winamp,
+  title: "Winamp",
+  iconSrc: "/assets/icons/winamp.svg",
+  defaultSize: { width: 300, height: 420 },
+  minSize: { width: 268, height: 240 },
+  resizable: true,
+  singleton: true,
+  chrome: false,
+};
+
 export function installApps(): void {
-  for (const manifest of [...APP_CATALOG, ...SECRET_APPS, ICQ_APP]) {
+  for (const manifest of [
+    ...APP_CATALOG,
+    ...SECRET_APPS,
+    ICQ_APP,
+    WINAMP_APP,
+  ]) {
     if (!getApplication(manifest.id)) registerApplication(manifest);
   }
 }

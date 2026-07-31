@@ -44,6 +44,23 @@ export function SystemTray() {
     <div className="flex items-stretch">
       <button
         type="button"
+        title="Winamp"
+        aria-label="Winamp"
+        onClick={() => openApp(AppKey.Winamp)}
+        className={trayButtonClass}
+      >
+        <AssetImage
+          src="/assets/icons/winamp.svg"
+          alt=""
+          width={16}
+          height={16}
+          unoptimized
+          draggable={false}
+          className="drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]"
+        />
+      </button>
+      <button
+        type="button"
         title="ICQ"
         aria-label={unread > 0 ? `ICQ, ${unread}` : "ICQ"}
         onClick={() => openApp(AppKey.Icq)}

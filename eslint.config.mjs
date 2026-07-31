@@ -9,7 +9,7 @@ const config = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   prettier,
   {
-    ignores: [".next/**", "node_modules/**", "next-env.d.ts"],
+    ignores: [".next/**", "out/**", "node_modules/**", "next-env.d.ts"],
   },
 ];
 
