@@ -144,6 +144,15 @@
     }
   }
 
+  @keyframes scan-sweep {
+    from {
+      transform: translateY(-40%);
+    }
+    to {
+      transform: translateY(1000%);
+    }
+  }
+
   @keyframes confetti-fall {
     to {
       transform: translateY(105vh) rotate(540deg);
