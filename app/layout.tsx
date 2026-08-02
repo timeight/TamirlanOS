@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { ClarityScript } from "@/components/analytics/ClarityScript";
 import { siteConfig } from "@/core/config/site";
 import "@/styles/globals.css";
 
@@ -18,7 +19,10 @@ export default function RootLayout({
 }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
-      <body className="h-full antialiased">{children}</body>
+      <body className="h-full antialiased">
+        {children}
+        <ClarityScript />
+      </body>
     </html>
   );
 }
