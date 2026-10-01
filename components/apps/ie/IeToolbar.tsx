@@ -13,6 +13,7 @@ interface IeToolbarProps {
 
 const FAVORITES: readonly PageId[] = [
   PageId.Home,
+  PageId.Vk,
   PageId.Projects,
   PageId.Photography,
   PageId.Github,

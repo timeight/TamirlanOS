@@ -5,7 +5,9 @@ import { IeToolbar } from "@/components/apps/ie/IeToolbar";
 import { IeStatusBar } from "@/components/apps/ie/IeStatusBar";
 import { SecurityWarning } from "@/components/apps/ie/SecurityWarning";
 import { ContentPagesRouter } from "@/components/apps/ie/IeRouter";
+import { AppKey } from "@/core/apps/app-catalog";
 import { HOME_PAGE, PageId } from "@/core/browser/pages";
+import { useCloseApp } from "@/hooks/use-close-app";
 import { useT } from "@/hooks/use-translations";
 import { useBrowserStore } from "@/stores/browser-store";
 
@@ -27,6 +29,7 @@ export function IeApp() {
     host: string;
   } | null>(null);
   const timers = useRef<number[]>([]);
+  const closeApp = useCloseApp();
   const t = useT();
 
   const go = (input: string) => {
@@ -65,6 +68,7 @@ export function IeApp() {
             devMode={devMode}
             onNavigate={go}
             onExternal={(url, host) => setExternal({ url, host })}
+            onLeave={() => closeApp(AppKey.InternetExplorer)}
           />
         )}
       </div>

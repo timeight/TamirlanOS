@@ -1,6 +1,15 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { HOME_PAGE, resolveUrl, type PageMeta } from "@/core/browser/pages";
+import {
+  HOME_PAGE,
+  PAGES,
+  PageId,
+  resolveUrl,
+  type PageMeta,
+} from "@/core/browser/pages";
+
+/** The browser opens on VK; the home button still returns to about:tamirlan. */
+const START_PAGE = PAGES.find((page) => page.id === PageId.Vk) ?? HOME_PAGE;
 
 export type LoadPhase = "idle" | "opening" | "connecting" | "loading" | "done";
 
@@ -23,13 +32,13 @@ interface BrowserStore {
 export const useBrowserStore = create<BrowserStore>()(
   persist(
     (set, get) => ({
-      entries: [HOME_PAGE],
+      entries: [START_PAGE],
       index: 0,
       phase: "idle",
       devMode: false,
       visited: [],
 
-      current: () => get().entries[get().index] ?? HOME_PAGE,
+      current: () => get().entries[get().index] ?? START_PAGE,
       canBack: () => get().index > 0,
       canForward: () => get().index < get().entries.length - 1,
 
@@ -58,7 +67,7 @@ export const useBrowserStore = create<BrowserStore>()(
       // Dev mode is the only thing worth remembering between sessions.
       partialize: (state) => ({
         devMode: state.devMode,
-        entries: [HOME_PAGE],
+        entries: [START_PAGE],
         index: 0,
         phase: "idle" as LoadPhase,
         visited: [],

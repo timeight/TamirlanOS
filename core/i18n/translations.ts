@@ -412,6 +412,11 @@ export const translations: Record<string, Record<Locale, string>> = {
     en: "Developer Mode",
   },
   "ie.page.system32": { kk: "system32", ru: "system32", en: "system32" },
+  "ie.page.vk": {
+    kk: "ВКонтакте",
+    ru: "ВКонтакте",
+    en: "VKontakte",
+  },
   "ie.page.secret": { kk: "secret", ru: "secret", en: "secret" },
   "ie.page.404": {
     kk: "Бет табылмады",

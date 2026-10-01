@@ -10,6 +10,7 @@ import {
   WindowsUpdatePage,
 } from "@/components/apps/ie/pages/ContentPages";
 import { HomePage } from "@/components/apps/ie/pages/HomePage";
+import { VkPage } from "@/components/apps/ie/pages/vk/VkPage";
 import {
   GithubPage,
   InstagramPage,
@@ -23,6 +24,7 @@ interface RouterProps {
   devMode: boolean;
   onNavigate: (input: string) => void;
   onExternal: (url: string, host: string) => void;
+  onLeave: () => void;
 }
 
 export function ContentPagesRouter({
@@ -30,10 +32,13 @@ export function ContentPagesRouter({
   devMode,
   onNavigate,
   onExternal,
+  onLeave,
 }: RouterProps) {
   switch (page.id) {
     case PageId.Home:
       return <HomePage onNavigate={onNavigate} />;
+    case PageId.Vk:
+      return <VkPage onLeave={onLeave} />;
     case PageId.Github:
       return <GithubPage onExternal={onExternal} />;
     case PageId.Instagram:

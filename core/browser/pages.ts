@@ -1,5 +1,6 @@
 export enum PageId {
   Home = "home",
+  Vk = "vk",
   Github = "github",
   LinkedIn = "linkedin",
   Instagram = "instagram",
@@ -32,6 +33,12 @@ export const PAGES: readonly PageMeta[] = [
     url: "about:tamirlan",
     titleKey: "ie.page.home",
     aliases: ["about:tamirlan", "home", "tamirlan", "about:blank"],
+  },
+  {
+    id: PageId.Vk,
+    url: "http://vk.com/id1",
+    titleKey: "ie.page.vk",
+    aliases: ["vk", "vk.com", "vkontakte", "вконтакте", "id1"],
   },
   {
     id: PageId.Github,

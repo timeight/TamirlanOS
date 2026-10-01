@@ -8,6 +8,7 @@ interface HomePageProps {
 }
 
 const LINKS: readonly { id: PageId; label: string }[] = [
+  { id: PageId.Vk, label: "ВКонтакте" },
   { id: PageId.Github, label: "GitHub" },
   { id: PageId.LinkedIn, label: "LinkedIn" },
   { id: PageId.Instagram, label: "Instagram" },
