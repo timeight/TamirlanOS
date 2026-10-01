@@ -7,13 +7,22 @@ interface VkSidebarProps {
   active: string;
   onSelect: (item: string) => void;
   onLeave: () => void;
+  /** Appended to the standard menu; VK 2012 had no search section. */
+  extra?: string;
 }
 
-export function VkSidebar({ active, onSelect, onLeave }: VkSidebarProps) {
+export function VkSidebar({
+  active,
+  onSelect,
+  onLeave,
+  extra,
+}: VkSidebarProps) {
+  const items = extra ? [...VK_NAV, extra] : VK_NAV;
+
   return (
     <div className="w-[168px] shrink-0 pt-3">
       <ul>
-        {VK_NAV.map((item) => (
+        {items.map((item) => (
           <li key={item}>
             <button
               type="button"

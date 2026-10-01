@@ -2,54 +2,109 @@
 
 import { useState } from "react";
 import { VkAvatar } from "@/components/apps/ie/pages/vk/VkAvatar";
-import { pluralComments, type VkPost as Post } from "@/core/browser/vk/vk-data";
+import {
+  addComment,
+  deleteComment,
+  deletePost,
+  editPost,
+  setLike,
+} from "@/core/vk/api/posts";
+import { fullName, vkDate, type VkWallPost } from "@/core/vk/vk-types";
+import { pluralComments } from "@/core/browser/vk/vk-data";
 import { cn } from "@/core/utils/cn";
-import { useVkStore } from "@/stores/vk-store";
 
 interface VkPostProps {
-  post: Post;
-  expanded: boolean;
-  onOpenAuthor: () => void;
+  post: VkWallPost;
+  viewerId: string;
+  onChanged: () => Promise<void>;
+  onOpenProfile: (profileId: string) => void;
 }
 
-export function VkPost({ post, expanded, onOpenAuthor }: VkPostProps) {
-  const toggleLike = useVkStore((state) => state.toggleLike);
-  const toggleComments = useVkStore((state) => state.toggleComments);
-  const addComment = useVkStore((state) => state.addComment);
-  const removeComment = useVkStore((state) => state.removeComment);
+export function VkPost({
+  post,
+  viewerId,
+  onChanged,
+  onOpenProfile,
+}: VkPostProps) {
+  const [open, setOpen] = useState(false);
   const [draft, setDraft] = useState("");
+  const [editing, setEditing] = useState<string | null>(null);
 
-  const send = () => {
+  const like = async () => {
+    await setLike(post.id, viewerId, !post.liked);
+    await onChanged();
+  };
+
+  const send = async () => {
     const text = draft.trim();
     if (!text) return;
-    addComment(post.id, text);
     setDraft("");
+    await addComment(post.id, viewerId, text);
+    setOpen(true);
+    await onChanged();
+  };
+
+  const saveEdit = async () => {
+    const text = (editing ?? "").trim();
+    if (text) await editPost(post.id, text);
+    setEditing(null);
+    await onChanged();
   };
 
   return (
     <li className="flex gap-2.5 border-b border-[#e3e8ec] py-3">
-      <button type="button" onClick={onOpenAuthor} className="shrink-0">
-        <VkAvatar size={50} />
+      <button
+        type="button"
+        onClick={() => onOpenProfile(post.authorId)}
+        className="shrink-0"
+      >
+        <VkAvatar size={50} src={post.authorAvatar} />
       </button>
 
       <div className="min-w-0 flex-1">
         <button
           type="button"
-          onClick={onOpenAuthor}
+          onClick={() => onOpenProfile(post.authorId)}
           className="text-[12px] font-bold text-[#2b587a] hover:underline"
         >
-          {post.author}
+          {post.authorName}
         </button>
-        <p className="mt-1 text-[12px] leading-[17px] whitespace-pre-wrap text-[#000]">
-          {post.text}
-        </p>
 
-        <p className="mt-1.5 text-[10px] text-[#939393]">{post.at}</p>
+        {editing === null ? (
+          <p className="mt-1 text-[12px] leading-[17px] whitespace-pre-wrap text-[#000]">
+            {post.content}
+          </p>
+        ) : (
+          <form
+            className="mt-1"
+            onSubmit={(event) => {
+              event.preventDefault();
+              void saveEdit();
+            }}
+          >
+            <textarea
+              value={editing}
+              onChange={(event) => setEditing(event.target.value)}
+              rows={3}
+              className="w-full resize-none border border-[#c0cad5] px-2 py-1 text-[12px] outline-none focus:border-[#7196bd]"
+            />
+            <button
+              type="submit"
+              className="mt-1 border border-[#b2bdc8] bg-[#edf1f5] px-3 py-[2px] text-[11px] text-[#2b587a]"
+            >
+              Сохранить
+            </button>
+          </form>
+        )}
+
+        <p className="mt-1.5 text-[10px] text-[#939393]">
+          {vkDate(post.createdAt)}
+        </p>
 
         <p className="mt-1 flex flex-wrap gap-3 text-[11px]">
           <button
             type="button"
-            onClick={() => toggleLike(post.id)}
+            onClick={() => void like()}
             className={cn(
               "hover:underline",
               post.liked ? "font-bold text-[#8b1a1a]" : "text-[#2b587a]",
@@ -59,14 +114,32 @@ export function VkPost({ post, expanded, onOpenAuthor }: VkPostProps) {
           </button>
           <button
             type="button"
-            onClick={() => toggleComments(post.id)}
+            onClick={() => setOpen(!open)}
             className="text-[#2b587a] hover:underline"
           >
             Комментировать
           </button>
-          <button type="button" className="text-[#2b587a] hover:underline">
-            Поделиться
-          </button>
+          {post.mine && (
+            <button
+              type="button"
+              onClick={() => setEditing(post.content)}
+              className="text-[#2b587a] hover:underline"
+            >
+              Редактировать
+            </button>
+          )}
+          {(post.mine || post.onMyWall) && (
+            <button
+              type="button"
+              onClick={async () => {
+                await deletePost(post.id);
+                await onChanged();
+              }}
+              className="text-[#2b587a] hover:underline"
+            >
+              Удалить
+            </button>
+          )}
         </p>
 
         <p className="mt-1 flex gap-4 text-[11px] text-[#939393]">
@@ -76,7 +149,7 @@ export function VkPost({ post, expanded, onOpenAuthor }: VkPostProps) {
           {post.comments.length > 0 && (
             <button
               type="button"
-              onClick={() => toggleComments(post.id)}
+              onClick={() => setOpen(!open)}
               className="text-[#2b587a] hover:underline"
             >
               {pluralComments(post.comments.length)}
@@ -84,28 +157,37 @@ export function VkPost({ post, expanded, onOpenAuthor }: VkPostProps) {
           )}
         </p>
 
-        {expanded && (
+        {open && (
           <div className="mt-2 border-t border-[#eef1f4] pt-2">
             <ul>
               {post.comments.map((item) => (
                 <li key={item.id} className="group flex gap-2 py-1.5">
-                  <VkAvatar size={32} />
+                  <VkAvatar size={32} src={item.author?.avatar_url ?? null} />
                   <div className="min-w-0 flex-1">
-                    <span className="text-[11px] font-bold text-[#2b587a]">
-                      {item.author}
-                    </span>
+                    <button
+                      type="button"
+                      onClick={() => onOpenProfile(item.author_id)}
+                      className="text-[11px] font-bold text-[#2b587a] hover:underline"
+                    >
+                      {item.author ? fullName(item.author) : "Страница удалена"}
+                    </button>
                     <p className="text-[11px] leading-[16px] text-[#000]">
-                      {item.text}
+                      {item.content}
                     </p>
                     <p className="text-[10px] text-[#939393]">
-                      {item.at}
-                      <button
-                        type="button"
-                        onClick={() => removeComment(post.id, item.id)}
-                        className="ml-2 text-[#2b587a] opacity-0 group-hover:opacity-100 hover:underline focus:opacity-100"
-                      >
-                        удалить
-                      </button>
+                      {vkDate(item.created_at)}
+                      {item.author_id === viewerId && (
+                        <button
+                          type="button"
+                          onClick={async () => {
+                            await deleteComment(item.id);
+                            await onChanged();
+                          }}
+                          className="ml-2 text-[#2b587a] opacity-0 group-hover:opacity-100 hover:underline focus:opacity-100"
+                        >
+                          удалить
+                        </button>
+                      )}
                     </p>
                   </div>
                 </li>
@@ -116,7 +198,7 @@ export function VkPost({ post, expanded, onOpenAuthor }: VkPostProps) {
               className="mt-1 flex gap-1.5"
               onSubmit={(event) => {
                 event.preventDefault();
-                send();
+                void send();
               }}
             >
               <input
