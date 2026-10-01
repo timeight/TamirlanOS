@@ -17,8 +17,8 @@ export function VkField({
   hint,
 }: VkFieldProps) {
   return (
-    <label className="mb-1.5 flex items-start gap-3 text-[11px]">
-      <span className="w-[108px] shrink-0 pt-[3px] text-right text-[#777]">
+    <label className="mb-1.5 flex flex-col gap-1 text-[11px] @[420px]:flex-row @[420px]:items-start @[420px]:gap-3">
+      <span className="shrink-0 text-[#777] @[420px]:w-[108px] @[420px]:pt-[3px] @[420px]:text-right">
         {label}
       </span>
       <span className="min-w-0 flex-1">

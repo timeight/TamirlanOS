@@ -39,7 +39,7 @@ export function VkAuthScreen() {
 
   if (!vkConfigured) {
     return (
-      <div className="mx-auto mt-10 w-[420px] border border-[#dae1e8] bg-white p-4 text-[11px] leading-[17px] text-[#333]">
+      <div className="mx-auto mt-10 w-full max-w-[420px] border border-[#dae1e8] bg-white p-4 text-[11px] leading-[17px] text-[#333]">
         <p className="mb-2 text-[13px] font-bold text-[#2b587a]">
           Сайт временно недоступен
         </p>
@@ -52,7 +52,7 @@ export function VkAuthScreen() {
   }
 
   return (
-    <div className="mx-auto mt-10 w-[460px]">
+    <div className="mx-auto mt-10 w-full max-w-[460px]">
       <div className="border border-[#dae1e8] bg-white">
         <div className="border-b border-[#dae1e8] bg-[#f7f8fa] px-3 py-1.5">
           <span className="text-[12px] font-bold text-[#45688e]">
@@ -100,12 +100,12 @@ export function VkAuthScreen() {
           />
 
           {error && (
-            <p className="mt-2 ml-[120px] max-w-[280px] border border-[#e0b4b4] bg-[#fdf4f4] px-2 py-1 text-[11px] text-[#9b2c2c]">
+            <p className="mt-2 border border-[#e0b4b4] bg-[#fdf4f4] px-2 py-1 text-[11px] text-[#9b2c2c]">
               {error}
             </p>
           )}
 
-          <div className="mt-3 ml-[120px]">
+          <div className="mt-3 @[420px]:ml-[120px]">
             <button
               type="submit"
               disabled={busy}

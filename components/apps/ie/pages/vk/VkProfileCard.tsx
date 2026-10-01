@@ -37,8 +37,8 @@ export function VkProfileCard({ profile, isMe }: VkProfileCardProps) {
   };
 
   return (
-    <div className="flex gap-4 pt-3">
-      <div className="w-[200px] shrink-0">
+    <div className="flex flex-col gap-4 pt-3 @[560px]:flex-row">
+      <div className="w-full shrink-0 @[560px]:w-[200px]">
         <div className="border border-[#dae1e8] p-1">
           <VkAvatar size={190} src={profile.avatar_url} />
         </div>

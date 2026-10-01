@@ -37,7 +37,7 @@ export function VkSearch({ onOpenProfile }: VkSearchProps) {
           onChange={(event) => setQuery(event.target.value)}
           placeholder="Имя, фамилия или адрес страницы"
           aria-label="Поиск людей"
-          className="w-[260px] border border-[#c0cad5] bg-white px-1.5 py-[3px] text-[11px] outline-none focus:border-[#7196bd]"
+          className="w-full max-w-[260px] min-w-0 border border-[#c0cad5] bg-white px-1.5 py-[3px] text-[11px] outline-none focus:border-[#7196bd]"
         />
         <button
           type="submit"

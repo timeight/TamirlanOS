@@ -44,9 +44,9 @@ export function VkPage({ onLeave }: VkPageProps) {
   const shown = viewing ?? me;
 
   return (
-    <div className="min-w-[960px] bg-[#eceff3] [font-family:Tahoma,Verdana,Arial,sans-serif] text-[#000] select-text">
+    <div className="@container bg-[#eceff3] [font-family:Tahoma,Verdana,Arial,sans-serif] text-[#000] select-text">
       <div className="border-b border-[#4a6785] bg-[#5e81a8]">
-        <div className="mx-auto flex w-[960px] items-center gap-4 px-2 py-1.5">
+        <div className="mx-auto flex w-full max-w-[960px] items-center gap-4 px-2 py-1.5">
           <span className="text-[17px] leading-none font-bold tracking-tight text-white">
             ВКонтакте
           </span>
@@ -68,7 +68,7 @@ export function VkPage({ onLeave }: VkPageProps) {
         </div>
       </div>
 
-      <div className="mx-auto flex min-h-[420px] w-[960px] gap-4 bg-white px-2 pb-8">
+      <div className="mx-auto flex min-h-[420px] w-full max-w-[960px] gap-4 bg-white px-2 pb-8">
         {status === "signed-in" && (
           <VkSidebar
             active={section}
@@ -78,7 +78,7 @@ export function VkPage({ onLeave }: VkPageProps) {
           />
         )}
 
-        <div className="min-w-0 flex-1 border-l border-[#dae1e8] pl-4">
+        <div className="min-w-0 flex-1 border-[#dae1e8] @[720px]:border-l @[720px]:pl-4">
           {status === "loading" && (
             <p className="py-10 text-[11px] text-[#939393]">Загрузка...</p>
           )}
@@ -123,7 +123,7 @@ export function VkPage({ onLeave }: VkPageProps) {
         </div>
       </div>
 
-      <div className="mx-auto w-[960px] px-2 py-3 text-[10px] text-[#939393]">
+      <div className="mx-auto w-full max-w-[960px] px-2 py-3 text-[10px] text-[#939393]">
         ВКонтакте © 2012 · учебная реконструкция внутри TamirlanOS
       </div>
     </div>
