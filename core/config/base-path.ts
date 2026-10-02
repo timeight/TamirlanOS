@@ -3,5 +3,7 @@
 export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export function asset(path: string): string {
+  // Абсолютный адрес (аватар из Supabase Storage) базовый путь не переписывает.
+  if (/^(https?:|data:|blob:)/.test(path)) return path;
   return `${BASE_PATH}${path}`;
 }

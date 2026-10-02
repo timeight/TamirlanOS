@@ -1,27 +1,23 @@
 "use client";
 
 import { VkAuthScreen } from "@/components/apps/ie/pages/vk/VkAuthScreen";
+import { VkSectionView } from "@/components/apps/ie/pages/vk/VkSectionView";
+import { VkMobileNav } from "@/components/apps/ie/pages/vk/mobile/VkMobileNav";
 import { VkMobileProfile } from "@/components/apps/ie/pages/vk/mobile/VkMobileProfile";
-import { VkMobileSearch } from "@/components/apps/ie/pages/vk/mobile/VkMobileSearch";
 import { VkMobileWall } from "@/components/apps/ie/pages/vk/mobile/VkMobileWall";
-import { VK_NAV } from "@/core/browser/vk/vk-data";
+import { VK_SECTION } from "@/core/vk/sections";
 import { signOut } from "@/core/vk/api/profiles";
-import { cn } from "@/core/utils/cn";
-import { VK_MY_PAGE, VK_SEARCH, type VkApp } from "@/hooks/use-vk-app";
+import type { VkApp } from "@/hooks/use-vk-app";
 
 interface VkMobileShellProps {
   app: VkApp;
   onLeave: () => void;
 }
 
-/** The three links m.vk.com kept in the bar; the rest lived in a plain list. */
-const PRIMARY = [VK_MY_PAGE, VK_SEARCH, "Мои сообщения"] as const;
-const SECONDARY = VK_NAV.filter(
-  (item) => !(PRIMARY as readonly string[]).includes(item),
-);
-
 export function VkMobileShell({ app, onLeave }: VkMobileShellProps) {
-  const { status, userId, me, shown, section, setSection, openProfile } = app;
+  const { status, userId, shown, section, setSection, openProfile, write } =
+    app;
+  const onProfile = section === VK_SECTION.profile;
 
   return (
     <div className="min-h-full w-full overflow-x-hidden bg-white [font-family:Arial,Tahoma,sans-serif] text-[#000] select-text">
@@ -42,24 +38,11 @@ export function VkMobileShell({ app, onLeave }: VkMobileShellProps) {
       </header>
 
       {status === "signed-in" && (
-        <nav className="border-b border-[#dde3e8] bg-[#f0f3f6] px-3 py-1.5 text-[12px]">
-          {PRIMARY.map((item, index) => (
-            <span key={item}>
-              {index > 0 && <span className="px-1.5 text-[#b9c3cc]">|</span>}
-              <button
-                type="button"
-                onClick={() => setSection(item)}
-                className={cn(
-                  section === item
-                    ? "font-bold text-[#45688e]"
-                    : "text-[#2b587a]",
-                )}
-              >
-                {item.replace("Мои ", "").replace("Моя ", "")}
-              </button>
-            </span>
-          ))}
-        </nav>
+        <VkMobileNav
+          active={section}
+          counters={app.counters}
+          onSelect={setSection}
+        />
       )}
 
       {status === "loading" && (
@@ -72,13 +55,15 @@ export function VkMobileShell({ app, onLeave }: VkMobileShellProps) {
         </div>
       )}
 
-      {status === "signed-in" && section === VK_SEARCH && (
-        <VkMobileSearch onOpenProfile={openProfile} />
-      )}
-
-      {status === "signed-in" && section === VK_MY_PAGE && shown && userId && (
+      {status === "signed-in" && userId && onProfile && shown && (
         <>
-          <VkMobileProfile profile={shown} isMe={shown.id === userId} />
+          <VkMobileProfile
+            profile={shown}
+            isMe={shown.id === userId}
+            viewerId={userId}
+            onWrite={(id) => void write(id)}
+            onOpenProfile={openProfile}
+          />
           <VkMobileWall
             ownerId={shown.id}
             viewerId={userId}
@@ -87,44 +72,14 @@ export function VkMobileShell({ app, onLeave }: VkMobileShellProps) {
         </>
       )}
 
-      {status === "signed-in" &&
-        section !== VK_MY_PAGE &&
-        section !== VK_SEARCH && (
-          <div className="px-3 py-6">
-            <h1 className="text-[14px] font-bold text-[#2b587a]">{section}</h1>
-            <p className="mt-1.5 text-[13px] text-[#777]">
-              Этот раздел пока не загружен.
-            </p>
-            <button
-              type="button"
-              onClick={() => setSection(VK_MY_PAGE)}
-              className="mt-2 text-[13px] text-[#2b587a]"
-            >
-              Вернуться на мою страницу
-            </button>
-          </div>
-        )}
-
-      {status === "signed-in" && (
-        <nav className="border-t border-[#dde3e8]">
-          <ul>
-            {SECONDARY.map((item) => (
-              <li key={item} className="border-b border-[#eef1f4]">
-                <button
-                  type="button"
-                  onClick={() => setSection(item)}
-                  className="block w-full px-3 py-2.5 text-left text-[13px] text-[#2b587a]"
-                >
-                  {item}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
+      {status === "signed-in" && userId && !onProfile && (
+        <div className="px-3">
+          <VkSectionView app={app} userId={userId} />
+        </div>
       )}
 
-      <footer className="px-3 py-4 text-center text-[11px] text-[#939393]">
-        {me ? `Вы вошли как ${me.first_name}` : "ВКонтакте © 2012"}
+      <footer className="border-t border-[#dde3e8] px-3 py-4 text-center text-[11px] text-[#939393]">
+        ВКонтакте © 2012
         <span className="mt-1 block">учебная реконструкция в TamirlanOS</span>
       </footer>
     </div>

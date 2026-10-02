@@ -1,23 +1,19 @@
 "use client";
 
-import { useState } from "react";
-import { VkAvatar } from "@/components/apps/ie/pages/vk/VkAvatar";
-import { searchProfiles } from "@/core/vk/api/profiles";
-import { fullName, type VkProfileRow } from "@/core/vk/vk-types";
+import { VkButton } from "@/components/apps/ie/pages/vk/VkButton";
+import { VkPersonRow } from "@/components/apps/ie/pages/vk/VkPersonRow";
+import { FRIEND_ACTION } from "@/core/vk/social-types";
+import { useVkPeopleSearch } from "@/hooks/use-vk-people-search";
 
 interface VkSearchProps {
+  viewerId: string;
   onOpenProfile: (profileId: string) => void;
+  onWrite: (profileId: string) => void;
 }
 
-export function VkSearch({ onOpenProfile }: VkSearchProps) {
-  const [query, setQuery] = useState("");
-  const [results, setResults] = useState<readonly VkProfileRow[]>([]);
-  const [searched, setSearched] = useState(false);
-
-  const run = async () => {
-    setResults(await searchProfiles(query));
-    setSearched(true);
-  };
+export function VkSearch({ viewerId, onOpenProfile, onWrite }: VkSearchProps) {
+  const { query, setQuery, results, states, searched, busy, run, act } =
+    useVkPeopleSearch(viewerId);
 
   return (
     <div className="pt-3">
@@ -39,12 +35,9 @@ export function VkSearch({ onOpenProfile }: VkSearchProps) {
           aria-label="Поиск людей"
           className="w-full max-w-[260px] min-w-0 border border-[#c0cad5] bg-white px-1.5 py-[3px] text-[11px] outline-none focus:border-[#7196bd]"
         />
-        <button
-          type="submit"
-          className="border border-[#b2bdc8] bg-[#edf1f5] px-3 py-[3px] text-[11px] text-[#2b587a] hover:bg-[#e2e8ee]"
-        >
+        <VkButton type="submit" disabled={busy}>
           Найти
-        </button>
+        </VkButton>
       </form>
 
       {searched && results.length === 0 && (
@@ -55,27 +48,24 @@ export function VkSearch({ onOpenProfile }: VkSearchProps) {
 
       <ul className="mt-3">
         {results.map((profile) => (
-          <li
+          <VkPersonRow
             key={profile.id}
-            className="flex items-center gap-2.5 border-b border-[#e3e8ec] py-2"
-          >
-            <button type="button" onClick={() => onOpenProfile(profile.id)}>
-              <VkAvatar size={40} src={profile.avatar_url} />
-            </button>
-            <div className="min-w-0">
-              <button
-                type="button"
-                onClick={() => onOpenProfile(profile.id)}
-                className="text-[12px] font-bold text-[#2b587a] hover:underline"
-              >
-                {fullName(profile)}
-              </button>
-              <p className="text-[10px] text-[#939393]">
-                vk.com/{profile.username}
-                {profile.city ? ` · ${profile.city}` : ""}
-              </p>
-            </div>
-          </li>
+            profile={profile}
+            onOpenProfile={onOpenProfile}
+            note={profile.id === viewerId ? "это Вы" : undefined}
+            actions={
+              profile.id === viewerId ? null : (
+                <>
+                  <VkButton onClick={() => void act(profile.id)}>
+                    {FRIEND_ACTION[states[profile.id] ?? "none"]}
+                  </VkButton>
+                  <VkButton tone="quiet" onClick={() => onWrite(profile.id)}>
+                    Написать
+                  </VkButton>
+                </>
+              )
+            }
+          />
         ))}
       </ul>
     </div>

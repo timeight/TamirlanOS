@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useRef } from "react";
+import { AssetImage } from "@/components/ui/AssetImage";
 import { VkAvatar } from "@/components/apps/ie/pages/vk/VkAvatar";
+import { VkButton } from "@/components/apps/ie/pages/vk/VkButton";
 import { VkPost } from "@/components/apps/ie/pages/vk/VkPost";
-import { createPost } from "@/core/vk/api/posts";
 import { useVkWall } from "@/hooks/use-vk-wall";
+import { useWallComposer } from "@/hooks/use-wall-composer";
 
 interface VkWallProps {
   ownerId: string;
@@ -20,18 +22,8 @@ export function VkWall({
   onOpenProfile,
 }: VkWallProps) {
   const { posts, loading, reload } = useVkWall(ownerId, viewerId);
-  const [draft, setDraft] = useState("");
-  const [busy, setBusy] = useState(false);
-
-  const send = async () => {
-    const text = draft.trim();
-    if (!text) return;
-    setBusy(true);
-    setDraft("");
-    await createPost(viewerId, ownerId, text);
-    await reload();
-    setBusy(false);
-  };
+  const composer = useWallComposer(ownerId, viewerId, reload);
+  const input = useRef<HTMLInputElement>(null);
 
   return (
     <div className="mt-5">
@@ -43,14 +35,14 @@ export function VkWall({
         className="flex gap-2 py-3"
         onSubmit={(event) => {
           event.preventDefault();
-          void send();
+          void composer.send();
         }}
       >
         <VkAvatar size={50} src={viewerAvatar} />
         <div className="min-w-0 flex-1">
           <textarea
-            value={draft}
-            onChange={(event) => setDraft(event.target.value)}
+            value={composer.draft}
+            onChange={(event) => composer.setDraft(event.target.value)}
             placeholder={
               ownerId === viewerId ? "Что у Вас нового?" : "Написать на стене"
             }
@@ -58,13 +50,55 @@ export function VkWall({
             aria-label="Новая запись"
             className="w-full resize-none border border-[#c0cad5] bg-white px-2 py-1.5 text-[12px] leading-[17px] outline-none focus:border-[#7196bd]"
           />
-          <button
-            type="submit"
-            disabled={busy}
-            className="mt-1 border border-[#b2bdc8] bg-[#edf1f5] px-4 py-1 text-[11px] text-[#2b587a] hover:bg-[#e2e8ee] active:translate-y-px disabled:text-[#aaa]"
-          >
-            Отправить
-          </button>
+
+          {composer.attachedUrl && (
+            <div className="mt-1 flex items-start gap-2">
+              <span className="relative block h-[70px] w-[70px] overflow-hidden border border-[#c5cdd5]">
+                <AssetImage
+                  src={composer.attachedUrl}
+                  alt="Вложение"
+                  fill
+                  unoptimized
+                  className="object-cover"
+                />
+              </span>
+              <VkButton tone="quiet" onClick={composer.detach}>
+                убрать
+              </VkButton>
+            </div>
+          )}
+
+          {composer.error && (
+            <p className="mt-1 text-[11px] text-[#9b2c2c]">{composer.error}</p>
+          )}
+
+          <div className="mt-1 flex items-center gap-2">
+            <VkButton
+              type="submit"
+              disabled={composer.busy || !composer.canSend}
+            >
+              Отправить
+            </VkButton>
+            <VkButton
+              tone="quiet"
+              disabled={composer.busy}
+              onClick={() => input.current?.click()}
+            >
+              Прикрепить фотографию
+            </VkButton>
+          </div>
+
+          <input
+            ref={input}
+            type="file"
+            accept="image/*"
+            hidden
+            onChange={(event) => {
+              const file = event.target.files?.[0];
+              event.target.value = "";
+              if (file) void composer.attach(file);
+            }}
+          />
         </div>
       </form>
 

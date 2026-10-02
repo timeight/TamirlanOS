@@ -7,16 +7,3 @@ export function pluralComments(count: number): string {
   if (last >= 2 && last <= 4) return `${count} комментария`;
   return `${count} комментариев`;
 }
-
-export const VK_NAV: readonly string[] = [
-  "Моя страница",
-  "Мои друзья",
-  "Мои фотографии",
-  "Мои видеозаписи",
-  "Мои аудиозаписи",
-  "Мои сообщения",
-  "Мои группы",
-  "Мои новости",
-  "Мои ответы",
-  "Мои настройки",
-];

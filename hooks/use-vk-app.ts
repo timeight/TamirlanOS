@@ -1,32 +1,36 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { VK_NAV } from "@/core/browser/vk/vk-data";
 import { fetchProfile } from "@/core/vk/api/profiles";
+import { VK_SECTION } from "@/core/vk/sections";
+import type { VkCounters } from "@/core/vk/social-types";
 import type { VkProfileRow } from "@/core/vk/vk-types";
+import { useVkCounters } from "@/hooks/use-vk-counters";
+import { useVkMessages, type VkMessenger } from "@/hooks/use-vk-messages";
 import { useVkSession } from "@/hooks/use-vk-session";
 import {
   useVkSessionStore,
   type SessionStatus,
 } from "@/stores/vk-session-store";
 
-export const VK_MY_PAGE = VK_NAV[0]!;
-export const VK_SEARCH = "Поиск людей";
-
 export interface VkApp {
   status: SessionStatus;
   userId: string | null;
   me: VkProfileRow | null;
-  /** Whose page is on screen: own profile unless another was opened. */
+  /** Чья страница на экране: своя, пока не открыли чужую. */
   shown: VkProfileRow | null;
   section: string;
   setSection: (section: string) => void;
   openProfile: (profileId: string) => Promise<void>;
+  /** Открыть переписку с человеком из любого списка. */
+  write: (profileId: string) => Promise<void>;
+  counters: VkCounters;
+  messenger: VkMessenger;
 }
 
 /**
- * Every piece of VK state lives here so the desktop and mobile shells differ
- * in markup only. Mounted once per shell; both never render at the same time.
+ * Всё состояние VK живёт здесь, поэтому desktop и mobile отличаются только
+ * разметкой. Монтируется по одному разу на оболочку; одновременно не бывает.
  */
 export function useVkApp(): VkApp {
   useVkSession();
@@ -34,17 +38,23 @@ export function useVkApp(): VkApp {
   const userId = useVkSessionStore((state) => state.userId);
   const me = useVkSessionStore((state) => state.profile);
 
-  const [section, setSection] = useState(VK_MY_PAGE);
+  const [section, setSection] = useState<string>(VK_SECTION.profile);
   const [viewing, setViewing] = useState<VkProfileRow | null>(null);
 
+  const counters = useVkCounters(userId);
+  const messenger = useVkMessages(userId);
+
+  // Своя страница — единственный раздел, который помнит чужой профиль.
   useEffect(() => {
-    if (section === VK_MY_PAGE) return;
+    if (section === VK_SECTION.profile) return;
+    if (section === VK_SECTION.friends) return;
+    if (section === VK_SECTION.photos) return;
     setViewing(null);
   }, [section]);
 
   const openProfile = useCallback(
     async (profileId: string) => {
-      setSection(VK_MY_PAGE);
+      setSection(VK_SECTION.profile);
       if (profileId === userId) {
         setViewing(null);
         return;
@@ -52,6 +62,14 @@ export function useVkApp(): VkApp {
       setViewing(await fetchProfile(profileId));
     },
     [userId],
+  );
+
+  const write = useCallback(
+    async (profileId: string) => {
+      setSection(VK_SECTION.messages);
+      await messenger.openWith(profileId);
+    },
+    [messenger],
   );
 
   return {
@@ -62,5 +80,8 @@ export function useVkApp(): VkApp {
     section,
     setSection,
     openProfile,
+    write,
+    counters,
+    messenger,
   };
 }

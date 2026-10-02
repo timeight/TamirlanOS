@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { VkAvatar } from "@/components/apps/ie/pages/vk/VkAvatar";
+import { VkFriendLink } from "@/components/apps/ie/pages/vk/VkFriendLink";
 import { updateProfile, type ProfilePatch } from "@/core/vk/api/profiles";
 import {
   RELATIONSHIP_LABELS,
@@ -13,6 +14,9 @@ import { useVkSessionStore } from "@/stores/vk-session-store";
 interface VkMobileProfileProps {
   profile: VkProfileRow;
   isMe: boolean;
+  viewerId: string;
+  onWrite: (profileId: string) => void;
+  onOpenProfile: (profileId: string) => void;
 }
 
 const FIELDS: readonly { key: keyof ProfilePatch; label: string }[] = [
@@ -22,7 +26,13 @@ const FIELDS: readonly { key: keyof ProfilePatch; label: string }[] = [
   { key: "activity", label: "Деятельность" },
 ];
 
-export function VkMobileProfile({ profile, isMe }: VkMobileProfileProps) {
+export function VkMobileProfile({
+  profile,
+  isMe,
+  viewerId,
+  onWrite,
+  onOpenProfile,
+}: VkMobileProfileProps) {
   const setProfile = useVkSessionStore((state) => state.setProfile);
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState<ProfilePatch>({});
@@ -59,6 +69,13 @@ export function VkMobileProfile({ profile, isMe }: VkMobileProfileProps) {
           )}
         </div>
       </div>
+
+      <VkFriendLink
+        viewerId={viewerId}
+        targetId={profile.id}
+        onWrite={onWrite}
+        onOpenProfile={onOpenProfile}
+      />
 
       {editing ? (
         <form

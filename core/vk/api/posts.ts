@@ -1,3 +1,4 @@
+import { PHOTO_BUCKET, publicUrl } from "@/core/vk/api/photos";
 import { supabase } from "@/core/vk/supabase";
 import { fullName, type VkPostRow, type VkWallPost } from "@/core/vk/vk-types";
 
@@ -10,6 +11,7 @@ const WALL_SELECT = `
   author:profiles!posts_author_id_fkey (
     id, username, first_name, last_name, avatar_url
   ),
+  photo:photos!posts_photo_id_fkey ( id, storage_path, caption ),
   likes ( user_id ),
   comments (
     id, post_id, author_id, content, created_at,
@@ -30,6 +32,10 @@ function toWallPost(row: VkPostRow, viewerId: string | null): VkWallPost {
     authorAvatar: row.author?.avatar_url ?? null,
     content: row.content,
     createdAt: row.created_at,
+    photoUrl: row.photo
+      ? publicUrl(PHOTO_BUCKET, row.photo.storage_path)
+      : null,
+    photoCaption: row.photo?.caption ?? null,
     likes: row.likes?.length ?? 0,
     liked: Boolean(viewerId && row.likes?.some((l) => l.user_id === viewerId)),
     comments,
@@ -56,11 +62,13 @@ export async function createPost(
   authorId: string,
   wallOwnerId: string,
   content: string,
+  photoId?: string | null,
 ): Promise<string | null> {
   const { error } = await supabase.from("posts").insert({
     author_id: authorId,
     wall_owner_id: wallOwnerId,
     content,
+    photo_id: photoId ?? null,
   });
   return error?.message ?? null;
 }

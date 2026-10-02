@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { VkAvatar } from "@/components/apps/ie/pages/vk/VkAvatar";
 import { VkField } from "@/components/apps/ie/pages/vk/VkField";
+import { VkFriendLink } from "@/components/apps/ie/pages/vk/VkFriendLink";
 import { updateProfile, type ProfilePatch } from "@/core/vk/api/profiles";
 import {
   RELATIONSHIP_LABELS,
@@ -14,9 +15,18 @@ import { useVkSessionStore } from "@/stores/vk-session-store";
 interface VkProfileCardProps {
   profile: VkProfileRow;
   isMe: boolean;
+  viewerId: string;
+  onWrite: (profileId: string) => void;
+  onOpenProfile: (profileId: string) => void;
 }
 
-export function VkProfileCard({ profile, isMe }: VkProfileCardProps) {
+export function VkProfileCard({
+  profile,
+  isMe,
+  viewerId,
+  onWrite,
+  onOpenProfile,
+}: VkProfileCardProps) {
   const setProfile = useVkSessionStore((state) => state.setProfile);
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState<ProfilePatch>({});
@@ -60,6 +70,13 @@ export function VkProfileCard({ profile, isMe }: VkProfileCardProps) {
         <p className="mt-0.5 text-[11px] text-[#777]">
           vk.com/{profile.username}
         </p>
+
+        <VkFriendLink
+          viewerId={viewerId}
+          targetId={profile.id}
+          onWrite={onWrite}
+          onOpenProfile={onOpenProfile}
+        />
 
         <p className="mt-3 mb-1 border-b border-[#dae1e8] pb-1 text-[11px] font-bold text-[#45688e]">
           Информация

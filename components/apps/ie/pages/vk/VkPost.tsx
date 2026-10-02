@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AssetImage } from "@/components/ui/AssetImage";
 import { VkAvatar } from "@/components/apps/ie/pages/vk/VkAvatar";
 import {
   addComment,
@@ -95,6 +96,18 @@ export function VkPost({
               Сохранить
             </button>
           </form>
+        )}
+
+        {post.photoUrl && (
+          <span className="relative mt-1.5 block h-[220px] w-full max-w-[320px] overflow-hidden border border-[#c5cdd5] bg-[#e8ebee]">
+            <AssetImage
+              src={post.photoUrl}
+              alt={post.photoCaption ?? "Фотография к записи"}
+              fill
+              unoptimized
+              className="object-cover"
+            />
+          </span>
         )}
 
         <p className="mt-1.5 text-[10px] text-[#939393]">

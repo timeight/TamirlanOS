@@ -22,6 +22,12 @@ export interface VkCommentRow {
   author: VkProfileRow | null;
 }
 
+export interface VkPostPhoto {
+  id: string;
+  storage_path: string;
+  caption: string | null;
+}
+
 export interface VkPostRow {
   id: string;
   author_id: string;
@@ -30,6 +36,7 @@ export interface VkPostRow {
   created_at: string;
   updated_at: string;
   author: VkProfileRow | null;
+  photo: VkPostPhoto | null;
   likes: { user_id: string }[];
   comments: VkCommentRow[];
 }
@@ -42,6 +49,8 @@ export interface VkWallPost {
   authorAvatar: string | null;
   content: string;
   createdAt: string;
+  photoUrl: string | null;
+  photoCaption: string | null;
   likes: number;
   liked: boolean;
   comments: VkCommentRow[];

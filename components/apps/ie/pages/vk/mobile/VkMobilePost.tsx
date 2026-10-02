@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AssetImage } from "@/components/ui/AssetImage";
 import { pluralComments } from "@/core/browser/vk/vk-data";
 import {
   addComment,
@@ -53,6 +54,18 @@ export function VkMobilePost({
       <p className="mt-1 text-[13px] leading-[18px] break-words whitespace-pre-wrap text-[#000]">
         {post.content}
       </p>
+
+      {post.photoUrl && (
+        <span className="relative mt-1.5 block h-[200px] w-full overflow-hidden border border-[#c5cdd5] bg-[#e8ebee]">
+          <AssetImage
+            src={post.photoUrl}
+            alt={post.photoCaption ?? "Фотография к записи"}
+            fill
+            unoptimized
+            className="object-cover"
+          />
+        </span>
+      )}
 
       <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px]">
         <button

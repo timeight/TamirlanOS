@@ -2,12 +2,13 @@
 
 import { VkAuthScreen } from "@/components/apps/ie/pages/vk/VkAuthScreen";
 import { VkProfileCard } from "@/components/apps/ie/pages/vk/VkProfileCard";
-import { VkSearch } from "@/components/apps/ie/pages/vk/VkSearch";
+import { VkSectionView } from "@/components/apps/ie/pages/vk/VkSectionView";
 import { VkSidebar } from "@/components/apps/ie/pages/vk/VkSidebar";
 import { VkWall } from "@/components/apps/ie/pages/vk/VkWall";
+import { VK_SECTION } from "@/core/vk/sections";
 import { signOut } from "@/core/vk/api/profiles";
 import { fullName } from "@/core/vk/vk-types";
-import { VK_MY_PAGE, VK_SEARCH, type VkApp } from "@/hooks/use-vk-app";
+import type { VkApp } from "@/hooks/use-vk-app";
 
 interface VkDesktopShellProps {
   app: VkApp;
@@ -15,7 +16,9 @@ interface VkDesktopShellProps {
 }
 
 export function VkDesktopShell({ app, onLeave }: VkDesktopShellProps) {
-  const { status, userId, me, shown, section, setSection, openProfile } = app;
+  const { status, userId, me, shown, section, setSection, openProfile, write } =
+    app;
+  const onProfile = section === VK_SECTION.profile;
 
   return (
     <div className="@container bg-[#eceff3] [font-family:Tahoma,Verdana,Arial,sans-serif] text-[#000] select-text">
@@ -46,9 +49,9 @@ export function VkDesktopShell({ app, onLeave }: VkDesktopShellProps) {
         {status === "signed-in" && (
           <VkSidebar
             active={section}
+            counters={app.counters}
             onSelect={setSection}
             onLeave={onLeave}
-            extra={VK_SEARCH}
           />
         )}
 
@@ -59,44 +62,27 @@ export function VkDesktopShell({ app, onLeave }: VkDesktopShellProps) {
 
           {status === "guest" && <VkAuthScreen />}
 
-          {status === "signed-in" && section === VK_SEARCH && (
-            <VkSearch onOpenProfile={openProfile} />
+          {status === "signed-in" && userId && onProfile && shown && (
+            <>
+              <VkProfileCard
+                profile={shown}
+                isMe={shown.id === userId}
+                viewerId={userId}
+                onWrite={(id) => void write(id)}
+                onOpenProfile={openProfile}
+              />
+              <VkWall
+                ownerId={shown.id}
+                viewerId={userId}
+                viewerAvatar={me?.avatar_url ?? null}
+                onOpenProfile={openProfile}
+              />
+            </>
           )}
 
-          {status === "signed-in" &&
-            section === VK_MY_PAGE &&
-            shown &&
-            userId && (
-              <>
-                <VkProfileCard profile={shown} isMe={shown.id === userId} />
-                <VkWall
-                  ownerId={shown.id}
-                  viewerId={userId}
-                  viewerAvatar={me?.avatar_url ?? null}
-                  onOpenProfile={openProfile}
-                />
-              </>
-            )}
-
-          {status === "signed-in" &&
-            section !== VK_MY_PAGE &&
-            section !== VK_SEARCH && (
-              <div className="py-10">
-                <h1 className="text-[15px] font-bold text-[#2b587a]">
-                  {section}
-                </h1>
-                <p className="mt-2 text-[12px] text-[#777]">
-                  Этот раздел пока не загружен.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setSection(VK_MY_PAGE)}
-                  className="mt-3 text-[12px] text-[#2b587a] hover:underline"
-                >
-                  Вернуться на мою страницу
-                </button>
-              </div>
-            )}
+          {status === "signed-in" && userId && !onProfile && (
+            <VkSectionView app={app} userId={userId} />
+          )}
         </div>
       </div>
 
