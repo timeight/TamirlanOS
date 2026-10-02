@@ -1,0 +1,53 @@
+"use client";
+
+import { useEffect } from "react";
+import { VkMobileRow } from "@/components/apps/ie/pages/vk/mobile/VkMobileRow";
+import { fullName, vkDate } from "@/core/vk/vk-types";
+import type { VkMessenger } from "@/hooks/use-vk-messages";
+
+interface VkMobileDialogsProps {
+  messenger: VkMessenger;
+  viewerId: string;
+}
+
+/** data-clarity-mask: превью переписки — личные данные, в записи сессий не идут. */
+export function VkMobileDialogs({ messenger, viewerId }: VkMobileDialogsProps) {
+  const { dialogs, loading, open, markSeen } = messenger;
+
+  useEffect(() => {
+    void markSeen();
+  }, [markSeen]);
+
+  if (loading) {
+    return <p className="px-3 py-5 text-[13px] text-[#95a0ab]">Загрузка...</p>;
+  }
+
+  if (dialogs.length === 0) {
+    return (
+      <p className="px-3 py-5 text-[13px] text-[#95a0ab]">
+        Переписок нет. Откройте чью-нибудь страницу и напишите первым.
+      </p>
+    );
+  }
+
+  return (
+    <ul data-clarity-mask="true">
+      {dialogs.map((dialog) => (
+        <VkMobileRow
+          key={dialog.conversationId}
+          title={fullName(dialog.other)}
+          subtitle={
+            dialog.lastContent
+              ? `${dialog.lastAuthorId === viewerId ? "Вы: " : ""}${dialog.lastContent}`
+              : "нет сообщений"
+          }
+          avatar={dialog.other.avatar_url}
+          meta={dialog.lastCreatedAt ? vkDate(dialog.lastCreatedAt) : undefined}
+          badge={dialog.unread}
+          unread={dialog.unread > 0}
+          onClick={() => open(dialog.conversationId)}
+        />
+      ))}
+    </ul>
+  );
+}

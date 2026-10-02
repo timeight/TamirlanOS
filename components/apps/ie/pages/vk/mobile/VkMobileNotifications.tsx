@@ -1,0 +1,59 @@
+"use client";
+
+import { VkMobileRow } from "@/components/apps/ie/pages/vk/mobile/VkMobileRow";
+import { VkMobileScreen } from "@/components/apps/ie/pages/vk/mobile/VkMobileScreen";
+import { NOTIFICATION_TEXT } from "@/core/vk/social-types";
+import { fullName, vkDate } from "@/core/vk/vk-types";
+import { useVkNotifications } from "@/hooks/use-vk-notifications";
+
+interface VkMobileNotificationsProps {
+  onOpenProfile: (profileId: string) => void;
+  onCountersChanged: () => Promise<void>;
+  onMenu: () => void;
+}
+
+export function VkMobileNotifications({
+  onOpenProfile,
+  onCountersChanged,
+  onMenu,
+}: VkMobileNotificationsProps) {
+  const { items, loading, clearRead } = useVkNotifications(onCountersChanged);
+
+  return (
+    <VkMobileScreen
+      title="Ответы"
+      left={{ glyph: "menu", label: "Открыть меню", onClick: onMenu }}
+      right={
+        items.length > 0
+          ? {
+              glyph: "close",
+              label: "Очистить",
+              onClick: () => void clearRead(),
+            }
+          : undefined
+      }
+    >
+      {loading ? (
+        <p className="px-3 py-5 text-[13px] text-[#95a0ab]">Загрузка...</p>
+      ) : items.length === 0 ? (
+        <p className="px-3 py-5 text-[13px] text-[#95a0ab]">
+          Новых событий нет.
+        </p>
+      ) : (
+        <ul>
+          {items.map((item) => (
+            <VkMobileRow
+              key={item.id}
+              title={item.actor ? fullName(item.actor) : "Удалённая страница"}
+              subtitle={`${NOTIFICATION_TEXT[item.kind]} · ${vkDate(item.created_at)}`}
+              avatar={item.actor?.avatar_url}
+              unread={!item.is_read}
+              chevron
+              onClick={() => onOpenProfile(item.actor_id)}
+            />
+          ))}
+        </ul>
+      )}
+    </VkMobileScreen>
+  );
+}
