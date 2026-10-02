@@ -5,6 +5,7 @@ import {
   deleteMessage,
   fetchDialogs,
   fetchMessages,
+  markAllRead,
   markRead,
   openDialog,
   sendMessage,
@@ -22,9 +23,14 @@ export interface VkMessenger {
   close: () => void;
   send: (text: string) => Promise<void>;
   remove: (messageId: string) => Promise<void>;
+  /** Пометить прочитанными все переписки — зовётся при открытии раздела. */
+  markSeen: () => Promise<void>;
 }
 
-export function useVkMessages(viewerId: string | null): VkMessenger {
+export function useVkMessages(
+  viewerId: string | null,
+  onCountersChanged: () => Promise<void>,
+): VkMessenger {
   const [dialogs, setDialogs] = useState<readonly VkDialog[]>([]);
   const [openId, setOpenId] = useState<string | null>(null);
   const [messages, setMessages] = useState<readonly VkMessageRow[]>([]);
@@ -45,8 +51,9 @@ export function useVkMessages(viewerId: string | null): VkMessenger {
       if (!viewerId) return;
       setMessages(await fetchMessages(conversationId));
       await markRead(conversationId, viewerId);
+      await onCountersChanged();
     },
-    [viewerId],
+    [onCountersChanged, viewerId],
   );
 
   useEffect(() => {
@@ -107,6 +114,13 @@ export function useVkMessages(viewerId: string | null): VkMessenger {
     [openId, reloadDialogs, reloadThread],
   );
 
+  const markSeen = useCallback(async () => {
+    if (!viewerId) return;
+    await markAllRead(viewerId);
+    await reloadDialogs();
+    await onCountersChanged();
+  }, [onCountersChanged, reloadDialogs, viewerId]);
+
   return {
     dialogs,
     openId,
@@ -117,5 +131,6 @@ export function useVkMessages(viewerId: string | null): VkMessenger {
     close: () => setOpenId(null),
     send,
     remove,
+    markSeen,
   };
 }

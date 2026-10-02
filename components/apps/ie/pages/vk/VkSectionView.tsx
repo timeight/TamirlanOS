@@ -21,7 +21,16 @@ interface VkSectionViewProps {
  * оболочках, поэтому держать две копии было бы прямым дублированием.
  */
 export function VkSectionView({ app, userId }: VkSectionViewProps) {
-  const { section, setSection, openProfile, write, me, shown, messenger } = app;
+  const {
+    section,
+    setSection,
+    openProfile,
+    write,
+    me,
+    shown,
+    messenger,
+    refreshCounters,
+  } = app;
   const owner = shown ?? me;
 
   if (section === VK_SECTION.search) {
@@ -42,6 +51,7 @@ export function VkSectionView({ app, userId }: VkSectionViewProps) {
         ownerName={fullName(owner)}
         onOpenProfile={openProfile}
         onWrite={(id) => void write(id)}
+        onCountersChanged={refreshCounters}
       />
     );
   }
@@ -61,7 +71,12 @@ export function VkSectionView({ app, userId }: VkSectionViewProps) {
   }
 
   if (section === VK_SECTION.answers) {
-    return <VkNotifications onOpenProfile={openProfile} />;
+    return (
+      <VkNotifications
+        onOpenProfile={openProfile}
+        onCountersChanged={refreshCounters}
+      />
+    );
   }
 
   if (section === VK_SECTION.settings && me) {

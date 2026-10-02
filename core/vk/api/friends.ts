@@ -52,6 +52,19 @@ export async function fetchOutgoingRequests(): Promise<
   return (data as VkProfileRow[] | null) ?? [];
 }
 
+/**
+ * Входящие заявки помечаются просмотренными: это не то же самое, что
+ * принять их — заявка остаётся в списке, гаснет только счётчик.
+ */
+export async function markRequestsSeen(receiver: string): Promise<void> {
+  await supabase
+    .from("friendships")
+    .update({ seen_at: new Date().toISOString() })
+    .eq("receiver_id", receiver)
+    .eq("status", "pending")
+    .is("seen_at", null);
+}
+
 export async function acceptRequest(requester: string): Promise<string | null> {
   const { error } = await supabase
     .from("friendships")

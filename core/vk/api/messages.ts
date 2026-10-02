@@ -74,6 +74,14 @@ export async function deleteMessage(id: string): Promise<string | null> {
   return error?.message ?? null;
 }
 
+/** Открытие раздела «Мои сообщения» гасит счётчик по всем перепискам. */
+export async function markAllRead(userId: string): Promise<void> {
+  await supabase
+    .from("conversation_members")
+    .update({ last_read_at: new Date().toISOString() })
+    .eq("user_id", userId);
+}
+
 export async function markRead(
   conversationId: string,
   userId: string,

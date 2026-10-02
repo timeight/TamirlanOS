@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { VkButton } from "@/components/apps/ie/pages/vk/VkButton";
 import { VkPersonRow } from "@/components/apps/ie/pages/vk/VkPersonRow";
 import { cn } from "@/core/utils/cn";
@@ -12,6 +12,7 @@ interface VkFriendsProps {
   ownerName: string;
   onOpenProfile: (profileId: string) => void;
   onWrite: (profileId: string) => void;
+  onCountersChanged: () => Promise<void>;
 }
 
 type Tab = "friends" | "incoming" | "outgoing";
@@ -22,13 +23,18 @@ export function VkFriends({
   ownerName,
   onOpenProfile,
   onWrite,
+  onCountersChanged,
 }: VkFriendsProps) {
-  const { friends, incoming, outgoing, loading, accept, drop } = useVkFriends(
-    ownerId,
-    viewerId,
-  );
+  const { friends, incoming, outgoing, loading, accept, drop, markSeen } =
+    useVkFriends(ownerId, viewerId, onCountersChanged);
   const [tab, setTab] = useState<Tab>("friends");
   const mine = ownerId === viewerId;
+
+  // Счётчик гасит именно вкладка заявок: открытие списка друзей заявок не видит.
+  useEffect(() => {
+    if (tab !== "incoming") return;
+    void markSeen();
+  }, [markSeen, tab]);
 
   const tabs: readonly { key: Tab; label: string; count: number }[] = [
     { key: "friends", label: "Друзья", count: friends.length },

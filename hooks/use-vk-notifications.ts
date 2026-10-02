@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   clearNotifications,
   fetchNotifications,
@@ -11,26 +11,32 @@ import type { VkNotificationRow } from "@/core/vk/social-types";
 export interface VkNotificationFeed {
   items: readonly VkNotificationRow[];
   loading: boolean;
-  markAllRead: () => Promise<void>;
   clearRead: () => Promise<void>;
 }
 
-export function useVkNotifications(): VkNotificationFeed {
+/**
+ * Открытый раздел и есть прочтение. Список после пометки не перечитывается:
+ * иначе подсветка новых событий пропала бы прямо под курсором.
+ */
+export function useVkNotifications(
+  onCountersChanged: () => Promise<void>,
+): VkNotificationFeed {
   const [items, setItems] = useState<readonly VkNotificationRow[]>([]);
   const [loading, setLoading] = useState(true);
+  const marked = useRef(false);
 
   const reload = useCallback(async () => {
-    setItems(await fetchNotifications());
+    const rows = await fetchNotifications();
+    setItems(rows);
     setLoading(false);
-  }, []);
+    if (marked.current || rows.every((row) => row.is_read)) return;
+    marked.current = true;
+    await markNotificationsRead();
+    await onCountersChanged();
+  }, [onCountersChanged]);
 
   useEffect(() => {
     void reload();
-  }, [reload]);
-
-  const markAllRead = useCallback(async () => {
-    await markNotificationsRead();
-    await reload();
   }, [reload]);
 
   const clearRead = useCallback(async () => {
@@ -38,5 +44,5 @@ export function useVkNotifications(): VkNotificationFeed {
     await reload();
   }, [reload]);
 
-  return { items, loading, markAllRead, clearRead };
+  return { items, loading, clearRead };
 }

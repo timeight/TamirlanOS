@@ -25,6 +25,8 @@ export interface VkApp {
   /** Открыть переписку с человеком из любого списка. */
   write: (profileId: string) => Promise<void>;
   counters: VkCounters;
+  /** Зовётся разделом после того, как он пометил что-то прочитанным. */
+  refreshCounters: () => Promise<void>;
   messenger: VkMessenger;
 }
 
@@ -41,8 +43,8 @@ export function useVkApp(): VkApp {
   const [section, setSection] = useState<string>(VK_SECTION.profile);
   const [viewing, setViewing] = useState<VkProfileRow | null>(null);
 
-  const counters = useVkCounters(userId);
-  const messenger = useVkMessages(userId);
+  const { counters, refresh: refreshCounters } = useVkCounters(userId);
+  const messenger = useVkMessages(userId, refreshCounters);
 
   // Своя страница — единственный раздел, который помнит чужой профиль.
   useEffect(() => {
@@ -82,6 +84,7 @@ export function useVkApp(): VkApp {
     openProfile,
     write,
     counters,
+    refreshCounters,
     messenger,
   };
 }

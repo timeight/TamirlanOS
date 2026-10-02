@@ -9,26 +9,20 @@ import { useVkNotifications } from "@/hooks/use-vk-notifications";
 
 interface VkNotificationsProps {
   onOpenProfile: (profileId: string) => void;
+  onCountersChanged: () => Promise<void>;
 }
 
-export function VkNotifications({ onOpenProfile }: VkNotificationsProps) {
-  const { items, loading, markAllRead, clearRead } = useVkNotifications();
-  const unread = items.filter((item) => !item.is_read).length;
+export function VkNotifications({
+  onOpenProfile,
+  onCountersChanged,
+}: VkNotificationsProps) {
+  const { items, loading, clearRead } = useVkNotifications(onCountersChanged);
 
   return (
     <div className="pt-3">
       <h1 className="mb-2 flex items-center gap-3 border-b border-[#dae1e8] pb-1 text-[11px] font-bold text-[#45688e]">
         Мои ответы
-        {unread > 0 && (
-          <VkButton
-            tone="quiet"
-            className="ml-auto"
-            onClick={() => void markAllRead()}
-          >
-            Отметить прочитанными
-          </VkButton>
-        )}
-        {unread === 0 && items.length > 0 && (
+        {items.length > 0 && (
           <VkButton
             tone="quiet"
             className="ml-auto"
