@@ -57,11 +57,11 @@ export function useVkFriends(
 
   const accept = useCallback(
     async (requester: string) => {
-      await acceptRequest(requester);
+      await acceptRequest(requester, viewerId);
       await reload();
       await onCountersChanged();
     },
-    [onCountersChanged, reload],
+    [onCountersChanged, reload, viewerId],
   );
 
   const drop = useCallback(

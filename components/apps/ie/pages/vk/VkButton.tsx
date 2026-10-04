@@ -7,6 +7,8 @@ interface VkButtonProps {
   disabled?: boolean;
   /** Серая кнопка 2012 года и её «мягкий» вариант для второстепенных действий. */
   tone?: "solid" | "quiet";
+  /** Всплывающая подсказка: подпись кнопки не всегда называет действие. */
+  title?: string;
   className?: string;
 }
 
@@ -16,6 +18,7 @@ export function VkButton({
   type = "button",
   disabled,
   tone = "solid",
+  title,
   className,
 }: VkButtonProps) {
   return (
@@ -23,6 +26,7 @@ export function VkButton({
       type={type}
       onClick={onClick}
       disabled={disabled}
+      title={title}
       className={cn(
         "border px-3 py-[3px] text-[11px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#45688e] disabled:text-[#aaa]",
         tone === "solid"

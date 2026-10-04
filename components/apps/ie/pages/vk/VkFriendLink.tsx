@@ -1,7 +1,7 @@
 "use client";
 
 import { VkButton } from "@/components/apps/ie/pages/vk/VkButton";
-import { FRIEND_ACTION } from "@/core/vk/social-types";
+import { FRIEND_ACTION, FRIEND_HINT } from "@/core/vk/social-types";
 import { fullName } from "@/core/vk/vk-types";
 import { useFriendState } from "@/hooks/use-friend-state";
 
@@ -19,7 +19,7 @@ export function VkFriendLink({
   onWrite,
   onOpenProfile,
 }: VkFriendLinkProps) {
-  const { state, friendCount, mutual, busy, act } = useFriendState(
+  const { state, friendCount, mutual, busy, act, decline } = useFriendState(
     viewerId,
     targetId,
   );
@@ -29,13 +29,26 @@ export function VkFriendLink({
     <div className="mt-2 text-[11px]">
       {!self && (
         <div className="flex flex-wrap items-center gap-2">
-          <VkButton disabled={busy} onClick={() => void act()}>
+          <VkButton
+            disabled={busy}
+            onClick={() => void act()}
+            title={FRIEND_HINT[state]}
+          >
             {FRIEND_ACTION[state]}
           </VkButton>
+          {state === "pending_incoming" && (
+            <VkButton
+              tone="quiet"
+              disabled={busy}
+              onClick={() => void decline()}
+            >
+              Отклонить
+            </VkButton>
+          )}
           <VkButton onClick={() => onWrite(targetId)}>
             Отправить сообщение
           </VkButton>
-          {state === "incoming_pending" && (
+          {state === "pending_incoming" && (
             <span className="text-[#777]">отправил Вам заявку</span>
           )}
         </div>

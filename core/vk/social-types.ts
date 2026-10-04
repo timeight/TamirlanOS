@@ -2,7 +2,7 @@ import type { VkProfileRow } from "@/core/vk/vk-types";
 
 /** Считается в базе функцией friend_state, не выводится на клиенте. */
 export type FriendState =
-  "none" | "outgoing_pending" | "incoming_pending" | "friends";
+  "none" | "pending_outgoing" | "pending_incoming" | "friends";
 
 export interface VkDialog {
   conversationId: string;
@@ -75,7 +75,15 @@ export const NOTIFICATION_TEXT: Record<NotificationKind, string> = {
 /** Подпись под кнопкой дружбы повторяет формулировки 2012 года. */
 export const FRIEND_ACTION: Record<FriendState, string> = {
   none: "Добавить в друзья",
-  outgoing_pending: "Отменить заявку",
-  incoming_pending: "Принять заявку",
+  pending_outgoing: "Заявка отправлена",
+  pending_incoming: "Принять",
+  friends: "Удалить из друзей",
+};
+
+/** Что произойдёт по нажатию — подпись не всегда называет действие. */
+export const FRIEND_HINT: Record<FriendState, string> = {
+  none: "Отправить заявку в друзья",
+  pending_outgoing: "Отменить заявку",
+  pending_incoming: "Принять заявку в друзья",
   friends: "Удалить из друзей",
 };

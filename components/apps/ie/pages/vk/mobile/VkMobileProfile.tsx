@@ -36,7 +36,7 @@ export function VkMobileProfile({
   onWrite,
   onSection,
 }: VkMobileProfileProps) {
-  const { state, friendCount, busy, act } = useFriendState(
+  const { state, friendCount, busy, act, decline } = useFriendState(
     viewerId,
     profile.id,
   );
@@ -75,6 +75,16 @@ export function VkMobileProfile({
                 >
                   {FRIEND_ACTION[state]}
                 </VkMobileButton>
+                {state === "pending_incoming" && (
+                  <VkMobileButton
+                    size="small"
+                    tone="secondary"
+                    disabled={busy}
+                    onClick={() => void decline()}
+                  >
+                    Отклонить
+                  </VkMobileButton>
+                )}
                 <VkMobileButton
                   size="small"
                   tone="secondary"

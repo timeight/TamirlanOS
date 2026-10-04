@@ -65,11 +65,19 @@ export async function markRequestsSeen(receiver: string): Promise<void> {
     .is("seen_at", null);
 }
 
-export async function acceptRequest(requester: string): Promise<string | null> {
+/**
+ * Получатель указан явно, хотя RLS и так пускает только его: запрос без
+ * этого условия полагался бы на политику как на фильтр.
+ */
+export async function acceptRequest(
+  requester: string,
+  receiver: string,
+): Promise<string | null> {
   const { error } = await supabase
     .from("friendships")
     .update({ status: "accepted" })
     .eq("requester_id", requester)
+    .eq("receiver_id", receiver)
     .eq("status", "pending");
   return error?.message ?? null;
 }
@@ -92,8 +100,8 @@ export async function requestFriendship(
   target: string,
 ): Promise<string | null> {
   if (me === target) return "Нельзя добавить себя";
-  if ((await fetchFriendState(target)) === "incoming_pending") {
-    return acceptRequest(target);
+  if ((await fetchFriendState(target)) === "pending_incoming") {
+    return acceptRequest(target, me);
   }
   const { error } = await supabase
     .from("friendships")
@@ -107,6 +115,6 @@ export async function applyFriendAction(
   state: FriendState,
 ): Promise<string | null> {
   if (state === "none") return requestFriendship(me, target);
-  if (state === "incoming_pending") return acceptRequest(target);
+  if (state === "pending_incoming") return acceptRequest(target, me);
   return removeFriendship(target);
 }
