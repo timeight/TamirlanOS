@@ -31,7 +31,7 @@ export function VkMobileHeader({ title, left, right }: VkMobileHeaderProps) {
         <VkGlyph name={left.glyph} size={19} />
       </button>
 
-      <h1 className="min-w-0 flex-1 truncate text-center text-[15px] font-bold [text-shadow:0_-1px_0_rgba(0,0,0,0.2)]">
+      <h1 className="min-w-0 flex-1 truncate text-center text-[16px] font-bold [text-shadow:0_-1px_0_rgba(0,0,0,0.28)]">
         {title}
       </h1>
 

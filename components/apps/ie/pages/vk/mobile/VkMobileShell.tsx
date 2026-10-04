@@ -5,7 +5,6 @@ import { VkAuthScreen } from "@/components/apps/ie/pages/vk/VkAuthScreen";
 import { VkMobileDrawer } from "@/components/apps/ie/pages/vk/mobile/VkMobileDrawer";
 import { VkMobileHeader } from "@/components/apps/ie/pages/vk/mobile/VkMobileHeader";
 import { VkMobileSection } from "@/components/apps/ie/pages/vk/mobile/VkMobileSection";
-import { VkMobileTabBar } from "@/components/apps/ie/pages/vk/mobile/VkMobileTabBar";
 import { signOut } from "@/core/vk/api/profiles";
 import type { VkApp } from "@/hooks/use-vk-app";
 
@@ -64,15 +63,6 @@ export function VkMobileShell({ app, onLeave }: VkMobileShellProps) {
           />
         )}
       </div>
-
-      {status === "signed-in" && (
-        <VkMobileTabBar
-          active={section}
-          counters={app.counters}
-          onSelect={choose}
-          onOpenMenu={() => setMenuOpen(true)}
-        />
-      )}
 
       {status === "signed-in" && (
         <VkMobileDrawer

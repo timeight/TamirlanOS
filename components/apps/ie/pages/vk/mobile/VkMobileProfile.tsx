@@ -46,18 +46,21 @@ export function VkMobileProfile({
 
   return (
     <section>
-      <div className="flex border-b border-[#d5d9de] bg-[linear-gradient(#fbfcfd,#f1f4f6)] p-[10px]">
-        <VkAvatar size={76} src={profile.avatar_url} />
+      <div className="flex items-start border-b border-[#d5d9de] bg-[linear-gradient(#fbfcfd,#f1f4f6)] px-[10px] py-2">
+        <span className="block border border-[#c6ced6] bg-white p-px shadow-[0_1px_1px_rgba(0,0,0,0.07)]">
+          <VkAvatar size={72} src={profile.avatar_url} />
+        </span>
         <div className="ml-2.5 min-w-0 flex-1">
-          <h2 className="text-[16px] leading-[19px] font-bold break-words text-[#2a2a2a]">
+          <h2 className="text-[16px] leading-[18px] font-bold break-words text-[#1a1a1a]">
             {fullName(profile)}
           </h2>
-          <p className="mt-0.5 truncate text-[12px] text-[#8a8a8a]">
+          <p className="truncate text-[12px] leading-[15px] text-[#8a8a8a]">
             {profile.city ?? `vk.com/${profile.username}`}
           </p>
-          <div className="mt-2 flex flex-wrap gap-1.5">
+          <div className="mt-1.5 flex flex-wrap gap-1.5">
             {isMe ? (
               <VkMobileButton
+                size="small"
                 tone="secondary"
                 onClick={() => onSection(VK_SECTION.settings)}
               >
@@ -65,10 +68,15 @@ export function VkMobileProfile({
               </VkMobileButton>
             ) : (
               <>
-                <VkMobileButton disabled={busy} onClick={() => void act()}>
+                <VkMobileButton
+                  size="small"
+                  disabled={busy}
+                  onClick={() => void act()}
+                >
                   {FRIEND_ACTION[state]}
                 </VkMobileButton>
                 <VkMobileButton
+                  size="small"
                   tone="secondary"
                   onClick={() => onWrite(profile.id)}
                 >
@@ -80,7 +88,7 @@ export function VkMobileProfile({
         </div>
       </div>
 
-      <ul>
+      <ul className="border-b border-[#d5d9de]">
         <VkMobileRow
           title="Друзья"
           meta={String(friendCount)}

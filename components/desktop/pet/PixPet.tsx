@@ -8,8 +8,10 @@ import { PET_SIZE, PetState } from "@/core/pet/pet-types";
 import { usePetAnimator } from "@/hooks/use-pet-animator";
 import { usePetEngine } from "@/hooks/use-pet-engine";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { useMediaQuery } from "@/hooks/use-media-query";
 import { useT } from "@/hooks/use-translations";
 import { usePetStore } from "@/stores/pet-store";
+import { useWindowStore } from "@/stores/window-store";
 
 const DOUBLE_CLICK_MS = 320;
 
@@ -19,6 +21,8 @@ export function PixPet() {
   const addFriendship = usePetStore((store) => store.addFriendship);
   const skinId = usePetStore((store) => store.skinId);
   const reducedMotion = useReducedMotion();
+  const compact = useMediaQuery("(max-width: 767px)");
+  const hasOpenWindow = useWindowStore((store) => store.zOrder.length > 0);
   const t = useT();
   const [line, setLine] = useState<string | null>(null);
   const lastClickAt = useRef(0);
@@ -74,6 +78,11 @@ export function PixPet() {
       window.removeEventListener("pointerup", onUp);
     };
   });
+
+  // Окна получают z-index по порядку (0, 1, 2…), питомец сидит на z-40 и
+  // поэтому всегда поверх них. На широком экране он гуляет сбоку и не мешает,
+  // а на узком окно занимает весь экран — там он закрывает содержимое.
+  if (compact && hasOpenWindow) return null;
 
   if (!enabled || frame.state === PetState.Hide) return null;
 
