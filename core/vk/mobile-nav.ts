@@ -10,7 +10,7 @@ export interface VkNavEntry {
 
 /** Порядок пунктов повторяет боковое меню приложения тех лет. */
 export const VK_DRAWER: readonly VkNavEntry[] = [
-  { section: VK_SECTION.profile, glyph: "news", short: "Страница" },
+  { section: VK_SECTION.profile, glyph: "user", short: "Страница" },
   { section: VK_SECTION.answers, glyph: "heart", short: "Ответы" },
   { section: VK_SECTION.messages, glyph: "message", short: "Диалоги" },
   { section: VK_SECTION.friends, glyph: "friends", short: "Друзья" },
@@ -18,7 +18,7 @@ export const VK_DRAWER: readonly VkNavEntry[] = [
   { section: VK_SECTION.photos, glyph: "photo", short: "Фото" },
   { section: VK_SECTION.video, glyph: "video", short: "Видео" },
   { section: VK_SECTION.audio, glyph: "audio", short: "Аудио" },
-  { section: VK_SECTION.news, glyph: "bookmark", short: "Новости" },
+  { section: VK_SECTION.news, glyph: "news", short: "Новости" },
   { section: VK_SECTION.search, glyph: "search", short: "Поиск" },
   { section: VK_SECTION.settings, glyph: "settings", short: "Настройки" },
 ];

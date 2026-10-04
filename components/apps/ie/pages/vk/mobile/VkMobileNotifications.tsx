@@ -34,9 +34,9 @@ export function VkMobileNotifications({
       }
     >
       {loading ? (
-        <p className="px-3 py-5 text-[13px] text-[#95a0ab]">Загрузка...</p>
+        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">Загрузка...</p>
       ) : items.length === 0 ? (
-        <p className="px-3 py-5 text-[13px] text-[#95a0ab]">
+        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
           Новых событий нет.
         </p>
       ) : (

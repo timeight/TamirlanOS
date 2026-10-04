@@ -16,7 +16,7 @@ interface VkMobilePostProps {
   onOpenProfile: (profileId: string) => void;
 }
 
-/** Запись во всю ширину, без карточек и скруглений — как в приложении тех лет. */
+/** Запись во всю ширину; записи разделяет серая полоса, а не рамка карточки. */
 export function VkMobilePost({
   post,
   viewerId,
@@ -26,20 +26,20 @@ export function VkMobilePost({
   const [open, setOpen] = useState(false);
 
   return (
-    <li className="border-b-[6px] border-[#e8ebee] bg-white">
-      <div className="flex items-center gap-2.5 px-3 pt-2.5">
+    <li className="border-b-[7px] border-[#e4e8eb] bg-white">
+      <div className="flex items-center px-[10px] pt-2">
         <button type="button" onClick={() => onOpenProfile(post.authorId)}>
           <VkAvatar size={36} src={post.authorAvatar} />
         </button>
-        <div className="min-w-0 flex-1">
+        <div className="ml-2 min-w-0 flex-1">
           <button
             type="button"
             onClick={() => onOpenProfile(post.authorId)}
-            className="block truncate text-[14px] font-medium text-[#2a5885]"
+            className="block truncate text-[13px] leading-[16px] font-bold text-[#2a5885]"
           >
             {post.authorName}
           </button>
-          <p className="text-[12px] text-[#95a0ab]">{vkDate(post.createdAt)}</p>
+          <p className="text-[11px] text-[#9aa4ad]">{vkDate(post.createdAt)}</p>
         </div>
         {(post.mine || post.onMyWall) && (
           <button
@@ -49,21 +49,21 @@ export function VkMobilePost({
               await deletePost(post.id);
               await onChanged();
             }}
-            className="flex h-[36px] w-[30px] items-center justify-center text-[#c3cad1]"
+            className="flex h-[30px] w-[26px] shrink-0 items-center justify-center text-[#c3c9cf]"
           >
-            <VkGlyph name="close" size={15} />
+            <VkGlyph name="close" size={14} />
           </button>
         )}
       </div>
 
       {post.content && (
-        <p className="px-3 pt-2 text-[15px] leading-[20px] break-words whitespace-pre-wrap text-[#2a2a2a]">
+        <p className="px-[10px] pt-1.5 text-[14px] leading-[19px] break-words whitespace-pre-wrap text-[#333]">
           {post.content}
         </p>
       )}
 
       {post.photoUrl && (
-        <span className="relative mt-2 block h-[240px] w-full bg-[#e8ebee]">
+        <span className="relative mt-[7px] block h-[210px] w-full bg-[#dfe4e9]">
           <AssetImage
             src={post.photoUrl}
             alt={post.photoCaption ?? "Фотография к записи"}
@@ -74,7 +74,7 @@ export function VkMobilePost({
         </span>
       )}
 
-      <div className="mt-1 flex items-center gap-5 px-3 py-2">
+      <div className="flex items-center gap-[18px] px-[10px] pt-[5px] pb-[7px]">
         <button
           type="button"
           onClick={async () => {
@@ -82,20 +82,20 @@ export function VkMobilePost({
             await onChanged();
           }}
           className={cn(
-            "flex min-h-[32px] items-center gap-1.5 text-[13px]",
+            "flex items-center gap-[5px] py-1 text-[12px]",
             post.liked ? "text-[#b63131]" : "text-[#7a8d9f]",
           )}
         >
-          <VkGlyph name="heart" size={17} />
+          <VkGlyph name="heart" size={16} />
           {post.likes > 0 && post.likes}
         </button>
 
         <button
           type="button"
           onClick={() => setOpen(!open)}
-          className="flex min-h-[32px] items-center gap-1.5 text-[13px] text-[#7a8d9f]"
+          className="flex items-center gap-[5px] py-1 text-[12px] text-[#7a8d9f]"
         >
-          <VkGlyph name="comment" size={17} />
+          <VkGlyph name="comment" size={16} />
           {post.comments.length > 0 && post.comments.length}
         </button>
       </div>

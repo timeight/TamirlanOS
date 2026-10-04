@@ -14,7 +14,6 @@ interface VkMobileFriendsProps {
   viewerId: string;
   ownerName: string;
   onOpenProfile: (profileId: string) => void;
-  onWrite: (profileId: string) => void;
   onSection: (section: string) => void;
   onCountersChanged: () => Promise<void>;
   onMenu: () => void;
@@ -27,7 +26,6 @@ export function VkMobileFriends({
   viewerId,
   ownerName,
   onOpenProfile,
-  onWrite,
   onSection,
   onCountersChanged,
   onMenu,
@@ -62,17 +60,17 @@ export function VkMobileFriends({
       }}
     >
       {mine && (
-        <div className="flex border-b border-[#d8dde2] bg-[#f2f4f6]">
+        <div className="flex h-[33px] border-b border-[#d5d9de] bg-[#eceff1]">
           {tabs.map((item) => (
             <button
               key={item.key}
               type="button"
               onClick={() => setTab(item.key)}
               className={cn(
-                "min-h-[40px] flex-1 border-b-2 text-[13px]",
+                "flex-1 border-b-2 text-[13px]",
                 item.key === tab
-                  ? "border-[#4a76a8] font-medium text-[#2a5885]"
-                  : "border-transparent text-[#7a7a7a]",
+                  ? "border-[#4a76a8] bg-white font-bold text-[#2a5885]"
+                  : "border-transparent text-[#6d7883]",
               )}
             >
               {item.label}
@@ -82,7 +80,7 @@ export function VkMobileFriends({
         </div>
       )}
 
-      <ul className="border-b border-[#d8dde2]">
+      <ul>
         <VkMobileRow
           title="Найти друзей"
           chevron
@@ -91,9 +89,9 @@ export function VkMobileFriends({
       </ul>
 
       {loading ? (
-        <p className="px-3 py-5 text-[13px] text-[#95a0ab]">Загрузка...</p>
+        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">Загрузка...</p>
       ) : list.length === 0 ? (
-        <p className="px-3 py-5 text-[13px] text-[#95a0ab]">
+        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
           {tab === "incoming"
             ? "Новых заявок нет."
             : tab === "outgoing"
@@ -137,15 +135,7 @@ export function VkMobileFriends({
                   >
                     Отменить заявку
                   </VkMobileButton>
-                ) : (
-                  <VkMobileButton
-                    size="small"
-                    tone="secondary"
-                    onClick={() => onWrite(profile.id)}
-                  >
-                    Написать
-                  </VkMobileButton>
-                )
+                ) : undefined
               }
             />
           ))}

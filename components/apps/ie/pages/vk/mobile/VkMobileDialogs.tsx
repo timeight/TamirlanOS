@@ -19,12 +19,14 @@ export function VkMobileDialogs({ messenger, viewerId }: VkMobileDialogsProps) {
   }, [markSeen]);
 
   if (loading) {
-    return <p className="px-3 py-5 text-[13px] text-[#95a0ab]">Загрузка...</p>;
+    return (
+      <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">Загрузка...</p>
+    );
   }
 
   if (dialogs.length === 0) {
     return (
-      <p className="px-3 py-5 text-[13px] text-[#95a0ab]">
+      <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
         Переписок нет. Откройте чью-нибудь страницу и напишите первым.
       </p>
     );

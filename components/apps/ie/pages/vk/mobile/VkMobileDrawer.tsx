@@ -54,55 +54,69 @@ export function VkMobileDrawer({
       <nav
         aria-label="Разделы ВКонтакте"
         className={cn(
-          "absolute inset-y-0 left-0 flex w-[80%] max-w-[300px] flex-col overflow-y-auto bg-[#3b4d5e] transition-transform duration-200 ease-out motion-reduce:transition-none",
+          "absolute inset-y-0 left-0 flex w-[76%] max-w-[295px] flex-col bg-[linear-gradient(#3e5265,#32424f)] shadow-[2px_0_6px_rgba(0,0,0,0.4)] transition-transform duration-200 ease-out motion-reduce:transition-none",
           open ? "translate-x-0" : "-translate-x-full",
         )}
       >
         <button
           type="button"
           onClick={() => onSelect(VK_SECTION.profile)}
-          className="flex items-center gap-3 border-b border-[#4c6075] px-3 py-3 text-left active:bg-[#34495e]"
+          className="flex shrink-0 items-center border-b border-[#4e6275] px-[10px] py-[11px] text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] active:bg-[#34495e]"
         >
-          <VkAvatar size={44} src={me?.avatar_url} />
-          <span className="min-w-0 flex-1">
-            <span className="block truncate text-[15px] font-medium text-white">
+          <VkAvatar size={46} src={me?.avatar_url} />
+          <span className="ml-2.5 min-w-0 flex-1">
+            <span className="block truncate text-[15px] font-bold text-white">
               {me ? fullName(me) : "Гость"}
             </span>
             {me && (
-              <span className="block truncate text-[12px] text-[#9fb0c0]">
+              <span className="mt-px block truncate text-[11px] text-[#9fb0c0]">
                 vk.com/{me.username}
               </span>
             )}
           </span>
-          <VkGlyph name="chevron" size={13} className="text-[#7e93a6]" />
+          <VkGlyph name="chevron" size={11} className="text-[#7e93a6]" />
         </button>
 
-        <ul className="flex-1 py-1">
+        <ul className="min-h-0 flex-1 overflow-y-auto">
           {VK_DRAWER.map((entry) => {
             const badge = badgeFor(entry.section, counters);
+            const live = isImplemented(entry.section);
             return (
               <li key={entry.section}>
                 <button
                   type="button"
                   onClick={() => onSelect(entry.section)}
                   className={cn(
-                    "flex min-h-[44px] w-full items-center gap-3 px-3 text-left text-[15px]",
+                    "flex h-[42px] w-full items-center border-b border-white/[0.055] px-[10px] text-left text-[14px]",
                     entry.section === active
-                      ? "bg-[#34495e] text-white"
+                      ? "bg-[linear-gradient(#4a6075,#405466)] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
                       : "active:bg-[#34495e]",
-                    isImplemented(entry.section)
-                      ? "text-[#dce4eb]"
-                      : "text-[#7e93a6]",
+                    live ? "text-[#dbe3ea]" : "text-[#8295a6]",
                   )}
                 >
-                  <VkGlyph name={entry.glyph} size={18} />
+                  <span
+                    className={cn(
+                      "mr-[11px] flex w-[19px] justify-center",
+                      live ? "text-[#9fb0c0]" : "text-[#6f8295]",
+                    )}
+                  >
+                    <VkGlyph name={entry.glyph} size={18} />
+                  </span>
                   <span className="min-w-0 flex-1 truncate">
                     {entry.section}
                   </span>
-                  {badge > 0 && (
-                    <span className="rounded-sm bg-[#5181b8] px-1.5 text-[11px] leading-[17px] font-bold text-white">
+                  {badge > 0 ? (
+                    <span className="rounded-[2px] bg-[#cc3a3a] px-1 text-[10px] leading-[15px] font-bold text-white">
                       {badge}
                     </span>
+                  ) : (
+                    live && (
+                      <VkGlyph
+                        name="chevron"
+                        size={11}
+                        className="text-[#7e93a6]"
+                      />
+                    )
                   )}
                 </button>
               </li>
@@ -113,7 +127,7 @@ export function VkMobileDrawer({
         <button
           type="button"
           onClick={onSignOut}
-          className="min-h-[44px] border-t border-[#4c6075] px-3 text-left text-[15px] text-[#9fb0c0] active:bg-[#34495e]"
+          className="h-[42px] shrink-0 border-t border-[#4e6275] px-[10px] text-left text-[14px] text-[#9fb0c0] active:bg-[#34495e]"
         >
           Выйти
         </button>

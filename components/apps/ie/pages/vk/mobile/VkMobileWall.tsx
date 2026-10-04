@@ -1,6 +1,7 @@
 "use client";
 
 import { VkMobileComposer } from "@/components/apps/ie/pages/vk/mobile/VkMobileComposer";
+import { VkMobileGroupLabel } from "@/components/apps/ie/pages/vk/mobile/VkMobileGroupLabel";
 import { VkMobilePost } from "@/components/apps/ie/pages/vk/mobile/VkMobilePost";
 import { useVkWall } from "@/hooks/use-vk-wall";
 import { useWallComposer } from "@/hooks/use-wall-composer";
@@ -21,16 +22,14 @@ export function VkMobileWall({
 
   return (
     <section>
-      <h3 className="bg-[#f2f4f6] px-3 py-1.5 text-[12px] text-[#7a7a7a] uppercase">
-        Стена
-      </h3>
+      <VkMobileGroupLabel>Стена</VkMobileGroupLabel>
 
       <VkMobileComposer composer={composer} own={ownerId === viewerId} />
 
       {loading ? (
-        <p className="px-3 py-5 text-[13px] text-[#95a0ab]">Загрузка...</p>
+        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">Загрузка...</p>
       ) : posts.length === 0 ? (
-        <p className="px-3 py-5 text-[13px] text-[#95a0ab]">
+        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
           Записей пока нет.
         </p>
       ) : (

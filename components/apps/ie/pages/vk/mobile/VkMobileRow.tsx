@@ -16,7 +16,10 @@ interface VkMobileRowProps {
   actions?: React.ReactNode;
 }
 
-/** Строка списка мобильного ВКонтакте: 44 px, тонкая линия, шеврон справа. */
+/**
+ * Ячейка списка iOS-эпохи: 43 px и разделитель, отступающий от левого края —
+ * под аватаром линия не идёт, как в таблицах того времени.
+ */
 export function VkMobileRow({
   title,
   subtitle,
@@ -28,31 +31,38 @@ export function VkMobileRow({
   onClick,
   actions,
 }: VkMobileRowProps) {
+  const hasAvatar = avatar !== undefined;
+
   const body = (
     <>
-      {avatar !== undefined && <VkAvatar size={40} src={avatar} />}
-      <span className="min-w-0 flex-1">
-        <span className="flex items-baseline gap-2">
-          <span className="min-w-0 flex-1 truncate text-[15px] text-[#2a5885]">
-            {title}
-          </span>
-          {meta && (
-            <span className="shrink-0 text-[12px] text-[#95a0ab]">{meta}</span>
-          )}
+      {hasAvatar && <VkAvatar size={40} src={avatar} />}
+      <span className={cn("min-w-0 flex-1", hasAvatar && "ml-[9px]")}>
+        <span className="block truncate text-[14px] leading-[16px] text-[#2a5885]">
+          {title}
         </span>
         {subtitle && (
-          <span className="mt-0.5 block truncate text-[13px] text-[#7a7a7a]">
+          <span className="mt-px block truncate text-[12px] leading-[15px] text-[#8a8a8a]">
             {subtitle}
           </span>
         )}
       </span>
+
+      {meta && (
+        <span className="ml-auto shrink-0 pl-2 text-[12px] text-[#9aa4ad]">
+          {meta}
+        </span>
+      )}
       {badge !== undefined && badge > 0 && (
-        <span className="shrink-0 rounded-sm bg-[#4a76a8] px-1.5 text-[11px] leading-[17px] font-bold text-white">
+        <span className="ml-2 shrink-0 rounded-[2px] bg-[#cc3a3a] px-1 text-[10px] leading-[15px] font-bold text-white">
           {badge}
         </span>
       )}
       {chevron && (
-        <VkGlyph name="chevron" size={13} className="shrink-0 text-[#c3cad1]" />
+        <VkGlyph
+          name="chevron"
+          size={11}
+          className="ml-[7px] shrink-0 text-[#c3c9cf]"
+        />
       )}
     </>
   );
@@ -60,26 +70,32 @@ export function VkMobileRow({
   return (
     <li
       className={cn(
-        "border-b border-[#e3e7ea]",
-        unread && "bg-[#edf1f5]",
-        "last:border-b-0",
+        "relative after:absolute after:right-0 after:bottom-0 after:h-px after:bg-[#d5d9de] after:content-['']",
+        hasAvatar ? "after:left-[56px]" : "after:left-[10px]",
+        unread ? "bg-[#eef3f8]" : "bg-white",
       )}
     >
       {onClick ? (
         <button
           type="button"
           onClick={onClick}
-          className="flex min-h-[56px] w-full items-center gap-3 px-3 py-2 text-left active:bg-[#e8edf2]"
+          className="flex min-h-[43px] w-full items-center px-[10px] py-1.5 text-left active:bg-[#e8edf2]"
         >
           {body}
         </button>
       ) : (
-        <div className="flex min-h-[56px] items-center gap-3 px-3 py-2">
+        <div className="flex min-h-[43px] items-center px-[10px] py-1.5">
           {body}
         </div>
       )}
+
       {actions && (
-        <div className="flex flex-wrap gap-2 px-3 pb-2.5 pl-[64px]">
+        <div
+          className={cn(
+            "flex flex-wrap gap-1.5 px-[10px] pb-2",
+            hasAvatar && "pl-[56px]",
+          )}
+        >
           {actions}
         </div>
       )}

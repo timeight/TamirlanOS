@@ -84,7 +84,6 @@ export function VkMobileSection({ app, userId, onMenu }: VkMobileSectionProps) {
         viewerId={userId}
         ownerName={fullName(owner)}
         onOpenProfile={openProfile}
-        onWrite={(id) => void write(id)}
         onSection={setSection}
         onCountersChanged={refreshCounters}
         onMenu={onMenu}
@@ -140,7 +139,7 @@ export function VkMobileSection({ app, userId, onMenu }: VkMobileSectionProps) {
 
   return (
     <VkMobileScreen title={section} left={menu}>
-      <p className="px-3 py-6 text-[14px] text-[#7a7a7a]">
+      <p className="px-[10px] py-6 text-[13px] text-[#8a8a8a]">
         Этот раздел не реализован: за ним нет таблицы в базе.
       </p>
     </VkMobileScreen>

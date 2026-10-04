@@ -29,7 +29,7 @@ export function VkMobileSearch({
       left={{ glyph: "menu", label: "Открыть меню", onClick: onMenu }}
     >
       <form
-        className="flex gap-2 border-b border-[#d8dde2] bg-[#f2f4f6] px-3 py-2"
+        className="flex gap-2 border-b border-[#d5d9de] bg-[#eceff1] px-[10px] py-1.5"
         onSubmit={(event) => {
           event.preventDefault();
           void run();
@@ -40,7 +40,7 @@ export function VkMobileSearch({
           onChange={(event) => setQuery(event.target.value)}
           placeholder="Имя, фамилия или адрес"
           aria-label="Поиск людей"
-          className="min-w-0 flex-1 rounded-[3px] border border-[#ccd4dd] bg-white px-2.5 py-2 text-[14px] outline-none focus:border-[#5181b8]"
+          className="h-[28px] min-w-0 flex-1 rounded-[3px] border border-[#c2cad3] bg-white px-[7px] text-[13px] outline-none placeholder:text-[#a6adb4] focus:border-[#5181b8]"
         />
         <VkMobileButton type="submit" disabled={busy}>
           Найти
@@ -48,7 +48,7 @@ export function VkMobileSearch({
       </form>
 
       {searched && results.length === 0 && (
-        <p className="px-3 py-5 text-[13px] text-[#95a0ab]">
+        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
           Ничего не найдено. Введите хотя бы два знака.
         </p>
       )}

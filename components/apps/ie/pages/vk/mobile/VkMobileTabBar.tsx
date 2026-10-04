@@ -28,7 +28,7 @@ export function VkMobileTabBar({
   return (
     <nav
       aria-label="Основные разделы"
-      className="flex shrink-0 border-t border-[#ccd4dd] bg-[linear-gradient(#fbfcfd,#eff2f5)]"
+      className="flex h-[49px] shrink-0 border-t border-[#c6ced6] bg-[linear-gradient(#fcfdfd,#e7ebef)] shadow-[inset_0_1px_0_#fff]"
     >
       {VK_TABS.map((entry) => {
         const badge = badgeFor(entry.section, counters);
@@ -38,14 +38,14 @@ export function VkMobileTabBar({
             type="button"
             onClick={() => onSelect(entry.section)}
             className={cn(
-              "relative flex min-h-[48px] flex-1 flex-col items-center justify-center gap-0.5",
+              "relative flex flex-1 flex-col items-center justify-center gap-[2px]",
               entry.section === active ? "text-[#4a76a8]" : "text-[#8a949e]",
             )}
           >
-            <VkGlyph name={entry.glyph} size={20} />
+            <VkGlyph name={entry.glyph} size={19} />
             <span className="text-[10px] leading-none">{entry.short}</span>
             {badge > 0 && (
-              <span className="absolute top-1.5 right-[22%] rounded-sm bg-[#cc3a3a] px-1 text-[10px] leading-[14px] font-bold text-white">
+              <span className="absolute top-1 right-[20%] rounded-[2px] bg-[#cc3a3a] px-1 text-[10px] leading-[14px] font-bold text-white">
                 {badge}
               </span>
             )}
@@ -57,9 +57,9 @@ export function VkMobileTabBar({
         type="button"
         onClick={onOpenMenu}
         aria-label="Открыть меню"
-        className="flex min-h-[48px] flex-1 flex-col items-center justify-center gap-0.5 text-[#8a949e]"
+        className="flex flex-1 flex-col items-center justify-center gap-[2px] text-[#8a949e]"
       >
-        <VkGlyph name="menu" size={20} />
+        <VkGlyph name="menu" size={19} />
         <span className="text-[10px] leading-none">Ещё</span>
       </button>
     </nav>

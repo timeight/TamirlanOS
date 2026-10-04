@@ -5,6 +5,7 @@ import { AssetImage } from "@/components/ui/AssetImage";
 import { VkGlyph } from "@/components/apps/ie/pages/vk/mobile/VkGlyph";
 import { VkMobileButton } from "@/components/apps/ie/pages/vk/mobile/VkMobileButton";
 import { VkMobileScreen } from "@/components/apps/ie/pages/vk/mobile/VkMobileScreen";
+import { VkMobileGroupLabel } from "@/components/apps/ie/pages/vk/mobile/VkMobileGroupLabel";
 import { WALL_ALBUM } from "@/core/vk/api/photos";
 import { useVkPhotos, type VkPhoto } from "@/hooks/use-vk-photos";
 
@@ -40,23 +41,25 @@ export function VkMobilePhotos({
           : undefined
       }
     >
-      <h3 className="bg-[#f2f4f6] px-3 py-1.5 text-[12px] text-[#7a7a7a] uppercase">
+      <VkMobileGroupLabel>
         {WALL_ALBUM}
         {busy && " · загрузка"}
-      </h3>
+      </VkMobileGroupLabel>
 
-      {error && <p className="px-3 py-2 text-[13px] text-[#b63131]">{error}</p>}
+      {error && (
+        <p className="px-[10px] py-2 text-[13px] text-[#b63131]">{error}</p>
+      )}
 
       {loading ? (
-        <p className="px-3 py-5 text-[13px] text-[#95a0ab]">Загрузка...</p>
+        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">Загрузка...</p>
       ) : photos.length === 0 ? (
-        <p className="px-3 py-5 text-[13px] text-[#95a0ab]">
+        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
           {mine
             ? "Вы ещё не загрузили ни одной фотографии."
             : "Фотографий нет."}
         </p>
       ) : (
-        <ul className="grid grid-cols-3 gap-px bg-[#d8dde2]">
+        <ul className="grid grid-cols-3 gap-px bg-[#d5d9de]">
           {photos.map((photo) => (
             <li key={photo.row.id} className="bg-white">
               <button

@@ -2,6 +2,7 @@
 
 import { VkAvatar } from "@/components/apps/ie/pages/vk/VkAvatar";
 import { VkMobileButton } from "@/components/apps/ie/pages/vk/mobile/VkMobileButton";
+import { VkMobileGroupLabel } from "@/components/apps/ie/pages/vk/mobile/VkMobileGroupLabel";
 import { VkMobileRow } from "@/components/apps/ie/pages/vk/mobile/VkMobileRow";
 import { VK_SECTION } from "@/core/vk/sections";
 import { FRIEND_ACTION } from "@/core/vk/social-types";
@@ -45,40 +46,41 @@ export function VkMobileProfile({
 
   return (
     <section>
-      <div className="flex flex-col items-center border-b border-[#d8dde2] bg-[#f7f8fa] px-4 py-4">
-        <VkAvatar size={96} src={profile.avatar_url} />
-        <h2 className="mt-2.5 text-center text-[18px] leading-tight font-medium text-[#2a2a2a]">
-          {fullName(profile)}
-        </h2>
-        {profile.city && (
-          <p className="mt-0.5 text-[13px] text-[#7a7a7a]">{profile.city}</p>
-        )}
-
-        <div className="mt-3 flex w-full max-w-[280px] flex-col gap-2">
-          {isMe ? (
-            <VkMobileButton
-              tone="secondary"
-              onClick={() => onSection(VK_SECTION.settings)}
-            >
-              Редактировать
-            </VkMobileButton>
-          ) : (
-            <>
-              <VkMobileButton disabled={busy} onClick={() => void act()}>
-                {FRIEND_ACTION[state]}
-              </VkMobileButton>
+      <div className="flex border-b border-[#d5d9de] bg-[linear-gradient(#fbfcfd,#f1f4f6)] p-[10px]">
+        <VkAvatar size={76} src={profile.avatar_url} />
+        <div className="ml-2.5 min-w-0 flex-1">
+          <h2 className="text-[16px] leading-[19px] font-bold break-words text-[#2a2a2a]">
+            {fullName(profile)}
+          </h2>
+          <p className="mt-0.5 truncate text-[12px] text-[#8a8a8a]">
+            {profile.city ?? `vk.com/${profile.username}`}
+          </p>
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {isMe ? (
               <VkMobileButton
                 tone="secondary"
-                onClick={() => onWrite(profile.id)}
+                onClick={() => onSection(VK_SECTION.settings)}
               >
-                Написать сообщение
+                Редактировать
               </VkMobileButton>
-            </>
-          )}
+            ) : (
+              <>
+                <VkMobileButton disabled={busy} onClick={() => void act()}>
+                  {FRIEND_ACTION[state]}
+                </VkMobileButton>
+                <VkMobileButton
+                  tone="secondary"
+                  onClick={() => onWrite(profile.id)}
+                >
+                  Написать
+                </VkMobileButton>
+              </>
+            )}
+          </div>
         </div>
       </div>
 
-      <ul className="border-b border-[#d8dde2]">
+      <ul>
         <VkMobileRow
           title="Друзья"
           meta={String(friendCount)}
@@ -95,29 +97,27 @@ export function VkMobileProfile({
 
       {(facts.length > 0 || profile.relationship_status) && (
         <>
-          <h3 className="bg-[#f2f4f6] px-3 py-1.5 text-[12px] text-[#7a7a7a] uppercase">
-            Информация
-          </h3>
-          <dl className="border-b border-[#d8dde2]">
+          <VkMobileGroupLabel>Информация</VkMobileGroupLabel>
+          <dl>
             {facts.map((fact) => (
               <div
                 key={fact.key}
-                className="flex gap-3 border-b border-[#e3e7ea] px-3 py-2 last:border-b-0"
+                className="relative flex min-h-[40px] items-center gap-3 px-[10px] py-1.5 after:absolute after:right-0 after:bottom-0 after:left-[10px] after:h-px after:bg-[#d5d9de] after:content-['']"
               >
-                <dt className="w-[110px] shrink-0 text-[13px] text-[#7a7a7a]">
+                <dt className="shrink-0 text-[13px] text-[#8a8a8a]">
                   {fact.label}
                 </dt>
-                <dd className="min-w-0 flex-1 text-[14px] break-words text-[#2a2a2a]">
+                <dd className="ml-auto min-w-0 text-right text-[13px] break-words text-[#333]">
                   {profile[fact.key] as string}
                 </dd>
               </div>
             ))}
             {profile.relationship_status && (
-              <div className="flex gap-3 px-3 py-2">
-                <dt className="w-[110px] shrink-0 text-[13px] text-[#7a7a7a]">
-                  Положение
+              <div className="relative flex min-h-[40px] items-center gap-3 px-[10px] py-1.5 after:absolute after:right-0 after:bottom-0 after:left-[10px] after:h-px after:bg-[#d5d9de] after:content-['']">
+                <dt className="shrink-0 text-[13px] text-[#8a8a8a]">
+                  Семейное положение
                 </dt>
-                <dd className="min-w-0 flex-1 text-[14px] text-[#2a2a2a]">
+                <dd className="ml-auto text-right text-[13px] text-[#333]">
                   {RELATIONSHIP_LABELS[profile.relationship_status]}
                 </dd>
               </div>

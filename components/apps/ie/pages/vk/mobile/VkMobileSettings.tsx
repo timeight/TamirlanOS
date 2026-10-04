@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { VkAvatar } from "@/components/apps/ie/pages/vk/VkAvatar";
-import { VkField } from "@/components/apps/ie/pages/vk/VkField";
+import { VkMobileField } from "@/components/apps/ie/pages/vk/mobile/VkMobileField";
 import { VkMobileButton } from "@/components/apps/ie/pages/vk/mobile/VkMobileButton";
 import { VkMobileScreen } from "@/components/apps/ie/pages/vk/mobile/VkMobileScreen";
 import { uploadAvatar } from "@/core/vk/api/photos";
@@ -20,12 +20,12 @@ interface VkMobileSettingsProps {
 }
 
 const FIELDS: readonly { key: keyof ProfilePatch; label: string }[] = [
-  { key: "first_name", label: "Имя:" },
-  { key: "last_name", label: "Фамилия:" },
-  { key: "city", label: "Город:" },
-  { key: "birthday", label: "День рождения:" },
-  { key: "activity", label: "Деятельность:" },
-  { key: "website", label: "Веб-сайт:" },
+  { key: "first_name", label: "Имя" },
+  { key: "last_name", label: "Фамилия" },
+  { key: "city", label: "Город" },
+  { key: "birthday", label: "День рождения" },
+  { key: "activity", label: "Деятельность" },
+  { key: "website", label: "Веб-сайт" },
 ];
 
 export function VkMobileSettings({ me, onMenu }: VkMobileSettingsProps) {
@@ -66,8 +66,8 @@ export function VkMobileSettings({ me, onMenu }: VkMobileSettingsProps) {
       title="Настройки"
       left={{ glyph: "menu", label: "Открыть меню", onClick: onMenu }}
     >
-      <div className="flex items-center gap-3 border-b border-[#d8dde2] bg-[#f7f8fa] px-3 py-3">
-        <VkAvatar size={64} src={me.avatar_url} />
+      <div className="flex items-center gap-2.5 border-b border-[#d5d9de] bg-[linear-gradient(#fbfcfd,#f1f4f6)] px-[10px] py-2.5">
+        <VkAvatar size={56} src={me.avatar_url} />
         <VkMobileButton
           tone="secondary"
           disabled={busy}
@@ -78,14 +78,14 @@ export function VkMobileSettings({ me, onMenu }: VkMobileSettingsProps) {
       </div>
 
       <form
-        className="px-3 py-3"
+        className="px-[10px] py-2.5"
         onSubmit={(event) => {
           event.preventDefault();
           void save();
         }}
       >
         {FIELDS.map((field) => (
-          <VkField
+          <VkMobileField
             key={field.key}
             label={field.label}
             type={field.key === "birthday" ? "date" : "text"}
@@ -94,14 +94,14 @@ export function VkMobileSettings({ me, onMenu }: VkMobileSettingsProps) {
           />
         ))}
 
-        <label className="mb-2 block text-[13px] text-[#7a7a7a]">
+        <label className="mb-2 block text-[12px] text-[#8a8a8a]">
           Семейное положение
           <select
             value={value("relationship_status") || "not_specified"}
             onChange={(event) =>
               setDraft({ ...draft, relationship_status: event.target.value })
             }
-            className="mt-1 w-full rounded-[3px] border border-[#ccd4dd] bg-white px-2 py-2 text-[14px] text-black"
+            className="mt-1 h-[29px] w-full rounded-[3px] border border-[#c2cad3] bg-white px-[7px] text-[13px] text-[#333]"
           >
             {Object.entries(RELATIONSHIP_LABELS).map(([key, label]) => (
               <option key={key} value={key}>
@@ -111,7 +111,7 @@ export function VkMobileSettings({ me, onMenu }: VkMobileSettingsProps) {
           </select>
         </label>
 
-        {error && <p className="mb-2 text-[13px] text-[#b63131]">{error}</p>}
+        {error && <p className="mb-2 text-[12px] text-[#b63131]">{error}</p>}
 
         <VkMobileButton type="submit" className="w-full">
           Сохранить

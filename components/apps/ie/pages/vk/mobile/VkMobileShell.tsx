@@ -29,7 +29,7 @@ export function VkMobileShell({ app, onLeave }: VkMobileShellProps) {
   };
 
   return (
-    <div className="relative flex h-full w-full flex-col overflow-hidden bg-white [font-family:-apple-system,Helvetica,Arial,sans-serif] text-[#2a2a2a] select-text">
+    <div className="relative flex h-full w-full flex-col overflow-hidden bg-white [font-family:Arial,Helvetica,sans-serif] text-[#2a2a2a] select-text">
       <div className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto">
         {status !== "signed-in" && (
           <>
@@ -42,7 +42,7 @@ export function VkMobileShell({ app, onLeave }: VkMobileShellProps) {
               }}
             />
             {status === "loading" ? (
-              <p className="px-3 py-6 text-[14px] text-[#95a0ab]">
+              <p className="px-[10px] py-6 text-[13px] text-[#9aa4ad]">
                 Загрузка...
               </p>
             ) : (
@@ -50,7 +50,7 @@ export function VkMobileShell({ app, onLeave }: VkMobileShellProps) {
                 <VkAuthScreen />
               </div>
             )}
-            <footer className="border-t border-[#d8dde2] px-3 py-3 text-center text-[11px] text-[#95a0ab]">
+            <footer className="border-t border-[#d5d9de] px-[10px] py-3 text-center text-[11px] text-[#9aa4ad]">
               ВКонтакте © 2012 · учебная реконструкция в TamirlanOS
             </footer>
           </>
