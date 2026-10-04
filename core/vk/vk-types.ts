@@ -11,7 +11,19 @@ export interface VkProfileRow {
   relationship_status: string | null;
   relationship_partner_id: string | null;
   created_at: string;
+  privacy_requests: PrivacyRequests;
+  privacy_messages: PrivacyScope;
+  privacy_photos: PrivacyScope;
+  privacy_posts: PrivacyScope;
+  notify_friend_request: boolean;
+  notify_like: boolean;
+  notify_comment: boolean;
+  notify_message: boolean;
 }
+
+/** «Никто» для записей и фотографий означает «только я». */
+export type PrivacyScope = "all" | "friends" | "none";
+export type PrivacyRequests = "all" | "friends_of_friends" | "none";
 
 export interface VkCommentRow {
   id: string;

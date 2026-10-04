@@ -2,7 +2,7 @@ interface VkMobileFieldProps {
   label: string;
   value: string;
   onChange: (value: string) => void;
-  type?: "text" | "date";
+  type?: "text" | "date" | "password" | "email";
 }
 
 /** Подпись сверху, поле снизу — форма мобильного приложения, не таблица. */
