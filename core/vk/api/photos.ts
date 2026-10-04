@@ -24,9 +24,21 @@ export function publicUrl(bucket: string, path: string): string {
   return supabase.storage.from(bucket).getPublicUrl(path).data.publicUrl;
 }
 
+/** Прошлый файл аватара удаляется, иначе каждая замена копит мусор в бакете. */
+async function dropPreviousAvatar(previous: string | null): Promise<void> {
+  if (!previous) return;
+  const marker = `/${AVATAR_BUCKET}/`;
+  const at = previous.indexOf(marker);
+  if (at < 0) return;
+  await supabase.storage
+    .from(AVATAR_BUCKET)
+    .remove([previous.slice(at + marker.length)]);
+}
+
 export async function uploadAvatar(
   ownerId: string,
   file: File,
+  previousUrl: string | null = null,
 ): Promise<string | null> {
   const bad = reject(file);
   if (bad) return bad;
@@ -41,7 +53,10 @@ export async function uploadAvatar(
     .from("profiles")
     .update({ avatar_url: publicUrl(AVATAR_BUCKET, path) })
     .eq("id", ownerId);
-  return error?.message ?? null;
+  if (error) return error.message;
+
+  await dropPreviousAvatar(previousUrl);
+  return null;
 }
 
 async function ensureAlbum(title: string): Promise<string | null> {
@@ -105,6 +120,22 @@ export async function fetchPhoto(id: string): Promise<VkPhotoRow | null> {
     .eq("id", id)
     .maybeSingle();
   return (data as VkPhotoRow | null) ?? null;
+}
+
+/**
+ * Поставить аватаром уже загруженную фотографию. Владелец проверяется здесь,
+ * потому что бакет публичный и адрес чужого файла знать не запрещено.
+ */
+export async function setAvatarFromPhoto(
+  photo: VkPhotoRow,
+  userId: string,
+): Promise<string | null> {
+  if (photo.owner_id !== userId) return "Это не ваша фотография";
+  const { error } = await supabase
+    .from("profiles")
+    .update({ avatar_url: publicUrl(PHOTO_BUCKET, photo.storage_path) })
+    .eq("id", userId);
+  return error?.message ?? null;
 }
 
 export async function deletePhoto(photo: VkPhotoRow): Promise<string | null> {

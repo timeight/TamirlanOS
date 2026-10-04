@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AssetImage } from "@/components/ui/AssetImage";
 import { VkAvatar } from "@/components/apps/ie/pages/vk/VkAvatar";
+import { VkPhotoViewer } from "@/components/apps/ie/pages/vk/VkPhotoViewer";
 import {
   addComment,
   deleteComment,
@@ -30,6 +31,7 @@ export function VkPost({
   const [open, setOpen] = useState(false);
   const [draft, setDraft] = useState("");
   const [editing, setEditing] = useState<string | null>(null);
+  const [viewing, setViewing] = useState(false);
 
   const like = async () => {
     await setLike(post.id, viewerId, !post.liked);
@@ -99,7 +101,12 @@ export function VkPost({
         )}
 
         {post.photoUrl && (
-          <span className="relative mt-1.5 block h-[220px] w-full max-w-[320px] overflow-hidden border border-[#c5cdd5] bg-[#e8ebee]">
+          <button
+            type="button"
+            onClick={() => setViewing(true)}
+            aria-label="Открыть фотографию"
+            className="relative mt-1.5 block h-[220px] w-full max-w-[320px] overflow-hidden border border-[#c5cdd5] bg-[#e8ebee]"
+          >
             <AssetImage
               src={post.photoUrl}
               alt={post.photoCaption ?? "Фотография к записи"}
@@ -107,7 +114,15 @@ export function VkPost({
               unoptimized
               className="object-cover"
             />
-          </span>
+          </button>
+        )}
+
+        {viewing && post.photoUrl && (
+          <VkPhotoViewer
+            url={post.photoUrl}
+            caption={post.photoCaption}
+            onClose={() => setViewing(false)}
+          />
         )}
 
         <p className="mt-1.5 text-[10px] text-[#939393]">

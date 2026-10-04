@@ -51,7 +51,7 @@ export function VkMobileSettings({ me, onMenu }: VkMobileSettingsProps) {
   const upload = async (file: File) => {
     setBusy(true);
     setError(null);
-    const message = await uploadAvatar(me.id, file);
+    const message = await uploadAvatar(me.id, file, me.avatar_url);
     setBusy(false);
     if (message) {
       setError(message);

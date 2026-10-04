@@ -13,7 +13,8 @@ interface VkPhotosProps {
 }
 
 export function VkPhotos({ ownerId, viewerId, ownerName }: VkPhotosProps) {
-  const { photos, loading, busy, error, add, remove } = useVkPhotos(ownerId);
+  const { photos, loading, busy, error, add, remove, makeAvatar } =
+    useVkPhotos(ownerId);
   const [shown, setShown] = useState<VkPhoto | null>(null);
   const input = useRef<HTMLInputElement>(null);
   const mine = ownerId === viewerId;
@@ -96,6 +97,11 @@ export function VkPhotos({ ownerId, viewerId, ownerName }: VkPhotosProps) {
             <span className="min-w-0 flex-1 truncate text-[#555]">
               {shown.row.caption ?? "без описания"}
             </span>
+            {mine && (
+              <VkButton tone="quiet" onClick={() => void makeAvatar(shown.row)}>
+                Сделать аватаром
+              </VkButton>
+            )}
             {mine && (
               <VkButton
                 tone="quiet"

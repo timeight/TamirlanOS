@@ -6,9 +6,12 @@ import {
   deletePhoto,
   fetchPhotos,
   publicUrl,
+  setAvatarFromPhoto,
   uploadPhoto,
 } from "@/core/vk/api/photos";
+import { fetchProfile } from "@/core/vk/api/profiles";
 import type { VkPhotoRow } from "@/core/vk/social-types";
+import { useVkSessionStore } from "@/stores/vk-session-store";
 
 export interface VkPhoto {
   row: VkPhotoRow;
@@ -22,6 +25,8 @@ export interface VkPhotoLibrary {
   error: string | null;
   add: (file: File, caption?: string) => Promise<VkPhotoRow | null>;
   remove: (row: VkPhotoRow) => Promise<void>;
+  /** Поставить фотографию из галереи аватаром. */
+  makeAvatar: (row: VkPhotoRow) => Promise<void>;
 }
 
 export function useVkPhotos(ownerId: string): VkPhotoLibrary {
@@ -29,6 +34,7 @@ export function useVkPhotos(ownerId: string): VkPhotoLibrary {
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const setProfile = useVkSessionStore((state) => state.setProfile);
 
   const reload = useCallback(async () => {
     const rows = await fetchPhotos(ownerId);
@@ -69,5 +75,19 @@ export function useVkPhotos(ownerId: string): VkPhotoLibrary {
     [reload],
   );
 
-  return { photos, loading, busy, error, add, remove };
+  const makeAvatar = useCallback(
+    async (row: VkPhotoRow) => {
+      setError(null);
+      const message = await setAvatarFromPhoto(row, ownerId);
+      if (message) {
+        setError(message);
+        return;
+      }
+      const fresh = await fetchProfile(ownerId);
+      if (fresh) setProfile(fresh);
+    },
+    [ownerId, setProfile],
+  );
+
+  return { photos, loading, busy, error, add, remove, makeAvatar };
 }

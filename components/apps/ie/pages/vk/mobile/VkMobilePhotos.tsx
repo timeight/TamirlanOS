@@ -22,7 +22,8 @@ export function VkMobilePhotos({
   ownerName,
   onMenu,
 }: VkMobilePhotosProps) {
-  const { photos, loading, busy, error, add, remove } = useVkPhotos(ownerId);
+  const { photos, loading, busy, error, add, remove, makeAvatar } =
+    useVkPhotos(ownerId);
   const [shown, setShown] = useState<VkPhoto | null>(null);
   const input = useRef<HTMLInputElement>(null);
   const mine = ownerId === viewerId;
@@ -117,6 +118,15 @@ export function VkMobilePhotos({
             <p className="min-w-0 flex-1 truncate text-[13px] text-[#c3cad1]">
               {shown.row.caption ?? "без описания"}
             </p>
+            {mine && (
+              <VkMobileButton
+                size="small"
+                tone="secondary"
+                onClick={() => void makeAvatar(shown.row)}
+              >
+                На аватар
+              </VkMobileButton>
+            )}
             {mine && (
               <VkMobileButton
                 size="small"

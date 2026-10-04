@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AssetImage } from "@/components/ui/AssetImage";
 import { VkAvatar } from "@/components/apps/ie/pages/vk/VkAvatar";
+import { VkPhotoViewer } from "@/components/apps/ie/pages/vk/VkPhotoViewer";
 import { VkGlyph } from "@/components/apps/ie/pages/vk/mobile/VkGlyph";
 import { VkMobileComments } from "@/components/apps/ie/pages/vk/mobile/VkMobileComments";
 import { deletePost, setLike } from "@/core/vk/api/posts";
@@ -24,6 +25,7 @@ export function VkMobilePost({
   onOpenProfile,
 }: VkMobilePostProps) {
   const [open, setOpen] = useState(false);
+  const [viewing, setViewing] = useState(false);
 
   return (
     <li className="border-b-[7px] border-[#e4e8eb] bg-white">
@@ -63,7 +65,12 @@ export function VkMobilePost({
       )}
 
       {post.photoUrl && (
-        <span className="relative mt-[7px] block h-[210px] w-full bg-[#dfe4e9]">
+        <button
+          type="button"
+          onClick={() => setViewing(true)}
+          aria-label="Открыть фотографию"
+          className="relative mt-[7px] block h-[210px] w-full bg-[#dfe4e9]"
+        >
           <AssetImage
             src={post.photoUrl}
             alt={post.photoCaption ?? "Фотография к записи"}
@@ -71,7 +78,15 @@ export function VkMobilePost({
             unoptimized
             className="object-cover"
           />
-        </span>
+        </button>
+      )}
+
+      {viewing && post.photoUrl && (
+        <VkPhotoViewer
+          url={post.photoUrl}
+          caption={post.photoCaption}
+          onClose={() => setViewing(false)}
+        />
       )}
 
       <div className="flex items-center gap-[18px] px-[10px] pt-[5px] pb-[7px]">
