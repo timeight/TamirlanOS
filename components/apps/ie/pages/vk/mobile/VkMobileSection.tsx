@@ -84,6 +84,7 @@ export function VkMobileSection({ app, userId, onMenu }: VkMobileSectionProps) {
       <VkMobileFeed
         viewerId={userId}
         onOpenProfile={openProfile}
+        onSection={setSection}
         onMenu={onMenu}
       />
     );

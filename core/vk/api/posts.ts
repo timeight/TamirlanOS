@@ -63,21 +63,34 @@ export async function fetchWall(
  * Лента: записи свои и друзей. Список авторов приходит из базы, потому что
  * RLS показывает клиенту только его собственные строки дружбы.
  */
+export interface VkFeedPage {
+  posts: readonly VkWallPost[];
+  /** Пришло ровно столько, сколько просили — значит есть что показать дальше. */
+  hasMore: boolean;
+}
+
 export async function fetchFeed(
   viewerId: string,
-): Promise<readonly VkWallPost[]> {
+  size: number,
+): Promise<VkFeedPage> {
   const { data: authors } = await supabase.rpc("feed_authors");
   const ids = (authors as string[] | null) ?? [];
-  if (ids.length === 0) return [];
+  if (ids.length === 0) return { posts: [], hasMore: false };
 
+  // Запрашиваем на одну запись больше предела: лишняя не показывается,
+  // но говорит, что следующая страница существует.
   const { data } = await supabase
     .from("posts")
     .select(WALL_SELECT)
     .in("author_id", ids)
     .order("created_at", { ascending: false })
-    .limit(50);
+    .limit(size + 1);
+
   const rows = (data as unknown as VkPostRow[] | null) ?? [];
-  return rows.map((row) => toWallPost(row, viewerId));
+  return {
+    posts: rows.slice(0, size).map((row) => toWallPost(row, viewerId)),
+    hasMore: rows.length > size,
+  };
 }
 
 /** Уведомление знает только id записи, а открыть нужно стену её владельца. */

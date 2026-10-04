@@ -45,7 +45,13 @@ export function VkSectionView({ app, userId }: VkSectionViewProps) {
   }
 
   if (section === VK_SECTION.news) {
-    return <VkFeed viewerId={userId} onOpenProfile={openProfile} />;
+    return (
+      <VkFeed
+        viewerId={userId}
+        onOpenProfile={openProfile}
+        onSection={setSection}
+      />
+    );
   }
 
   if (section === VK_SECTION.friends && owner) {
