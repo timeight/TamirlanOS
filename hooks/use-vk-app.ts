@@ -60,8 +60,16 @@ export function useVkApp(): VkApp {
     setViewing(null);
   }, [section]);
 
+  // Подсветка принадлежит одному переходу из уведомления: без сброса запись
+  // осталась бы жёлтой и перетягивала прокрутку при каждом возврате на стену.
+  const goSection = useCallback((next: string) => {
+    setFocusPostId(null);
+    setSection(next);
+  }, []);
+
   const openProfile = useCallback(
     async (profileId: string) => {
+      setFocusPostId(null);
       setSection(VK_SECTION.profile);
       if (profileId === userId) {
         setViewing(null);
@@ -85,6 +93,7 @@ export function useVkApp(): VkApp {
 
   const write = useCallback(
     async (profileId: string) => {
+      setFocusPostId(null);
       setSection(VK_SECTION.messages);
       await messenger.openWith(profileId);
     },
@@ -97,7 +106,7 @@ export function useVkApp(): VkApp {
     me,
     shown: viewing ?? me,
     section,
-    setSection,
+    setSection: goSection,
     openProfile,
     write,
     openPost,

@@ -99,7 +99,12 @@ export async function uploadPhoto(
     })
     .select("*")
     .single();
-  if (error || !data) return friendly(error) ?? "Не удалось сохранить фото";
+  if (error || !data) {
+    // Файл уже в бакете, а строки нет — такой файл не увидит никто и никогда,
+    // поэтому откатываем загрузку, а не оставляем мусор.
+    await supabase.storage.from(PHOTO_BUCKET).remove([path]);
+    return friendly(error) ?? "Не удалось сохранить фото";
+  }
 
   return { photo: data as VkPhotoRow, url: publicUrl(PHOTO_BUCKET, path) };
 }
