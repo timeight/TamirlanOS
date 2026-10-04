@@ -10,6 +10,7 @@ export const MIN_PASSWORD = 6;
 
 export interface PrivacyPatch {
   privacy_requests?: PrivacyRequests;
+  privacy_audio?: PrivacyScope;
   privacy_messages?: PrivacyScope;
   privacy_photos?: PrivacyScope;
   privacy_posts?: PrivacyScope;
@@ -130,6 +131,11 @@ export const PRIVACY_ROWS: readonly PrivacyRow[] = [
   {
     key: "privacy_photos",
     label: "Кто видит мои фотографии",
+    options: asOptions(PRIVACY_SCOPE_LABELS),
+  },
+  {
+    key: "privacy_audio",
+    label: "Кто слышит мои аудиозаписи",
     options: asOptions(PRIVACY_SCOPE_LABELS),
   },
 ];

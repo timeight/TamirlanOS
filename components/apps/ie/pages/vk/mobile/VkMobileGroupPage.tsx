@@ -5,6 +5,7 @@ import { VkAvatar } from "@/components/apps/ie/pages/vk/VkAvatar";
 import { VkMobileButton } from "@/components/apps/ie/pages/vk/mobile/VkMobileButton";
 import { VkMobileGroupLabel } from "@/components/apps/ie/pages/vk/mobile/VkMobileGroupLabel";
 import { VkMobileGroupManage } from "@/components/apps/ie/pages/vk/mobile/VkMobileGroupManage";
+import { VkMobileGroupAudio } from "@/components/apps/ie/pages/vk/mobile/VkMobileGroupAudio";
 import { VkMobilePost } from "@/components/apps/ie/pages/vk/mobile/VkMobilePost";
 import { VkMobileScreen } from "@/components/apps/ie/pages/vk/mobile/VkMobileScreen";
 import { createGroupPost } from "@/core/vk/api/posts";
@@ -107,6 +108,12 @@ export function VkMobileGroupPage({
               onClosed={onBack}
             />
           )}
+
+          <VkMobileGroupAudio
+            groupId={groupId}
+            viewerId={viewerId}
+            canManage={canManage}
+          />
 
           <VkMobileGroupLabel>Стена</VkMobileGroupLabel>
 

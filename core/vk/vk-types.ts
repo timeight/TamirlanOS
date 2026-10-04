@@ -15,6 +15,7 @@ export interface VkProfileRow {
   privacy_messages: PrivacyScope;
   privacy_photos: PrivacyScope;
   privacy_posts: PrivacyScope;
+  privacy_audio: PrivacyScope;
   notify_friend_request: boolean;
   notify_like: boolean;
   notify_comment: boolean;

@@ -1,5 +1,6 @@
 "use client";
 
+import { VkMobileAudio } from "@/components/apps/ie/pages/vk/mobile/VkMobileAudio";
 import { VkMobileFeed } from "@/components/apps/ie/pages/vk/mobile/VkMobileFeed";
 import { VkMobileGroupPage } from "@/components/apps/ie/pages/vk/mobile/VkMobileGroupPage";
 import { VkMobileGroups } from "@/components/apps/ie/pages/vk/mobile/VkMobileGroups";
@@ -87,6 +88,17 @@ export function VkMobileSection({ app, userId, onMenu }: VkMobileSectionProps) {
         viewerId={userId}
         onOpenProfile={openProfile}
         onSection={setSection}
+        onMenu={onMenu}
+      />
+    );
+  }
+
+  if (section === VK_SECTION.audio && owner) {
+    return (
+      <VkMobileAudio
+        ownerId={owner.id}
+        viewerId={userId}
+        ownerName={fullName(owner)}
         onMenu={onMenu}
       />
     );

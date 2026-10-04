@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { VkAuthScreen } from "@/components/apps/ie/pages/vk/VkAuthScreen";
+import { VkPlayerHost } from "@/components/apps/ie/pages/vk/VkPlayerHost";
+import { VkMobilePlayerBar } from "@/components/apps/ie/pages/vk/mobile/VkMobilePlayerBar";
 import { VkMobileDrawer } from "@/components/apps/ie/pages/vk/mobile/VkMobileDrawer";
 import { VkMobileHeader } from "@/components/apps/ie/pages/vk/mobile/VkMobileHeader";
 import { VkMobileSection } from "@/components/apps/ie/pages/vk/mobile/VkMobileSection";
@@ -63,6 +65,9 @@ export function VkMobileShell({ app, onLeave }: VkMobileShellProps) {
           />
         )}
       </div>
+
+      {status === "signed-in" && <VkMobilePlayerBar />}
+      {status === "signed-in" && <VkPlayerHost />}
 
       {status === "signed-in" && (
         <VkMobileDrawer

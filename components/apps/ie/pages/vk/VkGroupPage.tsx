@@ -4,6 +4,7 @@ import { useState } from "react";
 import { VkAvatar } from "@/components/apps/ie/pages/vk/VkAvatar";
 import { VkButton } from "@/components/apps/ie/pages/vk/VkButton";
 import { VkGroupManage } from "@/components/apps/ie/pages/vk/VkGroupManage";
+import { VkGroupAudio } from "@/components/apps/ie/pages/vk/VkGroupAudio";
 import { VkPost } from "@/components/apps/ie/pages/vk/VkPost";
 import { createGroupPost } from "@/core/vk/api/posts";
 import { useVkGroup } from "@/hooks/use-vk-group";
@@ -96,6 +97,12 @@ export function VkGroupPage({
           onClosed={onLeaveGroup}
         />
       )}
+
+      <VkGroupAudio
+        groupId={groupId}
+        viewerId={viewerId}
+        canManage={canManage}
+      />
 
       <h2 className="mt-5 border-b border-[#dae1e8] pb-1 text-[11px] font-bold text-[#45688e]">
         Стена{" "}

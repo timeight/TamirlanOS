@@ -1,6 +1,7 @@
 "use client";
 
 import { VkButton } from "@/components/apps/ie/pages/vk/VkButton";
+import { VkAudio } from "@/components/apps/ie/pages/vk/VkAudio";
 import { VkFeed } from "@/components/apps/ie/pages/vk/VkFeed";
 import { VkGroupPage } from "@/components/apps/ie/pages/vk/VkGroupPage";
 import { VkGroups } from "@/components/apps/ie/pages/vk/VkGroups";
@@ -52,6 +53,16 @@ export function VkSectionView({ app, userId }: VkSectionViewProps) {
         viewerId={userId}
         onOpenProfile={openProfile}
         onSection={setSection}
+      />
+    );
+  }
+
+  if (section === VK_SECTION.audio && owner) {
+    return (
+      <VkAudio
+        ownerId={owner.id}
+        viewerId={userId}
+        ownerName={fullName(owner)}
       />
     );
   }

@@ -1,6 +1,7 @@
 "use client";
 
 import { VkAuthScreen } from "@/components/apps/ie/pages/vk/VkAuthScreen";
+import { VkPlayerHost } from "@/components/apps/ie/pages/vk/VkPlayerHost";
 import { VkProfileCard } from "@/components/apps/ie/pages/vk/VkProfileCard";
 import { VkSectionView } from "@/components/apps/ie/pages/vk/VkSectionView";
 import { VkSidebar } from "@/components/apps/ie/pages/vk/VkSidebar";
@@ -86,6 +87,8 @@ export function VkDesktopShell({ app, onLeave }: VkDesktopShellProps) {
           )}
         </div>
       </div>
+
+      {status === "signed-in" && <VkPlayerHost />}
 
       <div className="mx-auto w-full max-w-[960px] px-2 py-3 text-[10px] text-[#939393]">
         ВКонтакте © 2012 · учебная реконструкция внутри TamirlanOS
