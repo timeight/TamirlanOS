@@ -20,13 +20,19 @@ export function VkMobileComments({
   onOpenProfile,
 }: VkMobileCommentsProps) {
   const [draft, setDraft] = useState("");
+  const [error, setError] = useState<string | null>(null);
+
+  const run = async (action: Promise<string | null>) => {
+    const message = await action;
+    setError(message);
+    if (!message) await onChanged();
+  };
 
   const send = async () => {
     const text = draft.trim();
     if (!text) return;
     setDraft("");
-    await addComment(post.id, viewerId, text);
-    await onChanged();
+    await run(addComment(post.id, viewerId, text));
   };
 
   return (
@@ -54,10 +60,7 @@ export function VkMobileComments({
                 {item.author_id === viewerId && (
                   <button
                     type="button"
-                    onClick={async () => {
-                      await deleteComment(item.id);
-                      await onChanged();
-                    }}
+                    onClick={() => void run(deleteComment(item.id))}
                     className="ml-2 text-[#2a5885]"
                   >
                     удалить
@@ -68,6 +71,10 @@ export function VkMobileComments({
           </li>
         ))}
       </ul>
+
+      {error && (
+        <p className="px-[10px] pt-1 text-[12px] text-[#b63131]">{error}</p>
+      )}
 
       <form
         className="flex items-center gap-2 px-[10px] py-[7px]"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AssetImage } from "@/components/ui/AssetImage";
 import { VkAvatar } from "@/components/apps/ie/pages/vk/VkAvatar";
 import { VkPhotoViewer } from "@/components/apps/ie/pages/vk/VkPhotoViewer";
@@ -20,6 +20,7 @@ interface VkPostProps {
   viewerId: string;
   onChanged: () => Promise<void>;
   onOpenProfile: (profileId: string) => void;
+  focused?: boolean;
 }
 
 export function VkPost({
@@ -27,35 +28,50 @@ export function VkPost({
   viewerId,
   onChanged,
   onOpenProfile,
+  focused,
 }: VkPostProps) {
   const [open, setOpen] = useState(false);
   const [draft, setDraft] = useState("");
   const [editing, setEditing] = useState<string | null>(null);
   const [viewing, setViewing] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const frame = useRef<HTMLLIElement>(null);
 
-  const like = async () => {
-    await setLike(post.id, viewerId, !post.liked);
-    await onChanged();
+  const run = async (action: Promise<string | null>) => {
+    const message = await action;
+    setError(message);
+    if (!message) await onChanged();
   };
+
+  const like = () => run(setLike(post.id, viewerId, !post.liked));
 
   const send = async () => {
     const text = draft.trim();
     if (!text) return;
     setDraft("");
-    await addComment(post.id, viewerId, text);
     setOpen(true);
-    await onChanged();
+    await run(addComment(post.id, viewerId, text));
   };
 
   const saveEdit = async () => {
     const text = (editing ?? "").trim();
-    if (text) await editPost(post.id, text);
+    if (text) await run(editPost(post.id, text));
     setEditing(null);
-    await onChanged();
   };
 
+  useEffect(() => {
+    if (!focused) return;
+    frame.current?.scrollIntoView({ block: "center" });
+  }, [focused]);
+
   return (
-    <li className="flex gap-2.5 border-b border-[#e3e8ec] py-3">
+    <li
+      ref={frame}
+      className={cn(
+        "flex gap-2.5 border-b border-[#e3e8ec] py-3",
+        focused && "bg-[#f6f0d8]",
+      )}
+    >
       <button
         type="button"
         onClick={() => onOpenProfile(post.authorId)}
@@ -129,6 +145,8 @@ export function VkPost({
           {vkDate(post.createdAt)}
         </p>
 
+        {error && <p className="mt-1 text-[11px] text-[#9b2c2c]">{error}</p>}
+
         <p className="mt-1 flex flex-wrap gap-3 text-[11px]">
           <button
             type="button"
@@ -159,10 +177,7 @@ export function VkPost({
           {(post.mine || post.onMyWall) && (
             <button
               type="button"
-              onClick={async () => {
-                await deletePost(post.id);
-                await onChanged();
-              }}
+              onClick={() => void run(deletePost(post.id))}
               className="text-[#2b587a] hover:underline"
             >
               Удалить
@@ -207,10 +222,7 @@ export function VkPost({
                       {item.author_id === viewerId && (
                         <button
                           type="button"
-                          onClick={async () => {
-                            await deleteComment(item.id);
-                            await onChanged();
-                          }}
+                          onClick={() => void run(deleteComment(item.id))}
                           className="ml-2 text-[#2b587a] opacity-0 group-hover:opacity-100 hover:underline focus:opacity-100"
                         >
                           удалить

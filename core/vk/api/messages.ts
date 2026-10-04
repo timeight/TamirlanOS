@@ -1,3 +1,4 @@
+import { friendly } from "@/core/vk/api/errors";
 import { supabase } from "@/core/vk/supabase";
 import type { VkDialog, VkMessageRow } from "@/core/vk/social-types";
 
@@ -66,29 +67,31 @@ export async function sendMessage(
     author_id: authorId,
     content: text,
   });
-  return error?.message ?? null;
+  return friendly(error);
 }
 
 export async function deleteMessage(id: string): Promise<string | null> {
   const { error } = await supabase.from("messages").delete().eq("id", id);
-  return error?.message ?? null;
+  return friendly(error);
 }
 
 /** Открытие раздела «Мои сообщения» гасит счётчик по всем перепискам. */
-export async function markAllRead(userId: string): Promise<void> {
-  await supabase
+export async function markAllRead(userId: string): Promise<string | null> {
+  const { error } = await supabase
     .from("conversation_members")
     .update({ last_read_at: new Date().toISOString() })
     .eq("user_id", userId);
+  return friendly(error);
 }
 
 export async function markRead(
   conversationId: string,
   userId: string,
-): Promise<void> {
-  await supabase
+): Promise<string | null> {
+  const { error } = await supabase
     .from("conversation_members")
     .update({ last_read_at: new Date().toISOString() })
     .eq("conversation_id", conversationId)
     .eq("user_id", userId);
+  return friendly(error);
 }

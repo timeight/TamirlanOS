@@ -8,12 +8,14 @@ import { useVkNotifications } from "@/hooks/use-vk-notifications";
 
 interface VkMobileNotificationsProps {
   onOpenProfile: (profileId: string) => void;
+  onOpenPost: (postId: string) => void;
   onCountersChanged: () => Promise<void>;
   onMenu: () => void;
 }
 
 export function VkMobileNotifications({
   onOpenProfile,
+  onOpenPost,
   onCountersChanged,
   onMenu,
 }: VkMobileNotificationsProps) {
@@ -49,7 +51,11 @@ export function VkMobileNotifications({
               avatar={item.actor?.avatar_url}
               unread={!item.is_read}
               chevron
-              onClick={() => onOpenProfile(item.actor_id)}
+              onClick={() =>
+                item.post_id
+                  ? onOpenPost(item.post_id)
+                  : onOpenProfile(item.actor_id)
+              }
             />
           ))}
         </ul>

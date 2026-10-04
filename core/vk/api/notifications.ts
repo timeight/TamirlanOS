@@ -1,3 +1,4 @@
+import { friendly } from "@/core/vk/api/errors";
 import { supabase } from "@/core/vk/supabase";
 import type { VkCounters, VkNotificationRow } from "@/core/vk/social-types";
 import { EMPTY_COUNTERS } from "@/core/vk/social-types";
@@ -30,13 +31,18 @@ export async function fetchNotifications(): Promise<
   return (data as VkNotificationRow[] | null) ?? [];
 }
 
-export async function markNotificationsRead(): Promise<void> {
-  await supabase
+export async function markNotificationsRead(): Promise<string | null> {
+  const { error } = await supabase
     .from("notifications")
     .update({ is_read: true })
     .eq("is_read", false);
+  return friendly(error);
 }
 
-export async function clearNotifications(): Promise<void> {
-  await supabase.from("notifications").delete().eq("is_read", true);
+export async function clearNotifications(): Promise<string | null> {
+  const { error } = await supabase
+    .from("notifications")
+    .delete()
+    .eq("is_read", true);
+  return friendly(error);
 }

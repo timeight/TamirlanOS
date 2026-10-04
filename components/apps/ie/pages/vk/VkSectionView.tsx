@@ -1,6 +1,7 @@
 "use client";
 
 import { VkButton } from "@/components/apps/ie/pages/vk/VkButton";
+import { VkFeed } from "@/components/apps/ie/pages/vk/VkFeed";
 import { VkFriends } from "@/components/apps/ie/pages/vk/VkFriends";
 import { VkMessages } from "@/components/apps/ie/pages/vk/VkMessages";
 import { VkNotifications } from "@/components/apps/ie/pages/vk/VkNotifications";
@@ -43,6 +44,10 @@ export function VkSectionView({ app, userId }: VkSectionViewProps) {
     );
   }
 
+  if (section === VK_SECTION.news) {
+    return <VkFeed viewerId={userId} onOpenProfile={openProfile} />;
+  }
+
   if (section === VK_SECTION.friends && owner) {
     return (
       <VkFriends
@@ -74,6 +79,7 @@ export function VkSectionView({ app, userId }: VkSectionViewProps) {
     return (
       <VkNotifications
         onOpenProfile={openProfile}
+        onOpenPost={(id) => void app.openPost(id)}
         onCountersChanged={refreshCounters}
       />
     );

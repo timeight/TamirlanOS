@@ -76,6 +76,7 @@ export function VkDesktopShell({ app, onLeave }: VkDesktopShellProps) {
                 viewerId={userId}
                 viewerAvatar={me?.avatar_url ?? null}
                 onOpenProfile={openProfile}
+                focusPostId={app.focusPostId}
               />
             </>
           )}

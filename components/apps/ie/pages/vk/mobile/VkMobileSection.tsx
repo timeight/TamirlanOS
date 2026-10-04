@@ -1,5 +1,6 @@
 "use client";
 
+import { VkMobileFeed } from "@/components/apps/ie/pages/vk/mobile/VkMobileFeed";
 import { VkMobileFriends } from "@/components/apps/ie/pages/vk/mobile/VkMobileFriends";
 import { VkMobileMessages } from "@/components/apps/ie/pages/vk/mobile/VkMobileMessages";
 import { VkMobileNotifications } from "@/components/apps/ie/pages/vk/mobile/VkMobileNotifications";
@@ -72,8 +73,19 @@ export function VkMobileSection({ app, userId, onMenu }: VkMobileSectionProps) {
           ownerId={owner.id}
           viewerId={userId}
           onOpenProfile={openProfile}
+          focusPostId={app.focusPostId}
         />
       </VkMobileScreen>
+    );
+  }
+
+  if (section === VK_SECTION.news) {
+    return (
+      <VkMobileFeed
+        viewerId={userId}
+        onOpenProfile={openProfile}
+        onMenu={onMenu}
+      />
     );
   }
 
@@ -116,6 +128,7 @@ export function VkMobileSection({ app, userId, onMenu }: VkMobileSectionProps) {
     return (
       <VkMobileNotifications
         onOpenProfile={openProfile}
+        onOpenPost={(id) => void app.openPost(id)}
         onCountersChanged={refreshCounters}
         onMenu={onMenu}
       />

@@ -77,6 +77,9 @@ export function useVkMessages(
         { event: "INSERT", schema: "public", table: "messages" },
         (payload) => {
           const row = payload.new as VkMessageRow;
+          // Свои сообщения уже перечитаны в send(); иначе каждая отправка
+          // стоила бы двух лишних запросов.
+          if (row.author_id === viewerId) return;
           void reloadDialogs();
           if (row.conversation_id === openRef.current) {
             void reloadThread(row.conversation_id);

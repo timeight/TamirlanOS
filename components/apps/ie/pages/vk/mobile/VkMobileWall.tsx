@@ -10,12 +10,15 @@ interface VkMobileWallProps {
   ownerId: string;
   viewerId: string;
   onOpenProfile: (profileId: string) => void;
+  /** Запись из уведомления: к ней прокручиваем и подсвечиваем. */
+  focusPostId?: string | null;
 }
 
 export function VkMobileWall({
   ownerId,
   viewerId,
   onOpenProfile,
+  focusPostId,
 }: VkMobileWallProps) {
   const { posts, loading, reload } = useVkWall(ownerId, viewerId);
   const composer = useWallComposer(ownerId, viewerId, reload);
@@ -41,6 +44,7 @@ export function VkMobileWall({
               viewerId={viewerId}
               onChanged={reload}
               onOpenProfile={onOpenProfile}
+              focused={post.id === focusPostId}
             />
           ))}
         </ul>

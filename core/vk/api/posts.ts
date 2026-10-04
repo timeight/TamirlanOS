@@ -1,3 +1,4 @@
+import { friendly } from "@/core/vk/api/errors";
 import { PHOTO_BUCKET, publicUrl } from "@/core/vk/api/photos";
 import { supabase } from "@/core/vk/supabase";
 import { fullName, type VkPostRow, type VkWallPost } from "@/core/vk/vk-types";
@@ -58,6 +59,39 @@ export async function fetchWall(
   return rows.map((row) => toWallPost(row, viewerId));
 }
 
+/**
+ * Лента: записи свои и друзей. Список авторов приходит из базы, потому что
+ * RLS показывает клиенту только его собственные строки дружбы.
+ */
+export async function fetchFeed(
+  viewerId: string,
+): Promise<readonly VkWallPost[]> {
+  const { data: authors } = await supabase.rpc("feed_authors");
+  const ids = (authors as string[] | null) ?? [];
+  if (ids.length === 0) return [];
+
+  const { data } = await supabase
+    .from("posts")
+    .select(WALL_SELECT)
+    .in("author_id", ids)
+    .order("created_at", { ascending: false })
+    .limit(50);
+  const rows = (data as unknown as VkPostRow[] | null) ?? [];
+  return rows.map((row) => toWallPost(row, viewerId));
+}
+
+/** Уведомление знает только id записи, а открыть нужно стену её владельца. */
+export async function fetchPostWallOwner(
+  postId: string,
+): Promise<string | null> {
+  const { data } = await supabase
+    .from("posts")
+    .select("wall_owner_id")
+    .eq("id", postId)
+    .maybeSingle();
+  return (data as { wall_owner_id: string } | null)?.wall_owner_id ?? null;
+}
+
 export async function createPost(
   authorId: string,
   wallOwnerId: string,
@@ -70,7 +104,7 @@ export async function createPost(
     content,
     photo_id: photoId ?? null,
   });
-  return error?.message ?? null;
+  return friendly(error);
 }
 
 export async function editPost(
@@ -81,27 +115,31 @@ export async function editPost(
     .from("posts")
     .update({ content, updated_at: new Date().toISOString() })
     .eq("id", postId);
-  return error?.message ?? null;
+  return friendly(error);
 }
 
-export async function deletePost(postId: string): Promise<void> {
-  await supabase.from("posts").delete().eq("id", postId);
+export async function deletePost(postId: string): Promise<string | null> {
+  const { error } = await supabase.from("posts").delete().eq("id", postId);
+  return friendly(error);
 }
 
 export async function setLike(
   postId: string,
   userId: string,
   liked: boolean,
-): Promise<void> {
+): Promise<string | null> {
   if (liked) {
-    await supabase.from("likes").insert({ post_id: postId, user_id: userId });
-    return;
+    const { error } = await supabase
+      .from("likes")
+      .insert({ post_id: postId, user_id: userId });
+    return friendly(error);
   }
-  await supabase
+  const { error } = await supabase
     .from("likes")
     .delete()
     .eq("post_id", postId)
     .eq("user_id", userId);
+  return friendly(error);
 }
 
 export async function addComment(
@@ -112,9 +150,13 @@ export async function addComment(
   const { error } = await supabase
     .from("comments")
     .insert({ post_id: postId, author_id: authorId, content });
-  return error?.message ?? null;
+  return friendly(error);
 }
 
-export async function deleteComment(commentId: string): Promise<void> {
-  await supabase.from("comments").delete().eq("id", commentId);
+export async function deleteComment(commentId: string): Promise<string | null> {
+  const { error } = await supabase
+    .from("comments")
+    .delete()
+    .eq("id", commentId);
+  return friendly(error);
 }

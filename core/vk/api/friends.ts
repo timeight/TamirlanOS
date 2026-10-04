@@ -1,3 +1,4 @@
+import { friendly } from "@/core/vk/api/errors";
 import { supabase } from "@/core/vk/supabase";
 import type { FriendState } from "@/core/vk/social-types";
 import type { VkProfileRow } from "@/core/vk/vk-types";
@@ -56,13 +57,16 @@ export async function fetchOutgoingRequests(): Promise<
  * Входящие заявки помечаются просмотренными: это не то же самое, что
  * принять их — заявка остаётся в списке, гаснет только счётчик.
  */
-export async function markRequestsSeen(receiver: string): Promise<void> {
-  await supabase
+export async function markRequestsSeen(
+  receiver: string,
+): Promise<string | null> {
+  const { error } = await supabase
     .from("friendships")
     .update({ seen_at: new Date().toISOString() })
     .eq("receiver_id", receiver)
     .eq("status", "pending")
     .is("seen_at", null);
+  return friendly(error);
 }
 
 /**
@@ -79,7 +83,7 @@ export async function acceptRequest(
     .eq("requester_id", requester)
     .eq("receiver_id", receiver)
     .eq("status", "pending");
-  return error?.message ?? null;
+  return friendly(error);
 }
 
 /** Отказ и разрыв — одно и то же действие: строка просто исчезает. */
@@ -88,7 +92,7 @@ export async function removeFriendship(other: string): Promise<string | null> {
     .from("friendships")
     .delete()
     .or(`requester_id.eq.${other},receiver_id.eq.${other}`);
-  return error?.message ?? null;
+  return friendly(error);
 }
 
 /**
@@ -106,7 +110,7 @@ export async function requestFriendship(
   const { error } = await supabase
     .from("friendships")
     .insert({ requester_id: me, receiver_id: target });
-  return error?.message ?? null;
+  return friendly(error);
 }
 
 export async function applyFriendAction(

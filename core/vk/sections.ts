@@ -32,6 +32,7 @@ export const VK_NAV: readonly VkSection[] = [
 /** Разделы, за которыми стоит реальная таблица в базе. */
 export const VK_IMPLEMENTED: readonly VkSection[] = [
   VK_SECTION.profile,
+  VK_SECTION.news,
   VK_SECTION.friends,
   VK_SECTION.photos,
   VK_SECTION.messages,

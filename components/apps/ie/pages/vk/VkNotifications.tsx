@@ -9,11 +9,13 @@ import { useVkNotifications } from "@/hooks/use-vk-notifications";
 
 interface VkNotificationsProps {
   onOpenProfile: (profileId: string) => void;
+  onOpenPost: (postId: string) => void;
   onCountersChanged: () => Promise<void>;
 }
 
 export function VkNotifications({
   onOpenProfile,
+  onOpenPost,
   onCountersChanged,
 }: VkNotificationsProps) {
   const { items, loading, clearRead } = useVkNotifications(onCountersChanged);
@@ -56,9 +58,19 @@ export function VkNotifications({
                 >
                   {item.actor ? fullName(item.actor) : "Удалённая страница"}
                 </button>{" "}
-                <span className="text-[#333]">
-                  {NOTIFICATION_TEXT[item.kind]}
-                </span>
+                {item.post_id ? (
+                  <button
+                    type="button"
+                    onClick={() => onOpenPost(item.post_id!)}
+                    className="text-[#2b587a] hover:underline"
+                  >
+                    {NOTIFICATION_TEXT[item.kind]}
+                  </button>
+                ) : (
+                  <span className="text-[#333]">
+                    {NOTIFICATION_TEXT[item.kind]}
+                  </span>
+                )}
                 <span className="mt-0.5 block text-[10px] text-[#939393]">
                   {vkDate(item.created_at)}
                 </span>

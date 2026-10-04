@@ -1,3 +1,4 @@
+import { friendly } from "@/core/vk/api/errors";
 import { supabase } from "@/core/vk/supabase";
 import type { VkPhotoRow } from "@/core/vk/social-types";
 
@@ -47,13 +48,13 @@ export async function uploadAvatar(
   const upload = await supabase.storage
     .from(AVATAR_BUCKET)
     .upload(path, file, { upsert: false });
-  if (upload.error) return upload.error.message;
+  if (upload.error) return friendly(upload.error);
 
   const { error } = await supabase
     .from("profiles")
     .update({ avatar_url: publicUrl(AVATAR_BUCKET, path) })
     .eq("id", ownerId);
-  if (error) return error.message;
+  if (error) return friendly(error);
 
   await dropPreviousAvatar(previousUrl);
   return null;
@@ -84,7 +85,9 @@ export async function uploadPhoto(
   const upload = await supabase.storage
     .from(PHOTO_BUCKET)
     .upload(path, file, { upsert: false });
-  if (upload.error) return upload.error.message;
+  if (upload.error) {
+    return friendly(upload.error) ?? "Не удалось загрузить файл";
+  }
 
   const { data, error } = await supabase
     .from("photos")
@@ -96,7 +99,7 @@ export async function uploadPhoto(
     })
     .select("*")
     .single();
-  if (error || !data) return error?.message ?? "Не удалось сохранить фото";
+  if (error || !data) return friendly(error) ?? "Не удалось сохранить фото";
 
   return { photo: data as VkPhotoRow, url: publicUrl(PHOTO_BUCKET, path) };
 }
@@ -113,15 +116,6 @@ export async function fetchPhotos(
   return (data as VkPhotoRow[] | null) ?? [];
 }
 
-export async function fetchPhoto(id: string): Promise<VkPhotoRow | null> {
-  const { data } = await supabase
-    .from("photos")
-    .select("*")
-    .eq("id", id)
-    .maybeSingle();
-  return (data as VkPhotoRow | null) ?? null;
-}
-
 /**
  * Поставить аватаром уже загруженную фотографию. Владелец проверяется здесь,
  * потому что бакет публичный и адрес чужого файла знать не запрещено.
@@ -135,12 +129,23 @@ export async function setAvatarFromPhoto(
     .from("profiles")
     .update({ avatar_url: publicUrl(PHOTO_BUCKET, photo.storage_path) })
     .eq("id", userId);
-  return error?.message ?? null;
+  return friendly(error);
 }
 
+/**
+ * Сначала строка, потом файл. Обратный порядок хуже: при отказе на втором
+ * шаге в галерее осталась бы запись с исчезнувшей картинкой. Здесь же
+ * худший случай — невидимый файл в бакете, о котором мы честно сообщаем.
+ */
 export async function deletePhoto(photo: VkPhotoRow): Promise<string | null> {
   const { error } = await supabase.from("photos").delete().eq("id", photo.id);
-  if (error) return error.message;
-  await supabase.storage.from(PHOTO_BUCKET).remove([photo.storage_path]);
+  if (error) return friendly(error);
+
+  const removal = await supabase.storage
+    .from(PHOTO_BUCKET)
+    .remove([photo.storage_path]);
+  if (removal.error) {
+    return "Фотография удалена, но файл остался на сервере";
+  }
   return null;
 }

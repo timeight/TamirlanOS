@@ -1,3 +1,4 @@
+import { escapeLike, friendly, quoteFilterValue } from "@/core/vk/api/errors";
 import { supabase } from "@/core/vk/supabase";
 import type { VkProfileRow } from "@/core/vk/vk-types";
 
@@ -22,7 +23,7 @@ export async function signUp(input: SignUpInput): Promise<string | null> {
       },
     },
   });
-  return error?.message ?? null;
+  return friendly(error);
 }
 
 export async function signIn(
@@ -30,7 +31,7 @@ export async function signIn(
   password: string,
 ): Promise<string | null> {
   const { error } = await supabase.auth.signInWithPassword({ email, password });
-  return error?.message ?? null;
+  return friendly(error);
 }
 
 export async function signOut(): Promise<void> {
@@ -42,17 +43,6 @@ export async function fetchProfile(id: string): Promise<VkProfileRow | null> {
     .from("profiles")
     .select("*")
     .eq("id", id)
-    .maybeSingle();
-  return data as VkProfileRow | null;
-}
-
-export async function fetchProfileByUsername(
-  username: string,
-): Promise<VkProfileRow | null> {
-  const { data } = await supabase
-    .from("profiles")
-    .select("*")
-    .eq("username", username.toLowerCase())
     .maybeSingle();
   return data as VkProfileRow | null;
 }
@@ -76,7 +66,7 @@ export async function updateProfile(
   patch: ProfilePatch,
 ): Promise<string | null> {
   const { error } = await supabase.from("profiles").update(patch).eq("id", id);
-  return error?.message ?? null;
+  return friendly(error);
 }
 
 export async function searchProfiles(
@@ -84,11 +74,13 @@ export async function searchProfiles(
 ): Promise<readonly VkProfileRow[]> {
   const term = query.trim();
   if (term.length < 2) return [];
+
+  const pattern = quoteFilterValue(`%${escapeLike(term)}%`);
   const { data } = await supabase
     .from("profiles")
     .select("*")
     .or(
-      `first_name.ilike.%${term}%,last_name.ilike.%${term}%,username.ilike.%${term}%`,
+      `first_name.ilike.${pattern},last_name.ilike.${pattern},username.ilike.${pattern}`,
     )
     .limit(30);
   return (data as VkProfileRow[] | null) ?? [];
