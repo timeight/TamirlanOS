@@ -2,6 +2,8 @@
 
 import { VkButton } from "@/components/apps/ie/pages/vk/VkButton";
 import { VkFeed } from "@/components/apps/ie/pages/vk/VkFeed";
+import { VkGroupPage } from "@/components/apps/ie/pages/vk/VkGroupPage";
+import { VkGroups } from "@/components/apps/ie/pages/vk/VkGroups";
 import { VkFriends } from "@/components/apps/ie/pages/vk/VkFriends";
 import { VkMessages } from "@/components/apps/ie/pages/vk/VkMessages";
 import { VkNotifications } from "@/components/apps/ie/pages/vk/VkNotifications";
@@ -51,6 +53,19 @@ export function VkSectionView({ app, userId }: VkSectionViewProps) {
         onOpenProfile={openProfile}
         onSection={setSection}
       />
+    );
+  }
+
+  if (section === VK_SECTION.groups) {
+    return app.groupId ? (
+      <VkGroupPage
+        groupId={app.groupId}
+        viewerId={userId}
+        onOpenProfile={openProfile}
+        onLeaveGroup={() => app.openGroup(null)}
+      />
+    ) : (
+      <VkGroups viewerId={userId} onOpenGroup={(id) => app.openGroup(id)} />
     );
   }
 

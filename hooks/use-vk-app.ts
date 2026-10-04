@@ -29,6 +29,9 @@ export interface VkApp {
   openPost: (postId: string) => Promise<void>;
   /** Запись, к которой нужно прокрутить стену; гаснет после показа. */
   focusPostId: string | null;
+  /** Открытое сообщество; null — список групп. */
+  groupId: string | null;
+  openGroup: (groupId: string | null) => void;
   counters: VkCounters;
   /** Зовётся разделом после того, как он пометил что-то прочитанным. */
   refreshCounters: () => Promise<void>;
@@ -48,6 +51,7 @@ export function useVkApp(): VkApp {
   const [section, setSection] = useState<string>(VK_SECTION.profile);
   const [viewing, setViewing] = useState<VkProfileRow | null>(null);
   const [focusPostId, setFocusPostId] = useState<string | null>(null);
+  const [groupId, setGroupId] = useState<string | null>(null);
 
   const { counters, refresh: refreshCounters } = useVkCounters(userId);
   const messenger = useVkMessages(userId, refreshCounters);
@@ -64,7 +68,13 @@ export function useVkApp(): VkApp {
   // осталась бы жёлтой и перетягивала прокрутку при каждом возврате на стену.
   const goSection = useCallback((next: string) => {
     setFocusPostId(null);
+    if (next !== VK_SECTION.groups) setGroupId(null);
     setSection(next);
+  }, []);
+
+  const openGroup = useCallback((next: string | null) => {
+    setSection(VK_SECTION.groups);
+    setGroupId(next);
   }, []);
 
   const openProfile = useCallback(
@@ -111,6 +121,8 @@ export function useVkApp(): VkApp {
     write,
     openPost,
     focusPostId,
+    groupId,
+    openGroup,
     counters,
     refreshCounters,
     messenger,

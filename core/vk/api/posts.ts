@@ -1,14 +1,19 @@
 import { friendly } from "@/core/vk/api/errors";
 import { PHOTO_BUCKET, publicUrl } from "@/core/vk/api/photos";
 import { supabase } from "@/core/vk/supabase";
-import { fullName, type VkPostRow, type VkWallPost } from "@/core/vk/vk-types";
+import {
+  fullName,
+  type GroupRole,
+  type VkPostRow,
+  type VkWallPost,
+} from "@/core/vk/vk-types";
 
 /**
  * Likes and comments come back as nested rows and are folded into counts here:
  * at this scale one round trip beats a view plus a second query.
  */
 const WALL_SELECT = `
-  id, author_id, wall_owner_id, content, created_at, updated_at,
+  id, author_id, wall_owner_id, group_id, content, created_at, updated_at,
   author:profiles!posts_author_id_fkey (
     id, username, first_name, last_name, avatar_url
   ),
@@ -22,7 +27,12 @@ const WALL_SELECT = `
   )
 `;
 
-function toWallPost(row: VkPostRow, viewerId: string | null): VkWallPost {
+function toWallPost(
+  row: VkPostRow,
+  viewerId: string | null,
+  /** Роль читателя в сообществе — нужна, чтобы показать модерацию. */
+  groupRole: GroupRole | null = null,
+): VkWallPost {
   const comments = [...(row.comments ?? [])].sort((a, b) =>
     a.created_at.localeCompare(b.created_at),
   );
@@ -42,6 +52,11 @@ function toWallPost(row: VkPostRow, viewerId: string | null): VkWallPost {
     comments,
     mine: row.author_id === viewerId,
     onMyWall: row.wall_owner_id === viewerId,
+    canDelete:
+      row.author_id === viewerId ||
+      row.wall_owner_id === viewerId ||
+      groupRole === "owner" ||
+      groupRole === "admin",
   };
 }
 
@@ -114,6 +129,37 @@ export async function createPost(
   const { error } = await supabase.from("posts").insert({
     author_id: authorId,
     wall_owner_id: wallOwnerId,
+    content,
+    photo_id: photoId ?? null,
+  });
+  return friendly(error);
+}
+
+export async function fetchGroupWall(
+  groupId: string,
+  viewerId: string,
+  role: GroupRole | null,
+): Promise<readonly VkWallPost[]> {
+  const { data } = await supabase
+    .from("posts")
+    .select(WALL_SELECT)
+    .eq("group_id", groupId)
+    .order("created_at", { ascending: false })
+    .limit(50);
+  const rows = (data as unknown as VkPostRow[] | null) ?? [];
+  return rows.map((row) => toWallPost(row, viewerId, role));
+}
+
+/** Запись в сообщество: хозяин здесь группа, а не человек. */
+export async function createGroupPost(
+  authorId: string,
+  groupId: string,
+  content: string,
+  photoId?: string | null,
+): Promise<string | null> {
+  const { error } = await supabase.from("posts").insert({
+    author_id: authorId,
+    group_id: groupId,
     content,
     photo_id: photoId ?? null,
   });

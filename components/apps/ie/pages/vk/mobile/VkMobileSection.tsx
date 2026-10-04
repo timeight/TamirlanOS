@@ -1,6 +1,8 @@
 "use client";
 
 import { VkMobileFeed } from "@/components/apps/ie/pages/vk/mobile/VkMobileFeed";
+import { VkMobileGroupPage } from "@/components/apps/ie/pages/vk/mobile/VkMobileGroupPage";
+import { VkMobileGroups } from "@/components/apps/ie/pages/vk/mobile/VkMobileGroups";
 import { VkMobileFriends } from "@/components/apps/ie/pages/vk/mobile/VkMobileFriends";
 import { VkMobileMessages } from "@/components/apps/ie/pages/vk/mobile/VkMobileMessages";
 import { VkMobileNotifications } from "@/components/apps/ie/pages/vk/mobile/VkMobileNotifications";
@@ -85,6 +87,23 @@ export function VkMobileSection({ app, userId, onMenu }: VkMobileSectionProps) {
         viewerId={userId}
         onOpenProfile={openProfile}
         onSection={setSection}
+        onMenu={onMenu}
+      />
+    );
+  }
+
+  if (section === VK_SECTION.groups) {
+    return app.groupId ? (
+      <VkMobileGroupPage
+        groupId={app.groupId}
+        viewerId={userId}
+        onOpenProfile={openProfile}
+        onBack={() => app.openGroup(null)}
+      />
+    ) : (
+      <VkMobileGroups
+        viewerId={userId}
+        onOpenGroup={(id) => app.openGroup(id)}
         onMenu={onMenu}
       />
     );

@@ -40,10 +40,28 @@ export interface VkPostPhoto {
   caption: string | null;
 }
 
+export type GroupRole = "owner" | "admin" | "member";
+
+export interface VkGroupRow {
+  id: string;
+  username: string;
+  name: string;
+  description: string | null;
+  avatar_url: string | null;
+  owner_id: string;
+  created_at: string;
+}
+
+/** Строка из popular_groups: та же группа плюс готовый счётчик. */
+export interface VkGroupListed extends VkGroupRow {
+  members: number;
+}
+
 export interface VkPostRow {
   id: string;
   author_id: string;
-  wall_owner_id: string;
+  wall_owner_id: string | null;
+  group_id: string | null;
   content: string;
   created_at: string;
   updated_at: string;
@@ -65,6 +83,8 @@ export interface VkWallPost {
   photoCaption: string | null;
   likes: number;
   liked: boolean;
+  /** Запись можно убрать: свою, со своей стены или по праву в сообществе. */
+  canDelete: boolean;
   comments: VkCommentRow[];
   mine: boolean;
   onMyWall: boolean;

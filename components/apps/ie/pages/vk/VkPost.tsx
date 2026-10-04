@@ -174,7 +174,7 @@ export function VkPost({
               Редактировать
             </button>
           )}
-          {(post.mine || post.onMyWall) && (
+          {post.canDelete && (
             <button
               type="button"
               onClick={() => void run(deletePost(post.id))}

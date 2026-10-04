@@ -36,6 +36,7 @@ export const VK_IMPLEMENTED: readonly VkSection[] = [
   VK_SECTION.friends,
   VK_SECTION.photos,
   VK_SECTION.messages,
+  VK_SECTION.groups,
   VK_SECTION.answers,
   VK_SECTION.settings,
   VK_SECTION.search,

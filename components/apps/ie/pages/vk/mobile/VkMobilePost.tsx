@@ -67,7 +67,7 @@ export function VkMobilePost({
           </button>
           <p className="text-[11px] text-[#9aa4ad]">{vkDate(post.createdAt)}</p>
         </div>
-        {(post.mine || post.onMyWall) && (
+        {post.canDelete && (
           <button
             type="button"
             aria-label="Действия с записью"
