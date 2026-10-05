@@ -4,6 +4,7 @@ import { VkButton } from "@/components/apps/ie/pages/vk/VkButton";
 import { VkPost } from "@/components/apps/ie/pages/vk/VkPost";
 import { VK_SECTION } from "@/core/vk/sections";
 import { useVkFeed } from "@/hooks/use-vk-feed";
+import { VK_TEXT } from "@/core/vk/ui-text";
 
 interface VkFeedProps {
   viewerId: string;
@@ -22,7 +23,7 @@ export function VkFeed({ viewerId, onOpenProfile, onSection }: VkFeedProps) {
       </h1>
 
       {loading ? (
-        <p className="py-4 text-[11px] text-[#939393]">Загрузка...</p>
+        <p className="py-4 text-[11px] text-[#939393]">{VK_TEXT.loading}</p>
       ) : posts.length === 0 ? (
         <div className="py-6 text-center">
           <p className="text-[12px] text-[#939393]">Здесь пока ничего нет.</p>

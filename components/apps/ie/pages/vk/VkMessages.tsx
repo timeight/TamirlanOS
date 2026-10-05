@@ -5,6 +5,7 @@ import { VkDialogList } from "@/components/apps/ie/pages/vk/VkDialogList";
 import { VkThread } from "@/components/apps/ie/pages/vk/VkThread";
 import { fullName } from "@/core/vk/vk-types";
 import type { VkMessenger } from "@/hooks/use-vk-messages";
+import { VK_TEXT } from "@/core/vk/ui-text";
 
 interface VkMessagesProps {
   messenger: VkMessenger;
@@ -40,7 +41,7 @@ export function VkMessages({ messenger, viewerId }: VkMessagesProps) {
       )}
 
       {loading && (
-        <p className="py-4 text-[11px] text-[#939393]">Загрузка...</p>
+        <p className="py-4 text-[11px] text-[#939393]">{VK_TEXT.loading}</p>
       )}
 
       {!loading && !openId && (

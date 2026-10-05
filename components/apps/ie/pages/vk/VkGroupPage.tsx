@@ -8,6 +8,7 @@ import { VkGroupAudio } from "@/components/apps/ie/pages/vk/VkGroupAudio";
 import { VkPost } from "@/components/apps/ie/pages/vk/VkPost";
 import { createGroupPost } from "@/core/vk/api/posts";
 import { useVkGroup } from "@/hooks/use-vk-group";
+import { VK_TEXT } from "@/core/vk/ui-text";
 
 interface VkGroupPageProps {
   groupId: string;
@@ -28,7 +29,7 @@ export function VkGroupPage({
   const canManage = state.role === "owner" || state.role === "admin";
 
   if (state.loading) {
-    return <p className="py-4 text-[11px] text-[#939393]">Загрузка...</p>;
+    return <p className="py-4 text-[11px] text-[#939393]">{VK_TEXT.loading}</p>;
   }
   if (!state.group) {
     return (

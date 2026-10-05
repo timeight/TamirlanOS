@@ -9,6 +9,7 @@ import { VkMobileHeader } from "@/components/apps/ie/pages/vk/mobile/VkMobileHea
 import { VkMobileSection } from "@/components/apps/ie/pages/vk/mobile/VkMobileSection";
 import { signOut } from "@/core/vk/api/profiles";
 import type { VkApp } from "@/hooks/use-vk-app";
+import { VK_TEXT } from "@/core/vk/ui-text";
 
 interface VkMobileShellProps {
   app: VkApp;
@@ -44,7 +45,7 @@ export function VkMobileShell({ app, onLeave }: VkMobileShellProps) {
             />
             {status === "loading" ? (
               <p className="px-[10px] py-6 text-[13px] text-[#9aa4ad]">
-                Загрузка...
+                {VK_TEXT.loading}
               </p>
             ) : (
               <div className="px-3 py-4">

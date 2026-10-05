@@ -7,6 +7,7 @@ import { VkMobileGroupLabel } from "@/components/apps/ie/pages/vk/mobile/VkMobil
 import { VkMobileRow } from "@/components/apps/ie/pages/vk/mobile/VkMobileRow";
 import { VkMobileScreen } from "@/components/apps/ie/pages/vk/mobile/VkMobileScreen";
 import { useVkGroups } from "@/hooks/use-vk-groups";
+import { VK_TEXT } from "@/core/vk/ui-text";
 
 interface VkMobileGroupsProps {
   viewerId: string;
@@ -111,13 +112,15 @@ export function VkMobileGroups({
       )}
       {groups.searched && groups.found.length === 0 && (
         <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
-          Ничего не найдено.
+          {VK_TEXT.notFound}
         </p>
       )}
 
       <VkMobileGroupLabel>Мои группы</VkMobileGroupLabel>
       {groups.loading ? (
-        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">Загрузка...</p>
+        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
+          {VK_TEXT.loading}
+        </p>
       ) : groups.mine.length === 0 ? (
         <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
           Вы пока ни в одном сообществе не состоите.

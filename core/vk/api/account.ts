@@ -1,10 +1,6 @@
 import { friendly } from "@/core/vk/api/errors";
 import { supabase } from "@/core/vk/supabase";
-import type {
-  PrivacyRequests,
-  PrivacyScope,
-  VkProfileRow,
-} from "@/core/vk/vk-types";
+import type { PrivacyRequests, PrivacyScope } from "@/core/vk/vk-types";
 
 export const MIN_PASSWORD = 6;
 
@@ -146,10 +142,3 @@ export const NOTIFY_ROWS: readonly { key: PrivacyKey; label: string }[] = [
   { key: "notify_comment", label: "Комментарии" },
   { key: "notify_message", label: "Сообщения" },
 ];
-
-export function privacyValue(
-  profile: VkProfileRow,
-  key: PrivacyKey,
-): string | boolean {
-  return profile[key as keyof VkProfileRow] as string | boolean;
-}

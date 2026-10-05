@@ -10,6 +10,7 @@ import { VK_SECTION } from "@/core/vk/sections";
 import { signOut } from "@/core/vk/api/profiles";
 import { fullName } from "@/core/vk/vk-types";
 import type { VkApp } from "@/hooks/use-vk-app";
+import { VK_TEXT } from "@/core/vk/ui-text";
 
 interface VkDesktopShellProps {
   app: VkApp;
@@ -58,7 +59,9 @@ export function VkDesktopShell({ app, onLeave }: VkDesktopShellProps) {
 
         <div className="min-w-0 flex-1 border-[#dae1e8] @[720px]:border-l @[720px]:pl-4">
           {status === "loading" && (
-            <p className="py-10 text-[11px] text-[#939393]">Загрузка...</p>
+            <p className="py-10 text-[11px] text-[#939393]">
+              {VK_TEXT.loading}
+            </p>
           )}
 
           {status === "guest" && <VkAuthScreen />}

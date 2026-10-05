@@ -7,6 +7,7 @@ import { VkMobileGroupLabel } from "@/components/apps/ie/pages/vk/mobile/VkMobil
 import { VkMobileScreen } from "@/components/apps/ie/pages/vk/mobile/VkMobileScreen";
 import { VkMobileTrackList } from "@/components/apps/ie/pages/vk/mobile/VkMobileTrackList";
 import { useVkAudio } from "@/hooks/use-vk-audio";
+import { VK_TEXT } from "@/core/vk/ui-text";
 
 interface VkMobileAudioProps {
   ownerId: string;
@@ -126,7 +127,7 @@ export function VkMobileAudio({
       )}
       {audio.searched && audio.found.length === 0 && (
         <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
-          Ничего не найдено.
+          {VK_TEXT.notFound}
         </p>
       )}
 
@@ -135,7 +136,9 @@ export function VkMobileAudio({
       </VkMobileGroupLabel>
 
       {audio.loading ? (
-        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">Загрузка...</p>
+        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
+          {VK_TEXT.loading}
+        </p>
       ) : audio.tracks.length === 0 ? (
         <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
           {mine ? "Вы ещё ничего не загрузили." : "Аудиозаписей нет."}

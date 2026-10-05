@@ -5,6 +5,7 @@ import { AssetImage } from "@/components/ui/AssetImage";
 import { VkButton } from "@/components/apps/ie/pages/vk/VkButton";
 import { WALL_ALBUM } from "@/core/vk/api/photos";
 import { useVkPhotos, type VkPhoto } from "@/hooks/use-vk-photos";
+import { VK_TEXT } from "@/core/vk/ui-text";
 
 interface VkPhotosProps {
   ownerId: string;
@@ -53,7 +54,7 @@ export function VkPhotos({ ownerId, viewerId, ownerName }: VkPhotosProps) {
       {error && <p className="mb-2 text-[11px] text-[#9b2c2c]">{error}</p>}
 
       {loading ? (
-        <p className="py-4 text-[11px] text-[#939393]">Загрузка...</p>
+        <p className="py-4 text-[11px] text-[#939393]">{VK_TEXT.loading}</p>
       ) : photos.length === 0 ? (
         <p className="py-4 text-[11px] text-[#939393]">
           {mine

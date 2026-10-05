@@ -6,6 +6,7 @@ import { VkButton } from "@/components/apps/ie/pages/vk/VkButton";
 import { VkField } from "@/components/apps/ie/pages/vk/VkField";
 import type { VkGroupRow } from "@/core/vk/vk-types";
 import { useVkGroups } from "@/hooks/use-vk-groups";
+import { VK_TEXT } from "@/core/vk/ui-text";
 
 interface VkGroupsProps {
   viewerId: string;
@@ -94,7 +95,7 @@ export function VkGroups({ viewerId, onOpenGroup }: VkGroupsProps) {
       )}
 
       {groups.loading ? (
-        <p className="py-4 text-[11px] text-[#939393]">Загрузка...</p>
+        <p className="py-4 text-[11px] text-[#939393]">{VK_TEXT.loading}</p>
       ) : groups.mine.length === 0 ? (
         <p className="py-3 text-[11px] text-[#939393]">
           Вы пока ни в одном сообществе не состоите.

@@ -7,6 +7,7 @@ import { VkButton } from "@/components/apps/ie/pages/vk/VkButton";
 import { VkPost } from "@/components/apps/ie/pages/vk/VkPost";
 import { useVkWall } from "@/hooks/use-vk-wall";
 import { useWallComposer } from "@/hooks/use-wall-composer";
+import { VK_TEXT } from "@/core/vk/ui-text";
 
 interface VkWallProps {
   ownerId: string;
@@ -107,7 +108,7 @@ export function VkWall({
 
       {loading ? (
         <p className="border-t border-[#dae1e8] py-4 text-[11px] text-[#939393]">
-          Загрузка...
+          {VK_TEXT.loading}
         </p>
       ) : posts.length === 0 ? (
         <p className="border-t border-[#dae1e8] py-4 text-[11px] text-[#939393]">

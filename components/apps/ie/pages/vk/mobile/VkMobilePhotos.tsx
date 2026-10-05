@@ -8,6 +8,7 @@ import { VkMobileScreen } from "@/components/apps/ie/pages/vk/mobile/VkMobileScr
 import { VkMobileGroupLabel } from "@/components/apps/ie/pages/vk/mobile/VkMobileGroupLabel";
 import { WALL_ALBUM } from "@/core/vk/api/photos";
 import { useVkPhotos, type VkPhoto } from "@/hooks/use-vk-photos";
+import { VK_TEXT } from "@/core/vk/ui-text";
 
 interface VkMobilePhotosProps {
   ownerId: string;
@@ -52,7 +53,9 @@ export function VkMobilePhotos({
       )}
 
       {loading ? (
-        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">Загрузка...</p>
+        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
+          {VK_TEXT.loading}
+        </p>
       ) : photos.length === 0 ? (
         <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
           {mine

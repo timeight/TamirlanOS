@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { VkMobileRow } from "@/components/apps/ie/pages/vk/mobile/VkMobileRow";
 import { fullName, vkDate } from "@/core/vk/vk-types";
 import type { VkMessenger } from "@/hooks/use-vk-messages";
+import { VK_TEXT } from "@/core/vk/ui-text";
 
 interface VkMobileDialogsProps {
   messenger: VkMessenger;
@@ -20,7 +21,9 @@ export function VkMobileDialogs({ messenger, viewerId }: VkMobileDialogsProps) {
 
   if (loading) {
     return (
-      <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">Загрузка...</p>
+      <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
+        {VK_TEXT.loading}
+      </p>
     );
   }
 

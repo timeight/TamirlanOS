@@ -5,6 +5,7 @@ import { VkMobileGroupLabel } from "@/components/apps/ie/pages/vk/mobile/VkMobil
 import { VkMobilePost } from "@/components/apps/ie/pages/vk/mobile/VkMobilePost";
 import { useVkWall } from "@/hooks/use-vk-wall";
 import { useWallComposer } from "@/hooks/use-wall-composer";
+import { VK_TEXT } from "@/core/vk/ui-text";
 
 interface VkMobileWallProps {
   ownerId: string;
@@ -30,7 +31,9 @@ export function VkMobileWall({
       <VkMobileComposer composer={composer} own={ownerId === viewerId} />
 
       {loading ? (
-        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">Загрузка...</p>
+        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
+          {VK_TEXT.loading}
+        </p>
       ) : posts.length === 0 ? (
         <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
           Записей пока нет.

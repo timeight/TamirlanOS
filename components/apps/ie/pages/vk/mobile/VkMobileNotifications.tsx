@@ -5,6 +5,7 @@ import { VkMobileScreen } from "@/components/apps/ie/pages/vk/mobile/VkMobileScr
 import { NOTIFICATION_TEXT } from "@/core/vk/social-types";
 import { fullName, vkDate } from "@/core/vk/vk-types";
 import { useVkNotifications } from "@/hooks/use-vk-notifications";
+import { VK_TEXT } from "@/core/vk/ui-text";
 
 interface VkMobileNotificationsProps {
   onOpenProfile: (profileId: string) => void;
@@ -36,7 +37,9 @@ export function VkMobileNotifications({
       }
     >
       {loading ? (
-        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">Загрузка...</p>
+        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
+          {VK_TEXT.loading}
+        </p>
       ) : items.length === 0 ? (
         <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
           Новых событий нет.

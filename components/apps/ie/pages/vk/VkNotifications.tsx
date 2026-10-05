@@ -6,6 +6,7 @@ import { NOTIFICATION_TEXT } from "@/core/vk/social-types";
 import { cn } from "@/core/utils/cn";
 import { fullName, vkDate } from "@/core/vk/vk-types";
 import { useVkNotifications } from "@/hooks/use-vk-notifications";
+import { VK_TEXT } from "@/core/vk/ui-text";
 
 interface VkNotificationsProps {
   onOpenProfile: (profileId: string) => void;
@@ -36,7 +37,7 @@ export function VkNotifications({
       </h1>
 
       {loading ? (
-        <p className="py-4 text-[11px] text-[#939393]">Загрузка...</p>
+        <p className="py-4 text-[11px] text-[#939393]">{VK_TEXT.loading}</p>
       ) : items.length === 0 ? (
         <p className="py-4 text-[11px] text-[#939393]">Новых событий нет.</p>
       ) : (

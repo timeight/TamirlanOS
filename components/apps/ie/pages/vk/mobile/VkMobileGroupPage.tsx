@@ -10,6 +10,7 @@ import { VkMobilePost } from "@/components/apps/ie/pages/vk/mobile/VkMobilePost"
 import { VkMobileScreen } from "@/components/apps/ie/pages/vk/mobile/VkMobileScreen";
 import { createGroupPost } from "@/core/vk/api/posts";
 import { useVkGroup } from "@/hooks/use-vk-group";
+import { VK_TEXT } from "@/core/vk/ui-text";
 
 interface VkMobileGroupPageProps {
   groupId: string;
@@ -44,7 +45,9 @@ export function VkMobileGroupPage({
       }
     >
       {state.loading ? (
-        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">Загрузка...</p>
+        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
+          {VK_TEXT.loading}
+        </p>
       ) : !state.group ? (
         <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
           Сообщество не найдено.

@@ -8,6 +8,7 @@ import { cn } from "@/core/utils/cn";
 import { VK_SECTION } from "@/core/vk/sections";
 import { fullName } from "@/core/vk/vk-types";
 import { useVkFriends } from "@/hooks/use-vk-friends";
+import { VK_TEXT } from "@/core/vk/ui-text";
 
 interface VkMobileFriendsProps {
   ownerId: string;
@@ -89,7 +90,9 @@ export function VkMobileFriends({
       </ul>
 
       {loading ? (
-        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">Загрузка...</p>
+        <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
+          {VK_TEXT.loading}
+        </p>
       ) : list.length === 0 ? (
         <p className="px-[10px] py-4 text-[13px] text-[#9aa4ad]">
           {tab === "incoming"

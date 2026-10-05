@@ -6,6 +6,7 @@ import { VkField } from "@/components/apps/ie/pages/vk/VkField";
 import { VkPlayerBar } from "@/components/apps/ie/pages/vk/VkPlayerBar";
 import { VkTrackList } from "@/components/apps/ie/pages/vk/VkTrackList";
 import { useVkAudio } from "@/hooks/use-vk-audio";
+import { VK_TEXT } from "@/core/vk/ui-text";
 
 interface VkAudioProps {
   ownerId: string;
@@ -86,7 +87,7 @@ export function VkAudio({ ownerId, viewerId, ownerName }: VkAudioProps) {
       )}
 
       {audio.loading ? (
-        <p className="py-4 text-[11px] text-[#939393]">Загрузка...</p>
+        <p className="py-4 text-[11px] text-[#939393]">{VK_TEXT.loading}</p>
       ) : audio.tracks.length === 0 ? (
         <p className="py-4 text-[11px] text-[#939393]">
           {mine ? "Вы ещё ничего не загрузили." : "Аудиозаписей нет."}

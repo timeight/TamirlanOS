@@ -150,18 +150,6 @@ export async function searchTracks(query: string): Promise<readonly VkTrack[]> {
   return (data as VkTrack[] | null) ?? [];
 }
 
-export async function renameTrack(
-  id: string,
-  title: string,
-  artist: string,
-): Promise<string | null> {
-  const { error } = await supabase
-    .from("audio_tracks")
-    .update({ title: title.trim(), artist: artist.trim() })
-    .eq("id", id);
-  return friendly(error);
-}
-
 /** Сначала строка, затем файл: обратный порядок оставил бы битую строку. */
 export async function deleteTrack(track: VkTrack): Promise<string | null> {
   const { error } = await supabase

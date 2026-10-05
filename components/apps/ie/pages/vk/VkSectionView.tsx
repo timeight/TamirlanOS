@@ -43,6 +43,7 @@ export function VkSectionView({ app, userId }: VkSectionViewProps) {
         viewerId={userId}
         onOpenProfile={openProfile}
         onWrite={(id) => void write(id)}
+        onOpenGroup={(id) => app.openGroup(id)}
       />
     );
   }

@@ -5,6 +5,7 @@ import { VkButton } from "@/components/apps/ie/pages/vk/VkButton";
 import { VkPersonRow } from "@/components/apps/ie/pages/vk/VkPersonRow";
 import { cn } from "@/core/utils/cn";
 import { useVkFriends } from "@/hooks/use-vk-friends";
+import { VK_TEXT } from "@/core/vk/ui-text";
 
 interface VkFriendsProps {
   ownerId: string;
@@ -72,7 +73,7 @@ export function VkFriends({
       )}
 
       {loading ? (
-        <p className="py-4 text-[11px] text-[#939393]">Загрузка...</p>
+        <p className="py-4 text-[11px] text-[#939393]">{VK_TEXT.loading}</p>
       ) : list.length === 0 ? (
         <p className="py-4 text-[11px] text-[#939393]">
           {tab === "incoming"
