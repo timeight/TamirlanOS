@@ -29,6 +29,15 @@ export function useDesktopMenu(onRefresh: () => void): DesktopMenu {
   const onDesktop = useCallback(
     (event: ReactMouseEvent) => {
       if (compact) return;
+
+      // Обработчик висит на корне рабочего стола, поэтому сюда всплывает и
+      // правый щелчок внутри окна приложения. Там своё меню браузера нужно
+      // оставить: внутри Internet Explorer и VK оно рабочее.
+      const target = event.target as HTMLElement | null;
+      if (target?.closest('[role="dialog"], [role="toolbar"], [role="menu"]')) {
+        return;
+      }
+
       event.preventDefault();
       const items: MenuEntry[] = [
         { kind: "action", label: "Обновить", onSelect: onRefresh },

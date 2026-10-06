@@ -88,11 +88,16 @@ export function DesktopShell() {
     openApp(appId);
   };
 
+  // Корень рабочего стола: правый щелчок ловится здесь, а не на подложке,
+  // иначе питомец, шарик и прочие слои поверх отдавали бы меню браузера.
   return (
-    <div className="animate-fade-in relative h-full overflow-hidden motion-reduce:animate-none">
+    <div
+      className="animate-fade-in relative h-full overflow-hidden motion-reduce:animate-none"
+      onContextMenu={menu.onDesktop}
+    >
       <Wallpaper />
       <AmbientLayer />
-      <DesktopSurface onContextMenu={menu.onDesktop}>
+      <DesktopSurface>
         <DesktopIcons
           key={surfaceKey}
           onIconOpen={(icon) => openApp(icon.appId)}
