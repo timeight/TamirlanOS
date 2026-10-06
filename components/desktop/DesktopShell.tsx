@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { DesktopIcons } from "@/components/desktop/DesktopIcons";
 import { AchievementBalloon } from "@/components/desktop/AchievementBalloon";
 import { AmbientLayer } from "@/components/desktop/AmbientLayer";
@@ -25,6 +25,10 @@ import { useSessionEngine } from "@/hooks/use-session-engine";
 import { useLostFilesDiscovery } from "@/hooks/use-lost-files-discovery";
 import { useWorldPublishers } from "@/hooks/use-world-publishers";
 import { useAudioStore } from "@/stores/audio-store";
+import { ContextMenu } from "@/components/ui/ContextMenu";
+import { useContextMenuStore } from "@/stores/context-menu-store";
+import { useDesktopMenu } from "@/hooks/use-desktop-menu";
+import { useDesktopStore } from "@/stores/desktop-store";
 import { useNotificationStore } from "@/stores/notification-store";
 import { SoundEvent } from "@/types/sound";
 
@@ -36,6 +40,19 @@ export function DesktopShell() {
   const notify = useNotificationStore((state) => state.notify);
   const t = useT();
   const [balloonOpen, setBalloonOpen] = useState(true);
+  // Иконки рабочего стола статичны, поэтому «Обновить» перерисовывает слой
+  // и снимает выделение — ровно то, что делает F5 в проводнике Windows.
+  const [surfaceKey, setSurfaceKey] = useState(0);
+  const clearSelection = useDesktopStore((state) => state.clearSelection);
+  const hideMenu = useContextMenuStore((state) => state.hide);
+
+  const refreshDesktop = useCallback(() => {
+    clearSelection();
+    setSurfaceKey((value) => value + 1);
+    hideMenu();
+  }, [clearSelection, hideMenu]);
+
+  const menu = useDesktopMenu(refreshDesktop);
 
   useWorldPublishers();
   useLostFilesDiscovery();
@@ -75,8 +92,12 @@ export function DesktopShell() {
     <div className="animate-fade-in relative h-full overflow-hidden motion-reduce:animate-none">
       <Wallpaper />
       <AmbientLayer />
-      <DesktopSurface>
-        <DesktopIcons onIconOpen={(icon) => openApp(icon.appId)} />
+      <DesktopSurface onContextMenu={menu.onDesktop}>
+        <DesktopIcons
+          key={surfaceKey}
+          onIconOpen={(icon) => openApp(icon.appId)}
+          onIconContextMenu={menu.onIcon}
+        />
       </DesktopSurface>
       <WindowHost />
       {balloonOpen && (
@@ -93,6 +114,7 @@ export function DesktopShell() {
       <RestoreSessionDialog onRestore={restoreSession} />
       <AgentNudge />
       <NotificationToast />
+      <ContextMenu />
       <Taskbar />
     </div>
   );

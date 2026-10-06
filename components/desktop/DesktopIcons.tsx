@@ -1,5 +1,6 @@
 "use client";
 
+import type { MouseEvent as ReactMouseEvent } from "react";
 import { AssetImage as Image } from "@/components/ui/AssetImage";
 import { ICON_GRID, slotToPosition } from "@/core/desktop/icon-grid";
 import { cn } from "@/core/utils/cn";
@@ -10,9 +11,13 @@ import type { DesktopIcon } from "@/types/desktop-icon";
 
 interface DesktopIconsProps {
   onIconOpen: (icon: DesktopIcon) => void;
+  onIconContextMenu?: (event: ReactMouseEvent, icon: DesktopIcon) => void;
 }
 
-export function DesktopIcons({ onIconOpen }: DesktopIconsProps) {
+export function DesktopIcons({
+  onIconOpen,
+  onIconContextMenu,
+}: DesktopIconsProps) {
   const icons = useDesktopStore((state) => state.icons);
   const selectedIconId = useDesktopStore((state) => state.selectedIconId);
   const selectIcon = useDesktopStore((state) => state.selectIcon);
@@ -44,6 +49,7 @@ export function DesktopIcons({ onIconOpen }: DesktopIconsProps) {
             onDoubleClick={() => {
               if (!compact) onIconOpen(icon);
             }}
+            onContextMenu={(event) => onIconContextMenu?.(event, icon)}
             onKeyDown={(event) => {
               if (event.key === "Enter") onIconOpen(icon);
             }}

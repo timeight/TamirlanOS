@@ -6,6 +6,7 @@ import { WindowControls } from "@/components/window/WindowControls";
 import { getApplication } from "@/core/process/app-registry";
 import { cn } from "@/core/utils/cn";
 import { useT } from "@/hooks/use-translations";
+import { useWindowMenu } from "@/hooks/use-window-menu";
 import type { AppId } from "@/types/application";
 import type { WindowId, WindowState } from "@/types/window";
 
@@ -39,10 +40,12 @@ export function WindowTitleBar({
 }: WindowTitleBarProps) {
   const t = useT();
   const iconSrc = getApplication(appId)?.iconSrc;
+  const openMenu = useWindowMenu();
 
   return (
     <div
       onPointerDown={onDragPointerDown}
+      onContextMenu={(event) => openMenu(event, id, state, onToggleMaximize)}
       onDoubleClick={() => {
         if (resizable && !compact) onToggleMaximize();
       }}
